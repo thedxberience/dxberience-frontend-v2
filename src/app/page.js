@@ -127,9 +127,9 @@ export default function Home() {
           </div>
           <div className="pt-[125px] text-white">
             <p className="w-[26.875vw]">
-              With Dxberience, luxury becomes a lifestyle, and we're excited to
-              provide our clients with nothing but the best in exclusivity and
-              exceptional experiences.
+              With Dxberience, luxury becomes a lifestyle, and we`&apos;`re
+              excited to provide our clients with nothing but the best in
+              exclusivity and exceptional experiences.
             </p>
           </div>
         </div>

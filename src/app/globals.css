@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -32,51 +32,55 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
-.hero-section{
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)), url('/hero_section.png') no-repeat center center/cover;
+.hero-section {
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/hero_section.png") no-repeat center center/cover;
 }
 
-.explore-text h1{
+.explore-text h1 {
   line-height: normal;
 }
 
-.private-retreats h1{
+.private-retreats h1 {
   line-height: normal;
 }
-.services, .memories h1{
+.services,
+.memories h1 {
   line-height: 1;
 }
 
-.services .sticky_parent{
+.services .sticky_parent {
   position: relative;
   width: 100%;
   height: 300vh;
 }
 
-.demand-luxury{
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/interior_car.jpeg") center center/cover no-repeat;
+.demand-luxury {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("/interior_car.jpeg") center center/cover no-repeat;
 }
 
-.services .sticky{
+.services .sticky {
   overflow: hidden;
   position: sticky;
   top: 0;
   bottom: 71px;
   width: 100%;
   height: 1082px;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)), url("/demand-luxury-image-2.png") center center/cover no-repeat;
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/demand-luxury-image-2.png") center center/cover no-repeat;
 }
 
-.memories .sticky_parent{
+.memories .sticky_parent {
   position: relative;
   width: 100%;
   height: 300vh;
 }
 
-.memories .sticky{
+.memories .sticky {
   overflow: hidden;
   position: sticky;
   top: 0;
@@ -86,7 +90,7 @@ body {
   background-color: #171010;
 }
 
-.services .scroll_section{
+.services .scroll_section {
   position: absolute;
   top: 100px;
   width: 300vh;
@@ -98,7 +102,7 @@ body {
   gap: 46px;
 }
 
-.memories .scroll_section{
+.memories .scroll_section {
   position: absolute;
   top: 10px;
   width: 100%;
@@ -110,51 +114,51 @@ body {
   gap: 81px;
 }
 
-.service_image{
+.service_image {
   position: relative;
 }
 
-.service_image:nth-child(odd){
+.service_image:nth-child(odd) {
   width: 600px;
   height: 328px;
 }
 
-.service_image:nth-child(even){
+.service_image:nth-child(even) {
   width: 384px;
   height: 524px;
 }
 
-.memory_image{
+.memory_image {
   position: relative;
   width: 373px;
   height: 490px;
 }
 
-@media screen and (max-width: 1024px){
-  .service_image:nth-child(odd){
+@media screen and (max-width: 1024px) {
+  .service_image:nth-child(odd) {
     width: 341px;
     height: 190px;
   }
-  
-  .service_image:nth-child(even){
+
+  .service_image:nth-child(even) {
     width: 218px;
     height: 298px;
   }
 
-  .services .scroll_section{
+  .services .scroll_section {
     width: 280vw;
   }
 
-  .services .sticky_parent{
+  .services .sticky_parent {
     height: 350vh;
   }
 
-  .memories .scroll_section{
+  .memories .scroll_section {
     gap: 20px;
     align-items: start;
   }
 
-  .memory_image{
+  .memory_image {
     position: relative;
     width: 100px;
     height: 130px;
@@ -167,10 +171,14 @@ body {
   }
 
   @font-face {
-    font-family: 'IvyPresto';
+    font-family: "IvyPresto";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("/fonts/Ivy Presto/Ivy Presto 3.otf") format('otf');
+    src: url("/fonts/Ivy Presto/Ivy Presto 3.otf") format("otf");
   }
+}
+
+.footer {
+  background-image: url("/footer_background.jpeg");
 }
