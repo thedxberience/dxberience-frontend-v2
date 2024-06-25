@@ -1,113 +1,222 @@
+import Footer from "@/components/Footer";
+import ImageScrollMotion from "@/components/ImageScrollMotion";
+import MemoriesSection from "@/components/MemoriesSection";
+import Navbar from "@/components/Navbar";
+import ServicesSection from "@/components/ServicesSection";
+import TextMotion from "@/components/TextMotion";
+import CustomButton from "@/components/shared/CustomButton";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <section className="hero-section min-h-screen w-[100vw] md:w-full flex flex-col justify-between items-center">
+        <Navbar />
+        <div className="flex flex-col text-white justify-center items-center">
+          <div className="flex justify-center relative w-[26.927vw] h-[60px] lg:w-[406.9px] lg:h-[100px] items-center">
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+              src="/dxberience_logo.svg"
+              alt="Dxberience Logo"
+              fill
+              className="object-cover"
             />
-          </a>
+          </div>
+          <p className="text-center w-[34.219vw] text-lg">
+            Our luxury concierge service ensures that every aspect of your
+            experience is meticulously curated to perfection. No need to think,
+            just experience.
+          </p>
         </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <div className="pb-5 flex flex-col justify-center items-center gap-4 text-white">
+          <p className="uppercase text-xs">Scroll to start experience</p>
+          <Image
+            className="animate-bounce"
+            src="/scroll_icon.svg"
+            alt="scroll icon"
+            width={41}
+            height={41}
+          />
+        </div>
+      </section>
+      <section className="explore w-full flex flex-col justify-start">
+        <div className="w-full flex justify-start pl-[80px] pt-8 lg:pt-28">
+          <div className="explore-text w-full flex justify-between items-center relative h-fit">
+            <TextMotion>
+              <h1 className="text-text-secondary text-[36px] md:text-[75px] pb-[81px] w-[40.26vw] font-IvyPresto font-normal">
+                Luxury Lifestyle Concierge Services
+              </h1>
+            </TextMotion>
+            <div className="w-[38.906vw] font-noah">
+              <p>
+                Indulge in an unforgettable journey with us as we meticulously
+                curate every detail to create an extraordinary experience just
+                for you. From exquisite accommodations to personalized
+                itineraries, let us take you on a seamless and enchanting
+                adventure that surpasses all expectations.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="image-animated">
+          <ImageScrollMotion querySelector={".img-1"}>
+            <div className="relative w-[250px] lg:w-[991px] h-[100px] lg:h-[194px]">
+              <Image
+                src={"/bmw.jpeg"}
+                alt="Luxury car rental service in Dubai"
+                className="object-cover img-1"
+                fill
+              />
+            </div>
+          </ImageScrollMotion>
+          <div className="flex w-6/12 justify-end items-center">
+            <h1 className="uppercase text-[30px] pt-12 font-noah">
+              Your concierge to exclusive experiences
+            </h1>
+          </div>
+        </div>
+        <div className="find text-right flex flex-col w-full justify-end pr-6 lg:pr-20">
+          <TextMotion animateType="right">
+            <h1 className="text-text-secondary font-noah text-[36px] md:text-[40px] font-thin">
+              Exclusive
+            </h1>
+          </TextMotion>
+          <TextMotion animateType="right">
+            <h1 className="text-text-primary font-IvyPresto text-[22px] md:text-[70px] font-thin">
+              Bespoke Services in Dubai
+            </h1>
+          </TextMotion>
+        </div>
+      </section>
+      <section className="w-full lg:pr-20">
+        <div className="concierge-text pt-10 lg:pt-28 flex flex-col gap-4 lg:gap-6 justify-center items-center lg:justify-end lg:items-end">
+          <div className="flex flex-col gap-2 lg:w-[600px] font-noah font-light px-6">
+            <p className="text-sm lg:text-lg font-extralight">
+              Step beyond the ordinary and discover a side of the world only a
+              select few get to experience. Our curated luxury experiences cater
+              to the discerning traveler. Book a private desert safari with
+              gourmet dining under the stars, or soar above the city in a
+              private helicopter. DXberience unlocks a world of bespoke
+              experiences, from breathtaking hotel views to exclusive yacht
+              charters. Create unforgettable memories with DXberience.
+            </p>
+            <p className="text-sm lg:text-lg font-extralight">
+              Whether you crave the thrill of a desert safari with gourmet
+              dining under the stars, or the serenity of a private spa retreat
+              overlooking the turquoise waters, DXberience caters to your every
+              whim. Our team of local experts has meticulously crafted a
+              selection of experiences designed to tantalize your taste buds,
+              indulge your senses, and create memories that will last a
+              lifetime.
+            </p>
+            <CustomButton btnName="Inquire Now" invert={true} />
+          </div>
+        </div>
+      </section>
+      <section className="demand-luxury flex justify-between w-full h-fit lg:h-[836px] px-[72px] mt-[113px] ">
+        <div className="left-side">
+          <div className="top-box -mt-[40%] bg-primary text-white w-[38.177vw] px-[78px] py-[93px] flex flex-col gap-14">
+            <h1 className="font-IvyPresto text-[70px]">
+              Personalized Luxury Booking
+            </h1>
+            <p>
+              Curated luxury for the discerning traveler. Book bespoke
+              experiences, from private jets, personalized shopping, curated
+              itineraries to breathtaking hotel views and private villas.
+            </p>
+          </div>
+          <div className="pt-[125px] text-white">
+            <p className="w-[26.875vw]">
+              With Dxberience, luxury becomes a lifestyle, and we're excited to
+              provide our clients with nothing but the best in exclusivity and
+              exceptional experiences.
+            </p>
+          </div>
+        </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div className="flex justify-center items-center h-full">
+          <div className="image relative bg-accent w-[41.667vw] h-[71.77vh] hidden lg:flex">
+            <Image
+              src="/demand-luxury-image-1.png"
+              alt="Private jet for exclusive travel experiences"
+              fill
+              className="object-cover booking"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="luxury-destination mt-11 lg:mt-[150px] p-6">
+        <div className="header gap-6 flex flex-col justify-center items-center">
+          <h1 className="text-[70px] text-center font-semibold font-IvyPresto">
+            Tailored Travel & Itineraries
+          </h1>
+          <div className="w-full flex justify-center items-center">
+            <p className="lg:w-[58.125vw] text-sm lg:text-base text-center font-light font-cormorant">
+              At Dxberience, we specialize in crafting personalized itineraries,
+              providing VIP experiences, and curating unforgettable excursions
+              to ensure an unparalleled journey for our clients. With our
+              expertise in global travel and exclusive partnerships with luxury
+              providers, we deliver unrivalled luxury across a spectrum of
+              experiences, ranging from exploring local delights to indulging in
+              exotic destinations worldwide. Whether you seek adventure,
+              relaxation, or cultural immersion, we are dedicated to creating
+              bespoke experiences tailored to your desires.
+            </p>
+          </div>
+          <div className="flex justify-center items-center gap-3">
+            <CustomButton btnName="Indulge Today" invert={true} />
+          </div>
+          {/* <ImageScrollMotion querySelector={".luxury"} maxScroll={40}> */}
+          <div className="flex justify-center items-center relative bg-accent w-full h-52 lg:w-[49.514vw] lg:h-[44.258vh] mt-[56px]">
+            <Image
+              src="/yacht.jpeg"
+              alt="Yacht rental for luxurious sea voyages in Dubai"
+              fill
+              className="object-cover object-bottom luxury"
+            />
+          </div>
+          {/* </ImageScrollMotion> */}
+        </div>
+      </section>
+      <section className="private-retreats w-full mt-[119px]">
+        <div className="flex flex-col lg:flex-row justify-between">
+          <div className="w-full flex justify-end">
+            <div className="relative w-[225px] h-[80px] lg:w-[485px] lg:h-[250px] -mb-[50px]">
+              <Image
+                src="/palm-trees.jpeg"
+                alt="Beach club reservations in Dubai"
+                fill
+                className="object-cover grayscale"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="lg:px-20 py-[91px] bg-primary flex flex-col justify-center items-start">
+          <div className="header-text flex flex-col items-end justify-start w-[195px] lg:w-[40.688vw] text-white">
+            <TextMotion>
+              <h1 className="text-base lg:text-3xl -mb-2 lg:-mb-5 text-white font-thin uppercase">
+                Luxury
+              </h1>
+            </TextMotion>
+            <TextMotion>
+              <h1 className="text-4xl lg:text-[70px] text-right font-IvyPresto text-white font-thin">
+                Becomes a Lifestyle
+              </h1>
+            </TextMotion>
+          </div>
+          <div className="big-picture relative w-[342px] h-[220px] lg:h-[65.311vh] lg:w-[88.889vw]">
+            <Image
+              src="/oasis.jpeg"
+              alt="Relaxing beach and pool day reservations in Dubai"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
+      <ServicesSection />
+      <MemoriesSection />
+      <Footer />
     </main>
   );
 }
