@@ -27,9 +27,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="w-full h-[0.1px] bg-white bg-opacity-20" />
-
-        <div className="flex justify-evenly items-center text-sm ">
+        <div className="flex justify-center items-center text-sm gap-20 border-t-[1px] border-b-[1px] border-white">
           <div className="flex flex-col items-center p-4 gap-5">
             <span>CONTACT US</span>
             <img src="/footer_whatsapp.png" alt="logo" />
@@ -42,8 +40,6 @@ export function Footer() {
             <img src="/footer_insta.png" alt="logo" />
           </div>
         </div>
-
-        <div className="w-full h-[0.1px] bg-white bg-opacity-20" />
 
         <div className="absolute right-[20px] top-[100px] flex gap-5 md:top-[105px]">
           <img src="/whatsapp_logo.png" alt="logo" width={40} />
