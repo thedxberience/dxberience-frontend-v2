@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Image from "next/image";
-export function Footer() {
+function Footer() {
   return (
     <footer className="footer py-8 relative flex flex-col w-full h-max-[500px] bg-bottom bg-cover md:py-5">
       <div className="w-full flex justify-center z-20">
@@ -53,3 +53,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export default Footer;
