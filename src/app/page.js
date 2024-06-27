@@ -89,7 +89,7 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full lg:pr-20">
-        <div className="concierge-text pt-10 lg:pt-28 flex flex-col gap-4 lg:gap-6 justify-center items-center lg:justify-end lg:items-end">
+        <div className="concierge-text pt-10 lg:pt-24 flex flex-col gap-4 lg:gap-6 justify-center items-center lg:justify-end lg:items-end">
           <div className="flex flex-col gap-2 lg:w-[600px] font-noah font-light px-6">
             <p className="text-sm lg:text-lg font-extralight">
               Step beyond the ordinary and discover a side of the world only a
@@ -192,14 +192,14 @@ export default function Home() {
           </div>
         </div>
         <div className="lg:px-20 py-[91px] bg-primary flex flex-col justify-center items-start">
-          <div className="header-text flex flex-col items-end justify-start w-[195px] lg:w-[40.688vw] text-white">
+          <div className="header-text flex flex-col items-end justify-start mb-20 w-[195px] lg:w-[37.688vw] text-white">
             <TextMotion>
-              <h1 className="text-base lg:text-3xl -mb-2 lg:-mb-5 text-white font-thin uppercase">
+              <h1 className="text-base w-full lg:text-3xl -mb-2 lg:-mb-5 text-white font-thin uppercase">
                 Luxury
               </h1>
             </TextMotion>
             <TextMotion>
-              <h1 className="text-4xl lg:text-[70px] text-right font-IvyPresto text-white font-thin">
+              <h1 className="text-4xl w-full lg:text-[70px] text-right font-IvyPresto text-white font-thin">
                 Becomes a Lifestyle
               </h1>
             </TextMotion>
@@ -212,6 +212,24 @@ export default function Home() {
               className="object-cover"
             />
           </div>
+        </div>
+      </section>
+      <section className="global-ticketing flex flex-col justify-center items-center gap-28 py-28">
+        <div className="content flex flex-col justify-center items-center gap-4">
+          <h1 className="font-IvyPresto text-[70px]">
+            Global & Private Event Ticketing
+          </h1>
+          <p className="text-base w-[47.5vw]">
+            Experience the best of Dubai's vibrant nightlife and cultural scene
+            with DXberience. Secure front-row seats at sold-out shows, reserve
+            VIP tables at the trendiest clubs, and elevate your lifestyle with
+            exclusive, once-in-a-lifetime experiences tailored just for you.
+            Book now with DXberience and live like royalty, indulging in the
+            epitome of luxury and sophistication in Dubai's dynamic cityscape.
+          </p>
+        </div>
+        <div className="section-btn">
+          <CustomButton btnName="indulge today" invert={true} />
         </div>
       </section>
       <ServicesSection />
