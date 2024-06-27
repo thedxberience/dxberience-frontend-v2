@@ -67,7 +67,7 @@ body {
   bottom: 71px;
   width: 100%;
   height: 1082px;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)), url("/demand-luxury-image-2.png") center center/cover no-repeat;
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)), url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
 .memories .sticky_parent{
@@ -89,7 +89,7 @@ body {
 .services .scroll_section{
   position: absolute;
   top: 100px;
-  width: 300vh;
+  width: 500vh;
   height: 100%;
   will-change: transform;
   display: flex;
@@ -112,16 +112,42 @@ body {
 
 .service_image{
   position: relative;
+  display: flex;
 }
 
 .service_image:nth-child(odd){
   width: 600px;
   height: 328px;
+  justify-content: center;
+  align-items: self-end;
+}
+
+.service_image p{
+  position: relative;
+  z-index: 10;
+  display: flex;
+}
+
+.service_image:nth-child(odd) p{
+  bottom: -1rem;
+  left: 1%;
+  text-align: center;
+}
+.service_image:nth-child(even) p{
+  /* bottom: 10rem;
+  left: -5rem; */
+  rotate: 270deg;
+  height: 100%;
+  white-space: nowrap;
+  /* width: max-content; */
 }
 
 .service_image:nth-child(even){
   width: 384px;
   height: 524px;
+  rotate: 360deg;
+  justify-content: start;
+  align-items: self-end;
 }
 
 .memory_image{
