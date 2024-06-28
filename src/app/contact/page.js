@@ -1,15 +1,15 @@
 "use client";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/Navbar";
-// import FormInput from "@/components/shared/FormInput";
+import FormInput from "@/components/shared/FormInput";
 import CustomButton from "@/components/shared/CustomButton";
-// import {
-//   validateFullName,
-//   validateCompany,
-//   validateEmailAddress,
-//   validateMessage,
-//   validatePhoneNumber,
-// } from "@/utils/validator";
+import {
+  validateFullName,
+  validateCompany,
+  validateEmailAddress,
+  validateMessage,
+  validatePhoneNumber,
+} from "@/utils/validator";
 const page = () => {
   return (
     <div className="relative">
@@ -28,14 +28,14 @@ const page = () => {
           </p>
           <form className="flex flex-col items-center w-full">
             <div className="flex flex-col gap-2 w-full min-h-[238px] 2xl:gap-10">
-              {/* <FormInput name="Full Name" validator={validateFullName} />
+              <FormInput name="Full Name" validator={validateFullName} />
               <FormInput
                 name="Email Address"
                 validator={validateEmailAddress}
               />
               <FormInput name="Phone Number" validator={validatePhoneNumber} />
               <FormInput name="Company" validator={validateCompany} />
-              <FormInput name="Message" validator={validateMessage} /> */}
+              <FormInput name="Message" validator={validateMessage} />
             </div>
             <div className="my-5">
               <CustomButton btnName="Send Message" />
