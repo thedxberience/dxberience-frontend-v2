@@ -1,16 +1,32 @@
 "use client";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/Navbar";
-import FormInput from "@/components/shared/FormInput";
+import { useForm } from "react-hook-form";
 import CustomButton from "@/components/shared/CustomButton";
-import {
-  validateFullName,
-  validateCompany,
-  validateEmailAddress,
-  validateMessage,
-  validatePhoneNumber,
-} from "@/utils/validator";
+import FormInput from "@/components/shared/FormInput";
+
 const page = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+
+    formState: { errors },
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = useForm({
+    mode: "onChange",
+    reValidateMode: "onChange",
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      company: "",
+      message: "",
+    },
+  });
+
+  const watchAllFields = watch();
+
   return (
     <div className="relative">
       <Navbar />
@@ -28,18 +44,65 @@ const page = () => {
           </p>
           <form className="flex flex-col items-center w-full">
             <div className="flex flex-col gap-2 w-full min-h-[238px] 2xl:gap-10">
-              <FormInput name="Full Name" validator={validateFullName} />
               <FormInput
-                name="Email Address"
-                validator={validateEmailAddress}
+                name="fullName"
+                placeholder={"Full Name"}
+                register={register}
+                errors={errors}
+                value={watchAllFields.fullName}
+                options={{
+                  required: "Fullname is required",
+                  pattern: /^[a-zA-Z\s-]{2,}$/,
+                }}
               />
-              <FormInput name="Phone Number" validator={validatePhoneNumber} />
-              <FormInput name="Company" validator={validateCompany} />
-              <FormInput name="Message" validator={validateMessage} />
+              <FormInput
+                name="email"
+                placeholder={"Email"}
+                register={register}
+                errors={errors}
+                value={watchAllFields.email}
+                options={{
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Invalid email address",
+                  },
+                }}
+              />
+              <FormInput
+                name="phoneNumber"
+                placeholder={"Phone Number"}
+                register={register}
+                errors={errors}
+                value={watchAllFields.phoneNumber}
+                options={{
+                  required: "Phone number is required",
+                  pattern: {
+                    value:
+                      /^(\+?\d{1,4}[-.\s]?)?(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})$/,
+                    message: "Invalid phone number",
+                  },
+                }}
+              />
+              <FormInput
+                name="company"
+                placeholder={"Company"}
+                register={register}
+                errors={errors}
+                value={watchAllFields.company}
+              />
+              <FormInput
+                name="message"
+                placeholder={"Message"}
+                register={register}
+                errors={errors}
+                value={watchAllFields.message}
+              />
             </div>
             <div className="my-5">
               <CustomButton btnName="Send Message" />
             </div>
+            <button type="submit" />
           </form>
         </div>
       </section>

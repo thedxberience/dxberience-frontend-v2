@@ -1,41 +1,34 @@
-import React from "react";
-import { useState } from "react";
-
+"use client";
 function FormInput({
   name = "input",
+  placeholder,
   inputType = "text",
-  validator = () => false,
+  register,
+  errors,
+  value,
+  options = {},
 }) {
-  const [valid, setValid] = useState(false);
-  const [typing, setTyping] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-
   return (
-    <div
-      className={`relative flex flex-col w-full ${
-        typing || inputValue !== "" ? "mt-5" : ""
-      }`}
-    >
+    <div className={`relative flex flex-col w-full `}>
       <label
         htmlFor={name}
-        className={`absolute ${
-          typing || inputValue !== "" ? "-top-4" : "top-1"
-        }`}
+        className={`absolute ${value.length > 0 ? "" : "hidden"}`}
       >
-        {name}
-        {valid ? "" : " *"}
+        {placeholder}
+        {errors[name] && <span className="text-red-500"> *</span>}
       </label>
       <input
+        placeholder={placeholder}
+        {...register(name, options)}
         id={name}
         type={inputType}
-        className="bg-transparent border-b-[1px] py-1 outline-none"
-        onFocus={() => setTyping(true)}
-        onChange={async (e) => {
-          setValid(await validator(e.target.value));
-          setInputValue(e.target.value);
-        }}
-        onBlur={() => setTyping(false)}
+        className={`bg-transparent border-b-[1px] py-1 outline-none ${
+          value.length > 0 ? "pt-7" : ""
+        }`}
       />
+      {errors[name] && (
+        <span className="text-red-500">{errors[name].message}</span>
+      )}
     </div>
   );
 }
