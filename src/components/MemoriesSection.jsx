@@ -22,42 +22,45 @@ const MemoriesSection = () => {
   };
 
   return (
-    <section className="memories w-full mt-[191px] ">
+    <section className="memories w-full ">
       <div className="sticky_parent w-full">
         <div ref={stickySection} className="sticky w-full">
-          <div className="text flex justify-center items-center mt-[256px]">
-            <div className="w-[219px] lg:w-[513px] h-[161px] lg:h-[285px]">
-              <p className="text-white font-cormorant">Memories</p>
-              <div className="flex flex-col justify-end items-end">
-                <h1 className="text-text-secondary text-4xl lg:text-[90px] font-thin">
-                  MOMENTS
+          <div className="text flex justify-end items-end mt-[256px]">
+            <div className="w-[219px] lg:w-[33.281vw] h-[161px] lg:h-[285px]">
+              <div className="flex flex-col justify-start items-start p-10">
+                <h1 className="text-text-secondary text-4xl lg:text-[40px] font-thin">
+                  LUXURY
                 </h1>
-                <p className="text-white text-[17px] lg:text-[35px] font-thin">
-                  THAT LASTS A LIFE TIME
-                </p>
+                <h2 className="text-[17px] font-IvyPresto lg:text-[70px] font-thin">
+                  cars, yachts and Jets
+                </h2>
               </div>
-              <div>
-                <p className="text-center text-sm lg:text-base text-white pt-[25px] font-cormorant">
-                  Memories we have curated with people so they can tell
-                  beautiful, fun and luxurious stories with.
-                </p>
-              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center">
+            <div className="w-[37.5vw]">
+              <p className="text-center text-sm lg:text-base pt-[25px] font-cormorant">
+                Experience luxury at its finest with our exquisite collection of
+                luxury cars, yachts, and jets. From sleek supercars to elegant
+                yachts and private jets, we offer unparalleled access to the
+                pinnacle of sophistication and style.
+              </p>
             </div>
           </div>
           <div ref={scrollSection} className="scroll_section p-5">
             <div className="flex flex-col justify-between items-start lg:items-center h-[150vh] lg:h-[280vh]">
               <div className="memory_image">
                 <Image
-                  src="/demand-luxury-image-2.png"
-                  alt="view of the ocean from a yacht"
+                  src="/yacht_deck.jpeg"
+                  alt="Luxury yacht rental and best charters yachts in Dubai"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="memory_image">
                 <Image
-                  src="/memories_champagne.png"
-                  alt="people drinking glasses of champagne"
+                  src="/watch_shopping.jpeg"
+                  alt="Personalized shopping experiences in Dubai"
                   fill
                   className="object-cover"
                 />
@@ -67,7 +70,7 @@ const MemoriesSection = () => {
               <div className="memory_image">
                 <Image
                   src="/chauffeur.png"
-                  alt="people drinking glasses of champagne"
+                  alt="Limousine services for VIP transportation in Dubai"
                   fill
                   className="object-cover"
                 />
@@ -76,16 +79,16 @@ const MemoriesSection = () => {
             <div className="flex flex-col justify-between items-center h-[120vh] lg:h-[200vh] mt-10 lg:mt-0">
               <div className="memory_image">
                 <Image
-                  src="/car_flight.png"
-                  alt="car view of a private plane"
+                  src="/jet_interior.jpeg"
+                  alt="Luxury private jet rental and best charter jets in Dubai"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="memory_image">
                 <Image
-                  src="/hero_section.png"
-                  alt="people drinking glasses of champagne"
+                  src="/fine_dining.jpeg"
+                  alt="Fine dining reservation at an exclusive restaurant in Dubai"
                   fill
                   className="object-cover"
                 />
