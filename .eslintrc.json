@@ -1,8 +1,8 @@
-{
-  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
-  "rules": {
-    "no-warning-comments": "off",
-    "@next/next/no-img-element": "off"
-    // Add other rules or override defaults as needed
-  }
-}
+// {
+//   "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+//   "rules": {
+//     "no-warning-comments": "off",
+//     "@next/next/no-img-element": "off"
+//     // Add other rules or override defaults as needed
+//   }
+// }
