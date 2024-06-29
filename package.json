@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.24.7",
-    "@babel/preset-react": "^7.24.7",
+    "embla-carousel-autoplay": "^8.1.5",
+    "embla-carousel-react": "^8.1.5",
     "framer-motion": "^11.1.9",
     "next": "14.2.3",
     "react": "^18",

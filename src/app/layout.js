@@ -1,4 +1,6 @@
 import "./globals.css";
+import "./css/base.css";
+import "./css/embla.css";
 
 import localFont from "next/font/local";
 

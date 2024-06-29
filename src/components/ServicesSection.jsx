@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import CustomButton from "./shared/CustomButton";
 import ServiceCard from "./ServiceSection/ServiceCard";
@@ -15,14 +15,14 @@ const ServicesSection = () => {
     desktopScrollThreshold
   );
 
-  const handleScrollThreshold = () => {
+  const handleScrollThreshold = useCallback(() => {
     if (window.innerWidth < 1024) {
       setScrollThreshold(200);
     } else {
       setScrollThreshold(desktopScrollThreshold);
     }
     handleTransform();
-  };
+  });
 
   useEffect(() => {
     if (window) {

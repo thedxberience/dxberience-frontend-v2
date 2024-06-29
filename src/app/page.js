@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Footer from "@/components/shared/Footer";
 import ImageScrollMotion from "@/components/ImageScrollMotion";
 import MemoriesSection from "@/components/MemoriesSection";
 import Navbar from "@/components/Navbar";
@@ -6,6 +6,7 @@ import ServicesSection from "@/components/ServicesSection";
 import TextMotion from "@/components/TextMotion";
 import CustomButton from "@/components/shared/CustomButton";
 import Image from "next/image";
+import RatingsSection from "@/components/RatingsSection";
 
 export default function Home() {
   return (
@@ -234,6 +235,31 @@ export default function Home() {
       </section>
       <ServicesSection />
       <MemoriesSection />
+      <section className="tours flex flex-col justify-center items-center text-white bg-primary p-20 w-full">
+        <div className="content flex flex-col justify-center items-center gap-8">
+          <div className="header flex flex-col gap-6 justify-center items-center">
+            <h1 className="text-[40px]">OUR</h1>
+            <h1 className="font-IvyPresto text-[70px]">Excursions & tours</h1>
+          </div>
+          <p className="w-[46.719vw] text-center pb-16">
+            Dxberience offers an unparalleled array of excursions and tour
+            experiences that capture the essence of Dubai's multifaceted allure.
+            Their meticulously curated packages include thrilling desert safaris
+            where visitors can indulge in dune bashing, camel rides, and
+            traditional Bedouin camp experiences complete with cultural
+            performances and gourmet dining.
+          </p>
+        </div>
+        <div className="relative w-[56.667vw] h-[456px]">
+          <Image
+            src="/man_desert.jpeg"
+            alt="Exciting adventure and desert activities in Dubai"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </section>
+      <RatingsSection />
       <Footer />
     </main>
   );
