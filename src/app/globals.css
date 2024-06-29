@@ -182,3 +182,15 @@ body {
 .footer {
   background-image: url("/footer_background.jpeg");
 }
+
+input {
+  @apply bg-transparent border-b-[1px] py-1 outline-none w-full;
+}
+
+#input-container {
+  @apply relative flex flex-col w-full;
+}
+
+#input-textarea {
+  @apply bg-transparent border-b-[1px] py-1 outline-none w-full;
+}
