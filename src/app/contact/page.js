@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { useForm } from "react-hook-form";
 import CustomButton from "@/components/shared/CustomButton";
 import FormInput from "@/components/shared/FormInput";
+import HelperLayout from "@/layouts/HelperPageLayout";
 
 const page = () => {
   const {
@@ -28,9 +29,7 @@ const page = () => {
   const watchAllFields = watch();
 
   return (
-    <div className="relative">
-      <Navbar />
-      <div className="absolute top-0 bg-[url('/wide_ocean.jpeg')] bg-[center_top_-300px] bg-cover w-full h-full max-h-[1554px] -z-20" />
+    <HelperLayout>
       <section className="contact-form w-full h-[100vh] flex justify-center">
         <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] h-max min-h-[618px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:max-w-[30%] 2xl:w-auto 2xl:max-h-[768px] 2xl:px-[40px]">
           <h1 className="font-IvyPresto font-semibold text-xl 2xl:text-6xl">
@@ -106,8 +105,7 @@ const page = () => {
           </form>
         </div>
       </section>
-      <Footer />
-    </div>
+    </HelperLayout>
   );
 };
 
