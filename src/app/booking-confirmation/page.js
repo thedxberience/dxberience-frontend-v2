@@ -9,12 +9,7 @@ function BookingConfirmationPage() {
       className={"relative bg-opacity-70"}
     >
       <div className="flex justify-center p-32 text-white">
-        <GradientBox
-          from="#101010"
-          to="#1010105d"
-          gradientOn
-          className="to-[#101010c7]"
-        >
+        <GradientBox from="#101010" to="#1010105d" gradientOn>
           <h1 className="text-2xl font-IvyPresto text-center md:whitespace-pre md:text-4xl">{`Thank you,
          We have received your request.`}</h1>
           <p className="text-base w-[219px] md:w-[582px] text-center md:text-lg">
