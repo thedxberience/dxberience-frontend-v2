@@ -3,18 +3,18 @@ import React from "react";
 
 const CustomButton = ({ btnName = "Explore", invert = false }) => {
   return (
-    <div className="relative">
+    <div className="relative w-fit">
       <div
         className={`${
           invert ? "bg-white border-black" : "bg-black border-white"
-        } border-[1px]  w-[187px] -z-0 h-10 absolute -bottom-3 left-3`}
+        } border-[1px]  w-full -z-0 h-10 absolute -bottom-3 left-3`}
       ></div>
       <div
         className={` ${
           invert ? "bg-black text-white" : "bg-white text-black"
-        } p-[13.5px] z-50 border-black relative flex justify-center w-[187px]`}
+        } p-[13.5px] z-50 border-black relative flex justify-center w-fit`}
       >
-        <button className="flex justify-center items-center gap-3 uppercase">
+        <button className="flex justify-center text-sm lg:text-base items-center gap-3 uppercase">
           {" "}
           {btnName}{" "}
           {invert ? (
