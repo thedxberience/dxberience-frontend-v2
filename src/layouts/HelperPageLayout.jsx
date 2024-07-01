@@ -2,18 +2,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import React from "react";
 
-const HelperLayout = ({
-  children,
-  backgroundImage = "/wide_ocean.jpeg",
-  className,
-}) => {
+const HelperLayout = ({ children, backgroundImage = "/wide_ocean.jpeg" }) => {
   return (
     <div
-      className={`bg-[center_top_-300px] bg-cover w-full h-full max-h-[1554px] -z-20 ${className}`}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      className={`bg-cover bg-center w-full -z-20`}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
     >
       <Navbar />
-      {children}
+      <div className="w-full min-h-[792px] lg:min-h-[1554px]">{children}</div>
       <Footer />
     </div>
   );

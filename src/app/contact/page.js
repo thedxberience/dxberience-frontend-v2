@@ -30,7 +30,7 @@ const page = () => {
 
   return (
     <HelperLayout>
-      <section className="contact-form w-full h-[100vh] flex justify-center">
+      <section className="contact-form w-full h-full flex justify-center py-10">
         <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] h-max min-h-[618px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:max-w-[30%] 2xl:w-auto 2xl:max-h-[768px] 2xl:px-[40px]">
           <h1 className="font-IvyPresto font-semibold text-xl 2xl:text-6xl">
             Get In Touch
@@ -101,7 +101,6 @@ const page = () => {
             <div className="my-5">
               <CustomButton btnName="Send Message" />
             </div>
-            <button type="submit" />
           </form>
         </div>
       </section>
