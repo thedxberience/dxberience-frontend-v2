@@ -10,7 +10,6 @@ const ImageScrollMotion = ({ children, querySelector, maxScroll = 60 }) => {
   useEffect(() => {
     if (document) {
       const imageToScroll = document.querySelector(querySelector);
-      console.log(`document exists`);
       if (imageInView) {
         scroll((progress) => {
           let progressScroll = (progress * 330) % maxScroll;
