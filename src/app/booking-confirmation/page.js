@@ -15,9 +15,9 @@ function BookingConfirmationPage() {
           gradientOn
           className="to-[#101010c7]"
         >
-          <h1 className="text-4xl font-IvyPresto text-center md:whitespace-pre">{`Thank you,
+          <h1 className="text-2xl font-IvyPresto text-center md:whitespace-pre md:text-4xl">{`Thank you,
          We have received your request.`}</h1>
-          <p className="w-[219px] md:w-[582px] text-center">
+          <p className="text-base w-[219px] md:w-[582px] text-center md:text-lg">
             Our team will reach out to finalize your booking and payment. We
             will customize the experience to suit your needs.
           </p>
