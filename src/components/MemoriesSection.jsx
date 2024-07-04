@@ -26,19 +26,19 @@ const MemoriesSection = () => {
       <div className="sticky_parent w-full">
         <div ref={stickySection} className="sticky w-full">
           <div className="text flex justify-end items-end mt-[256px]">
-            <div className="w-[219px] lg:w-[33.281vw] h-[161px] lg:h-[285px]">
+            <div className="w-full lg:w-[33.281vw]  lg:h-[285px]">
               <div className="flex flex-col justify-start items-start p-10">
-                <h1 className="text-text-secondary text-4xl lg:text-[40px] font-thin">
+                <h1 className="text-text-secondary text-base lg:text-4xl font-thin">
                   LUXURY
                 </h1>
-                <h2 className="text-[17px] font-IvyPresto lg:text-[70px] font-thin">
+                <h2 className="text-4xl font-IvyPresto lg:text-[70px] font-thin">
                   cars, yachts and Jets
                 </h2>
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <div className="w-[37.5vw]">
+          <div className="flex items-center justify-end lg:justify-center">
+            <div className="w-[255px] lg:w-[37.5vw]">
               <p className="text-center text-sm lg:text-base pt-[25px] font-cormorant">
                 Experience luxury at its finest with our exquisite collection of
                 luxury cars, yachts, and jets. From sleek supercars to elegant

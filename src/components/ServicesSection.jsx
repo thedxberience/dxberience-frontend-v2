@@ -17,7 +17,7 @@ const ServicesSection = () => {
 
   const handleScrollThreshold = useCallback(() => {
     if (window.innerWidth < 1024) {
-      setScrollThreshold(200);
+      setScrollThreshold(620);
     } else {
       setScrollThreshold(desktopScrollThreshold);
     }
@@ -51,15 +51,20 @@ const ServicesSection = () => {
   }, []);
 
   const handleTransform = () => {
-    const offsetTop = stickySection.current.parentElement.offsetTop;
-    let percentage = ((window.scrollY - offsetTop) / window.innerHeight) * 100;
-    percentage =
-      percentage < 0
-        ? 0
-        : percentage > scrollThreshold
-        ? scrollThreshold
-        : percentage;
-    scrollSection.current.style.transform = `translate3d(${-percentage}vw, 0, 0)`;
+    if (stickySection.current) {
+      const offsetTop = stickySection.current.parentElement.offsetTop;
+      let percentage =
+        ((window.scrollY - offsetTop) / window.innerHeight) * 100;
+      percentage =
+        percentage < 0
+          ? 0
+          : percentage > scrollThreshold
+          ? scrollThreshold
+          : percentage;
+      scrollSection.current.style.transform = `translate3d(${-percentage}vw, 0, 0)`;
+    } else {
+      return;
+    }
   };
 
   const services = [
@@ -114,13 +119,13 @@ const ServicesSection = () => {
     <section className="services w-full">
       <div className="sticky_parent">
         <div ref={stickySection} className="sticky text-white">
-          <div className="w-full flex justify-end items-center p-20">
-            <div className="text flex justify-evenly items-center">
-              <div className="flex flex-col justify-center items-end w-5/12">
-                <h1 className="font-IvyPresto text-[70px]">VIP</h1>
-                <p className="text-4xl">CURATED EXPEIENCES</p>
+          <div className="w-full flex justify-end items-center p-6 lg:p-20">
+            <div className="text flex flex-col lg:flex-row justify-evenly items-center">
+              <div className="flex flex-col justify-end lg:justify-center items-end w-full lg:w-5/12">
+                <h1 className="font-IvyPresto text-4xl lg:text-[70px]">VIP</h1>
+                <p className="text-base lg:text-4xl">CURATED EXPEIENCES</p>
               </div>
-              <div className="flex flex-col gap-8 justify-center items-start w-5/12">
+              <div className="flex flex-col gap-8 justify-center items-start w-full lg:w-5/12">
                 <p className="text-base">
                   Dxberience offers VIP experiences that redefine luxury living
                   in Dubai, from bespoke services to curated experiences.

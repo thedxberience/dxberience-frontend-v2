@@ -72,6 +72,8 @@ body {
   height: 1082px;
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
     url("/woman_bed.jpeg") center center/cover no-repeat;
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
 .memories .sticky_parent {
@@ -137,7 +139,7 @@ body {
   left: 1%;
   text-align: center;
 }
-.service_image:nth-child(even) p{
+.service_image:nth-child(even) p {
   position: absolute;
   bottom: -1rem;
   left: 1px;
@@ -155,7 +157,7 @@ body {
   /* rotate: 270deg; */
 }
 
-.service_image .overlay{
+.service_image .overlay {
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -167,6 +169,65 @@ body {
   position: relative;
   width: 373px;
   height: 490px;
+}
+
+.mobile-nav .hamburger {
+  width: 22.5px;
+  height: 2px;
+  background-color: white;
+}
+
+.mobile-nav .mobile-nav-menu {
+  transform: translateY(-200px);
+}
+
+.reveal-nav {
+  animation: reveal-nav 0.3s ease-in-out forwards;
+  /* transition: ease-in-out; */
+}
+
+.hide-nav {
+  animation: hide-nav 0.3s ease-in-out forwards;
+  /* transition: ease-in-out; */
+}
+
+@keyframes reveal-nav {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+    height: 0px;
+  }
+  80% {
+    height: 0px;
+  }
+  100% {
+    transform: translateY(0px);
+    height: fit-content;
+    opacity: 1;
+  }
+}
+@keyframes hide-nav {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+    height: fit-content;
+  }
+  20% {
+    height: 0px;
+  }
+  100% {
+    transform: translateY(-200px);
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.mobile-only {
+  @apply flex lg:hidden;
+}
+
+.desktop-only {
+  @apply lg:flex hidden;
 }
 
 @media screen and (max-width: 1024px) {
@@ -181,11 +242,11 @@ body {
   }
 
   .services .scroll_section {
-    width: 280vw;
+    width: 700vw;
   }
 
   .services .sticky_parent {
-    height: 350vh;
+    height: 700vh;
   }
 
   .memories .scroll_section {
