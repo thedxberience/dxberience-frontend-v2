@@ -1,7 +1,6 @@
 import React from "react";
 import HelperLayout from "@/layouts/HelperPageLayout";
 import CustomButton from "@/components/shared/CustomButton";
-import { getGradient } from "@/utils/utils";
 function BookingConfirmationPage() {
   return (
     <HelperLayout
