@@ -70,7 +70,10 @@ body {
   bottom: 71px;
   width: 100%;
   height: 1082px;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)), url("/woman_bed.jpeg") center center/cover no-repeat;
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/woman_bed.jpeg") center center/cover no-repeat;
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
 .memories .sticky_parent {
@@ -126,18 +129,18 @@ body {
   align-items: self-end;
 }
 
-.service_image p{
+.service_image p {
   position: relative;
   z-index: 10;
   display: flex;
 }
 
-.service_image:nth-child(odd) p{
+.service_image:nth-child(odd) p {
   bottom: -1rem;
   left: 1%;
   text-align: center;
 }
-.service_image:nth-child(even) p{
+.service_image:nth-child(even) p {
   position: absolute;
   bottom: -1rem;
   left: 1px;
@@ -169,23 +172,23 @@ body {
   height: 490px;
 }
 
-.mobile-nav .hamburger{
+.mobile-nav .hamburger {
   width: 22.5px;
   height: 2px;
   background-color: white;
 }
 
-.mobile-nav .mobile-nav-menu{
+.mobile-nav .mobile-nav-menu {
   transform: translateY(-200px);
   position: absolute;
 }
 
-.reveal-nav{
+.reveal-nav {
   animation: reveal-nav 0.3s ease-in-out forwards;
   /* transition: ease-in-out; */
 }
 
-.hide-nav{
+.hide-nav {
   animation: hide-nav 0.3s ease-in-out forwards;
   /* transition: ease-in-out; */
 }
@@ -207,12 +210,12 @@ body {
 }
 
 @keyframes reveal-nav {
-  0%{
+  0% {
     transform: translateY(-200px);
     opacity: 0;
     height: 0px;
   }
-  80%{
+  80% {
     height: 0px;
   }
   100%{
@@ -224,26 +227,26 @@ body {
   }
 }
 @keyframes hide-nav {
-  0%{
+  0% {
     transform: translateY(0px);
     opacity: 1;
     height: fit-content;
   }
-  20%{
+  20% {
     height: 0px;
   }
-  100%{
+  100% {
     transform: translateY(-200px);
     height: 0;
     opacity: 0;
   }
 }
 
-.mobile-only{
+.mobile-only {
   @apply flex lg:hidden;
 }
 
-.desktop-only{
+.desktop-only {
   @apply lg:flex hidden;
 }
 
