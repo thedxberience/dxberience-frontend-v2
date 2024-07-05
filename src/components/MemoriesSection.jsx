@@ -31,7 +31,7 @@ const MemoriesSection = () => {
                 <h1 className="text-text-secondary text-base lg:text-4xl font-thin">
                   LUXURY
                 </h1>
-                <h2 className="text-4xl font-IvyPresto lg:text-[70px] font-thin">
+                <h2 className="text-4xl font-IvyPresto lg:text-7xl font-thin">
                   cars, yachts and Jets
                 </h2>
               </div>

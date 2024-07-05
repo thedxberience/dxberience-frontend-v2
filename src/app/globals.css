@@ -122,6 +122,7 @@ body {
 }
 
 .service_image:nth-child(odd) {
+  min-width: 600px;
   width: 600px;
   height: 328px;
   justify-content: center;
@@ -149,6 +150,7 @@ body {
 }
 
 .service_image:nth-child(even) {
+  min-width: 373px;
   width: 373px;
   height: 524px;
   justify-content: center;
@@ -157,8 +159,7 @@ body {
   /* rotate: 270deg; */
 }
 
-.service_image .overlay {
-  position: absolute;
+.service_image, .experience .overlay{
   z-index: 2;
   width: 100%;
   height: 100%;
@@ -179,6 +180,7 @@ body {
 
 .mobile-nav .mobile-nav-menu {
   transform: translateY(-200px);
+  position: absolute;
 }
 
 .reveal-nav {
@@ -191,6 +193,22 @@ body {
   /* transition: ease-in-out; */
 }
 
+.header-section{
+  background: url("/desert_experience.jpeg") bottom center/cover no-repeat;
+}
+
+.header-section .content h1{
+  line-height: 110px;
+}
+
+.experiences{
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(43.277vw, 1fr));
+  row-gap: 16px;
+  column-gap: 12.44px;
+}
+
 @keyframes reveal-nav {
   0% {
     transform: translateY(-200px);
@@ -200,7 +218,9 @@ body {
   80% {
     height: 0px;
   }
-  100% {
+  100%{
+    top: 80px;
+    left: 0;
     transform: translateY(0px);
     height: fit-content;
     opacity: 1;
@@ -230,13 +250,27 @@ body {
   @apply lg:flex hidden;
 }
 
+@media screen and (min-width: 1025px) {
+  .experiences{
+    grid-template-columns: repeat(auto-fit, minmax(407px, 1fr));
+  }
+}
+
+@media screen and (max-width: 1440px){
+  .services .sticky {
+    height: 890px;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .service_image:nth-child(odd) {
+    min-width: 341px;
     width: 341px;
     height: 190px;
   }
 
   .service_image:nth-child(even) {
+    min-width: 218px;
     width: 218px;
     height: 298px;
   }
@@ -246,7 +280,7 @@ body {
   }
 
   .services .sticky_parent {
-    height: 700vh;
+    height: 700vh !important;
   }
 
   .memories .scroll_section {

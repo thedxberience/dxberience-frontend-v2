@@ -6,7 +6,7 @@ const ServiceCard = ({ serviceName, image, alt }) => {
     <div className={`service_image relative ${serviceName}`}>
       <div className="overlay"></div>
       <Image src={image} alt={alt} fill className="object-cover" />
-      <p className="z-10 text-white text-2xl lg:text-[64px] text-center uppercase font-thin">
+      <p className="z-10 text-white text-2xl lg:text-4xl 2xl:text-[64px] text-center uppercase font-thin">
         {serviceName}
       </p>
     </div>
