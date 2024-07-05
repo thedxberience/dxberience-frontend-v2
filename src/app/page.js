@@ -62,7 +62,7 @@ export default function Home() {
         </div>
         <div className="image-animated">
           <ImageScrollMotion querySelector={".img-1"}>
-            <div className="relative desktop-only w-[250px] lg:w-[991px] h-[100px] lg:h-[194px]">
+            <div className="relative hidden lg:block w-[250px] lg:w-[991px] h-[100px] lg:h-[194px]">
               <Image
                 src={"/bmw.jpeg"}
                 alt="Luxury car rental service in Dubai"
@@ -260,8 +260,8 @@ export default function Home() {
         </div>
       </section>
       <section className="global-ticketing flex flex-col justify-center items-center gap-5 lg:gap-28 py-28 px-6">
-        <div className="content flex flex-col justify-center items-center gap-10 lg:gap-4">
-          <h1 className="font-IvyPresto text-4xl lg:text-[70px] text-center">
+        <div className="content flex flex-col justify-center items-center gap-10 lg:gap-12">
+          <h1 className="font-IvyPresto text-4xl lg:text-7xl text-center">
             Global & Private Event Ticketing
           </h1>
           <p className="text-sm lg:text-base lg:w-[47.5vw] text-center">

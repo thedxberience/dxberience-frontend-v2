@@ -1,6 +1,5 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import CustomButton from "./shared/CustomButton";
 import ServiceCard from "./ServiceSection/ServiceCard";
 
@@ -9,15 +8,31 @@ const ServicesSection = () => {
   const stickySection = useRef(null);
   const scrollSection = useRef(null);
 
-  const desktopScrollThreshold = 240;
+  const desktopScrollThreshold = 280;
 
   const [scrollThreshold, setScrollThreshold] = useState(
     desktopScrollThreshold
   );
 
+  const [oddWidthState, setOddWidth] = useState(600);
+  const [evenWidthState, setEvenWidth] = useState(373);
+
+  const [stickySectionWidth, setStickySectionWidth] = useState(1082);
+
+  useEffect(() => {
+    if (window) {
+      if (window.innerWidth < 1024) {
+        setOddWidth(341);
+        setEvenWidth(290);
+      }
+    }
+  }, []);
+
   const handleScrollThreshold = useCallback(() => {
     if (window.innerWidth < 1024) {
       setScrollThreshold(620);
+      setOddWidth(341);
+      setEvenWidth(290);
     } else {
       setScrollThreshold(desktopScrollThreshold);
     }
@@ -33,22 +48,6 @@ const ServicesSection = () => {
       window.removeEventListener("scroll", handleScrollThreshold);
     };
   }, [scrollThreshold]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setScrollThreshold(200);
-      } else {
-        setScrollThreshold(desktopScrollThreshold);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const handleTransform = () => {
     if (stickySection.current) {
@@ -115,14 +114,59 @@ const ServicesSection = () => {
     },
   ];
 
+  const handleStickyDimension = useCallback(() => {
+    const serviceCount = services.length;
+    let oddWidth, evenWidth;
+
+    if (serviceCount % 2 != 0) {
+      oddWidth = Math.floor(serviceCount / 2) * oddWidthState;
+      evenWidth = (Math.floor(serviceCount / 2) + 1) * evenWidthState;
+      console.log(oddWidthState, evenWidthState);
+    }
+    setStickySectionWidth(oddWidth + evenWidth);
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setScrollThreshold(620);
+        setOddWidth(341);
+        setEvenWidth(290);
+      } else {
+        setScrollThreshold(desktopScrollThreshold);
+      }
+    };
+
+    if (window) {
+      if (window.innerWidth < 1024) {
+        setOddWidth(341);
+        setEvenWidth(290);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    handleStickyDimension();
+  }, [oddWidthState, evenWidthState]);
+
   return (
     <section className="services w-full">
-      <div className="sticky_parent">
+      <div
+        style={{
+          height: stickySectionWidth + "px",
+        }}
+        className="sticky_parent"
+      >
         <div ref={stickySection} className="sticky text-white">
-          <div className="w-full flex justify-end items-center p-6 lg:p-20">
+          <div className="w-full flex justify-end items-center p-6 2xl:p-20">
             <div className="text flex flex-col lg:flex-row justify-evenly items-center">
               <div className="flex flex-col justify-end lg:justify-center items-end w-full lg:w-5/12">
-                <h1 className="font-IvyPresto text-4xl lg:text-[70px]">VIP</h1>
+                <h1 className="font-IvyPresto text-4xl lg:text-7xl">VIP</h1>
                 <p className="text-base lg:text-4xl">CURATED EXPEIENCES</p>
               </div>
               <div className="flex flex-col gap-8 justify-center items-start w-full lg:w-5/12">
@@ -139,18 +183,13 @@ const ServicesSection = () => {
               </div>
             </div>
           </div>
-          <div ref={scrollSection} className="scroll_section pb-20">
-            {/* <div className="service_image">
-              <Image
-                src="/private_jet.png"
-                alt="luxury picture of a car and a private jet"
-                fill
-                className="object-cover"
-              />
-              <p className="absolute z-10 text-white -bottom-4 lg:-bottom-6 left-1/4 text-2xl lg:text-[64px] text-center uppercase font-thin">
-                PRIVATE JET
-              </p>
-            </div> */}
+          <div
+            ref={scrollSection}
+            style={{
+              width: stickySectionWidth + "px",
+            }}
+            className="scroll_section pb-20"
+          >
             {services.map((service, index) => (
               <ServiceCard
                 {...service}

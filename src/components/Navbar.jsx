@@ -36,7 +36,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="mobile-nav flex flex-col lg:hidden w-full justify-between items-center px-4 py-6">
+      <div className="mobile-nav relative flex flex-col lg:hidden w-full justify-between items-center px-4 py-6">
         <div className="flex w-full justify-between items-center">
           <div
             className="flex flex-col justify-center items-center gap-1"
@@ -74,7 +74,7 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className={`mobile-nav-menu w-full mt-5 ${
+          className={`mobile-nav-menu p-4 w-full mt-5 ${
             showNavMenu ? "reveal-nav" : "hide-nav"
           }`}
         >
