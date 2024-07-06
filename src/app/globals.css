@@ -47,10 +47,7 @@ body {
 .private-retreats h1 {
   line-height: normal;
 }
-.services,
-.memories h1 {
-  line-height: 1;
-}
+
 
 .services .sticky_parent {
   position: relative;
@@ -195,15 +192,13 @@ body {
 
 .header-section{
   background: url("/desert_experience.jpeg") bottom center/cover no-repeat;
-}
-
-.header-section .content h1{
-  line-height: 110px;
+  background-size: cover;
 }
 
 .experiences{
   display: grid;
   align-items: center;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(43.277vw, 1fr));
   row-gap: 16px;
   column-gap: 12.44px;
@@ -254,6 +249,15 @@ body {
   .experiences{
     grid-template-columns: repeat(auto-fit, minmax(407px, 1fr));
   }
+
+    .services,
+  .memories h1 {
+    line-height: 1;
+  }
+/* 
+  .header-section .content h1{
+    line-height: 5rem;
+  } */
 }
 
 @media screen and (max-width: 1440px){

@@ -23,8 +23,8 @@ const ExperiencesForm = () => {
   const watchAllFields = watch();
 
   return (
-    <div className="experience-form h-52 px-5">
-      <form className="px-3 py-6 flex flex-col lg:flex-row justify-center items-center gap-3 bg-white shadow">
+    <div className="experience-form lg:w-10/12 h-52 px-5 lg:-mb-20">
+      <form className="px-3 lg:px-8 py-6 lg:py-9 flex flex-col lg:flex-row justify-center items-center gap-3 bg-white shadow">
         <div className="categories-interests flex justify-center items-center gap-4 w-full">
           <FormInput
             name="categories"
@@ -66,7 +66,7 @@ const ExperiencesForm = () => {
             value={watchAllFields.budget}
           />
         </div>
-        <div className="flex lg:w-[213px] justify-center items-center">
+        <div className="flex lg:w-full justify-center items-center">
           <CustomButton btnName="Find preferences" invert />
         </div>
       </form>

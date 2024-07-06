@@ -15,10 +15,13 @@ const MemoriesSection = () => {
   }, []);
 
   const handleTransform = () => {
-    const offsetTop = stickySection.current.parentElement.offsetTop;
-    let percentage = ((window.scrollY - offsetTop) / window.innerHeight) * 100;
-    percentage = percentage < 0 ? 0 : percentage > 120 ? 120 : percentage;
-    scrollSection.current.style.transform = `translate3d( 0, ${-percentage}vw, 0)`;
+    if (stickySection.current) {
+      const offsetTop = stickySection.current.parentElement.offsetTop;
+      let percentage =
+        ((window.scrollY - offsetTop) / window.innerHeight) * 100;
+      percentage = percentage < 0 ? 0 : percentage > 120 ? 120 : percentage;
+      scrollSection.current.style.transform = `translate3d( 0, ${-percentage}vw, 0)`;
+    }
   };
 
   return (

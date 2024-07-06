@@ -27,8 +27,8 @@ const ExperienceCard = ({
           <h1 className="text-sm lg:text-2xl font-IvyPresto w-[23.846vw]">
             {experienceTitle}
           </h1>
-          <div className="location text-[5.81px] lg:text-sm flex justify-start items-center gap-[1.24px]">
-            <div className="w-4 h-4">
+          <div className="location text-[10px] lg:text-sm flex justify-start items-center gap-[1.24px]">
+            <div className="w-3 h-4 lg:w-4 lg:h-4 flex justify-start items-center">
               <IoLocationOutline />{" "}
             </div>
             <span>{experienceLocation}</span>

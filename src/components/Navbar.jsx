@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -10,6 +11,8 @@ const Navbar = () => {
   const handleShowNavMenu = () => {
     setShowNavMenu(!showNavMenu);
   };
+
+  const router = useRouter();
 
   return (
     <>
@@ -32,7 +35,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="nav-button">
-            <CustomButton />
+            <CustomButton onClick={() => router.push("/explore-experiences")} />
           </div>
         </div>
       </div>
@@ -80,8 +83,12 @@ const Navbar = () => {
         >
           <div className="bg-white w-full p-4 flex flex-col gap-4">
             <ul className="flex flex-col gap-4">
-              <li className="cursor-pointer">Contact</li>
-              <li className="cursor-pointer">Experiences</li>
+              <li className="cursor-pointer">
+                <Link href={"/contact"}>Contact</Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link href={"/experiences"}>Experiences</Link>
+              </li>
             </ul>
           </div>
         </div>
