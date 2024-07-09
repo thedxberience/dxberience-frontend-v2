@@ -1,29 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Image from "next/image";
+import Link from "next/link";
 function Footer() {
   return (
     <footer className="footer relative flex flex-col w-full h-[454px] 2xl:h-[526px] bg-bottom bg-cover 2xl:py-5">
       <div className="w-full flex justify-center z-20">
         <div className="relative w-[223.79px] 2xl:w-[325.52px] h-[80px] pt-[30px]">
-          <Image src="/dxberience_logo.svg" alt="logo" fill />
+          <Link href="/">
+            <Image src="/dxberience_logo.svg" alt="logo" fill />
+          </Link>
         </div>
       </div>
 
       <div className="absolute inset-0 bg-[#171010] bg-opacity-90 z-10" />
       <div className="relative z-20 text-white">
         <div className="px-8 2xl:flex justify-between">
-          <h1 className="py-3 text-2xl font-bold font-IvyPresto 2xl:hidden">
-            Find Your Adventure
-          </h1>
-
-          <h1 className="hidden py-2 text-2xl font-bold font-IvyPresto 2xl:block">
+          <h1 className="py-2 text-2xl font-bold font-IvyPresto ">
             No need to think, just experience
           </h1>
 
           <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight 2xl:flex gap-5 ">
-            <li className="mt-4">EXPERIENCES</li>
-            <li className="mt-4">CONTACT</li>
+            <li className="mt-4">
+              <Link href={"/explore-experiences"}>EXPERIENCES</Link>
+            </li>
+            <li className="mt-4">
+              <Link href={"/contact"}>CONTACT</Link>
+            </li>
           </ul>
         </div>
 
@@ -45,6 +48,7 @@ function Footer() {
           <img src="/whatsapp_logo.png" alt="logo" width={40} />
           <img src="/to_page_top.png" alt="logo" width={40} />
         </div>
+
         <ul className="flex justify-evenly pt-5 md:text-transparent">
           <li>Terms & Conditions</li>
           <li>Privacy Policy</li>
