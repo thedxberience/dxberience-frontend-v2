@@ -32,7 +32,7 @@ const page = () => {
     <HelperLayout>
       <section className="contact-form w-full h-full flex justify-center py-10">
         <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] h-max min-h-[618px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:w-[450px] 2xl:w-[681px] 2xl:max-h-[768px] 2xl:px-[40px]">
-          <h1 className="font-IvyPresto font-semibold text-xl 2xl:text-6xl">
+          <h1 className="font-IvyPresto font-semibold text-xl xl:text-3xl 2xl:text-6xl">
             Get In Touch
           </h1>
           <p className="text-sm font-extralight text-center leading-5 2xl:pt-5 2xl:text-center">
