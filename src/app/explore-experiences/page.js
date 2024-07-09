@@ -7,13 +7,13 @@ import React from "react";
 const page = () => {
   return (
     <main>
-      <section className="header-section h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
+      <section className="header-section h-[468px] relative lg:h-[800px] flex flex-col justify-between items-center">
         <Navbar />
-        <div className="content p-5 text-white lg:w-10/12 h-full">
-          <h1 className="text-4xl lg:text-[88px] font-IvyPresto lg:w-[50.656vw] pb-8">
+        <div className="content p-5 text-white lg:w-10/12 h-full flex flex-col justify-center items-start">
+          <h1 className="text-4xl lg:text-7xl font-IvyPresto lg:w-[50.656vw] pb-8">
             Explore our luxury experiences, activities and concierge services
           </h1>
-          <p className="lg:text-lg w-[28.385vw]">
+          <p className="lg:text-lg lg:w-[28.385vw]">
             From personalized travel itineraries to exclusive access to elite
             events, our services ensure that every moment is crafted to
             perfection, providing you with unparalleled sophistication and
