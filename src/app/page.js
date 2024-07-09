@@ -111,14 +111,14 @@ export default function Home() {
               select few get to experience. Our curated luxury experiences cater
               to the discerning traveler. Book a private desert safari with
               gourmet dining under the stars, or soar above the city in a
-              private helicopter. DXberience unlocks a world of bespoke
+              private helicopter. Dxberience unlocks a world of bespoke
               experiences, from breathtaking hotel views to exclusive yacht
-              charters. Create unforgettable memories with DXberience.
+              charters. Create unforgettable memories with Dxberience.
             </p>
             <p className="text-sm lg:text-lg font-extralight">
               Whether you crave the thrill of a desert safari with gourmet
               dining under the stars, or the serenity of a private spa retreat
-              overlooking the turquoise waters, DXberience caters to your every
+              overlooking the turquoise waters, Dxberience caters to your every
               whim. Our team of local experts has meticulously crafted a
               selection of experiences designed to tantalize your taste buds,
               indulge your senses, and create memories that will last a
@@ -266,10 +266,10 @@ export default function Home() {
           </h1>
           <p className="text-sm lg:text-base lg:w-[47.5vw] text-center">
             Experience the best of Dubai's vibrant nightlife and cultural scene
-            with DXberience. Secure front-row seats at sold-out shows, reserve
+            with Dxberience. Secure front-row seats at sold-out shows, reserve
             VIP tables at the trendiest clubs, and elevate your lifestyle with
             exclusive, once-in-a-lifetime experiences tailored just for you.
-            Book now with DXberience and live like royalty, indulging in the
+            Book now with Dxberience and live like royalty, indulging in the
             epitome of luxury and sophistication in Dubai's dynamic cityscape.
           </p>
         </div>
