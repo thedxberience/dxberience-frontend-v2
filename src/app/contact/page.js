@@ -31,15 +31,16 @@ const page = () => {
   return (
     <HelperLayout>
       <section className="contact-form w-full h-full flex justify-center py-10">
-        <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] h-max min-h-[618px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:max-w-[30%] 2xl:w-auto 2xl:max-h-[768px] 2xl:px-[40px]">
+        <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] h-max min-h-[618px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:w-[450px] 2xl:w-[681px] 2xl:max-h-[768px] 2xl:px-[40px]">
           <h1 className="font-IvyPresto font-semibold text-xl 2xl:text-6xl">
             Get In Touch
           </h1>
-          <p className="text-sm font-extralight text-center whitespace-pre-line leading-5 2xl:pt-5 2xl:text-center 2xl:whitespace-normal">
-            {`Have questions or want to create a tailored experience?
-            At Dxberience, we specialize in crafting personalized services to meet your unique needs. Whether youre
-            looking for bespoke travel plans, exclusive event access, or organizing private celebrations, fill out
-            the form below, and let us create an experience just for you.`}
+          <p className="text-sm font-extralight text-center leading-5 2xl:pt-5 2xl:text-center">
+            Have questions or want to create a tailored experience? At
+            Dxberience, we specialize in crafting personalized services to meet
+            your unique needs. Whether youre looking for bespoke travel plans,
+            exclusive event access, or organizing private celebrations, fill out
+            the form below, and let us create an experience just for you.
           </p>
           <form className="flex flex-col items-center w-full">
             <div className="flex flex-col gap-2 w-full min-h-[238px] 2xl:gap-10">
