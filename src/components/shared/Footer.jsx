@@ -44,15 +44,42 @@ function Footer() {
           </div>
         </div>
 
-        <div className="absolute right-[20px] top-[100px] flex gap-5 md:top-[105px]">
+        {/* <div className="absolute right-[20px] top-[100px] flex gap-5 md:top-[105px]">
           <img src="/whatsapp_logo.png" alt="logo" width={40} />
           <img src="/to_page_top.png" alt="logo" width={40} />
-        </div>
+        </div> */}
 
         <ul className="flex justify-evenly pt-5 md:text-transparent">
           <li>Terms & Conditions</li>
           <li>Privacy Policy</li>
         </ul>
+      </div>
+      <div className="flex flex-col fixed right-5 bottom-60 md:right-32 md:bottom-40 gap-5 z-30">
+        <img
+          className="md:hidden"
+          src="/whatsapp_logo.png"
+          alt="logo"
+          width={40}
+        />
+        <img
+          className="md:hidden"
+          src="/to_page_top.png"
+          alt="logo"
+          width={40}
+        />
+
+        <img
+          className="hidden md:block"
+          src="/whatsapp_logo.png"
+          alt="logo"
+          width={50}
+        />
+        <img
+          className="hidden md:block"
+          src="/to_page_top.png"
+          alt="logo"
+          width={50}
+        />
       </div>
     </footer>
   );
