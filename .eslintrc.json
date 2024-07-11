@@ -3,6 +3,5 @@
 //   "rules": {
 //     "no-warning-comments": "off",
 //     "@next/next/no-img-element": "off"
-//     // Add other rules or override defaults as needed
 //   }
 // }

@@ -1,6 +1,4 @@
 "use client";
-import Footer from "@/components/shared/Footer";
-import Navbar from "@/components/Navbar";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import CustomButton from "@/components/shared/CustomButton";
@@ -14,7 +12,6 @@ const page = () => {
     watch,
 
     formState: { errors },
-    // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
