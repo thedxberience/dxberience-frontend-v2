@@ -1,8 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
-
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 function Footer() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+  }, []);
+
+  function openWhatsapp() {
+    window.open("https://wa.me/918800000000", "_blank");
+  }
+
+  function toPageTop() {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
   return (
     <footer className="footer relative flex flex-col w-full h-[454px] 2xl:h-[526px] bg-bottom bg-cover 2xl:py-5">
       <div className="w-full flex justify-center z-20">
@@ -44,11 +65,6 @@ function Footer() {
           </div>
         </div>
 
-        {/* <div className="absolute right-[20px] top-[100px] flex gap-5 md:top-[105px]">
-          <img src="/whatsapp_logo.png" alt="logo" width={40} />
-          <img src="/to_page_top.png" alt="logo" width={40} />
-        </div> */}
-
         <ul className="flex justify-evenly pt-5 md:text-transparent">
           <li>Terms & Conditions</li>
           <li>Privacy Policy</li>
@@ -60,12 +76,14 @@ function Footer() {
           src="/whatsapp_logo.png"
           alt="logo"
           width={40}
+          onClick={openWhatsapp}
         />
         <img
-          className="md:hidden"
+          className={`md:hidden ${scrolled ? "block" : "hidden"}`}
           src="/to_page_top.png"
           alt="logo"
           width={40}
+          onClick={toPageTop}
         />
 
         <img
@@ -73,12 +91,14 @@ function Footer() {
           src="/whatsapp_logo.png"
           alt="logo"
           width={50}
+          onClick={openWhatsapp}
         />
         <img
-          className="hidden md:block"
+          className={`hidden md:block  ${scrolled ? "block" : "hidden"}`}
           src="/to_page_top.png"
           alt="logo"
           width={50}
+          onClick={toPageTop}
         />
       </div>
     </footer>
