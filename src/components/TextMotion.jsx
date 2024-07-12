@@ -41,7 +41,7 @@ const TextMotion = ({ children, animateType = "left" }) => {
   }, [componentInView]);
 
   return (
-    <div ref={inViewRef}>
+    <div ref={inViewRef} className="overflow-hidden">
       <motion.div
         variants={animateType == "left" ? revealTextLeft : revealTextRight}
         initial="from"

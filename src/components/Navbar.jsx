@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -11,16 +12,20 @@ const Navbar = () => {
     setShowNavMenu(!showNavMenu);
   };
 
+  const router = useRouter();
+
   return (
     <>
-      <div className="px-4 lg:px-20 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
+      <div className="px-4 lg:px-20 z-40 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
         <div className="flex justify-center relative w-[13.651vw] h-[60px] lg:w-[406.9px] lg:h-[100px] items-center">
-          <Image
-            src="/dxberience_logo.svg"
-            alt="Dxberience Logo"
-            fill
-            className="object-contain"
-          />
+          <Link href={"/"}>
+            <Image
+              src="/dxberience_logo.svg"
+              alt="Dxberience Logo"
+              fill
+              className="object-contain"
+            />
+          </Link>
         </div>
 
         <div className="nav-links flex justify-center items-center gap-12">
@@ -32,11 +37,11 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="nav-button">
-            <CustomButton />
+            <CustomButton onClick={() => router.push("/explore-experiences")} />
           </div>
         </div>
       </div>
-      <div className="mobile-nav relative flex flex-col lg:hidden w-full justify-between items-center px-4 py-6">
+      <div className="mobile-nav z-40 relative flex flex-col lg:hidden w-full justify-between items-center px-4 py-6">
         <div className="flex w-full justify-between items-center">
           <div
             className="flex flex-col justify-center items-center gap-1"
@@ -78,10 +83,14 @@ const Navbar = () => {
             showNavMenu ? "reveal-nav" : "hide-nav"
           }`}
         >
-          <div className="bg-white w-full p-4 flex flex-col gap-4">
+          <div className="bg-white w-full p-4 flex flex-col gap-4 uppercase">
             <ul className="flex flex-col gap-4">
-              <li className="cursor-pointer">Contact</li>
-              <li className="cursor-pointer">Experiences</li>
+              <li className="cursor-pointer">
+                <Link href={"/contact"}>Contact</Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link href={"/explore-experiences"}>Experiences</Link>
+              </li>
             </ul>
           </div>
         </div>

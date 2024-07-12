@@ -15,10 +15,13 @@ const MemoriesSection = () => {
   }, []);
 
   const handleTransform = () => {
-    const offsetTop = stickySection.current.parentElement.offsetTop;
-    let percentage = ((window.scrollY - offsetTop) / window.innerHeight) * 100;
-    percentage = percentage < 0 ? 0 : percentage > 120 ? 120 : percentage;
-    scrollSection.current.style.transform = `translate3d( 0, ${-percentage}vw, 0)`;
+    if (stickySection.current) {
+      const offsetTop = stickySection.current.parentElement.offsetTop;
+      let percentage =
+        ((window.scrollY - offsetTop) / window.innerHeight) * 100;
+      percentage = percentage < 0 ? 0 : percentage > 120 ? 120 : percentage;
+      scrollSection.current.style.transform = `translate3d( 0, ${-percentage}vw, 0)`;
+    }
   };
 
   return (
@@ -32,7 +35,7 @@ const MemoriesSection = () => {
                   LUXURY
                 </h1>
                 <h2 className="text-4xl font-IvyPresto lg:text-7xl font-thin">
-                  cars, yachts and Jets
+                  cars, yachts and jets
                 </h2>
               </div>
             </div>

@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 
-const CustomButton = ({ btnName = "Explore", invert = false }) => {
+const CustomButton = ({
+  btnName = "Explore",
+  invert = false,
+  onClick = () => {},
+}) => {
   return (
     <div className="relative w-fit">
       <div
@@ -12,9 +17,12 @@ const CustomButton = ({ btnName = "Explore", invert = false }) => {
       <div
         className={` ${
           invert ? "bg-black text-white" : "bg-white text-black"
-        } p-[13.5px] z-50 border-black relative flex justify-center w-fit`}
+        } p-[13.5px] z-40 border-black relative flex justify-center w-fit`}
       >
-        <button className="flex justify-center text-sm lg:text-base items-center gap-3 uppercase">
+        <button
+          className="flex justify-center text-sm lg:text-base items-center gap-3 uppercase"
+          onClick={onClick}
+        >
           {" "}
           {btnName}{" "}
           {invert ? (
