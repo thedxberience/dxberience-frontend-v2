@@ -40,7 +40,7 @@ function Footer() {
             No need to think, just experience
           </h1>
 
-          <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight 2xl:flex gap-5 ">
+          <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight xl:flex gap-5 ">
             <li className="mt-4">
               <Link href={"/explore-experiences"}>EXPERIENCES</Link>
             </li>
@@ -69,36 +69,25 @@ function Footer() {
           <li>Privacy Policy</li>
         </ul>
       </div>
-      <div className="flex flex-col fixed right-5 bottom-60 md:right-32 md:bottom-40 gap-5 z-30">
-        <img
-          className="md:hidden"
-          src="/whatsapp_logo.png"
-          alt="logo"
-          width={40}
-          onClick={openWhatsapp}
-        />
-        <img
-          className={`md:hidden ${scrolled ? "block" : "hidden"}`}
-          src="/to_page_top.png"
-          alt="logo"
-          width={40}
-          onClick={toPageTop}
-        />
-
-        <img
-          className="hidden md:block"
-          src="/whatsapp_logo.png"
-          alt="logo"
-          width={50}
-          onClick={openWhatsapp}
-        />
-        <img
-          className={`hidden md:block  ${scrolled ? "block" : "hidden"}`}
-          src="/to_page_top.png"
-          alt="logo"
-          width={50}
-          onClick={toPageTop}
-        />
+      <div className="flex flex-col fixed right-5 bottom-60 md:right-32 md:bottom-40 gap-5 z-30 md:flex-row">
+        <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
+          <Image
+            src="/whatsapp_logo.png"
+            alt="whatsapp-logo"
+            fill
+            className="object-cover"
+            onClick={openWhatsapp}
+          />
+        </div>
+        <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
+          <Image
+            src="/to_page_top.png"
+            alt="scroll-to-top"
+            fill
+            className="object-cover"
+            onClick={toPageTop}
+          />
+        </div>
       </div>
     </footer>
   );
