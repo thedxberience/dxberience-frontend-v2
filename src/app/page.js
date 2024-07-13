@@ -232,7 +232,7 @@ export default function Home() {
         <div className="lg:px-20 py-[91px] bg-primary flex flex-col justify-center items-start">
           <div className="header-text flex flex-col items-end justify-start mb-20 w-[195px] lg:w-[37.688vw] text-white">
             <TextMotion>
-              <h1 className="text-base w-full lg:text-3xl -mb-2 text-white font-thin uppercase">
+              <h1 className="text-base w-full lg:text-3xl text-white font-thin uppercase">
                 Luxury
               </h1>
             </TextMotion>
@@ -291,7 +291,7 @@ export default function Home() {
             performances and gourmet dining.
           </p>
         </div>
-        <div className="relative w-[79.487vw] lg:w-[56.667vw] h-[456px]">
+        <div className="relative w-[79.487vw] lg:w-[56.667vw] h-[30.914vh] lg:h-[456px]">
           <Image
             src="/man_desert.jpeg"
             alt="Exciting adventure and desert activities in Dubai"

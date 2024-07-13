@@ -378,6 +378,10 @@ body {
     width: 100px;
     height: 130px;
   }
+
+  .Visas p{
+    font-size: 1.2rem;
+  }
 }
 
 @layer utilities {
