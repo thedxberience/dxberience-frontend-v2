@@ -1,29 +1,52 @@
-/* eslint-disable @next/next/no-img-element */
-
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 function Footer() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if (window.scrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+  }, []);
+
+  function openWhatsapp() {
+    window.open("https://wa.me/918800000000", "_blank");
+  }
+
+  function toPageTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <footer className="footer relative flex flex-col w-full h-[454px] 2xl:h-[526px] bg-bottom bg-cover 2xl:py-5">
       <div className="w-full flex justify-center z-20">
         <div className="relative w-[223.79px] 2xl:w-[325.52px] h-[80px] pt-[30px]">
-          <Image src="/dxberience_logo.svg" alt="logo" fill />
+          <Link href="/">
+            <Image src="/dxberience_logo.svg" alt="logo" fill />
+          </Link>
         </div>
       </div>
 
       <div className="absolute inset-0 bg-[#171010] bg-opacity-90 z-10" />
       <div className="relative z-20 text-white">
         <div className="px-8 2xl:flex justify-between">
-          <h1 className="py-3 text-2xl font-bold font-IvyPresto 2xl:hidden">
-            Find Your Adventure
-          </h1>
-
-          <h1 className="hidden py-2 text-2xl font-bold font-IvyPresto 2xl:block">
+          <h1 className="py-2 text-2xl font-bold font-IvyPresto ">
             No need to think, just experience
           </h1>
 
           <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight 2xl:flex gap-5 ">
-            <li className="mt-4">EXPERIENCES</li>
-            <li className="mt-4">CONTACT</li>
+            <li className="mt-4">
+              <Link href={"/explore-experiences"}>EXPERIENCES</Link>
+            </li>
+            <li className="mt-4">
+              <Link href={"/contact"}>CONTACT</Link>
+            </li>
           </ul>
         </div>
 
@@ -41,14 +64,30 @@ function Footer() {
           </div>
         </div>
 
-        <div className="absolute right-[20px] top-[100px] flex gap-5 md:top-[105px]">
-          <img src="/whatsapp_logo.png" alt="logo" width={40} />
-          <img src="/to_page_top.png" alt="logo" width={40} />
-        </div>
         <ul className="flex justify-evenly pt-5 md:text-transparent">
           <li>Terms & Conditions</li>
           <li>Privacy Policy</li>
         </ul>
+      </div>
+      <div className="flex flex-col fixed right-5 bottom-60 md:right-32 md:bottom-40 gap-5 z-30">
+        <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
+          <Image
+            src="/whatsapp_logo.png"
+            alt="whatsapp-logo"
+            fill
+            className="object-cover"
+            onClick={openWhatsapp}
+          />
+        </div>
+        <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
+          <Image
+            src="/to_page_top.png"
+            alt="scroll-to-top"
+            fill
+            className="object-cover"
+            onClick={toPageTop}
+          />
+        </div>
       </div>
     </footer>
   );

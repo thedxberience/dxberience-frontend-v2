@@ -16,6 +16,12 @@ const noah = localFont({
   variable: "--font-noah",
 });
 
+const Sacramento = localFont({
+  src: "../../public/font/Sacramento/Sacramento-Regular.ttf",
+  display: "swap",
+  variable: "--font-sacramento",
+});
+
 export const metadata = {
   title: "Luxury Lifestyle Concierge Services Dubai | Dxberience",
   description:
@@ -25,7 +31,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${IvyPresto.variable} ${noah.variable} font-noah`}>
+      <body
+        className={`${IvyPresto.variable} ${noah.variable} ${Sacramento.variable} font-noah`}
+      >
         {children}
       </body>
     </html>

@@ -108,7 +108,7 @@ const ServicesSection = () => {
       alt: "Indulge in luxury villas at premium accommodations.",
     },
     {
-      serviceName: "Visa Services",
+      serviceName: "Visas and Business Informaton",
       image: "/visa_services.jpeg",
       alt: "Streamlined visa services for hassle-free travel arrangements.",
     },
@@ -163,11 +163,11 @@ const ServicesSection = () => {
         className="sticky_parent"
       >
         <div ref={stickySection} className="sticky text-white">
-          <div className="w-full flex justify-end items-center p-6 2xl:p-20">
+          <div className="w-full flex justify-end items-center p-6 2xl:p-20 z-10 relative">
             <div className="text flex flex-col lg:flex-row justify-evenly items-center">
               <div className="flex flex-col justify-end lg:justify-center items-end w-full lg:w-5/12">
                 <h1 className="font-IvyPresto text-4xl lg:text-7xl">VIP</h1>
-                <p className="text-base lg:text-4xl">CURATED EXPEIENCES</p>
+                <p className="text-base lg:text-4xl">CURATED EXPERIENCES</p>
               </div>
               <div className="flex flex-col gap-8 justify-center items-start w-full lg:w-5/12">
                 <p className="text-base">

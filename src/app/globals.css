@@ -48,7 +48,6 @@ body {
   line-height: normal;
 }
 
-
 .services .sticky_parent {
   position: relative;
   width: 100%;
@@ -67,9 +66,7 @@ body {
   bottom: 71px;
   width: 100%;
   height: 1082px;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
-    url("/woman_bed.jpeg") center center/cover no-repeat;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.4), rgba(0, 0, 0, 0.4)),
     url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
@@ -156,11 +153,15 @@ body {
   /* rotate: 270deg; */
 }
 
-.service_image, .experience, .events-header .overlay{
+.service_image, .experience, .events-header, .overlay{
   z-index: 2;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.Visas p{
+  font-size: 35px;
 }
 
 .memory_image {
@@ -197,12 +198,12 @@ body {
   animation: hide-options 0.3s ease-in-out forwards;
 }
 
-.header-section{
+.header-section {
   background: url("/desert_experience.jpeg") bottom center/cover no-repeat;
   background-size: cover;
 }
 
-.experiences{
+.experiences {
   display: grid;
   align-items: center;
   justify-items: center;
@@ -219,6 +220,33 @@ body {
   gap: 1rem;
 }
 
+.mouse-over-pan{
+  animation: pan-img 0.3s ease-in-out forwards;
+}
+
+.mouse-over-no-pan{
+  animation: no-pan-img 0.3s ease-in-out forwards;
+}
+
+@keyframes pan-img {
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.2);
+  }
+}
+
+@keyframes no-pan-img {
+  0%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+
 @keyframes reveal-nav {
   0% {
     transform: translateY(-200px);
@@ -228,7 +256,7 @@ body {
   80% {
     height: 0px;
   }
-  100%{
+  100% {
     top: 80px;
     left: 0;
     transform: translateY(0px);
@@ -299,21 +327,21 @@ body {
 }
 
 @media screen and (min-width: 1025px) {
-  .experiences{
-    grid-template-columns: repeat(auto-fit, minmax(407px, 1fr));
+  .experiences {
+    grid-template-columns: repeat(auto-fit, minmax(21.198vw, 1fr));
   }
 
-    .services,
+  .services,
   .memories h1 {
     line-height: 1;
   }
-/* 
+  /* 
   .header-section .content h1{
     line-height: 5rem;
   } */
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (max-width: 1440px) {
   .services .sticky {
     height: 890px;
   }
@@ -380,4 +408,20 @@ input {
 
 #input-textarea {
   @apply bg-transparent border-b-[1px] py-1 outline-none w-full;
+}
+
+@-webkit-keyframes autofill {
+  0%,
+  100% {
+    color: #666;
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+  background-color: transparent !important;
 }

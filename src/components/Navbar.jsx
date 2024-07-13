@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <>
       <div className="px-4 lg:px-20 z-40 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
-        <div className="flex justify-center relative w-[13.651vw] h-[60px] lg:w-[406.9px] lg:h-[100px] items-center">
+        <div className="flex justify-center relative w-[13.651vw] h-[60px] lg:w-[262.1px] lg:h-[64px] items-center">
           <Link href={"/"}>
             <Image
               src="/dxberience_logo.svg"
@@ -66,12 +66,14 @@ const Navbar = () => {
           </div>
           <div className="brand-logo">
             <div className="flex justify-center relative w-[31.538vw] h-[30px] items-center">
-              <Image
-                src="/dxberience_logo.svg"
-                alt="Dxberience Logo"
-                fill
-                className="object-cover"
-              />
+              <Link href={"/"}>
+                <Image
+                  src="/dxberience_logo.svg"
+                  alt="Dxberience Logo"
+                  fill
+                  className="object-cover"
+                />
+              </Link>
             </div>
           </div>
           <div>

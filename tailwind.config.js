@@ -23,6 +23,7 @@ module.exports = {
       fontFamily: {
         noah: ["var(--font-noah)"],
         IvyPresto: ["var(--font-ivy-presto)"],
+        sacramento: ["var(--font-sacramento)"],
       },
     },
   },

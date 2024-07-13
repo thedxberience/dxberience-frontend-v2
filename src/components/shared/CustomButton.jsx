@@ -8,7 +8,7 @@ const CustomButton = ({
   onClick = () => {},
 }) => {
   return (
-    <div className="relative w-fit">
+    <div className="relative w-fit lg:min-w-[187px]">
       <div
         className={`${
           invert ? "bg-white border-black" : "bg-black border-white"
@@ -17,7 +17,7 @@ const CustomButton = ({
       <div
         className={` ${
           invert ? "bg-black text-white" : "bg-white text-black"
-        } p-[13.5px] z-40 border-black relative flex justify-center w-fit`}
+        } p-[13.5px] z-40 border-black relative flex justify-center w-fit lg:min-w-[187px]`}
       >
         <button
           className="flex justify-center text-sm lg:text-base items-center gap-3 uppercase"

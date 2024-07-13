@@ -165,8 +165,7 @@
 
 @media screen and (min-width: 1024px) {
   .review-container .embla .embla__container{
-    justify-content: center;
-    width: 100%;
+    width: unset;
   }
 
   .CTAProfiles .embla .embla__slide{
@@ -179,8 +178,9 @@
   }
 
   .review-container .embla .embla__slide{
-    --slide-size: 380px;
+    --slide-size: 472px;
     flex: 0 0 var(--slide-size); 
+    height: 253px;
   }
 }
 
@@ -217,6 +217,12 @@
   }
 
   .single .embla .embla__container{
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1520px) {
+  .review-container .embla__container{
     justify-content: center;
   }
 }

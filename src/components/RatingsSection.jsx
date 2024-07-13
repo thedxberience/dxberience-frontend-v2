@@ -19,15 +19,21 @@ const RatingsSection = () => {
   const ratings = [
     {
       star: 5,
-      ratingAuthor: "- Michael R.",
+      ratingAuthor: "Laura O.",
       ratingDescription:
-        "I've traveled the world, but my recent experience with Dxberience in Dubai was unparalleled. They curated a personalized itinerary that showcased the city's hidden gems, all with a touch of luxury. Can't wait to book my next adventure with them!",
+        "Absolutely Amazing experience.  The Private Yacht was out of this world. SAN Beach was an absolutely beautiful experience.",
     },
     {
       star: 5,
-      ratingAuthor: " - Jessica L.",
+      ratingAuthor: "Humna S.",
       ratingDescription:
-        "Exceeded our wildest expectations! From securing exclusive dining reservations to arranging a private yacht experience, every detail was flawless. Our trip to Dubai was truly unforgettable, all thanks to the impeccable service of Dxberience, Highly recommended!",
+        "Amazing experience. Dxberience is a very friendly, understanding, trustworthy and flexible company ready to provide you the best service! The driver was gentle and nice and the limousine experience packed with laughter and fun!! I’d recommend everyone to go forth company dxberience.",
+    },
+    {
+      star: 5,
+      ratingAuthor: "Faisal L.",
+      ratingDescription:
+        "Great tour agency and a very great & excellent support from the team. Thanks for making the trip better! Will surely recommend if you're looking for a layover tour or a normal tour.",
     },
   ];
 
@@ -39,7 +45,7 @@ const RatingsSection = () => {
             Our clients share their experiences.
           </h1>
         </div>
-        <div className="review-container w-full flex justify-center items-center gap-8">
+        <div className="review-container flex justify-center items-center gap-8">
           <Carousel emblaRef={emblaRef}>
             {ratings.map((rating, index) => {
               return (

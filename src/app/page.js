@@ -79,11 +79,6 @@ export default function Home() {
               fill
             />
           </div>
-          <div className="hidden lg:flex w-6/12 justify-end items-center">
-            <h1 className="uppercase text-[30px] pt-12 font-noah">
-              Your concierge to exclusive experiences
-            </h1>
-          </div>
         </div>
         <div className="find text-right flex flex-col w-full justify-end pr-6 lg:pr-20">
           <TextMotion animateType="right">
@@ -96,35 +91,35 @@ export default function Home() {
               Bespoke Services in Dubai
             </h1>
           </TextMotion>
-          <div className="lg:hidden flex w-full justify-end items-center">
-            <h1 className="uppercase text-base font-noah">
+          <div className="flex w-full lg:w-6/12 justify-end lg:justify-end items-center">
+            <h1 className="uppercase text-base lg:text-3xl font-noah">
               Your concierge to exclusive experiences
             </h1>
           </div>
         </div>
       </section>
       <section className="w-full lg:pr-20">
-        <div className="concierge-text pt-4 lg:pt-24 flex flex-col gap-4 lg:gap-6 justify-center items-center lg:justify-end lg:items-end">
+        <div className="concierge-text pt-4 flex flex-col gap-4 lg:gap-6 justify-center items-center lg:justify-end lg:items-end">
           <div className="flex flex-col gap-2 lg:w-[600px] font-noah font-light px-6">
             <p className="text-sm lg:text-lg font-extralight">
               Step beyond the ordinary and discover a side of the world only a
               select few get to experience. Our curated luxury experiences cater
               to the discerning traveler. Book a private desert safari with
               gourmet dining under the stars, or soar above the city in a
-              private helicopter. DXberience unlocks a world of bespoke
+              private helicopter. Dxberience unlocks a world of bespoke
               experiences, from breathtaking hotel views to exclusive yacht
-              charters. Create unforgettable memories with DXberience.
+              charters. Create unforgettable memories with Dxberience.
             </p>
             <p className="text-sm lg:text-lg font-extralight">
               Whether you crave the thrill of a desert safari with gourmet
               dining under the stars, or the serenity of a private spa retreat
-              overlooking the turquoise waters, DXberience caters to your every
+              overlooking the turquoise waters, Dxberience caters to your every
               whim. Our team of local experts has meticulously crafted a
               selection of experiences designed to tantalize your taste buds,
               indulge your senses, and create memories that will last a
               lifetime.
             </p>
-            <div className="w-full flex justify-center items-center pt-10">
+            <div className="w-full flex justify-center lg:justify-start items-center pt-10">
               <CustomButton btnName="Inquire Now" invert={true} />
             </div>
           </div>
@@ -149,9 +144,9 @@ export default function Home() {
           </p>
         </div> */}
       </div>
-      <section className="demand-luxury flex flex-col lg:flex-row justify-between w-full h-fit lg:h-[836px] px-4 py-20 lg:px-[72px] lg:mt-[113px] ">
+      <section className="demand-luxury flex flex-col lg:flex-row justify-between w-full h-fit lg:h-[836px] px-4 py-20 lg:px-[72px] lg:mt-[30px] ">
         <div className="left-side hidden lg:block h-[477px]">
-          <div className="top-box -mt-[220px] lg:-mt-[40%] bg-primary text-white lg:w-[38.177vw] px-4 py-10 lg:px-[78px] lg:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
+          <div className="top-box -mt-[220px] lg:-mt-[70%] bg-primary text-white lg:w-[38.177vw] px-4 py-10 lg:px-[78px] lg:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
             <h1 className="font-IvyPresto text-xl lg:text-7xl">
               Personalized Luxury Booking
             </h1>
@@ -237,7 +232,7 @@ export default function Home() {
         <div className="lg:px-20 py-[91px] bg-primary flex flex-col justify-center items-start">
           <div className="header-text flex flex-col items-end justify-start mb-20 w-[195px] lg:w-[37.688vw] text-white">
             <TextMotion>
-              <h1 className="text-base w-full lg:text-3xl -mb-2 lg:-mb-5 text-white font-thin uppercase">
+              <h1 className="text-base w-full lg:text-3xl -mb-2 text-white font-thin uppercase">
                 Luxury
               </h1>
             </TextMotion>
@@ -266,10 +261,10 @@ export default function Home() {
           </h1>
           <p className="text-sm lg:text-base lg:w-[47.5vw] text-center">
             Experience the best of Dubai's vibrant nightlife and cultural scene
-            with DXberience. Secure front-row seats at sold-out shows, reserve
+            with Dxberience. Secure front-row seats at sold-out shows, reserve
             VIP tables at the trendiest clubs, and elevate your lifestyle with
             exclusive, once-in-a-lifetime experiences tailored just for you.
-            Book now with DXberience and live like royalty, indulging in the
+            Book now with Dxberience and live like royalty, indulging in the
             epitome of luxury and sophistication in Dubai's dynamic cityscape.
           </p>
         </div>
@@ -284,7 +279,7 @@ export default function Home() {
           <div className="header flex flex-col gap-6 justify-center items-center">
             <h1 className="text-lg lg:text-4xl">OUR</h1>
             <h1 className="font-IvyPresto text-4xl lg:text-7xl">
-              Excursions & tours
+              Excursions & Tours
             </h1>
           </div>
           <p className="px-4 lg:w-[46.719vw] text-center pb-16">

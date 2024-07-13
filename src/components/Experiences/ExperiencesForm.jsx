@@ -136,7 +136,7 @@ const ExperiencesForm = () => {
         <div className="date-no_of_travelers flex justify-center items-center gap-3 w-full">
           <FormInput
             name="date"
-            placeholder={"Date"}
+            placeholder={"Dates"}
             errors={errors}
             register={register}
             value={watchAllFields.date}
@@ -159,7 +159,7 @@ const ExperiencesForm = () => {
           />
         </div>
         <div className="flex lg:w-full justify-center items-center">
-          <CustomButton btnName="Find preferences" invert />
+          <CustomButton btnName="Find experiences" invert />
         </div>
       </form>
     </div>
