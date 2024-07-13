@@ -106,9 +106,9 @@ const page = () => {
                   errors={errors}
                   value={watchAllFields.message}
                 />
-              </div>
-              <div>
-                <CustomButton btnName="Send Message" />
+                <div className="flex mt-5 justify-center">
+                  <CustomButton btnName="Send Message" />
+                </div>
               </div>
             </form>
           </div>
