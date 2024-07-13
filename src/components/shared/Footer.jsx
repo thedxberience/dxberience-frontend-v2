@@ -8,7 +8,7 @@ function Footer() {
   const footerRef = useRef(null);
 
   const handleDomChecking = useCallback(() => {
-    if (document) {
+    if (document && footerRef.current) {
       const windowScrollHeight = document.documentElement.scrollHeight;
       const footerHeight = footerRef.current.getBoundingClientRect().height;
       const footerOffsetHeight = windowScrollHeight - footerHeight * 2 - 100;
@@ -72,14 +72,19 @@ function Footer() {
         <div className="flex justify-center items-center text-sm gap-[80px] border-t-[1px] border-b-[1px] h-[112.01px] 2xl:h-[252.01px] border-white">
           <div className="flex flex-col items-center p-4 gap-5">
             <span>CONTACT US</span>
-            <img src="/footer_whatsapp.png" alt="logo" />
+            <img src="/footer_whatsapp.png" alt="logo" onClick={openWhatsapp} />
           </div>
 
           <div className="h-[50px] w-[1px] bg-white bg-opacity-50" />
 
           <div className="flex flex-col items-center p-4 gap-5">
             <span>FOLLOW US</span>
-            <img src="/footer_insta.png" alt="logo" />
+            <Link
+              href="https://www.instagram.com/thedxberience?igsh=MTdyY2k5NTdpZW5kcA=="
+              target="_blank"
+            >
+              <img src="/footer_insta.png" alt="logo" />
+            </Link>
           </div>
         </div>
 
@@ -90,8 +95,8 @@ function Footer() {
       </div>
       <div
         className={`flex flex-col fixed right-5 ${
-          reachedFooter ? "bottom-60" : "bottom-6"
-        } md:right-32 md:bottom-40 gap-5 z-30 md:flex-row`}
+          reachedFooter ? "bottom-60 md:bottom-40" : "bottom-6"
+        } md:right-32  gap-5 z-30 md:flex-row`}
       >
         <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
           <Image

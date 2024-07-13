@@ -32,7 +32,9 @@ const Navbar = () => {
           <div className="nav-link text-white">
             <ul className="text-base">
               <li>
-                <Link href={"/contact"}>Contact</Link>
+                <Link className="uppercase" href={"/contact"}>
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
