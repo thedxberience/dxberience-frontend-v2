@@ -24,7 +24,7 @@ const page = () => {
       </section>
       <section className="experiences-container flex justify-start lg:justify-center items-start mt-32 px-5 py-10">
         <div className="experiences w-full lg:w-9/12">
-          <ExperienceCard priceStart={true} />
+          <ExperienceCard newExperience={true} priceStart={true} />
           <ExperienceCard />
           <ExperienceCard />
           <ExperienceCard />

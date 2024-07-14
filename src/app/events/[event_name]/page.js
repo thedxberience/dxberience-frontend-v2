@@ -4,6 +4,7 @@ import EventsContentCarousel from "@/components/Events/EventsContentCarousel";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { IoChevronDown } from "react-icons/io5";
 
@@ -30,6 +31,12 @@ const page = () => {
       alt: "Hallway of the theatre",
     },
   ];
+
+  const router = useRouter();
+
+  const handlePagePop = () => {
+    router.back();
+  };
 
   return (
     <main>
@@ -71,7 +78,10 @@ const page = () => {
                   );
                 })}
               </div>
-              <div className="flex desktop-only justify-center items-center gap-6 text-black cursor-pointer">
+              <div
+                className="flex desktop-only justify-center items-center gap-6 text-black cursor-pointer"
+                onClick={handlePagePop}
+              >
                 <IoChevronDown className="rotate-90" />{" "}
                 <span className="text-lg">Back</span>
               </div>

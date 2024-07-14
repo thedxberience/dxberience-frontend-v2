@@ -3,6 +3,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
 import React, { useState } from "react";
 import Heart from "./Heart";
+import { useRouter } from "next/navigation";
 
 const ExperienceCard = ({
   experienceImage = "/experience_bg.jpeg",
@@ -22,11 +23,18 @@ const ExperienceCard = ({
     setPan(false);
   };
 
+  const router = useRouter();
+
+  const handleExperienceRoute = () => {
+    router.push(`/events/${experienceTitle}`);
+  };
+
   return (
     <div
       className="experience cursor-pointer relative w-[43.277vw] p-2 lg:p-4 lg:w-full min-h-[210px] lg:h-[52.263vh] flex flex-col justify-end items-end text-white overflow-hidden"
       onMouseEnter={handleMouseOverPan}
       onMouseLeave={handleRemoveMouseOverPan}
+      onClick={handleExperienceRoute}
     >
       <div className="overlay absolute top-0 left-0"></div>
       <Image
