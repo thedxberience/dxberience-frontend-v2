@@ -56,7 +56,7 @@ body {
 
 .demand-luxury {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url("/interior_car.jpeg") center center/cover no-repeat;
+    url("/Interior_car.jpeg") center center/cover no-repeat;
 }
 
 .services .sticky {
@@ -66,9 +66,7 @@ body {
   bottom: 71px;
   width: 100%;
   height: 1082px;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
-    url("/woman_bed.jpeg") center center/cover no-repeat;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.3), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.4), rgba(0, 0, 0, 0.4)),
     url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
@@ -155,12 +153,15 @@ body {
   /* rotate: 270deg; */
 }
 
-.service_image,
-.experience .overlay {
+.service_image, .experience, .events-header, .overlay{
   z-index: 2;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.Visas p{
+  font-size: 35px;
 }
 
 .memory_image {
@@ -187,7 +188,14 @@ body {
 
 .hide-nav {
   animation: hide-nav 0.3s ease-in-out forwards;
-  /* transition: ease-in-out; */
+}
+
+.reveal-options {
+  animation: reveal-options 0.3s ease-in-out forwards;
+}
+
+.hide-options {
+  animation: hide-options 0.3s ease-in-out forwards;
 }
 
 .header-section {
@@ -203,6 +211,41 @@ body {
   row-gap: 16px;
   column-gap: 12.44px;
 }
+
+.md{
+  display: flex !important;
+  flex-direction: column;
+  justify-content: start !important;
+  align-items: start !important;
+  gap: 1rem;
+}
+
+.mouse-over-pan{
+  animation: pan-img 0.3s ease-in-out forwards;
+}
+
+.mouse-over-no-pan{
+  animation: no-pan-img 0.3s ease-in-out forwards;
+}
+
+@keyframes pan-img {
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.2);
+  }
+}
+
+@keyframes no-pan-img {
+  0%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
 
 @keyframes reveal-nav {
   0% {
@@ -237,6 +280,44 @@ body {
   }
 }
 
+@keyframes reveal-options {
+  0%{
+    display: none;
+    opacity: 0;
+    transform: translateY(-500%);
+    height: 0px;
+  }
+  80%{
+    display: flex;
+    opacity: 0;
+  }
+  100%{
+    display: flex;
+    height: fit-content;
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes hide-options {
+  0%{
+    display: flex;
+    opacity: 1;
+    transform: translateY(0px);
+    height: fit-content;
+  }
+  20%{
+    opacity: 0.2;
+    display: none;
+  }
+  100%{
+    display: none;
+    opacity: 0;
+    transform: translateY(-500%);
+    height: 0px;
+  }
+}
+
 .mobile-only {
   @apply flex lg:hidden;
 }
@@ -247,7 +328,7 @@ body {
 
 @media screen and (min-width: 1025px) {
   .experiences {
-    grid-template-columns: repeat(auto-fit, minmax(407px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(21.198vw, 1fr));
   }
 
   .services,
@@ -296,6 +377,10 @@ body {
     position: relative;
     width: 100px;
     height: 130px;
+  }
+
+  .Visas p{
+    font-size: 1.2rem;
   }
 }
 
