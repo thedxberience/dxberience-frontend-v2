@@ -39,9 +39,15 @@ const ExperiencesForm = () => {
     },
     {
       optionName: "VIP Concierge",
+      subCategories: [
+        "Luxury Concierge",
+        "Travel Concierge",
+        "Corporate Services",
+      ],
     },
     {
       optionName: "Luxury Rentals",
+      subCategories: ["cars", "limousine", "Chauffeur services"],
     },
     {
       optionName: "Private Jets",
@@ -62,7 +68,8 @@ const ExperiencesForm = () => {
       optionName: "Events",
     },
     {
-      optionName: "Visa Services",
+      optionName: "Visas & Business Formation",
+      subCategories: ["Professional", "Commercial", "Branch"],
     },
   ];
   const interestOptions = [
@@ -118,6 +125,8 @@ const ExperiencesForm = () => {
               <CustomOptionTag
                 optionName={option.optionName}
                 onSelect={handleSetCategoryName}
+                optionType={`${option.subCategories ? "dropdown" : "text"}`}
+                subCategories={option.subCategories}
                 key={key}
               />
             ))}

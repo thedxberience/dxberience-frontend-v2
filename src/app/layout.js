@@ -3,6 +3,7 @@ import "./css/base.css";
 import "./css/embla.css";
 
 import localFont from "next/font/local";
+import Provider from "@/utils/Provider";
 
 const IvyPresto = localFont({
   src: "../../public/font/Ivy Presto/Ivy Presto 3.otf",
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${IvyPresto.variable} ${noah.variable} ${Sacramento.variable} font-noah`}
       >
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
