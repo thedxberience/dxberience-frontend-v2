@@ -45,7 +45,9 @@ const page = ({ params }) => {
             </h2>
             {data?.price && (
               <div className="mobile-only flex-col justify-center items-center uppercase bg-primary px-4 py-2 text-center">
-                <h3 className="font-IvyPresto font-bold text-2xl">AED 495</h3>
+                <h3 className="font-IvyPresto font-bold text-2xl">
+                  AED {data?.price}
+                </h3>
                 <p className="font-thin text-sm">PER PERSON</p>
               </div>
             )}
@@ -80,7 +82,7 @@ const page = ({ params }) => {
             {data?.price && (
               <div className="desktop-only uppercase w-[431px] flex-col justify-center items-center h-[279px] bg-primary px-4 py-2 text-center">
                 <h3 className="font-IvyPresto font-bold text-2xl lg:text-5xl">
-                  AED 495
+                  AED {data?.price}
                 </h3>
                 <p className="font-thin text-sm lg:text-lg">PER PERSON</p>
               </div>
@@ -111,7 +113,11 @@ const page = ({ params }) => {
             </div>
           )}
         </div>
-        <EventsBookingForm />
+        <EventsBookingForm
+          slug={params.slug}
+          price={data?.price}
+          product={data?.title}
+        />
       </section>
       <Footer />
     </main>

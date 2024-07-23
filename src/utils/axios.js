@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://dxberienceapi.up.railway.app/v1",
+  baseURL: "https://dxberienceapi.up.railway.app/api/v1",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
