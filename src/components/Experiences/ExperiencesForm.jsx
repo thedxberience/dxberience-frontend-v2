@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import CustomButton from "../shared/CustomButton";
 import CustomSelectTag from "../shared/CustomSelectTag";
 import CustomOptionTag from "../shared/CustomOptionTag";
+import { useQuery } from "@tanstack/react-query";
+import { makeRequest } from "@/utils/axios";
 
 const ExperiencesForm = () => {
   const {
@@ -22,6 +24,34 @@ const ExperiencesForm = () => {
     },
   });
 
+  const {
+    data: categoryData,
+    error: categoryError,
+    isError: isCategoryError,
+    isSuccess: isCategorySuccess,
+    isLoading: isCategoryLoading,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const data = await makeRequest(`/categories`);
+      return data;
+    },
+  });
+
+  const {
+    data: interestData,
+    error: interestError,
+    isError: isInterestError,
+    isSuccess: isInterestSuccess,
+    isLoading: isInterestLoading,
+  } = useQuery({
+    queryKey: ["interests"],
+    queryFn: async () => {
+      const data = await makeRequest(`/interests`);
+      return data;
+    },
+  });
+
   const [categotyName, setCategoryName] = useState("Categories");
   const [interestName, setInterestName] = useState("Interest");
 
@@ -33,45 +63,6 @@ const ExperiencesForm = () => {
     setInterestName(interestName);
   };
 
-  const categoryOptions = [
-    {
-      optionName: "All",
-    },
-    {
-      optionName: "VIP Concierge",
-      subCategories: [
-        "Luxury Concierge",
-        "Travel Concierge",
-        "Corporate Services",
-      ],
-    },
-    {
-      optionName: "Luxury Rentals",
-      subCategories: ["cars", "limousine", "Chauffeur services"],
-    },
-    {
-      optionName: "Private Jets",
-    },
-    {
-      optionName: "Experiences",
-    },
-    {
-      optionName: "Yachts",
-    },
-    {
-      optionName: "Reservations",
-    },
-    {
-      optionName: "Luxury Stays",
-    },
-    {
-      optionName: "Events",
-    },
-    {
-      optionName: "Visas & Business Formation",
-      subCategories: ["Professional", "Commercial", "Branch"],
-    },
-  ];
   const interestOptions = [
     {
       optionName: "All",
@@ -121,20 +112,22 @@ const ExperiencesForm = () => {
       <form className="px-3 lg:px-8 py-6 lg:py-9 flex flex-col lg:flex-row justify-center items-center gap-3 bg-white shadow">
         <div className="categories-interests flex justify-center items-center gap-3 w-full">
           <CustomSelectTag selectTagName={categotyName}>
-            {categoryOptions.map((option, key) => (
-              <CustomOptionTag
-                optionName={option.optionName}
-                onSelect={handleSetCategoryName}
-                optionType={`${option.subCategories ? "dropdown" : "text"}`}
-                subCategories={option.subCategories}
-                key={key}
-              />
-            ))}
+            {categoryData?.map((option, key) => {
+              return (
+                <CustomOptionTag
+                  optionName={option.name}
+                  onSelect={handleSetCategoryName}
+                  optionType={`${option.subCategories ? "dropdown" : "text"}`}
+                  subCategories={option.subCategories}
+                  key={key}
+                />
+              );
+            })}
           </CustomSelectTag>
           <CustomSelectTag selectTagName={interestName}>
-            {interestOptions.map((option, key) => (
+            {interestData?.map((option, key) => (
               <CustomOptionTag
-                optionName={option.optionName}
+                optionName={option.name}
                 optionType="checkbox"
                 onSelect={handleSetInterestName}
                 key={key}

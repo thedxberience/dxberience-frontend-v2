@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
   },
 });
 
-export const fetchCategory = async (url, options = {}) => {
+export const makeRequest = async (url, options = {}) => {
   try {
     const response = await axiosInstance(url, options);
     return response.data;

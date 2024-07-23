@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { IoChevronForward } from "react-icons/io5";
 
 const CustomOptionTag = ({
@@ -11,6 +11,16 @@ const CustomOptionTag = ({
 }) => {
   const [selected, setSelected] = useState(false);
   const [showSubCategories, setShowSubCategories] = useState(false);
+
+  const subCategoriesArray = useMemo(() => {
+    let data;
+    if (subCategories) {
+      data = subCategories.map((data) => data.name);
+    } else {
+      data = [];
+    }
+    return data;
+  }, [subCategories]);
 
   const handleSelected = () => {
     setSelected(!selected);
@@ -38,7 +48,7 @@ const CustomOptionTag = ({
         return (
           <div
             onClick={handleSelected}
-            className="flex w-full justify-between items-center gap-1"
+            className="flex w-full justify-between items-center gap-2"
           >
             <p>{optionName}</p>
 
@@ -64,7 +74,7 @@ const CustomOptionTag = ({
       case "dropdown":
         return (
           <div
-            className="relative flex w-full justify-between items-center gap-1"
+            className="relative flex w-full justify-between items-center gap-2"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -76,14 +86,14 @@ const CustomOptionTag = ({
 
             <div
               className={` ${
-                showSubCategories && subCategories.length > 0
+                showSubCategories && subCategoriesArray.length > 0
                   ? "block"
                   : "hidden"
-              } absolute w-full top-0 -right-32 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
+              } absolute w-fit top-0 -right-32 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              {subCategories.map((category, index) => (
+              {subCategoriesArray.map((category, index) => (
                 <div
                   className="cursor-pointer"
                   key={index}

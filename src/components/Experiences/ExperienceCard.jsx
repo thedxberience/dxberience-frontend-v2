@@ -6,6 +6,7 @@ import Heart from "./Heart";
 import { useRouter } from "next/navigation";
 
 const ExperienceCard = ({
+  slug,
   experienceImage = "/experience_bg.jpeg",
   experienceTitle = "Dubai Desert Safari Package",
   experienceAlt = "Image for a category",
@@ -27,7 +28,7 @@ const ExperienceCard = ({
   const router = useRouter();
 
   const handleExperienceRoute = () => {
-    router.push(`/events/${experienceTitle}`);
+    router.push(`/events/${slug}`);
   };
 
   return (
@@ -38,14 +39,16 @@ const ExperienceCard = ({
       onClick={handleExperienceRoute}
     >
       <div className="overlay absolute top-0 left-0"></div>
-      <Image
-        src={experienceImage}
-        alt={experienceAlt}
-        fill
-        className={`${
-          pan ? "mouse-over-pan" : "mouse-over-no-pan"
-        } object-cover`}
-      />
+      {experienceImage && (
+        <Image
+          src={experienceImage}
+          alt={experienceAlt}
+          fill
+          className={`${
+            pan ? "mouse-over-pan" : "mouse-over-no-pan"
+          } object-cover`}
+        />
+      )}
       {newExperience && (
         <div className="new-tag absolute left-0 top-5 lg:top-8 z-10">
           <div className="w-8 h-2 relative lg:w-16 lg:h-5">

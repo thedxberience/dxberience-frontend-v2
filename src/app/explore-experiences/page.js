@@ -3,16 +3,16 @@ import ExperienceCard from "@/components/Experiences/ExperienceCard";
 import ExperiencesForm from "@/components/Experiences/ExperiencesForm";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
-import { fetchCategory } from "@/utils/axios";
+import { makeRequest } from "@/utils/axios";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
 const page = () => {
-  const { data, error, isLoading, isSuccess } = useQuery({
-    queryKey: ["allCategories"],
+  const { data, error, isError, isLoading, isSuccess } = useQuery({
+    queryKey: ["allProducts"],
     queryFn: async () => {
-      const data = await fetchCategory("/cms/category");
+      const data = await makeRequest("/product");
       return data;
     },
   });
@@ -29,11 +29,18 @@ const page = () => {
         <ExperienceCard
           experienceDescription={category.shortDescription}
           experienceTitle={category.title}
+          slug={category.slug}
           experienceImage={category.thumbnail.image}
           experienceAlt={category.thumbnail.altText}
           priceStart={category.price}
         />
       ));
+    } else if (isError) {
+      return (
+        <div className="flex justify-center items-center w-full">
+          <h1>{error}</h1>
+        </div>
+      );
     } else {
       return (
         <div className="flex justify-center items-center w-full">
