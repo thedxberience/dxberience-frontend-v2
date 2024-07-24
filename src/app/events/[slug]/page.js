@@ -91,7 +91,7 @@ const page = ({ params }) => {
         </div>
       </header>
       <section className="content mt-32 flex flex-col lg:flex-row justify-evenly items-center gap-6 w-full mb-16">
-        <div className="event-description w-11/12 lg:w-7/12">
+        <div className="event-description w-11/12 lg:w-6/12">
           <div className="event-name flex flex-col justify-start items-start gap-2">
             <h1 className="font-IvyPresto capitalize text-xl">{data?.title}</h1>
             <p className="text-sm">{data?.shortDescription}</p>
