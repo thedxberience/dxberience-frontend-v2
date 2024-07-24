@@ -1,9 +1,13 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import FormInput from "@/components/shared/FormInput";
 import CustomButton from "../shared/CustomButton";
+import { useMutation } from "@tanstack/react-query";
+import { makeRequest } from "@/utils/axios";
 
-const EventsBookingForm = () => {
+const EventsBookingForm = ({ slug, price, product }) => {
+  const [showStatus, setShowStatus] = useState(false);
   const {
     register,
     handleSubmit,
@@ -21,26 +25,77 @@ const EventsBookingForm = () => {
     },
   });
 
+  const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
+    mutationKey: ["create-booking-request", slug],
+    mutationFn: async (data) => {
+      const request = await makeRequest("/make-booking", {
+        method: "POST",
+        data: data,
+      });
+      console.log(request);
+      setShowStatus(true);
+      return request;
+    },
+  });
+
   const watchAllFields = watch();
 
+  const handleSubmitBookingRequest = (data) => {
+    const payload = {
+      fullName: data.name,
+      email: data.email,
+      phone: data.phone_number,
+      data: data.date,
+      time: data.time,
+      price: price,
+      product: product,
+      options: data.options,
+      tickets: parseInt(data.no_of_guest),
+    };
+
+    mutateAsync(payload);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowStatus(false);
+    }, 5000);
+  }, [showStatus]);
+
   return (
-    <div className="contact-form p-4 w-full lg:w-3/12">
-      <form className="bg-primary px-11 flex flex-col text-white justify-center items-center w-full h-full py-12">
+    <div className="contact-form p-4 w-full lg:w-4/12">
+      <form
+        className="bg-primary px-11 flex flex-col text-white justify-center items-center w-full h-full py-12"
+        onSubmit={handleSubmit(handleSubmitBookingRequest)}
+      >
         <div>
           <h1 className="text-xl lg:text-4xl font-IvyPresto mb-11">
             Booking Details
           </h1>
         </div>
+        {isSuccess && showStatus && (
+          <div>
+            <p className="text-green-400">
+              Thank you! we will reach out to you shortly.
+            </p>
+          </div>
+        )}
+        {isError && showStatus && (
+          <div>
+            <p className="text-red-400">{error.message}</p>
+          </div>
+        )}
+
         <div className="flex flex-col gap-10 justify-center items-center w-full">
           <FormInput
-            placeholder={"name"}
+            placeholder={"Name"}
             register={register}
             errors={errors}
             value={watchAllFields.name}
             name="name"
           />
           <FormInput
-            placeholder={"email"}
+            placeholder={"Email"}
             register={register}
             errors={errors}
             value={watchAllFields.email}
@@ -91,7 +146,7 @@ const EventsBookingForm = () => {
           </p>
         </div>
         <div>
-          <CustomButton btnName="book now" />
+          <CustomButton btnName={`${isPending ? "Loading..." : "book now"}`} />
         </div>
       </form>
     </div>

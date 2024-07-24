@@ -1,26 +1,55 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { IoChevronForward } from "react-icons/io5";
 
 const CustomOptionTag = ({
   optionName,
   optionType = "text",
+  subCategories = [],
   onSelect = () => {},
 }) => {
   const [selected, setSelected] = useState(false);
+  const [showSubCategories, setShowSubCategories] = useState(false);
+
+  const subCategoriesArray = useMemo(() => {
+    let data;
+    if (subCategories) {
+      data = subCategories.map((data) => data.name);
+    } else {
+      data = [];
+    }
+    return data;
+  }, [subCategories]);
 
   const handleSelected = () => {
     setSelected(!selected);
     onSelect(optionName);
   };
 
+  const handleSubCategorySelect = (subCategoryName) => {
+    setSelected(!selected);
+    onSelect(subCategoryName);
+  };
+
+  const handleMouseEnter = () => {
+    setShowSubCategories(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowSubCategories(false);
+  };
+
   const handleOptionType = () => {
     switch (optionType) {
       case "text":
-        return <p>{optionName}</p>;
+        return <p onClick={handleSelected}>{optionName}</p>;
       case "checkbox":
         return (
-          <div className="flex w-full justify-between items-center gap-1">
+          <div
+            onClick={handleSelected}
+            className="flex w-full justify-between items-center gap-2"
+          >
             <p>{optionName}</p>
 
             <div className="min-w-5 min-h-5">
@@ -42,15 +71,47 @@ const CustomOptionTag = ({
             </div>
           </div>
         );
+      case "dropdown":
+        return (
+          <div
+            className="relative flex w-full justify-between items-center gap-2"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <p>{optionName}</p>
+
+            <div className="min-w-5 min-h-5">
+              <IoChevronForward />
+            </div>
+
+            <div
+              className={` ${
+                showSubCategories && subCategoriesArray.length > 0
+                  ? "block"
+                  : "hidden"
+              } absolute w-fit top-0 -right-32 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              {subCategoriesArray.map((category, index) => (
+                <div
+                  className="cursor-pointer"
+                  key={index}
+                  onClick={() => handleSubCategorySelect(category)}
+                >
+                  <p className="capitalize text-sm">{category}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
       default:
         return <p>{optionName}</p>;
     }
   };
 
   return (
-    <div onClick={handleSelected} className="w-full capitalize">
-      {handleOptionType()}
-    </div>
+    <div className="w-full cursor-pointer capitalize">{handleOptionType()}</div>
   );
 };
 

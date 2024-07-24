@@ -191,7 +191,7 @@ body {
 }
 
 .reveal-options {
-  animation: reveal-options 0.3s ease-in-out forwards;
+  animation: reveal-options 0.1s ease-in-out forwards;
 }
 
 .hide-options {
@@ -335,6 +335,10 @@ body {
   .memories h1 {
     line-height: 1;
   }
+
+  .Visa p{
+    font-size: 2rem;
+  }
   /* 
   .header-section .content h1{
     line-height: 5rem;
@@ -379,7 +383,7 @@ body {
     height: 130px;
   }
 
-  .Visas p{
+  .Visa p{
     font-size: 1.2rem;
   }
 }
