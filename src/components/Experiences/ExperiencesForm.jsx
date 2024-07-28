@@ -63,6 +63,48 @@ const ExperiencesForm = () => {
     setInterestName(interestName);
   };
 
+  const interestOptions = [
+    {
+      optionName: "All",
+    },
+    {
+      optionName: "Concierge Services ",
+    },
+    {
+      optionName: "Travel & Holidays",
+    },
+    {
+      optionName: "Luxury Jets & Yachts",
+    },
+    {
+      optionName: "Cars & Chauffeurs",
+    },
+    {
+      optionName: "Sports & Activities",
+    },
+    {
+      optionName: "Spa & Wellness",
+    },
+    {
+      optionName: "Business & Corporate",
+    },
+    {
+      optionName: "Event Tickets",
+    },
+    {
+      optionName: "Nightlife & Clubs",
+    },
+    {
+      optionName: "Fine Dining",
+    },
+    {
+      optionName: "Attractions & Tours",
+    },
+    {
+      optionName: "Beach Clubs & Pools",
+    },
+  ];
+
   const watchAllFields = watch();
 
   return (
@@ -82,6 +124,16 @@ const ExperiencesForm = () => {
               );
             })}
           </CustomSelectTag>
+          <CustomSelectTag selectTagName={interestName}>
+            {interestData?.map((option, key) => (
+              <CustomOptionTag
+                optionName={option.name}
+                optionType="checkbox"
+                onSelect={handleSetInterestName}
+                key={key}
+              />
+            ))}
+          </CustomSelectTag>
         </div>
         <div className="date-no_of_travelers flex justify-center items-center gap-3 w-full">
           <FormInput
@@ -90,6 +142,13 @@ const ExperiencesForm = () => {
             errors={errors}
             register={register}
             value={watchAllFields.date}
+          />
+          <FormInput
+            name="no_of_travellers"
+            placeholder={"No of Travellers"}
+            errors={errors}
+            register={register}
+            value={watchAllFields.no_of_travellers}
           />
         </div>
         <div className="w-full">

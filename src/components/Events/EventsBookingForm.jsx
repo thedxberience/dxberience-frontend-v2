@@ -63,7 +63,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
   }, [showStatus]);
 
   return (
-    <div className="contact-form p-4 w-full lg:w-4/12">
+    <div className="contact-form p-4 w-full lg:w-3/12">
       <form
         className="bg-primary px-11 flex flex-col text-white justify-center items-center w-full h-full py-12"
         onSubmit={handleSubmit(handleSubmitBookingRequest)}

@@ -22,9 +22,9 @@ const CustomSelectTag = ({ children, selectTagName = "Categories" }) => {
       <div
         className={` ${
           revealOptions ? "reveal-options" : "hide-options"
-        } absolute top-11 z-50 left-0 shadow w-full flex justify-start items-center p-2 bg-white`}
+        } absolute top-11 z-50 left-0 shadow w-fit flex justify-start items-center p-2 bg-white`}
       >
-        <div className="w-full flex flex-col justify-start items-center gap-4">
+        <div className="w-fit flex flex-col justify-start items-center gap-4">
           {children}
         </div>
       </div>
