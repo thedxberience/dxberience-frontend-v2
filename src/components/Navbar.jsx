@@ -79,7 +79,7 @@ const Navbar = () => {
             </div>
           </div>
           <div>
-            <CustomButton />
+            <CustomButton onClick={() => router.push("/explore-experiences")} />
           </div>
         </div>
         <div

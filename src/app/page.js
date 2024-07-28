@@ -45,7 +45,7 @@ export default function Home() {
         <div className="w-full flex justify-start lg:pl-[80px] pt-8 lg:pt-28">
           <div className="explore-text w-full flex flex-col lg:flex-row justify-between items-center relative h-fit px-4">
             <TextMotion>
-              <h1 className="text-text-secondary text-[36px] md:text-[75px] pb-7 lg:pb-[81px] lg:w-[40.26vw] font-IvyPresto font-normal">
+              <h1 className="text-text-secondary text-[36px] md:text-[45px] xl:text-[75px] pb-7 lg:pb-[81px] lg:w-[40.26vw] font-IvyPresto font-normal">
                 Luxury Lifestyle Concierge Services
               </h1>
             </TextMotion>
@@ -91,7 +91,7 @@ export default function Home() {
               Bespoke Services in Dubai
             </h1>
           </TextMotion>
-          <div className="flex w-full lg:w-6/12 justify-end lg:justify-end items-center">
+          <div className="flex w-full lg:w-9/12 xl:w-6/12 justify-end lg:justify-end items-center">
             <h1 className="uppercase text-base lg:text-3xl font-noah">
               Your concierge to exclusive experiences
             </h1>
@@ -100,7 +100,7 @@ export default function Home() {
       </section>
       <section className="w-full lg:pr-20">
         <div className="concierge-text pt-4 flex flex-col gap-4 lg:gap-6 justify-center items-center lg:justify-end lg:items-end">
-          <div className="flex flex-col gap-2 lg:w-[600px] font-noah font-light px-6">
+          <div className="flex flex-col gap-2 lg:w-[45svw] xl:w-[600px] font-noah font-light px-6">
             <p className="text-sm lg:text-lg font-extralight">
               Step beyond the ordinary and discover a side of the world only a
               select few get to experience. Our curated luxury experiences cater
@@ -146,8 +146,8 @@ export default function Home() {
       </div>
       <section className="demand-luxury flex flex-col lg:flex-row justify-between w-full h-fit lg:h-[836px] px-4 py-20 lg:px-[72px] lg:mt-[30px] ">
         <div className="left-side hidden lg:block h-[477px]">
-          <div className="top-box -mt-[220px] lg:-mt-[70%] bg-primary text-white lg:w-[38.177vw] px-4 py-10 lg:px-[78px] lg:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
-            <h1 className="font-IvyPresto text-xl lg:text-7xl">
+          <div className="top-box -mt-[220px] lg:-mt-[70%] xl:-mt-[70%] 2xl:-mt-[40%] bg-primary text-white lg:w-[38.177vw] px-4 py-10 lg:px-[20px] xl:px-[78px] lg:py-[43px] xl:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
+            <h1 className="font-IvyPresto text-xl lg:text-5xl xl:text-7xl">
               Personalized Luxury Booking
             </h1>
             <p className="font-extralight">
@@ -160,20 +160,27 @@ export default function Home() {
             <p className="w-[26.875vw]">
               With Dxberience, luxury becomes a lifestyle, and we`&apos;`re
               excited to provide our clients with nothing but the best in
-              exclusivity and exceptional experiences.
+              exclusivity and exceptional experiences. From bespoke travel
+              itineraries to private events curated to perfection, every moment
+              is designed to exceed expectations. Indulge in unparalleled
+              service, where every detail is meticulously crafted to reflect
+              your unique taste and preferences.
             </p>
           </div>
         </div>
 
         <div className="mobile-only text-white">
-          <p className=" mb-10">
-            With Dxberience, luxury becomes a lifestyle, and we&apos;re excited
-            to provide our clients with nothing but the best in exclusivity and
-            exceptional experiences.
+          <p className="mb-10">
+            With Dxberience, luxury becomes a lifestyle, and we're excited to
+            provide our clients with nothing but the best in exclusivity and
+            exceptional experiences. From bespoke travel itineraries to private
+            events curated to perfection, every moment is designed to exceed
+            expectations. Indulge in unparalleled service, where every detail is
+            meticulously crafted to reflect your unique taste and preferences.
           </p>
         </div>
         <div className="flex w-full justify-center items-center h-full">
-          <div className="image relative bg-accent w-[79.487vw] h-[310px] lg:w-[41.667vw] lg:h-[71.77vh] flex">
+          <div className="image relative bg-accent w-[79.487vw] h-[310px] lg:w-[41.667vw] lg:h-[71.77vh] xl:h-[713px] flex">
             <Image
               src="/demand-luxury-image-1.png"
               alt="Private jet for exclusive travel experiences"

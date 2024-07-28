@@ -67,7 +67,7 @@ const ExperiencesForm = () => {
 
   return (
     <div className="experience-form w-full lg:w-10/12 h-52 px-5 lg:-mb-20">
-      <form className="px-3 lg:px-8 py-6 lg:py-9 flex flex-col lg:flex-row justify-center items-center gap-3 bg-white shadow">
+      <form className="px-3 lg:px-8 py-6 lg:py-9 flex flex-col lg:flex-row justify-center items-center gap-4 bg-white shadow">
         <div className="categories-interests flex justify-center items-center gap-3 w-full">
           <CustomSelectTag selectTagName={categotyName}>
             {categoryData?.map((option, key) => {
