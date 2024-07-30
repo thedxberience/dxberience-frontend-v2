@@ -67,8 +67,8 @@ const page = () => {
         </div>
         <ExperiencesForm />
       </section>
-      <section className="experiences-container flex justify-start lg:justify-center items-start mt-32 px-5 py-10">
-        <div className="experiences w-full lg:w-9/12">
+      <section className="experiences-container flex justify-start lg:justify-center items-start mt-32 md:px-5 py-10">
+        <div className="experiences w-full lg:w-9/12 mt-5">
           {handleShowExperiences()}
         </div>
       </section>

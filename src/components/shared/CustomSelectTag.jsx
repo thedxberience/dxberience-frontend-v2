@@ -1,13 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 
-const CustomSelectTag = ({ children, selectTagName = "Categories" }) => {
+const CustomSelectTag = ({
+  children,
+  revealOptionProps,
+  setRevealOptionsProps,
+  dropdownType,
+  selectTagName = "Categories",
+}) => {
   const [revealOptions, setRevealOptions] = useState(false);
+  const [optionType, setOptionType] = useState("");
 
-  const handleRevealOptions = () => {
-    setRevealOptions(!revealOptions);
-  };
+  useEffect(() => {
+    if (dropdownType.toLowerCase() == "categories") {
+      setRevealOptions(revealOptionProps.categoryDropdown);
+    } else if (dropdownType.toLowerCase() == "dates") {
+      setRevealOptions(revealOptionProps.dateDropdown);
+    } else if (dropdownType.toLowerCase() == "budget") {
+      setRevealOptions(revealOptionProps.budgetDropdown);
+    }
+  }, [selectTagName, revealOptionProps]);
+
+  const handleRevealOptions = useCallback(() => {
+    setRevealOptionsProps();
+  }, [revealOptionProps, selectTagName]);
+
   return (
     <div className="relative w-full">
       <div
@@ -20,11 +38,11 @@ const CustomSelectTag = ({ children, selectTagName = "Categories" }) => {
         </div>
       </div>
       <div
-        className={` ${
+        className={`${
           revealOptions ? "reveal-options" : "hide-options"
-        } absolute top-11 z-50 left-0 shadow w-fit flex justify-start items-center p-2 bg-white`}
+        } absolute top-11 z-50 left-0 shadow w-full flex justify-start items-center p-2 bg-white`}
       >
-        <div className="w-fit flex flex-col justify-start items-center gap-4">
+        <div className="w-full flex flex-col justify-start items-center gap-4">
           {children}
         </div>
       </div>

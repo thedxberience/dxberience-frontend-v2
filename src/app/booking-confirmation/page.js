@@ -13,7 +13,7 @@ function BookingConfirmationPage() {
       >
         <div className="flex flex-col gap-5 text-center text-white ">
           <h1 className="text-xl font-IvyPresto lg:text-3xl 2xl:text-5xl 2xl:leading-[65px]">
-            Thank you.
+            Thank you,
             <br />
             We've received your request!
           </h1>

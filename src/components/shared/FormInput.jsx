@@ -8,6 +8,18 @@ function FormInput({
   value,
   options = {},
 }) {
+  // TODO: implement dynamic form input variants
+  // const handleInputType = () => {
+  //   switch (inputType) {
+  //     case "text":
+
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  // }
+
   return (
     <div className={`relative flex flex-col w-full `}>
       <label

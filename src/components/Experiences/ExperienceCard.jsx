@@ -33,7 +33,7 @@ const ExperienceCard = ({
 
   return (
     <div
-      className="experience cursor-pointer relative w-[43.277vw] max-w-[43.277vw] lg:max-w-[21.198vw] p-2 lg:p-4 lg:w-full min-h-[210px] lg:h-[52.263vh] flex flex-col justify-end items-end text-white overflow-hidden"
+      className="experience cursor-pointer relative w-[43.277vw] max-w-[43.277vw] xl:max-w-[21.198vw] p-2 lg:p-4 lg:w-full min-h-[210px] md:h-[52.263vh] flex flex-col justify-end items-end text-white overflow-hidden"
       onMouseEnter={handleMouseOverPan}
       onMouseLeave={handleRemoveMouseOverPan}
       onClick={handleExperienceRoute}

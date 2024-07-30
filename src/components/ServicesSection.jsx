@@ -108,7 +108,7 @@ const ServicesSection = () => {
       alt: "Indulge in luxury villas at premium accommodations.",
     },
     {
-      serviceName: "Visas and Business Information",
+      serviceName: "Visas and Business Formation",
       image: "/visa_services.jpeg",
       alt: "Streamlined visa services for hassle-free travel arrangements.",
     },

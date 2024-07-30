@@ -1,9 +1,11 @@
 "use client";
+import { componentUseStore } from "@/store/componentStore";
 import Image from "next/image";
 import React, { useMemo, useState } from "react";
 import { IoChevronForward } from "react-icons/io5";
 
 const CustomOptionTag = ({
+  belongsTo,
   optionName,
   optionType = "text",
   subCategories = [],
@@ -11,6 +13,13 @@ const CustomOptionTag = ({
 }) => {
   const [selected, setSelected] = useState(false);
   const [showSubCategories, setShowSubCategories] = useState(false);
+
+  const {
+    experienceFormDropdownState,
+    toggleCategoryDropdown,
+    toggledateDropdown,
+    togglebudgetDropdown,
+  } = componentUseStore((state) => state);
 
   const subCategoriesArray = useMemo(() => {
     let data;
@@ -25,11 +34,28 @@ const CustomOptionTag = ({
   const handleSelected = () => {
     setSelected(!selected);
     onSelect(optionName);
+    if (!selected) {
+      if (belongsTo == "categories") {
+        toggleCategoryDropdown();
+      } else if (belongsTo == "budget") {
+        togglebudgetDropdown();
+      } else if (belongsTo == "dates") {
+        toggledateDropdown();
+      }
+    }
+    // console.log(JSON.stringify(experienceFormDropdownState));
   };
 
   const handleSubCategorySelect = (subCategoryName) => {
     setSelected(!selected);
     onSelect(subCategoryName);
+    if (belongsTo == "categories") {
+      toggleCategoryDropdown();
+    } else if (belongsTo == "budget") {
+      togglebudgetDropdown();
+    } else if (belongsTo == "dates") {
+      toggledateDropdown();
+    }
   };
 
   const handleMouseEnter = () => {
@@ -89,7 +115,7 @@ const CustomOptionTag = ({
                 showSubCategories && subCategoriesArray.length > 0
                   ? "block"
                   : "hidden"
-              } absolute w-fit top-0 -right-32 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
+              } absolute w-fit top-0 -right-0 lg:-right-32 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
