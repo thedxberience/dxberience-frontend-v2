@@ -69,10 +69,15 @@ const CustomOptionTag = ({
   const handleOptionType = () => {
     switch (optionType) {
       case "text":
-        return <p onClick={handleSelected}>{optionName}</p>;
+        return (
+          <p role="button" onClick={handleSelected}>
+            {optionName}
+          </p>
+        );
       case "checkbox":
         return (
           <div
+            role="button"
             onClick={handleSelected}
             className="flex w-full justify-between items-center gap-2"
           >
@@ -100,6 +105,7 @@ const CustomOptionTag = ({
       case "dropdown":
         return (
           <div
+            role="button"
             className="relative flex w-full justify-between items-center gap-2"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

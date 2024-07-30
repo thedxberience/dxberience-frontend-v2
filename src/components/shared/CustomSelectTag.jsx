@@ -29,6 +29,7 @@ const CustomSelectTag = ({
   return (
     <div className="relative w-full">
       <div
+        role="button"
         onClick={handleRevealOptions}
         className="select-tag cursor-pointer flex justify-between items-center gap-3 px-[10px] py-2 h-10 border-b border-black"
       >
