@@ -7,6 +7,7 @@ import CustomSelectTag from "../shared/CustomSelectTag";
 import CustomOptionTag from "../shared/CustomOptionTag";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
+import { componentUseStore } from "@/store/componentStore";
 
 const ExperiencesForm = () => {
   const {
@@ -39,40 +40,67 @@ const ExperiencesForm = () => {
   });
 
   const {
-    data: interestData,
-    error: interestError,
-    isError: isInterestError,
-    isSuccess: isInterestSuccess,
-    isLoading: isInterestLoading,
-  } = useQuery({
-    queryKey: ["interests"],
-    queryFn: async () => {
-      const data = await makeRequest(`/interests`);
-      return data;
-    },
-  });
+    experienceFormDropdownState,
+    toggleCategoryDropdown,
+    toggledateDropdown,
+    togglebudgetDropdown,
+  } = componentUseStore((state) => state);
 
-  const [categotyName, setCategoryName] = useState("Categories");
-  const [interestName, setInterestName] = useState("Interest");
+  const [categoryName, setCategoryName] = useState("Categories");
+  const [budget, setBudget] = useState("Budget");
+  const [revealOptions, setRevealOptions] = useState({
+    categoryDropdown: false,
+    dateDropdown: false,
+    budgetDropdown: false,
+  });
 
   const handleSetCategoryName = (categoryName) => {
     setCategoryName(categoryName);
   };
 
-  const handleSetInterestName = (interestName) => {
-    setInterestName(interestName);
+  const handleSetBudget = (selectedBudget) => {
+    setBudget(selectedBudget);
   };
+
+  const budgetList = [
+    {
+      min: 0,
+      max: 500,
+    },
+    {
+      min: 500,
+      max: 1000,
+    },
+    {
+      min: 1000,
+      max: 1500,
+    },
+    {
+      min: 1500,
+      max: 2000,
+    },
+    {
+      min: 2000,
+      max: 2500,
+    },
+  ];
 
   const watchAllFields = watch();
 
   return (
     <div className="experience-form w-full lg:w-10/12 h-52 px-5 lg:-mb-20">
-      <form className="px-3 lg:px-8 py-6 lg:py-9 flex flex-col lg:flex-row justify-center items-center gap-3 bg-white shadow">
+      <form className="px-3 lg:px-8 py-6 lg:py-9 flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-16 bg-white shadow">
         <div className="categories-interests flex justify-center items-center gap-3 w-full">
-          <CustomSelectTag selectTagName={categotyName}>
+          <CustomSelectTag
+            revealOptionProps={experienceFormDropdownState}
+            setRevealOptionsProps={toggleCategoryDropdown}
+            selectTagName={categoryName}
+            dropdownType="categories"
+          >
             {categoryData?.map((option, key) => {
               return (
                 <CustomOptionTag
+                  belongsTo="categories"
                   optionName={option.name}
                   onSelect={handleSetCategoryName}
                   optionType={`${option.subCategories ? "dropdown" : "text"}`}
@@ -93,13 +121,26 @@ const ExperiencesForm = () => {
           />
         </div>
         <div className="w-full">
-          <FormInput
-            name="budget"
-            placeholder={"Budget"}
-            errors={errors}
-            register={register}
-            value={watchAllFields.budget}
-          />
+          <CustomSelectTag
+            revealOptionProps={experienceFormDropdownState}
+            setRevealOptionsProps={togglebudgetDropdown}
+            selectTagName={budget}
+            dropdownType="budget"
+          >
+            {budgetList?.map((option, key) => {
+              const budgetText = `AED ${option.min} - AED ${option.max}`;
+              return (
+                <CustomOptionTag
+                  belongsTo="budget"
+                  optionName={budgetText}
+                  onSelect={handleSetBudget}
+                  optionType={`checkbox`}
+                  subCategories={option.subCategories}
+                  key={key}
+                />
+              );
+            })}
+          </CustomSelectTag>
         </div>
         <div className="flex lg:w-full justify-center items-center">
           <CustomButton btnName="Find experiences" invert />

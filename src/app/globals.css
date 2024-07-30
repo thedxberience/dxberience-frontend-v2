@@ -66,7 +66,7 @@ body {
   bottom: 71px;
   width: 100%;
   height: 1082px;
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.4), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)),
     url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
@@ -207,7 +207,7 @@ body {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(43.277vw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100svw, 1fr));
   row-gap: 16px;
   column-gap: 12.44px;
 }
@@ -326,7 +326,19 @@ body {
   @apply lg:flex hidden;
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (max-width: 361px) {
+    .experiences {
+        margin-top: 6rem;
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 1279px) {
+    .experiences {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1280px) {
   .experiences {
     grid-template-columns: repeat(auto-fit, minmax(21.198vw, 1fr));
   }
@@ -334,10 +346,6 @@ body {
   .services,
   .memories h1 {
     line-height: 1;
-  }
-
-  .Visa p{
-    font-size: 2rem;
   }
   /* 
   .header-section .content h1{
@@ -383,7 +391,7 @@ body {
     height: 130px;
   }
 
-  .Visa p{
+  .Visas p{
     font-size: 1.2rem;
   }
 }

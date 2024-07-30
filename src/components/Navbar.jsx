@@ -39,6 +39,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="nav-button">
+            {/* TODO: Optimize button for links */}
             <CustomButton onClick={() => router.push("/explore-experiences")} />
           </div>
         </div>
@@ -79,7 +80,7 @@ const Navbar = () => {
             </div>
           </div>
           <div>
-            <CustomButton />
+            <CustomButton onClick={() => router.push("/explore-experiences")} />
           </div>
         </div>
         <div
