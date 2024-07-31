@@ -69,7 +69,7 @@ const page = () => {
         <ExperiencesForm />
       </section>
       <section className="experiences-container flex justify-start lg:justify-center items-start mt-32 md:px-5 py-10">
-        <div className="experiences w-full lg:w-9/12 mt-5">
+        <div className="experiences w-full lg:w-9/12 mt-8">
           {handleShowExperiences()}
         </div>
       </section>

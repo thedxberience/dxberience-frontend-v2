@@ -8,6 +8,7 @@ import CustomOptionTag from "../shared/CustomOptionTag";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { componentUseStore } from "@/store/componentStore";
+import { DatePickerWithPresets } from "../shared/DatePicker";
 
 const ExperiencesForm = () => {
   const {
@@ -116,13 +117,14 @@ const ExperiencesForm = () => {
           </CustomSelectTag>
         </div>
         <div className="date-no_of_travelers flex justify-center items-center gap-3 w-full">
-          <FormInput
+          {/* <FormInput
             name="date"
             placeholder={"Dates"}
             errors={errors}
             register={register}
             value={watchAllFields.date}
-          />
+          /> */}
+          <DatePickerWithPresets />
         </div>
         <div className="w-full">
           <CustomSelectTag
