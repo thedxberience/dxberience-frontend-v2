@@ -42,8 +42,11 @@ const ExperiencesForm = () => {
   const {
     experienceFormDropdownState,
     toggleCategoryDropdown,
-    toggledateDropdown,
-    togglebudgetDropdown,
+    toggleDateDropdown,
+    toggleBudgetDropdown,
+    closeCategoryDropdown,
+    closeDateDropdown,
+    closeBudgetDropdown,
   } = componentUseStore((state) => state);
 
   const [categoryName, setCategoryName] = useState("Categories");
@@ -95,6 +98,7 @@ const ExperiencesForm = () => {
             revealOptionProps={experienceFormDropdownState}
             setRevealOptionsProps={toggleCategoryDropdown}
             selectTagName={categoryName}
+            closeSelectTag={closeCategoryDropdown}
             dropdownType="categories"
           >
             {categoryData?.map((option, key) => {
@@ -123,8 +127,9 @@ const ExperiencesForm = () => {
         <div className="w-full">
           <CustomSelectTag
             revealOptionProps={experienceFormDropdownState}
-            setRevealOptionsProps={togglebudgetDropdown}
+            setRevealOptionsProps={toggleBudgetDropdown}
             selectTagName={budget}
+            closeSelectTag={closeBudgetDropdown}
             dropdownType="budget"
           >
             {budgetList?.map((option, key) => {

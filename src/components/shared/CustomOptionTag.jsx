@@ -17,8 +17,8 @@ const CustomOptionTag = ({
   const {
     experienceFormDropdownState,
     toggleCategoryDropdown,
-    toggledateDropdown,
-    togglebudgetDropdown,
+    toggleDateDropdown,
+    toggleBudgetDropdown,
   } = componentUseStore((state) => state);
 
   const subCategoriesArray = useMemo(() => {
@@ -38,12 +38,12 @@ const CustomOptionTag = ({
       if (belongsTo == "categories") {
         toggleCategoryDropdown();
       } else if (belongsTo == "budget") {
-        togglebudgetDropdown();
+        toggleBudgetDropdown();
       } else if (belongsTo == "dates") {
-        toggledateDropdown();
+        toggleDateDropdown();
       }
     }
-    // console.log(JSON.stringify(experienceFormDropdownState));
+    console.log(JSON.stringify(experienceFormDropdownState));
   };
 
   const handleSubCategorySelect = (subCategoryName) => {
@@ -52,10 +52,11 @@ const CustomOptionTag = ({
     if (belongsTo == "categories") {
       toggleCategoryDropdown();
     } else if (belongsTo == "budget") {
-      togglebudgetDropdown();
+      toggleBudgetDropdown();
     } else if (belongsTo == "dates") {
-      toggledateDropdown();
+      toggleDateDropdown();
     }
+    console.log(JSON.stringify(experienceFormDropdownState));
   };
 
   const handleMouseEnter = () => {

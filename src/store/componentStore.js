@@ -14,7 +14,7 @@ export const componentUseStore = create((set, get) => ({
         budgetDropdown: false,
       },
     })),
-  toggledateDropdown: () =>
+  toggleDateDropdown: () =>
     set((state) => ({
       experienceFormDropdownState: {
         categoryDropdown: false,
@@ -22,12 +22,36 @@ export const componentUseStore = create((set, get) => ({
         budgetDropdown: false,
       },
     })),
-  togglebudgetDropdown: () =>
+  toggleBudgetDropdown: () =>
     set((state) => ({
       experienceFormDropdownState: {
         categoryDropdown: false,
         dateDropdown: false,
         budgetDropdown: !state.experienceFormDropdownState.budgetDropdown,
+      },
+    })),
+  closeCategoryDropdown: () =>
+    set((state) => ({
+      experienceFormDropdownState: {
+        categoryDropdown: false,
+        dateDropdown: false,
+        budgetDropdown: false,
+      },
+    })),
+  closeDateDropdown: () =>
+    set((state) => ({
+      experienceFormDropdownState: {
+        categoryDropdown: false,
+        dateDropdown: false,
+        budgetDropdown: false,
+      },
+    })),
+  closeBudgetDropdown: () =>
+    set((state) => ({
+      experienceFormDropdownState: {
+        categoryDropdown: false,
+        dateDropdown: false,
+        budgetDropdown: false,
       },
     })),
 }));

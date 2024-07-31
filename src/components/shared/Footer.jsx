@@ -110,7 +110,7 @@ function Footer() {
         {scrolled && (
           <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
             <Image
-              src="/to_page_top.png"
+              src="/to_page_top.svg"
               alt="scroll-to-top"
               fill
               className="object-cover"

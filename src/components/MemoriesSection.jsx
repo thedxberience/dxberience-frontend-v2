@@ -40,8 +40,8 @@ const MemoriesSection = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-end lg:justify-center">
-            <div className="w-[255px] lg:w-[37.5vw]">
+          <div className="flex items-center lg:justify-center">
+            <div className="w-full lg:w-[37.5vw]">
               <p className="text-center text-sm lg:text-base pt-4 font-cormorant">
                 Experience luxury at its finest with our exquisite collection of
                 luxury cars, yachts, and jets. From sleek supercars to elegant
