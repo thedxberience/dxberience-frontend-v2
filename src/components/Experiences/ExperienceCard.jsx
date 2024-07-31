@@ -42,7 +42,7 @@ const ExperienceCard = ({
       {experienceImage && (
         <Image
           src={experienceImage}
-          alt={experienceAlt}
+          alt={experienceAlt ? experienceAlt : "image for a product"}
           fill
           className={`${
             pan ? "mouse-over-pan" : "mouse-over-no-pan"

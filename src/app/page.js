@@ -44,11 +44,11 @@ export default function Home() {
       <section className="explore w-full flex flex-col justify-start">
         <div className="w-full flex justify-start lg:pl-[80px] pt-8 lg:pt-28">
           <div className="explore-text w-full flex flex-col lg:flex-row justify-between items-center relative h-fit px-4">
-            <TextMotion>
-              <h1 className="text-text-secondary text-[36px] md:text-[45px] xl:text-[75px] pb-7 lg:pb-[81px] lg:w-[40.26vw] font-IvyPresto font-normal">
-                Luxury Lifestyle Concierge Services
-              </h1>
-            </TextMotion>
+            {/* <TextMotion> */}
+            <h1 className="text-text-secondary text-[36px] md:text-[45px] xl:text-[75px] pb-7 lg:pb-[81px] lg:w-[40.26vw] font-IvyPresto font-normal">
+              Luxury Lifestyle Concierge Services
+            </h1>
+            {/* </TextMotion> */}
             <div className="lg:w-[38.906vw] font-noah">
               <p>
                 Indulge in an unforgettable journey with us as we meticulously
@@ -81,16 +81,16 @@ export default function Home() {
           </div>
         </div>
         <div className="find text-right flex flex-col w-full justify-end pr-6 lg:pr-20">
-          <TextMotion animateType="right">
-            <h1 className="text-text-secondary uppercase font-noah text-[20px] md:text-[40px] font-thin">
-              Exclusive
-            </h1>
-          </TextMotion>
-          <TextMotion animateType="right">
-            <h1 className="text-text-primary font-IvyPresto text-[36px] md:text-[70px] font-thin">
-              Bespoke Services in Dubai
-            </h1>
-          </TextMotion>
+          {/* <TextMotion animateType="right"> */}
+          <h1 className="text-text-secondary uppercase font-noah text-[20px] md:text-[40px] font-thin">
+            Exclusive
+          </h1>
+          {/* </TextMotion> */}
+          {/* <TextMotion animateType="right"> */}
+          <h1 className="text-text-primary font-IvyPresto text-[36px] md:text-[70px] font-thin">
+            Bespoke Services in Dubai
+          </h1>
+          {/* </TextMotion> */}
           <div className="flex w-full lg:w-9/12 xl:w-6/12 justify-end lg:justify-end items-center">
             <h1 className="uppercase text-base lg:text-3xl font-noah">
               Your concierge to exclusive experiences
@@ -238,16 +238,16 @@ export default function Home() {
         </div>
         <div className="lg:px-20 py-[91px] bg-primary flex flex-col justify-center items-start">
           <div className="header-text flex flex-col items-end justify-start mb-20 w-[195px] lg:w-[37.688vw] text-white">
-            <TextMotion>
-              <h1 className="text-base w-full lg:text-3xl text-white font-thin uppercase">
-                Luxury
-              </h1>
-            </TextMotion>
-            <TextMotion>
-              <h1 className="text-4xl w-full lg:text-[70px] text-right font-IvyPresto text-white font-thin">
-                Becomes a Lifestyle
-              </h1>
-            </TextMotion>
+            {/* <TextMotion> */}
+            <h1 className="text-base w-full flex justify-end items-end lg:text-3xl text-white font-thin uppercase">
+              Luxury
+            </h1>
+            {/* </TextMotion> */}
+            {/* <TextMotion> */}
+            <h1 className="text-4xl w-full lg:text-[70px] text-right font-IvyPresto text-white font-thin">
+              Becomes a Lifestyle
+            </h1>
+            {/* </TextMotion> */}
           </div>
           <div className="flex w-full justify-center items-center">
             <div className="big-picture relative w-[342px] h-[220px] lg:h-[65.311vh] lg:w-[88.889vw]">

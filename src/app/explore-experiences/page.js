@@ -33,6 +33,7 @@ const page = () => {
           experienceImage={category.thumbnail.image}
           experienceAlt={category.thumbnail.altText}
           priceStart={category.price}
+          key={category.slug}
         />
       ));
     } else if (isError) {

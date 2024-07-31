@@ -1,16 +1,18 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 
 const CustomSelectTag = ({
   children,
   revealOptionProps,
   setRevealOptionsProps,
+  closeSelectTag,
   dropdownType,
   selectTagName = "Categories",
 }) => {
   const [revealOptions, setRevealOptions] = useState(false);
-  const [optionType, setOptionType] = useState("");
+
+  const selectRef = useRef(null);
 
   useEffect(() => {
     if (dropdownType.toLowerCase() == "categories") {
@@ -20,21 +22,39 @@ const CustomSelectTag = ({
     } else if (dropdownType.toLowerCase() == "budget") {
       setRevealOptions(revealOptionProps.budgetDropdown);
     }
-  }, [selectTagName, revealOptionProps]);
+  }, [dropdownType, revealOptionProps]);
 
   const handleRevealOptions = useCallback(() => {
     setRevealOptionsProps();
   }, [revealOptionProps, selectTagName]);
 
+  const handleOutsideClick = (e) => {
+    if (selectRef.current && !selectRef.current.contains(e.target)) {
+      closeSelectTag();
+    }
+  };
+
+  useEffect(() => {
+    if (revealOptions) {
+      document.addEventListener("click", handleOutsideClick);
+    } else {
+      document.removeEventListener("click", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [revealOptions]);
+
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={selectRef}>
       <div
         role="button"
         onClick={handleRevealOptions}
         className="select-tag cursor-pointer flex justify-between items-center gap-3 px-[10px] py-2 h-10 border-b border-black"
       >
         <h2 className="text-lg truncate">{selectTagName}</h2>
-        <div className={` ${revealOptions ? "rotate-180" : ""}`}>
+        <div className={` ${!revealOptions ? "rotate-180" : ""}`}>
           <IoChevronDown />
         </div>
       </div>
