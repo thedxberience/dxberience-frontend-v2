@@ -5,8 +5,14 @@ import FormInput from "@/components/shared/FormInput";
 import CustomButton from "../shared/CustomButton";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
+import { useRouter } from "next/navigation";
+import CountrySelector from "../NewsletterSection/CountrySelect";
+import { DatePickerWithPresets } from "../shared/DatePicker";
 
 const EventsBookingForm = ({ slug, price, product }) => {
+  const router = useRouter();
+  const [country, setCountry] = useState();
+  const [date, setDate] = React.useState();
   const [showStatus, setShowStatus] = useState(false);
   const {
     register,
@@ -15,9 +21,11 @@ const EventsBookingForm = ({ slug, price, product }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phone_number: "",
+      country: "",
       date: "",
       time: "",
       options: "",
@@ -28,12 +36,15 @@ const EventsBookingForm = ({ slug, price, product }) => {
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["create-booking-request", slug],
     mutationFn: async (data) => {
-      const request = await makeRequest("/make-booking", {
+      const request = await makeRequest("/booking/create-booking", {
         method: "POST",
         data: data,
       });
       console.log(request);
       setShowStatus(true);
+      if (request["name"] !== "Error") {
+        router.push("/booking-confirmation");
+      }
       return request;
     },
   });
@@ -42,15 +53,19 @@ const EventsBookingForm = ({ slug, price, product }) => {
 
   const handleSubmitBookingRequest = (data) => {
     const payload = {
-      fullName: data.name,
+      firstName: data.firstName,
+      lastName: data.lastName,
       email: data.email,
       phone: data.phone_number,
-      data: data.date,
+      country: country,
+      date: date,
       time: data.time,
-      price: price,
       product: product,
       options: data.options,
       tickets: parseInt(data.no_of_guest),
+      data: {
+        price: price,
+      },
     };
 
     mutateAsync(payload);
@@ -63,7 +78,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
   }, [showStatus]);
 
   return (
-    <div className="contact-form p-4 w-full lg:w-3/12">
+    <div className="contact-form p-4 w-full lg:w-4/12">
       <form
         className="bg-primary px-11 flex flex-col text-white justify-center items-center w-full h-full py-12"
         onSubmit={handleSubmit(handleSubmitBookingRequest)}
@@ -88,11 +103,18 @@ const EventsBookingForm = ({ slug, price, product }) => {
 
         <div className="flex flex-col gap-10 justify-center items-center w-full">
           <FormInput
-            placeholder={"Name"}
+            placeholder={"First Name"}
             register={register}
             errors={errors}
-            value={watchAllFields.name}
-            name="name"
+            value={watchAllFields.firstName}
+            name="firstName"
+          />
+          <FormInput
+            placeholder={"Last Name"}
+            register={register}
+            errors={errors}
+            value={watchAllFields.lastName}
+            name="lastName"
           />
           <FormInput
             placeholder={"Email"}
@@ -108,21 +130,23 @@ const EventsBookingForm = ({ slug, price, product }) => {
             value={watchAllFields.phone_number}
             name="phone_number"
           />
+          <div className="w-full">
+            <CountrySelector country={country} setCountry={setCountry} />
+          </div>
           <div className="flex justify-center items-center gap-4 w-full">
-            <FormInput
-              placeholder={"Date"}
-              register={register}
-              errors={errors}
-              value={watchAllFields.date}
-              name="date"
-            />
-            <FormInput
-              placeholder={"Time"}
-              register={register}
-              errors={errors}
-              value={watchAllFields.time}
-              name="time"
-            />
+            <div className="w-full">
+              <DatePickerWithPresets date={date} setDate={setDate} invert />
+            </div>
+            <div className="w-full">
+              <FormInput
+                placeholder={"Time"}
+                register={register}
+                errors={errors}
+                value={watchAllFields.time}
+                name="time"
+                inputType="time"
+              />
+            </div>
           </div>
           <FormInput
             placeholder={"Options"}
@@ -146,7 +170,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
           </p>
         </div>
         <div>
-          <CustomButton btnName={`${isPending ? "Loading..." : "book now"}`} />
+          <CustomButton btnName={"book now"} isPending={isPending} />
         </div>
       </form>
     </div>

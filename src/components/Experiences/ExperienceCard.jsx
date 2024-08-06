@@ -72,7 +72,7 @@ const ExperienceCard = ({
               </h2>
             </div>
           )}
-          <h1 className="text-sm lg:text-2xl font-IvyPresto w-[23.846vw]">
+          <h1 className="text-sm lg:text-2xl font-IvyPresto w-[23.846vw] md:w-10/12">
             {experienceTitle}
           </h1>
           <div className="location text-[10px] lg:text-sm flex justify-start items-center gap-[1.24px]">
@@ -82,7 +82,7 @@ const ExperienceCard = ({
             <span>{experienceLocation}</span>
           </div>
           {pan && (
-            <div className="text-[10px] lg:text-sm w-9/12">
+            <div className="text-[10px] lg:text-sm w-10/12">
               <p>{experienceDescription}</p>
             </div>
           )}

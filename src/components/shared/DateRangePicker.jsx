@@ -3,6 +3,7 @@
 import * as React from "react";
 import { addDays, format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
+import { DateRange } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -20,28 +21,41 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function DatePickerWithPresets({ date, setDate, invert = false }) {
+export function DatePickerWithRange({ className, date, setDate }) {
   return (
-    <div>
-      {date && <label>Date</label>}
-      <Popover children>
+    <div className={cn("grid gap-2 w-full", className)}>
+      <Popover>
         <PopoverTrigger asChild>
           <Button
+            id="date"
             variant={"ghost"}
             className={cn(
-              "w-full justify-start hover:bg-transparent text-left py-0 font-noah border  border-x-none rounded-none border-l-0 border-t-0 border-r-0",
-              !date && "text-black",
-              invert ? "border-b-white text-white" : "border-b-black"
+              "w-full hover:bg-transparent justify-start text-left font-noah border border-b-black border-x-none rounded-none border-l-0 border-t-0 border-r-0",
+              !date && "text-black"
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? format(date, "PPP") : <span>Date</span>}
+            {date?.from ? (
+              date.to ? (
+                <>
+                  {format(date.from, "LLL dd, y")} -{" "}
+                  {format(date.to, "LLL dd, y")}
+                </>
+              ) : (
+                format(date.from, "LLL dd, y")
+              )
+            ) : (
+              <span>Pick a date / range</span>
+            )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="flex font-noah w-auto flex-col space-y-2 p-2">
+        <PopoverContent className="w-auto p-0" align="start">
           <Select
             onValueChange={(value) =>
-              setDate(addDays(new Date(), parseInt(value)))
+              setDate({
+                from: new Date(),
+                to: addDays(new Date(), parseInt(value)),
+              })
             }
           >
             <SelectTrigger>
@@ -50,18 +64,18 @@ export function DatePickerWithPresets({ date, setDate, invert = false }) {
             <SelectContent position="popper">
               <SelectItem value="0">Today</SelectItem>
               <SelectItem value="1">Tomorrow</SelectItem>
-              <SelectItem value="3">In 3 days</SelectItem>
               <SelectItem value="7">In a week</SelectItem>
+              <SelectItem value="30">In a month</SelectItem>
             </SelectContent>
           </Select>
-          <div className="rounded-md border font-noah">
-            <Calendar
-              mode="single"
-              className={"font-noah"}
-              selected={date}
-              onSelect={setDate}
-            />
-          </div>
+          <Calendar
+            initialFocus
+            mode="range"
+            defaultMonth={date?.from}
+            selected={date}
+            onSelect={setDate}
+            numberOfMonths={2}
+          />
         </PopoverContent>
       </Popover>
     </div>

@@ -1,22 +1,31 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomButton from "@/components/shared/CustomButton";
 import FormInput from "@/components/shared/FormInput";
 import HelperLayout from "@/layouts/HelperPageLayout";
+import CountrySelector from "@/components/NewsletterSection/CountrySelect";
+import { useMutation } from "@tanstack/react-query";
+import { makeRequest } from "@/utils/axios";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+  const [country, setCountry] = useState("");
+  const [showStatus, setShowStatus] = useState(false);
+
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     watch,
-
     formState: { errors },
   } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
     defaultValues: {
-      fullName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phoneNumber: "",
       company: "",
@@ -24,12 +33,54 @@ const page = () => {
     },
   });
 
+  const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
+    mutationKey: ["contact-us"],
+    mutationFn: async (data) => {
+      const request = await makeRequest("/create-contact", {
+        method: "POST",
+        data: data,
+      });
+      setShowStatus(true);
+      return request;
+    },
+  });
+
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const watchAllFields = watch();
-  const onSubmit = (data) => {
-    setFormSubmitted(true);
+  const handleContactUs = async (contactData) => {
+    try {
+      const payload = {
+        email: contactData.email,
+        emailBlacklisted: false,
+        smsBlacklisted: false,
+        updateEnabled: false,
+        listIds: [1, 2],
+        attributes: {
+          firstName: contactData.firstName,
+          lastName: contactData.lastName,
+          country: country,
+          company: contactData.company,
+          phoneNumber: contactData.phoneNumber,
+          message: contactData.message,
+        },
+      };
+      const response = await mutateAsync(payload);
+      if (!isError) {
+        setFormSubmitted(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    if (isError) {
+      setTimeout(() => {
+        setShowStatus(false);
+      }, [5000]);
+    }
+  }, [isError]);
 
   return (
     <HelperLayout>
@@ -47,19 +98,31 @@ const page = () => {
               fill out the form below, and let us create an experience just for
               you.
             </p>
+            {isError && <span>{error}</span>}
             <form
               className="flex flex-col items-center w-full"
-              onSubmit={onSubmit}
+              onSubmit={handleSubmit(handleContactUs)}
             >
               <div className="flex flex-col gap-2 w-full min-h-[238px] 2xl:gap-10">
                 <FormInput
-                  name="fullName"
-                  placeholder={"Full Name"}
+                  name="firstName"
+                  placeholder={"First Name"}
                   register={register}
                   errors={errors}
-                  value={watchAllFields.fullName}
+                  value={watchAllFields.firstName}
                   options={{
-                    required: "Fullname is required",
+                    required: "First Name is required",
+                    pattern: /^[a-zA-Z\s-]{2,}$/,
+                  }}
+                />
+                <FormInput
+                  name="lastName"
+                  placeholder={"Last Name"}
+                  register={register}
+                  errors={errors}
+                  value={watchAllFields.lastName}
+                  options={{
+                    required: "Last Name is required",
                     pattern: /^[a-zA-Z\s-]{2,}$/,
                   }}
                 />
@@ -92,6 +155,7 @@ const page = () => {
                     },
                   }}
                 />
+                <CountrySelector country={country} setCountry={setCountry} />
                 <FormInput
                   name="company"
                   placeholder={"Company"}
@@ -101,13 +165,14 @@ const page = () => {
                 />
                 <FormInput
                   name="message"
+                  inputType="textarea"
                   placeholder={"Message"}
                   register={register}
                   errors={errors}
                   value={watchAllFields.message}
                 />
                 <div className="flex mt-5 justify-center">
-                  <CustomButton btnName="Send Message" />
+                  <CustomButton btnName="Send Message" isPending={isPending} />
                 </div>
               </div>
             </form>
@@ -128,7 +193,10 @@ const page = () => {
                 will customize the experience to suit your needs.
               </p>
             </div>
-            <CustomButton btnName="go to homepage" />
+            <CustomButton
+              btnName="go to homepage"
+              onClick={() => router.push("/")}
+            />
           </div>
         )}
       </section>

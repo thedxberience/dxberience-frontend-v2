@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import HelperLayout from "@/layouts/HelperPageLayout";
 import CustomButton from "@/components/shared/CustomButton";
+import { useRouter } from "next/navigation";
 function BookingConfirmationPage() {
+  const router = useRouter();
   return (
     <HelperLayout
       backgroundImage="/background-jet.jpg"
@@ -23,7 +26,10 @@ function BookingConfirmationPage() {
             will customize the experience to suit your needs.
           </p>
         </div>
-        <CustomButton btnName="go to homepage" />
+        <CustomButton
+          btnName="go to homepage"
+          onClick={() => router.push("/")}
+        />
       </div>
     </HelperLayout>
   );

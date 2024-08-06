@@ -2,6 +2,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import ServiceCard from "./ServiceSection/ServiceCard";
+import { useQuery } from "@tanstack/react-query";
+import { makeRequest } from "@/utils/axios";
 
 const ServicesSection = () => {
   const servicesSectionRef = useRef(null);
@@ -66,56 +68,70 @@ const ServicesSection = () => {
     }
   };
 
-  const services = [
-    {
-      serviceName: "Vip Concierge",
-      image: "/vip_concierge.jpeg",
-      alt: "VIP concierge service in Dubai for exclusive experiences, personalized shopping, corporate services, travel booking.",
+  const {
+    data: services,
+    error: categoryError,
+    isError: isCategoryError,
+    isSuccess: isCategorySuccess,
+    isLoading: isCategoryLoading,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const data = await makeRequest(`/categories`);
+      return data;
     },
-    {
-      serviceName: "Luxury Rentals",
-      image: "/luxury_rentals.jpeg",
-      alt: "Luxury car rentals for your Dubai getaway, private chauffeur and limousine services.",
-    },
-    {
-      serviceName: "Private Jets",
-      image: "/private_jets.jpeg",
-      alt: "Private jet charters for seamless travel experiences in style.",
-    },
-    {
-      serviceName: "Yachts",
-      image: "/service_yacht.jpeg",
-      alt: "Luxury yacht rentals in Dubai for unforgettable memories and celebrations.",
-    },
-    {
-      serviceName: "Experiences",
-      image: "/experiences.jpeg",
-      alt: "Curated experiences in Dubai for desert activities, water sports, beach clubs, attractions and excursions.",
-    },
-    {
-      serviceName: "Reservations",
-      image: "/reservations.jpeg",
-      alt: "Exclusive tables reservations at Dubai's finest restaurants, nightclubs and bars.",
-    },
-    {
-      serviceName: "Events",
-      image: "/events.jpeg",
-      alt: "Attend private events and book your event tickets for sports, fashion, opera and film festivals.",
-    },
-    {
-      serviceName: "Luxury Stays",
-      image: "/luxury_stays.jpeg",
-      alt: "Indulge in luxury villas at premium accommodations.",
-    },
-    {
-      serviceName: "Visas and Business Formation",
-      image: "/visa_services.jpeg",
-      alt: "Streamlined visa services for hassle-free travel arrangements.",
-    },
-  ];
+  });
+
+  // const services = [
+  //   {
+  //     serviceName: "Vip Concierge",
+  //     image: "/vip_concierge.jpeg",
+  //     alt: "VIP concierge service in Dubai for exclusive experiences, personalized shopping, corporate services, travel booking.",
+  //   },
+  //   {
+  //     serviceName: "Luxury Rentals",
+  //     image: "/luxury_rentals.jpeg",
+  //     alt: "Luxury car rentals for your Dubai getaway, private chauffeur and limousine services.",
+  //   },
+  //   {
+  //     serviceName: "Private Jets",
+  //     image: "/private_jets.jpeg",
+  //     alt: "Private jet charters for seamless travel experiences in style.",
+  //   },
+  //   {
+  //     serviceName: "Yachts",
+  //     image: "/service_yacht.jpeg",
+  //     alt: "Luxury yacht rentals in Dubai for unforgettable memories and celebrations.",
+  //   },
+  //   {
+  //     serviceName: "Experiences",
+  //     image: "/experiences.jpeg",
+  //     alt: "Curated experiences in Dubai for desert activities, water sports, beach clubs, attractions and excursions.",
+  //   },
+  //   {
+  //     serviceName: "Reservations",
+  //     image: "/reservations.jpeg",
+  //     alt: "Exclusive tables reservations at Dubai's finest restaurants, nightclubs and bars.",
+  //   },
+  //   {
+  //     serviceName: "Events",
+  //     image: "/events.jpeg",
+  //     alt: "Attend private events and book your event tickets for sports, fashion, opera and film festivals.",
+  //   },
+  //   {
+  //     serviceName: "Luxury Stays",
+  //     image: "/luxury_stays.jpeg",
+  //     alt: "Indulge in luxury villas at premium accommodations.",
+  //   },
+  //   {
+  //     serviceName: "Visas and Business Formation",
+  //     image: "/visa_services.jpeg",
+  //     alt: "Streamlined visa services for hassle-free travel arrangements.",
+  //   },
+  // ];
 
   const handleStickyDimension = useCallback(() => {
-    const serviceCount = services.length;
+    const serviceCount = services?.length;
     let oddWidth, evenWidth;
 
     if (serviceCount % 2 != 0) {
@@ -124,7 +140,7 @@ const ServicesSection = () => {
       console.log(oddWidthState, evenWidthState);
     }
     setStickySectionWidth(oddWidth + evenWidth);
-  });
+  }, [services]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -190,11 +206,8 @@ const ServicesSection = () => {
             }}
             className="scroll_section pb-20"
           >
-            {services.map((service, index) => (
-              <ServiceCard
-                {...service}
-                key={`${service.serviceName} ${index}`}
-              />
+            {services?.map((service, index) => (
+              <ServiceCard {...service} key={`${service.name} ${index}`} />
             ))}
           </div>
         </div>

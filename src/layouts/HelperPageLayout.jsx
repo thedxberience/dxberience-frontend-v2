@@ -18,7 +18,7 @@ const HelperLayout = ({
       >
         {overlay && (
           <div
-            className={`absolute bg-black z-1 w-full h-full`}
+            className={`absolute bg-black w-full h-full`}
             style={{ opacity: overlay }}
           />
         )}

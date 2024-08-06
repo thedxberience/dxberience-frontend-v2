@@ -1,24 +1,28 @@
 "use client";
 import { componentUseStore } from "@/store/componentStore";
 import Image from "next/image";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { IoChevronForward } from "react-icons/io5";
 
 const CustomOptionTag = ({
   belongsTo,
   optionName,
   optionType = "text",
+  budgetRange = {},
   subCategories = [],
   onSelect = () => {},
+  setBudgetRange = () => {},
+  setIsSubCategory = () => {},
 }) => {
   const [selected, setSelected] = useState(false);
   const [showSubCategories, setShowSubCategories] = useState(false);
 
   const {
-    experienceFormDropdownState,
-    toggleCategoryDropdown,
-    toggleDateDropdown,
-    toggleBudgetDropdown,
+    closeCategoryDropdown,
+    closeDateDropdown,
+    closeBudgetDropdown,
+    selectedBudgetRange,
+    setSelectedBudgetRange,
   } = componentUseStore((state) => state);
 
   const subCategoriesArray = useMemo(() => {
@@ -31,32 +35,48 @@ const CustomOptionTag = ({
     return data;
   }, [subCategories]);
 
-  const handleSelected = () => {
-    setSelected(!selected);
+  const handleOptionSelected = () => {
+    setSelectedBudgetRange(optionName);
     onSelect(optionName);
-    if (!selected) {
+    if (optionType == "radio" && !selected) {
+      setBudgetRange(budgetRange);
       if (belongsTo == "categories") {
-        toggleCategoryDropdown();
+        closeCategoryDropdown();
       } else if (belongsTo == "budget") {
-        toggleBudgetDropdown();
+        closeBudgetDropdown();
       } else if (belongsTo == "dates") {
-        toggleDateDropdown();
+        closeDateDropdown();
       }
     }
-    console.log(JSON.stringify(experienceFormDropdownState));
+  };
+
+  useEffect(() => {
+    setSelected(optionName == selectedBudgetRange);
+  }, [selectedBudgetRange]);
+
+  const handleCategorySelected = () => {
+    onSelect(optionName);
+    setIsSubCategory(false);
+    if (belongsTo == "categories") {
+      closeCategoryDropdown();
+    } else if (belongsTo == "budget") {
+      closeBudgetDropdown();
+    } else if (belongsTo == "dates") {
+      closeDateDropdown();
+    }
   };
 
   const handleSubCategorySelect = (subCategoryName) => {
-    setSelected(!selected);
     onSelect(subCategoryName);
+    setIsSubCategory(true);
     if (belongsTo == "categories") {
-      toggleCategoryDropdown();
+      closeCategoryDropdown();
     } else if (belongsTo == "budget") {
-      toggleBudgetDropdown();
+      closeBudgetDropdown();
     } else if (belongsTo == "dates") {
-      toggleDateDropdown();
+      closeDateDropdown();
     }
-    console.log(JSON.stringify(experienceFormDropdownState));
+    // console.log(JSON.stringify(experienceFormDropdownState));
   };
 
   const handleMouseEnter = () => {
@@ -71,15 +91,15 @@ const CustomOptionTag = ({
     switch (optionType) {
       case "text":
         return (
-          <p role="button" onClick={handleSelected}>
+          <p role="button" onClick={handleCategorySelected}>
             {optionName}
           </p>
         );
-      case "checkbox":
+      case "radio":
         return (
           <div
             role="button"
-            onClick={handleSelected}
+            onClick={handleOptionSelected}
             className="flex w-full justify-between items-center gap-2"
           >
             <p>{optionName}</p>
@@ -87,14 +107,14 @@ const CustomOptionTag = ({
             <div className="min-w-5 min-h-5">
               {selected ? (
                 <Image
-                  src={"/check_box_selected.svg"}
+                  src={"/radio_selected.svg"}
                   alt="check box"
                   width={18}
                   height={18}
                 />
               ) : (
                 <Image
-                  src={"/check_box.svg"}
+                  src={"/radio.svg"}
                   alt="check box"
                   width={18}
                   height={18}
@@ -111,7 +131,7 @@ const CustomOptionTag = ({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <p>{optionName}</p>
+            <p onClick={handleCategorySelected}>{optionName}</p>
 
             <div className="min-w-5 min-h-5">
               <IoChevronForward />
@@ -122,7 +142,7 @@ const CustomOptionTag = ({
                 showSubCategories && subCategoriesArray.length > 0
                   ? "block"
                   : "hidden"
-              } absolute w-fit top-0 -right-0 lg:-right-32 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
+              } absolute w-fit top-0 -right-0 lg:-right-3 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >

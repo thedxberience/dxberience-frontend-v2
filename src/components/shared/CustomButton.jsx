@@ -5,8 +5,59 @@ import React from "react";
 const CustomButton = ({
   btnName = "Explore",
   invert = false,
+  isPending = false,
   onClick = () => {},
 }) => {
+  const handleButtonIcon = () => {
+    if (invert) {
+      if (isPending) {
+        return (
+          <span className="animate-spin">
+            <Image
+              src="/Loader.svg"
+              alt="Loading Icon"
+              width={24}
+              height={24}
+            />
+          </span>
+        );
+      }
+      return (
+        <span>
+          <Image
+            src="/btn_arrow_white.svg"
+            alt="button arrow"
+            width={24}
+            height={24}
+          />
+        </span>
+      );
+    } else {
+      if (isPending) {
+        return (
+          <span className="animate-spin">
+            <Image
+              src="/loader_black.svg"
+              alt="Loading Icon"
+              width={24}
+              height={24}
+            />
+          </span>
+        );
+      }
+      return (
+        <span>
+          <Image
+            src="/btn_arrow.svg"
+            alt="button arrow"
+            width={24}
+            height={24}
+          />
+        </span>
+      );
+    }
+  };
+
   return (
     <div className="relative w-fit lg:min-w-[187px]">
       <div
@@ -24,26 +75,7 @@ const CustomButton = ({
           onClick={onClick}
         >
           {" "}
-          {btnName}{" "}
-          {invert ? (
-            <span>
-              <Image
-                src="/btn_arrow_white.svg"
-                alt="button arrow"
-                width={24}
-                height={24}
-              />
-            </span>
-          ) : (
-            <span>
-              <Image
-                src="/btn_arrow.svg"
-                alt="button arrow"
-                width={24}
-                height={24}
-              />
-            </span>
-          )}
+          {btnName} {handleButtonIcon()}
         </button>
       </div>
     </div>
