@@ -4,36 +4,55 @@ import ExperiencesForm from "@/components/Experiences/ExperiencesForm";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import { componentUseStore } from "@/store/componentStore";
+import { apiUseStore } from "@/store/apiStore";
 
-const page = () => {
+const page = ({ params }) => {
   const { data, error, isError, isLoading, isSuccess } = useQuery({
     queryKey: ["allProducts"],
     queryFn: async () => {
       const data = await makeRequest("/product");
+      if (!isError) {
+        setProductData(data);
+      }
       return data;
     },
+    // enabled: params.slug == "all",
   });
 
-  const handleShowExperiences = () => {
+  const { productData, setProductData } = apiUseStore((state) => state);
+
+  const { categoryFromSlug, setCategoryFromSlug } = componentUseStore(
+    (state) => state
+  );
+
+  useEffect(() => {
+    setCategoryFromSlug(params.slug);
+  }, []);
+
+  const handleShowExperiences = useCallback(() => {
     if (isLoading) {
       return (
         <div className="loader animate-spin">
           <Image src={"/Loader.svg"} alt="loader icon" width={48} height={48} />
         </div>
       );
-    } else if (isSuccess && data) {
-      return data.map((category) => (
+    } else if (isSuccess && data.length != 0 && productData.length != 0) {
+      return productData.map((product) => (
         <ExperienceCard
-          experienceDescription={category.shortDescription}
-          experienceTitle={category.title}
-          slug={category.slug}
-          experienceImage={category.thumbnail.image}
-          experienceAlt={category.thumbnail.altText}
-          priceStart={category.price}
-          key={category.slug}
+          experienceDescription={product.shortDescription}
+          experienceTitle={product.title}
+          slug={product.slug}
+          experienceImage={product.thumbnail.image}
+          experienceAlt={product.thumbnail.altText}
+          priceStart={product.price}
+          experienceLocation={
+            product.location ? product.location : "Dubai, United Arab Emirates"
+          }
+          key={product.slug}
         />
       ));
     } else if (isError) {
@@ -42,14 +61,17 @@ const page = () => {
           <h1>{error}</h1>
         </div>
       );
-    } else {
+    } else if (productData.length == 0) {
       return (
-        <div className="flex justify-center items-center w-full">
-          <h1>No Categories present at the moment, check back later</h1>
+        <div className="flex justify-center text-black items-center w-full">
+          <h1>
+            Oops! Looks like we don't have what you are looking for, try a
+            different filter or category.
+          </h1>
         </div>
       );
     }
-  };
+  }, [productData, data]);
 
   return (
     <main>

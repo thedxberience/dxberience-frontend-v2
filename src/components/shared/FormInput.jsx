@@ -9,16 +9,49 @@ function FormInput({
   options = {},
 }) {
   // TODO: implement dynamic form input variants
-  // const handleInputType = () => {
-  //   switch (inputType) {
-  //     case "text":
+  const handleInputType = () => {
+    switch (inputType) {
+      case "text":
+        return (
+          <input
+            placeholder={placeholder}
+            {...register(name, options)}
+            id={name}
+            type={inputType}
+            className={`bg-transparent border-b-[1px] py-1 outline-none text-white ${
+              value.length > 0 ? "pt-7" : ""
+            }`}
+          />
+        );
+      case "textarea":
+        return (
+          <textarea
+            placeholder={placeholder}
+            {...register(name, options)}
+            id={name}
+            type={inputType}
+            className={`bg-transparent border-b-[1px] py-1 outline-none ${
+              value.length > 0 ? "pt-7" : ""
+            }`}
+          ></textarea>
+        );
 
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // }
+      case "time":
+        return (
+          <input
+            placeholder={placeholder}
+            {...register(name, options)}
+            id={name}
+            type={inputType}
+            className={`bg-transparent border-b-[1px] py-1 outline-none ${
+              value.length > 0 ? "pt-7" : ""
+            }`}
+          />
+        );
+      default:
+        break;
+    }
+  };
 
   return (
     <div className={`relative flex flex-col w-full `}>
@@ -29,15 +62,7 @@ function FormInput({
         {placeholder}
         {errors[name] && <span className="text-red-500"> *</span>}
       </label>
-      <input
-        placeholder={placeholder}
-        {...register(name, options)}
-        id={name}
-        type={inputType}
-        className={`bg-transparent border-b-[1px] py-1 outline-none ${
-          value.length > 0 ? "pt-7" : ""
-        }`}
-      />
+      {handleInputType()}
       {errors[name] && (
         <span className="text-red-500">{errors[name].message}</span>
       )}

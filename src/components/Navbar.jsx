@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="px-4 lg:px-20 z-40 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
+      <div className="relative px-4 lg:px-20 z-50 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
         <div className="flex justify-center relative w-[13.651vw] h-[60px] lg:w-[262.1px] lg:h-[64px] items-center">
           <Link href={"/"}>
             <Image
@@ -30,7 +30,7 @@ const Navbar = () => {
 
         <div className="nav-links flex justify-center items-center gap-12">
           <div className="nav-link text-white">
-            <ul className="text-base">
+            <ul className="text-base z-50">
               <li>
                 <Link className="uppercase" href={"/contact"}>
                   Contact
@@ -40,11 +40,13 @@ const Navbar = () => {
           </div>
           <div className="nav-button">
             {/* TODO: Optimize button for links */}
-            <CustomButton onClick={() => router.push("/explore-experiences")} />
+            <CustomButton
+              onClick={() => router.push("/explore-experiences/all")}
+            />
           </div>
         </div>
       </div>
-      <div className="mobile-nav z-40 relative flex flex-col lg:hidden w-full justify-between items-center px-4 py-6">
+      <div className="mobile-nav z-50 relative flex flex-col lg:hidden w-full justify-between items-center px-4 py-6">
         <div className="flex w-full justify-between items-center">
           <div
             className="flex flex-col justify-center items-center gap-1"
@@ -80,7 +82,9 @@ const Navbar = () => {
             </div>
           </div>
           <div>
-            <CustomButton onClick={() => router.push("/explore-experiences")} />
+            <CustomButton
+              onClick={() => router.push("/explore-experiences/all")}
+            />
           </div>
         </div>
         <div

@@ -5,7 +5,11 @@ import ReactMarkdown from "react-markdown";
 import Map from "./MapsApi";
 import { PortableText } from "@portabletext/react";
 
-const EventsContentCarousel = ({ longDescription, terms_and_conditions }) => {
+const EventsContentCarousel = ({
+  longDescription,
+  location,
+  terms_and_conditions,
+}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel({
     watchDrag: true,
@@ -33,11 +37,6 @@ const EventsContentCarousel = ({ longDescription, terms_and_conditions }) => {
     emblaMainApi.on("select", onSelect).on("reInit", onSelect);
   }, [emblaMainApi, onSelect]);
 
-  const addressMD = `
-Desert Safari Dubai Tours - All UAE Tours, \n
-23 Marina Tower \n
-Dubai
-`;
   return (
     <div>
       <div className="event-tabs py-8 flex justify-center items-center w-full text-xs lg:text-lg">
@@ -82,7 +81,7 @@ Dubai
               )}
 
               <div className="md embla__slide" key={2}>
-                <Map addressMD={addressMD} />
+                <Map addressMD={location} />
               </div>
               {terms_and_conditions && (
                 <div className="md embla__slide" key={3}>

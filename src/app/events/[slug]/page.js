@@ -11,6 +11,7 @@ import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 
 const page = ({ params }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { data, error, isError, isSuccess, isLoading } = useQuery({
     queryKey: ["product", params.slug],
     queryFn: async () => {
@@ -18,6 +19,10 @@ const page = ({ params }) => {
       return data[0];
     },
   });
+
+  function currencyFormat(num) {
+    return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  }
 
   const router = useRouter();
 
@@ -40,9 +45,12 @@ const page = ({ params }) => {
         )}
         <div className="event_content -mb-9 lg:-mb-28 w-11/12 z-10 flex flex-col gap-3 lg:gap-20 justify-between items-center text-white">
           <div className="flex justify-between items-center w-full">
-            <h2 className="text-2xl lg:text-6xl font-IvyPresto">
-              Discover our Events
-            </h2>
+            {data?.subCategory?.name && (
+              <h2 className="text-2xl lg:text-6xl font-IvyPresto">
+                Discover our {data?.subCategory?.name}
+              </h2>
+            )}
+
             {data?.price && (
               <div className="mobile-only flex-col justify-center items-center uppercase bg-primary px-4 py-2 text-center">
                 <h3 className="font-IvyPresto font-bold text-2xl">
@@ -65,6 +73,8 @@ const page = ({ params }) => {
                         src={image.image}
                         alt={image.altText}
                         fill
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcP316LgAF5gI8MqGGhAAAAABJRU5ErkJggg=="
                         className="object-cover"
                       />
                     </div>
@@ -82,7 +92,7 @@ const page = ({ params }) => {
             {data?.price && (
               <div className="desktop-only uppercase w-[431px] flex-col justify-center items-center h-[279px] bg-primary px-4 py-2 text-center">
                 <h3 className="font-IvyPresto font-bold text-2xl lg:text-5xl">
-                  AED {data?.price}
+                  AED {currencyFormat(data?.price)}
                 </h3>
                 <p className="font-thin text-sm lg:text-lg">PER PERSON</p>
               </div>
@@ -90,8 +100,8 @@ const page = ({ params }) => {
           </div>
         </div>
       </header>
-      <section className="content mt-32 flex flex-col lg:flex-row justify-evenly items-center gap-6 w-full mb-16">
-        <div className="event-description w-11/12 lg:w-7/12">
+      <section className="content mt-32 flex flex-col lg:flex-row justify-evenly items-start gap-6 w-full mb-16">
+        <div className="event-description w-11/12 lg:w-6/12">
           <div className="event-name flex flex-col justify-start items-start gap-2">
             <h1 className="font-IvyPresto capitalize text-xl">{data?.title}</h1>
             <p className="text-sm">{data?.shortDescription}</p>
@@ -99,6 +109,7 @@ const page = ({ params }) => {
           {data ? (
             <EventsContentCarousel
               longDescription={data.longDescription}
+              location={data.location}
               terms_and_conditions={data.terms_and_conditions}
             />
           ) : (

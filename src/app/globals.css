@@ -392,6 +392,10 @@ body {
   @apply lg:flex hidden;
 }
 
+.form-field-border-style{
+  @apply font-noah border rounded-none border-l-0 border-t-0 border-r-0;
+}
+
 @media screen and (max-width: 361px) {
     .experiences {
         margin-top: 6rem;

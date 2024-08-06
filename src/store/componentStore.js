@@ -54,4 +54,22 @@ export const componentUseStore = create((set, get) => ({
         budgetDropdown: false,
       },
     })),
+  selectedBudgetRange: "",
+  setSelectedBudgetRange: (budgetRange) =>
+    set((state) => ({
+      selectedBudgetRange: budgetRange,
+    })),
+  categoryFromSlug: "",
+  setCategoryFromSlug: (slug) => {
+    let category;
+    if (slug) {
+      let slugArray = slug.split("-");
+      category = slugArray
+        .map((string) => string.charAt(0).toUpperCase() + string.slice(1))
+        .join(" ");
+    }
+    return set(() => ({
+      categoryFromSlug: category,
+    }));
+  },
 }));

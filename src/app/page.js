@@ -158,7 +158,7 @@ export default function Home() {
           </div>
           <div className="pt-[125px] text-white">
             <p className="w-[26.875vw]">
-              With Dxberience, luxury becomes a lifestyle, and we`&apos;`re
+              With Dxberience, luxury becomes a lifestyle, and we&apos;re
               excited to provide our clients with nothing but the best in
               exclusivity and exceptional experiences. From bespoke travel
               itineraries to private events curated to perfection, every moment
@@ -171,8 +171,8 @@ export default function Home() {
 
         <div className="mobile-only text-white">
           <p className="mb-10">
-            With Dxberience, luxury becomes a lifestyle, and we're excited to
-            provide our clients with nothing but the best in exclusivity and
+            With Dxberience, luxury becomes a lifestyle, and we&apos;re excited
+            to provide our clients with nothing but the best in exclusivity and
             exceptional experiences. From bespoke travel itineraries to private
             events curated to perfection, every moment is designed to exceed
             expectations. Indulge in unparalleled service, where every detail is

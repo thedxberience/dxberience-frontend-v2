@@ -1,10 +1,16 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FormInput from "../shared/FormInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "../shared/CustomButton";
+import CountrySelector from "./CountrySelect";
+import { useMutation } from "@tanstack/react-query";
+import { makeRequest } from "@/utils/axios";
 
 const NewsletterSection = () => {
+  const [country, setCountry] = useState("");
+  const [showStatus, setShowStatus] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -16,11 +22,54 @@ const NewsletterSection = () => {
     defaultValues: {
       firstName: "",
       lastName: "",
+      country: "",
       email: "",
     },
   });
 
+  const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
+    mutationKey: ["subscribe-to-newsletter"],
+    mutationFn: async (data) => {
+      const request = await makeRequest("/create-contact", {
+        method: "POST",
+        data: data,
+      });
+      console.log(request);
+      setShowStatus(true);
+      return request;
+    },
+  });
+
   const watchAllFields = watch();
+
+  const handleSubscribeToNewsletter = async (subscriberData) => {
+    try {
+      const payload = {
+        email: subscriberData.email,
+        emailBlacklisted: false,
+        smsBlacklisted: false,
+        updateEnabled: false,
+        listIds: [1, 2],
+        attributes: {
+          firstName: subscriberData.firstName,
+          lastName: subscriberData.lastName,
+          country: country,
+        },
+      };
+
+      mutateAsync(payload);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess || isError) {
+      setTimeout(() => {
+        setShowStatus(false);
+      }, [5000]);
+    }
+  }, [isSuccess, isError]);
 
   return (
     <section className="w-full text-white bg-primary flex justify-center items-center py-32">
@@ -31,29 +80,48 @@ const NewsletterSection = () => {
         </div>
 
         <div className="w-full">
-          <form>
+          {showStatus && isSuccess && (
+            <span className="text-green-500">
+              Thank you for subscribing to our newsletter!
+            </span>
+          )}
+
+          {showStatus && isError && (
+            <span className="text-red-500">{error.message}</span>
+          )}
+
+          <form onSubmit={handleSubmit(handleSubscribeToNewsletter)}>
             <div className="flex flex-col lg:flex-row justify-between items-start gap-10 pb-5">
               <div className="w-full lg:w-3/12">
                 <FormInput
-                  placeholder={"First Name"}
+                  placeholder={"First Name*"}
                   register={register}
                   errors={errors}
                   name="firstName"
+                  options={{
+                    required: "First Name is required",
+                  }}
                   value={watchAllFields.firstName}
                 />
               </div>
               <div className="w-full lg:w-3/12">
                 <FormInput
-                  placeholder={"Last Name"}
+                  placeholder={"Last Name*"}
                   register={register}
                   errors={errors}
                   name="lastName"
+                  options={{
+                    required: "Last Name is required",
+                  }}
                   value={watchAllFields.lastName}
                 />
               </div>
+              <div className="w-full lg:w-3/12">
+                <CountrySelector setCountry={setCountry} country={country} />
+              </div>
 
               <FormInput
-                placeholder={"Email Address"}
+                placeholder={"Email Address*"}
                 register={register}
                 errors={errors}
                 name="email"
@@ -68,7 +136,7 @@ const NewsletterSection = () => {
               />
 
               <div className="w-full flex justify-center items-center lg:w-4/12 ">
-                <CustomButton btnName="Subscribe Now" />
+                <CustomButton btnName="Subscribe Now" isPending={isPending} />
               </div>
             </div>
           </form>

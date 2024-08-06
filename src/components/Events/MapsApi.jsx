@@ -4,7 +4,7 @@ import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
-const Map = ({ addressMD }) => {
+const Map = ({ addressMD, coordinates = null }) => {
   const containerStyle = {
     width: "98%",
     height: "400px",
@@ -33,28 +33,43 @@ const Map = ({ addressMD }) => {
     setMapState(null);
   }, []);
 
+  const handleMapLoad = () => {
+    if (coordinates) {
+      if (isLoaded) {
+        return (
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={11}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+          >
+            <Marker position={center} />
+          </GoogleMap>
+        );
+      } else {
+        return (
+          <div className="animate-spin">
+            <Image
+              src={"/loader.svg"}
+              alt="loader icon"
+              width={48}
+              height={48}
+            />
+          </div>
+        );
+      }
+    }
+  };
+
   return (
     <>
       <div>
         <h1>ADDRESS</h1>
         <ReactMarkdown>{addressMD}</ReactMarkdown>
       </div>
-      <h1>LOCATION</h1>
-      {isLoaded ? (
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={11}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-        >
-          <Marker position={center} />
-        </GoogleMap>
-      ) : (
-        <div className="animate-spin">
-          <Image src={"/loader.svg"} alt="loader icon" width={48} height={48} />
-        </div>
-      )}
+      {coordinates && <h1>LOCATION</h1>}
+      {handleMapLoad()}
     </>
   );
 };
