@@ -262,6 +262,7 @@ body {
 
 .hide-options {
   animation: hide-options 0.3s ease-in-out forwards;
+  display: none;
 }
 
 .header-section {
