@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FormInput from "../shared/FormInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "../shared/CustomButton";
@@ -54,6 +54,7 @@ const ExperiencesForm = ({}) => {
 
   const { setProductData } = apiUseStore((state) => state);
 
+  const btnRef = useRef();
   const [isSubCategory, setIsSubCategory] = useState(false);
   const [apiParams, setApiParams] = useState("");
   const [categoryName, setCategoryName] = useState("Categories");
@@ -117,7 +118,7 @@ const ExperiencesForm = ({}) => {
     },
   ];
 
-  const handleFindExperiences = (e) => {
+  const handleFindExperiences = (e, categoryFromSlug = null) => {
     e?.preventDefault();
 
     let apiParams = "/product";
@@ -130,27 +131,31 @@ const ExperiencesForm = ({}) => {
       }
     }
 
-    if (categoryName != "All") {
-      if (isSubCategory) {
-        apiParams += `${handleAppendSign()}subCategory=${categoryName}`;
-      } else if (!isSubCategory) {
-        apiParams += `${handleAppendSign()}category=${categoryName}`;
+    if (categoryFromSlug) {
+      apiParams += `${handleAppendSign()}category=${categoryFromSlug}`;
+    } else {
+      if (categoryName.toLowerCase() != "all") {
+        if (isSubCategory) {
+          apiParams += `${handleAppendSign()}subCategory=${categoryName}`;
+        } else if (!isSubCategory) {
+          apiParams += `${handleAppendSign()}category=${categoryName}`;
+        }
       }
-    }
 
-    if (budget != "Budget" && budgetRange.max) {
-      apiParams += `${handleAppendSign()}minBudget=${
-        budgetRange.min
-      }&maxBudget=${budgetRange.max}`;
-    }
+      if (budget != "Budget" && budgetRange.max) {
+        apiParams += `${handleAppendSign()}minBudget=${
+          budgetRange.min
+        }&maxBudget=${budgetRange.max}`;
+      }
 
-    if (date) {
-      const startDate = new Date(date.from).toISOString();
-      apiParams += `${handleAppendSign()}startDate=${startDate}`;
+      if (date) {
+        const startDate = new Date(date.from).toISOString();
+        apiParams += `${handleAppendSign()}startDate=${startDate}`;
 
-      if (date.to) {
-        const endDate = new Date(date.to).toISOString();
-        apiParams += `${handleAppendSign()}endDate=${endDate}`;
+        if (date.to) {
+          const endDate = new Date(date.to).toISOString();
+          apiParams += `${handleAppendSign()}endDate=${endDate}`;
+        }
       }
     }
 
@@ -160,8 +165,11 @@ const ExperiencesForm = ({}) => {
   useEffect(() => {
     if (categoryFromSlug) {
       setCategoryName(categoryFromSlug);
-      if (categoryName != "Categories") {
-        handleFindExperiences();
+      if (
+        categoryFromSlug.toLowerCase() != "categories" &&
+        categoryFromSlug.toLowerCase() != "all"
+      ) {
+        handleFindExperiences(null, categoryFromSlug);
       }
     }
   }, [categoryFromSlug]);
@@ -235,6 +243,7 @@ const ExperiencesForm = ({}) => {
         </div>
         <div className="flex lg:w-full justify-center items-center">
           <CustomButton
+            btnRef={btnRef}
             btnName="Find experiences"
             isPending={isProductLoading}
             invert
