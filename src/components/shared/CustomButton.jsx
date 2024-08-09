@@ -6,6 +6,7 @@ const CustomButton = ({
   btnName = "Explore",
   invert = false,
   isPending = false,
+  btnRef = null,
   onClick = () => {},
 }) => {
   const handleButtonIcon = () => {
@@ -71,6 +72,7 @@ const CustomButton = ({
         } p-[13.5px] z-40 border-black relative flex justify-center w-fit lg:min-w-[187px]`}
       >
         <button
+          ref={btnRef}
           className="flex justify-center text-sm lg:text-base items-center gap-3 uppercase"
           onClick={onClick}
         >

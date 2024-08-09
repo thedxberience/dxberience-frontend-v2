@@ -47,14 +47,18 @@ const CustomSelectTag = ({
   }, [revealOptions]);
 
   return (
-    <div className="relative w-full" ref={selectRef}>
+    <div className="relative w-full cursor-pointer" ref={selectRef}>
       <div
         role="button"
         onClick={handleRevealOptions}
         className="select-tag cursor-pointer flex justify-between items-center gap-3 px-[10px] py-2 h-10 border-b border-black"
       >
-        <h2 className="text-lg truncate">{selectTagName}</h2>
-        <div className={` ${!revealOptions ? "rotate-180" : ""}`}>
+        <h2 className="text-lg truncate cursor-pointer w-fit">
+          {selectTagName}
+        </h2>
+        <div
+          className={` ${!revealOptions ? "rotate-180" : ""} cursor-pointer`}
+        >
           <IoChevronDown />
         </div>
       </div>
