@@ -54,7 +54,7 @@ const page = ({ params }) => {
             {data?.price && (
               <div className="mobile-only flex-col justify-center items-center uppercase bg-primary px-4 py-2 text-center">
                 <h3 className="font-IvyPresto font-bold text-2xl">
-                  AED {data?.price}
+                  AED {currencyFormat(data?.price)}
                 </h3>
                 <p className="font-thin text-sm">PER PERSON</p>
               </div>
