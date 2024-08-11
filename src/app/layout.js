@@ -24,7 +24,10 @@ const Sacramento = localFont({
 });
 
 export const metadata = {
-  title: "Luxury Lifestyle Concierge Services Dubai | Dxberience",
+  title: {
+    template: "%s | Dxberience",
+    default: "Luxury Lifestyle Concierge Services Dubai | Dxberience",
+  },
   description:
     "We offer luxury concierge services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
 };

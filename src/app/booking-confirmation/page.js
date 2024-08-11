@@ -1,10 +1,14 @@
-"use client";
 import React from "react";
 import HelperLayout from "@/layouts/HelperPageLayout";
 import CustomButton from "@/components/shared/CustomButton";
-import { useRouter } from "next/navigation";
+
+export const metadata = {
+  title: "Thank you for your request",
+  description:
+    "Our team at Dxberience will reach out to finalize your booking and payment. We will customize the experience to suit your needs.",
+};
+
 function BookingConfirmationPage() {
-  const router = useRouter();
   return (
     <HelperLayout
       backgroundImage="/background-jet.jpg"
@@ -26,27 +30,10 @@ function BookingConfirmationPage() {
             will customize the experience to suit your needs.
           </p>
         </div>
-        <CustomButton
-          btnName="go to homepage"
-          onClick={() => router.push("/")}
-        />
+        <CustomButton btnName="go to homepage" isLink href="/" />
       </div>
     </HelperLayout>
   );
 }
 
 export default BookingConfirmationPage;
-
-{
-  /* <div className="flex justify-center p-32 text-white">
-        <GradientBox className="mt-[42px]">
-          <h1 className="text-2xl font-IvyPresto text-center md:whitespace-pre md:text-4xl">{`Thank you,
-         We have received your request.`}</h1>
-          <p className="text-base w-[219px] md:w-[582px] text-center md:text-lg">
-            Our team will reach out to finalize your booking and payment. We
-            will customize the experience to suit your needs.
-          </p>
-          <CustomButton btnName="GO TO HOMEPAGE" />
-        </GradientBox>
-      </div> */
-}
