@@ -1,6 +1,12 @@
 import HelperLayout from "@/layouts/HelperPageLayout";
 import CustomButton from "@/components/shared/CustomButton";
 
+export const metadata = {
+  title: "Error Page",
+  description:
+    "Oops! It seems there's been an error. Navigate back to safety or explore more with Dxberience for luxury travel and concierge services.",
+};
+
 const NotFound = () => {
   return (
     <HelperLayout

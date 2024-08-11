@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CustomButton = ({
@@ -7,6 +8,8 @@ const CustomButton = ({
   invert = false,
   isPending = false,
   btnRef = null,
+  isLink = false,
+  href = "",
   onClick = () => {},
 }) => {
   const handleButtonIcon = () => {
@@ -77,7 +80,8 @@ const CustomButton = ({
           onClick={onClick}
         >
           {" "}
-          {btnName} {handleButtonIcon()}
+          {isLink ? <Link href={href}>{btnName}</Link> : btnName}
+          {handleButtonIcon()}
         </button>
       </div>
     </div>
