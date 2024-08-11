@@ -43,7 +43,7 @@ const page = ({ params }) => {
             fill
           />
         )}
-        <div className="event_content -mb-9 lg:-mb-28 w-11/12 z-10 flex flex-col gap-3 lg:gap-20 justify-between items-center text-white">
+        <div className="event_content -mb-20 lg:-mb-28 w-11/12 z-10 flex flex-col gap-3 lg:gap-20 justify-between items-center text-white">
           <div className="flex justify-between items-center w-full">
             {data?.subCategory?.name && (
               <h2 className="text-2xl lg:text-6xl font-IvyPresto">
@@ -82,7 +82,7 @@ const page = ({ params }) => {
                 })}
               </div>
               <div
-                className="flex desktop-only justify-center items-center gap-6 text-black cursor-pointer"
+                className="flex justify-center items-center gap-6 text-black cursor-pointer"
                 onClick={handlePagePop}
               >
                 <IoChevronDown className="rotate-90" />{" "}
@@ -101,30 +101,35 @@ const page = ({ params }) => {
         </div>
       </header>
       <section className="content mt-32 flex flex-col lg:flex-row justify-evenly items-start gap-6 w-full mb-16">
-        <div className="event-description w-11/12 lg:w-6/12">
-          <div className="event-name flex flex-col justify-start items-start gap-2">
-            <h1 className="font-IvyPresto capitalize text-xl">{data?.title}</h1>
-            <p className="text-sm">{data?.shortDescription}</p>
-          </div>
-          {data ? (
-            <EventsContentCarousel
-              longDescription={data.longDescription}
-              location={data.location}
-              locationCoordinate={data?.locationCoordinates}
-              terms_and_conditions={data.terms_and_conditions}
-            />
-          ) : (
-            <div className="flex justify-center items-center min-h-screen">
-              <Image
-                src={"/loader.svg"}
-                className="animate-spin"
-                alt="loader"
-                width={48}
-                height={48}
-              />
+        <div className="w-full flex justify-center items-center">
+          <div className="event-description w-11/12 ">
+            <div className="event-name flex flex-col justify-start items-start gap-2">
+              <h1 className="font-IvyPresto capitalize text-xl">
+                {data?.title}
+              </h1>
+              <p className="text-sm">{data?.shortDescription}</p>
             </div>
-          )}
+            {data ? (
+              <EventsContentCarousel
+                longDescription={data.longDescription}
+                location={data.location}
+                locationCoordinate={data?.locationCoordinates}
+                terms_and_conditions={data.terms_and_conditions}
+              />
+            ) : (
+              <div className="flex justify-center items-center min-h-screen">
+                <Image
+                  src={"/loader.svg"}
+                  className="animate-spin"
+                  alt="loader"
+                  width={48}
+                  height={48}
+                />
+              </div>
+            )}
+          </div>
         </div>
+
         <EventsBookingForm
           slug={params.slug}
           price={data?.price}
