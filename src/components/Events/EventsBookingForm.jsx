@@ -65,6 +65,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
       tickets: parseInt(data.no_of_guest),
       data: {
         price: price,
+        slug: slug,
       },
     };
 
