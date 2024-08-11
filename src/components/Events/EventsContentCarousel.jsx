@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 const EventsContentCarousel = ({
   longDescription,
   location,
+  locationCoordinate,
   terms_and_conditions,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -81,7 +82,7 @@ const EventsContentCarousel = ({
               )}
 
               <div className="md embla__slide" key={2}>
-                <Map addressMD={location} />
+                <Map addressMD={location} coordinates={locationCoordinate} />
               </div>
               {terms_and_conditions && (
                 <div className="md embla__slide" key={3}>

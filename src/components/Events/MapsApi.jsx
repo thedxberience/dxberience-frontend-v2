@@ -10,11 +10,6 @@ const Map = ({ addressMD, coordinates = null }) => {
     height: "400px",
   };
 
-  const center = {
-    lat: -3.745,
-    lng: -38.523,
-  };
-
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
@@ -23,7 +18,7 @@ const Map = ({ addressMD, coordinates = null }) => {
   const [mapState, setMapState] = useState(null);
 
   const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
+    const bounds = new window.google.maps.LatLngBounds(coordinates);
     map.fitBounds(bounds);
 
     setMapState(map);
@@ -39,12 +34,12 @@ const Map = ({ addressMD, coordinates = null }) => {
         return (
           <GoogleMap
             mapContainerStyle={containerStyle}
-            center={center}
-            zoom={11}
+            center={coordinates}
+            zoom={9}
             onLoad={onLoad}
             onUnmount={onUnmount}
           >
-            <Marker position={center} />
+            <Marker position={coordinates} />
           </GoogleMap>
         );
       } else {

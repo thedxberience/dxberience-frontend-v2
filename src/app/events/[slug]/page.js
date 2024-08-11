@@ -110,6 +110,7 @@ const page = ({ params }) => {
             <EventsContentCarousel
               longDescription={data.longDescription}
               location={data.location}
+              locationCoordinate={data?.locationCoordinates}
               terms_and_conditions={data.terms_and_conditions}
             />
           ) : (
