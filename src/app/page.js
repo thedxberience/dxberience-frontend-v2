@@ -31,7 +31,7 @@ export default function Home() {
         </div>
 
         <div className="pb-5 flex flex-col justify-center items-center gap-4 text-white">
-          <p className="uppercase text-xs">Scroll to start experience</p>
+          <p className="uppercase text-xs">Scroll to start your experience</p>
           <Image
             className="animate-bounce"
             src="/scroll_icon.svg"
@@ -46,16 +46,21 @@ export default function Home() {
           <div className="explore-text w-full flex flex-col lg:flex-row justify-between items-center relative h-fit px-4">
             {/* <TextMotion> */}
             <h1 className="text-text-secondary text-[36px] md:text-[45px] xl:text-[75px] pb-7 lg:pb-[81px] lg:w-[40.26vw] font-IvyPresto font-normal">
-              Luxury Lifestyle Concierge Services
+              Personalized Luxury Bookings
             </h1>
             {/* </TextMotion> */}
             <div className="lg:w-[38.906vw] font-noah">
               <p>
-                Indulge in an unforgettable journey with us as we meticulously
-                curate every detail to create an extraordinary experience just
-                for you. From exquisite accommodations to personalized
-                itineraries, let us take you on a seamless and enchanting
-                adventure that surpasses all expectations.
+                At Dxberience, we specialize in curating personalized
+                itineraries, providing VIP experiences, and curating
+                unforgettable excursions to ensure an unparalleled journey for
+                our clients. With our expertise in global travel and exclusive
+                partnerships with luxury providers, we deliver unrivalled luxury
+                across a spectrum of experiences, ranging from exploring local
+                delights to indulging in exotic destinations worldwide. Whether
+                you seek adventure, relaxation, or cultural immersion, we are
+                dedicated to creating bespoke experiences tailored to your
+                desires.
               </p>
             </div>
           </div>
@@ -93,7 +98,7 @@ export default function Home() {
           {/* </TextMotion> */}
           <div className="flex w-full lg:w-9/12 xl:w-6/12 justify-end lg:justify-end items-center">
             <h1 className="uppercase text-base lg:text-3xl font-noah">
-              Your concierge to exclusive experiences
+              YOUR GATEWAY TO EXCLUSIVE EXPERIENCES
             </h1>
           </div>
         </div>
@@ -110,7 +115,10 @@ export default function Home() {
               experiences, from breathtaking hotel views to exclusive yacht
               charters. Create unforgettable memories with Dxberience.
             </p>
-            <p className="text-sm lg:text-lg font-extralight">
+            <div className="w-full flex justify-center lg:justify-start items-center pt-2">
+              <CustomButton btnName="Inquire Now" invert={true} />
+            </div>
+            <p className="text-sm lg:text-lg font-extralight pt-10">
               Whether you crave the thrill of a desert safari with gourmet
               dining under the stars, or the serenity of a private spa retreat
               overlooking the turquoise waters, Dxberience caters to your every
@@ -119,21 +127,18 @@ export default function Home() {
               indulge your senses, and create memories that will last a
               lifetime.
             </p>
-            <div className="w-full flex justify-center lg:justify-start items-center pt-10">
-              <CustomButton btnName="Inquire Now" invert={true} />
-            </div>
           </div>
         </div>
       </section>
       <div className="left-side mobile-only flex justify-center items-center w-full px-4 mt-16">
         <div className="top-box bg-primary text-white lg:w-[38.177vw] px-4 py-10 h-fit lg:px-[78px] lg:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
           <h1 className="font-IvyPresto text-xl lg:text-[70px]">
-            Personalized Luxury Booking
+            Curated Luxury Experiences
           </h1>
           <p className="font-extralight">
-            Curated luxury for the discerning traveler. Book bespoke
-            experiences, from private jets, personalized shopping, curated
-            itineraries to breathtaking hotel views and private villas.
+            For the discerning traveler, we offer tailored luxury bookings that
+            include private jet charters, personalized shopping, bespoke
+            itineraries, breathtaking hotel stays, and exclusive private villas.
           </p>
         </div>
         {/* <div className="pt-[125px] text-white">
@@ -148,15 +153,16 @@ export default function Home() {
         <div className="left-side hidden lg:block h-[477px]">
           <div className="top-box -mt-[220px] lg:-mt-[70%] xl:-mt-[70%] 2xl:-mt-[40%] bg-primary text-white lg:w-[38.177vw] px-4 py-10 lg:px-[20px] xl:px-[78px] lg:py-[43px] xl:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
             <h1 className="font-IvyPresto text-xl lg:text-5xl xl:text-7xl">
-              Personalized Luxury Booking
+              Curated Luxury Experiences
             </h1>
             <p className="font-extralight">
-              Curated luxury for the discerning traveler. Book bespoke
-              experiences, from private jets, personalized shopping, curated
-              itineraries to breathtaking hotel views and private villas.
+              For the discerning traveler, we offer tailored luxury bookings
+              that include private jet charters, personalized shopping, bespoke
+              itineraries, breathtaking hotel stays, and exclusive private
+              villas.
             </p>
           </div>
-          <div className="pt-[125px] text-white">
+          {/* <div className="pt-[125px] text-white">
             <p className="w-[26.875vw]">
               With Dxberience, luxury becomes a lifestyle, and we&apos;re
               excited to provide our clients with nothing but the best in
@@ -166,10 +172,10 @@ export default function Home() {
               service, where every detail is meticulously crafted to reflect
               your unique taste and preferences.
             </p>
-          </div>
+          </div> */}
         </div>
 
-        <div className="mobile-only text-white">
+        {/* <div className="mobile-only text-white">
           <p className="mb-10">
             With Dxberience, luxury becomes a lifestyle, and we&apos;re excited
             to provide our clients with nothing but the best in exclusivity and
@@ -178,7 +184,7 @@ export default function Home() {
             expectations. Indulge in unparalleled service, where every detail is
             meticulously crafted to reflect your unique taste and preferences.
           </p>
-        </div>
+        </div> */}
         <div className="flex w-full justify-center items-center h-full">
           <div className="image relative bg-accent w-[79.487vw] h-[310px] lg:w-[41.667vw] lg:h-[71.77vh] xl:h-[713px] flex">
             <Image
@@ -190,6 +196,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <ServicesSection />
       <section className="luxury-destination mt-11 lg:mt-[150px] p-6">
         <div className="header gap-6 flex flex-col justify-center items-center">
           <h1 className="text-4xl lg:text-7xl text-center font-semibold font-IvyPresto">
@@ -223,6 +230,53 @@ export default function Home() {
           {/* </ImageScrollMotion> */}
         </div>
       </section>
+
+      <section className="global-ticketing flex flex-col justify-center items-center gap-5 lg:gap-28 py-28 px-6">
+        <div className="content flex flex-col justify-center items-center gap-10 lg:gap-12">
+          <h1 className="font-IvyPresto text-4xl lg:text-7xl text-center">
+            Global & Private Event Ticketing
+          </h1>
+          <p className="text-sm lg:text-base lg:w-[47.5vw] text-center">
+            Experience the best of Dubai's vibrant nightlife and cultural scene
+            with Dxberience. Secure front-row seats at sold-out shows, reserve
+            VIP tables at the trendiest clubs, and elevate your lifestyle with
+            exclusive, once-in-a-lifetime experiences tailored just for you.
+            Book now with Dxberience and live like royalty, indulging in the
+            epitome of luxury and sophistication in Dubai's dynamic cityscape.
+          </p>
+        </div>
+        <div className="section-btn">
+          <CustomButton btnName="indulge today" invert={true} />
+        </div>
+      </section>
+      <MemoriesSection />
+      <section className="tours flex flex-col justify-center items-center text-white bg-primary p-4 pt-20 lg:p-20 w-full">
+        <div className="content flex flex-col justify-center items-center gap-8">
+          <div className="header flex flex-col gap-6 justify-center items-center">
+            <h1 className="text-lg lg:text-4xl">OUR</h1>
+            <h1 className="font-IvyPresto text-4xl lg:text-7xl">
+              Excursions & Tours
+            </h1>
+          </div>
+          <p className="px-4 lg:w-[46.719vw] text-center pb-16">
+            Dxberience offers an unparalleled array of excursions and tour
+            experiences that capture the essence of Dubai's multifaceted allure.
+            Their meticulously curated packages include thrilling desert safaris
+            where visitors can indulge in dune bashing, camel rides, and
+            traditional Bedouin camp experiences complete with cultural
+            performances and gourmet dining.
+          </p>
+        </div>
+        <div className="relative w-[79.487vw] lg:w-[56.667vw] h-[30.914vh] lg:h-[456px]">
+          <Image
+            src="/man_desert.jpeg"
+            alt="Exciting adventure and desert activities in Dubai"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </section>
+      <RatingsSection />
       <section className="private-retreats w-full mt-[119px]">
         <div className="flex flex-col lg:flex-row justify-between">
           <div className="w-full flex justify-end">
@@ -261,53 +315,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="global-ticketing flex flex-col justify-center items-center gap-5 lg:gap-28 py-28 px-6">
-        <div className="content flex flex-col justify-center items-center gap-10 lg:gap-12">
-          <h1 className="font-IvyPresto text-4xl lg:text-7xl text-center">
-            Global & Private Event Ticketing
-          </h1>
-          <p className="text-sm lg:text-base lg:w-[47.5vw] text-center">
-            Experience the best of Dubai's vibrant nightlife and cultural scene
-            with Dxberience. Secure front-row seats at sold-out shows, reserve
-            VIP tables at the trendiest clubs, and elevate your lifestyle with
-            exclusive, once-in-a-lifetime experiences tailored just for you.
-            Book now with Dxberience and live like royalty, indulging in the
-            epitome of luxury and sophistication in Dubai's dynamic cityscape.
-          </p>
-        </div>
-        <div className="section-btn">
-          <CustomButton btnName="indulge today" invert={true} />
-        </div>
-      </section>
-      <ServicesSection />
-      <MemoriesSection />
-      <section className="tours flex flex-col justify-center items-center text-white bg-primary p-4 pt-20 lg:p-20 w-full">
-        <div className="content flex flex-col justify-center items-center gap-8">
-          <div className="header flex flex-col gap-6 justify-center items-center">
-            <h1 className="text-lg lg:text-4xl">OUR</h1>
-            <h1 className="font-IvyPresto text-4xl lg:text-7xl">
-              Excursions & Tours
-            </h1>
-          </div>
-          <p className="px-4 lg:w-[46.719vw] text-center pb-16">
-            Dxberience offers an unparalleled array of excursions and tour
-            experiences that capture the essence of Dubai's multifaceted allure.
-            Their meticulously curated packages include thrilling desert safaris
-            where visitors can indulge in dune bashing, camel rides, and
-            traditional Bedouin camp experiences complete with cultural
-            performances and gourmet dining.
-          </p>
-        </div>
-        <div className="relative w-[79.487vw] lg:w-[56.667vw] h-[30.914vh] lg:h-[456px]">
-          <Image
-            src="/man_desert.jpeg"
-            alt="Exciting adventure and desert activities in Dubai"
-            fill
-            className="object-cover"
-          />
-        </div>
-      </section>
-      <RatingsSection />
       <NewsletterSection />
       <Footer />
     </main>
