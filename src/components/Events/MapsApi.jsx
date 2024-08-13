@@ -35,7 +35,7 @@ const Map = ({ addressMD, coordinates = null }) => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={coordinates}
-            zoom={9}
+            zoom={8}
             onLoad={onLoad}
             onUnmount={onUnmount}
           >
