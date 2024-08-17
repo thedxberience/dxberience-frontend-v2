@@ -2,6 +2,8 @@ import "./globals.css";
 import "./css/base.css";
 import "./css/embla.css";
 
+import Script from "next/script";
+
 import localFont from "next/font/local";
 import Provider from "@/utils/Provider";
 
@@ -40,6 +42,7 @@ export default function RootLayout({ children }) {
       >
         <Provider>{children}</Provider>
       </body>
+      <Script src="https://accounts.google.com/gsi/client" async defer></Script>
     </html>
   );
 }
