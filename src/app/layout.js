@@ -40,19 +40,6 @@ export default function RootLayout({ children }) {
         <Provider>{children}</Provider>
       </body>
       <Script src="https://accounts.google.com/gsi/client" async defer></Script>
-      <Script>
-        {`
-          function handleCredentialResponse(response) {
-            if (response.credential) {
-              const credential = response.credential;
-              console.log(credential);
-            }
-          }
-
-           window.handleCredentialResponse = handleCredentialResponse;
-        `}
-      </Script>
-      {/* <script src="https://accounts.google.com/gsi/client" async defer></script> */}
     </html>
   );
 }
