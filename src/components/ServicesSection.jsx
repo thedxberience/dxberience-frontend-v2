@@ -82,54 +82,6 @@ const ServicesSection = () => {
     },
   });
 
-  // const services = [
-  //   {
-  //     serviceName: "Vip Concierge",
-  //     image: "/vip_concierge.jpeg",
-  //     alt: "VIP concierge service in Dubai for exclusive experiences, personalized shopping, corporate services, travel booking.",
-  //   },
-  //   {
-  //     serviceName: "Luxury Rentals",
-  //     image: "/luxury_rentals.jpeg",
-  //     alt: "Luxury car rentals for your Dubai getaway, private chauffeur and limousine services.",
-  //   },
-  //   {
-  //     serviceName: "Private Jets",
-  //     image: "/private_jets.jpeg",
-  //     alt: "Private jet charters for seamless travel experiences in style.",
-  //   },
-  //   {
-  //     serviceName: "Yachts",
-  //     image: "/service_yacht.jpeg",
-  //     alt: "Luxury yacht rentals in Dubai for unforgettable memories and celebrations.",
-  //   },
-  //   {
-  //     serviceName: "Experiences",
-  //     image: "/experiences.jpeg",
-  //     alt: "Curated experiences in Dubai for desert activities, water sports, beach clubs, attractions and excursions.",
-  //   },
-  //   {
-  //     serviceName: "Reservations",
-  //     image: "/reservations.jpeg",
-  //     alt: "Exclusive tables reservations at Dubai's finest restaurants, nightclubs and bars.",
-  //   },
-  //   {
-  //     serviceName: "Events",
-  //     image: "/events.jpeg",
-  //     alt: "Attend private events and book your event tickets for sports, fashion, opera and film festivals.",
-  //   },
-  //   {
-  //     serviceName: "Luxury Stays",
-  //     image: "/luxury_stays.jpeg",
-  //     alt: "Indulge in luxury villas at premium accommodations.",
-  //   },
-  //   {
-  //     serviceName: "Visas and Business Formation",
-  //     image: "/visa_services.jpeg",
-  //     alt: "Streamlined visa services for hassle-free travel arrangements.",
-  //   },
-  // ];
-
   const handleStickyDimension = useCallback(() => {
     const serviceCount = services?.length;
     let oddWidth, evenWidth;

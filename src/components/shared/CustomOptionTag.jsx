@@ -1,5 +1,5 @@
 "use client";
-import { componentUseStore } from "@/store/componentStore";
+import { useComponentStore } from "@/store/componentStore";
 import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import { IoChevronForward } from "react-icons/io5";
@@ -23,7 +23,7 @@ const CustomOptionTag = ({
     closeBudgetDropdown,
     selectedBudgetRange,
     setSelectedBudgetRange,
-  } = componentUseStore((state) => state);
+  } = useComponentStore((state) => state);
 
   const subCategoriesArray = useMemo(() => {
     let data;
