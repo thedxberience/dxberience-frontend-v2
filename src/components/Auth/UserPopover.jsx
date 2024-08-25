@@ -12,7 +12,7 @@ const UserPopover = () => {
   const { user } = useApiStore((state) => state);
   return (
     <Popover>
-      <PopoverTrigger className="mix-blend-difference">
+      <PopoverTrigger className="mix-blend-exclusion text-white bg-transparent">
         <h2 className="uppercase">
           {user.firstName ? user.firstName : "USER"}
         </h2>
