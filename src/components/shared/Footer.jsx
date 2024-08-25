@@ -61,6 +61,9 @@ function Footer() {
 
           <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight xl:flex gap-5 ">
             <li className="mt-4">
+              <Link href={"/about"}>ABOUT</Link>
+            </li>
+            <li className="mt-4">
               <Link href={"/explore-experiences"}>EXPERIENCES</Link>
             </li>
             <li className="mt-4">
