@@ -48,6 +48,8 @@ const RegisterForm = () => {
 
   const handleRegister = async (data) => {
     const payload = { ...data, country: country };
+    console.log(errors);
+
     if (agreedTerms) {
       await mutateAsync(payload);
     } else {
@@ -83,17 +85,23 @@ const RegisterForm = () => {
       <FormInput
         name="firstName"
         value={watchAllFields.firstName}
-        placeholder={"First Name*"}
+        placeholder={"First Name"}
         errors={errors}
         register={register}
+        options={{
+          required: "First name is required",
+        }}
         invertText
       />
       <FormInput
         name="lastName"
         value={watchAllFields.lastName}
-        placeholder={"Last Name*"}
+        placeholder={"Last Name"}
         errors={errors}
         register={register}
+        options={{
+          required: "Last name is required",
+        }}
         invertText
       />
       <div className="w-full border-b border-tab-inactive">
@@ -103,29 +111,45 @@ const RegisterForm = () => {
       <FormInput
         name="email"
         value={watchAllFields.email}
-        placeholder={"Email Address*"}
+        placeholder={"Email Address"}
         errors={errors}
         register={register}
+        options={{
+          required: "Email Address must be valid",
+          pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        }}
         invertText
       />
       <FormInput
         name="password"
         value={watchAllFields.password}
-        placeholder={"Password*"}
+        placeholder={"Password"}
         errors={errors}
         register={register}
         inputType="password"
+        options={{
+          required: "Password must be valid",
+          pattern: {
+            value:
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            message:
+              "Password must validate the following: Min 8 characters, at least one uppercase and lowercase letter, at least one digit and at least one special character",
+          },
+        }}
         invertText
       />
       <FormInput
         name="confirmPassword"
         value={watchAllFields.confirmPassword}
-        placeholder={"Confirm Password*"}
+        placeholder={"Confirm Password"}
         errors={errors}
         register={register}
         inputType="password"
         options={{
-          validate: (value, formValues) => value === formValues.password,
+          required: "This field is required",
+          message: "Password must match",
+          validate: (value, formValues) =>
+            value === formValues.password || "Password must match",
         }}
         invertText
       />

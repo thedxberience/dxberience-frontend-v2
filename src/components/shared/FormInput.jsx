@@ -65,6 +65,7 @@ function FormInput({
               {...register(name, options)}
               id={name}
               type={showPassword ? "text" : inputType}
+              autoComplete="new-password"
               className={`bg-transparent border-none outline-none`}
             />
 
@@ -117,7 +118,9 @@ function FormInput({
       </label>
       {handleInputType()}
       {errors[name] && (
-        <span className="text-red-500">{errors[name].message}</span>
+        <span className="text-red-500">
+          {errors[name].message ? errors[name].message : `${name} is not valid`}
+        </span>
       )}
     </div>
   );
