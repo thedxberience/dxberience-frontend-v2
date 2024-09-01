@@ -24,7 +24,7 @@ const ServicesSection = () => {
   useEffect(() => {
     if (window) {
       if (window.innerWidth < 1024) {
-        setOddWidth(341);
+        setOddWidth(301);
         setEvenWidth(290);
       }
     }
@@ -33,7 +33,7 @@ const ServicesSection = () => {
   const handleScrollThreshold = useCallback(() => {
     if (window.innerWidth < 1024) {
       setScrollThreshold(620);
-      setOddWidth(341);
+      setOddWidth(301);
       setEvenWidth(290);
     } else {
       setScrollThreshold(desktopScrollThreshold);
@@ -89,7 +89,7 @@ const ServicesSection = () => {
     if (serviceCount % 2 != 0) {
       oddWidth = Math.floor(serviceCount / 2) * oddWidthState;
       evenWidth = (Math.floor(serviceCount / 2) + 1) * evenWidthState;
-      console.log(oddWidthState, evenWidthState);
+      // console.log(oddWidthState, evenWidthState);
     }
     setStickySectionWidth(oddWidth + evenWidth);
   }, [services]);
@@ -98,7 +98,7 @@ const ServicesSection = () => {
     const handleResize = () => {
       if (window.innerWidth < 1024) {
         setScrollThreshold(620);
-        setOddWidth(341);
+        setOddWidth(301);
         setEvenWidth(290);
       } else {
         setScrollThreshold(desktopScrollThreshold);
@@ -107,7 +107,7 @@ const ServicesSection = () => {
 
     if (window) {
       if (window.innerWidth < 1024) {
-        setOddWidth(341);
+        setOddWidth(301);
         setEvenWidth(290);
       }
     }
@@ -145,9 +145,9 @@ const ServicesSection = () => {
                   featuring luxurious accommodations in the world's most
                   sought-after destinations.
                 </p>
-                <div>
+                {/* <div>
                   <CustomButton btnName="global private villa portfolio" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

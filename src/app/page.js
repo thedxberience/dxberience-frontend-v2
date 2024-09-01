@@ -116,7 +116,12 @@ export default function Home() {
               charters. Create unforgettable memories with Dxberience.
             </p>
             <div className="w-full flex justify-center lg:justify-start items-center pt-2">
-              <CustomButton btnName="Inquire Now" invert={true} />
+              <CustomButton
+                btnName="Inquire Now"
+                invert={true}
+                isLink
+                href="/explore-experiences/all"
+              />
             </div>
             <p className="text-sm lg:text-lg font-extralight pt-10">
               Whether you crave the thrill of a desert safari with gourmet
@@ -216,7 +221,12 @@ export default function Home() {
             </p>
           </div>
           <div className="flex justify-center items-center gap-3">
-            <CustomButton btnName="Indulge Today" invert={true} />
+            <CustomButton
+              btnName="Indulge Today"
+              invert={true}
+              isLink
+              href="/explore-experiences/all"
+            />
           </div>
           {/* <ImageScrollMotion querySelector={".luxury"} maxScroll={40}> */}
           <div className="flex justify-center items-center relative bg-accent w-full h-52 lg:w-[49.514vw] lg:h-[44.258vh] mt-[56px]">
@@ -246,7 +256,12 @@ export default function Home() {
           </p>
         </div>
         <div className="section-btn">
-          <CustomButton btnName="indulge today" invert={true} />
+          <CustomButton
+            btnName="indulge today"
+            invert={true}
+            isLink
+            href="/explore-experiences/all"
+          />
         </div>
       </section>
       <MemoriesSection />

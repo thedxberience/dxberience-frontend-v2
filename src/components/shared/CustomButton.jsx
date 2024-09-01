@@ -72,7 +72,7 @@ const CustomButton = ({
       <div
         className={` ${
           invert ? "bg-black text-white" : "bg-white text-black"
-        } p-[13.5px] z-40 border-black relative flex justify-center w-fit lg:min-w-[187px]`}
+        } p-[13.5px] z-40 border border-black relative flex justify-center w-fit lg:min-w-[187px]`}
       >
         <button
           ref={btnRef}
