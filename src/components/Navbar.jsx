@@ -94,7 +94,7 @@ const Navbar = () => {
                 <Link href={"/contact"}>Contact</Link>
               </li>
               <li className="cursor-pointer">
-                <Link href={"/explore-experiences"}>Experiences</Link>
+                <Link href={"/explore-experiences/all"}>Experiences</Link>
               </li>
             </ul>
           </div>
