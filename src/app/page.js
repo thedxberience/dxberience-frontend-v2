@@ -51,16 +51,11 @@ export default function Home() {
             {/* </TextMotion> */}
             <div className="lg:w-[38.906vw] font-noah">
               <p>
-                At Dxberience, we specialize in curating personalized
-                itineraries, providing VIP experiences, and curating
-                unforgettable excursions to ensure an unparalleled journey for
-                our clients. With our expertise in global travel and exclusive
-                partnerships with luxury providers, we deliver unrivalled luxury
-                across a spectrum of experiences, ranging from exploring local
-                delights to indulging in exotic destinations worldwide. Whether
-                you seek adventure, relaxation, or cultural immersion, we are
-                dedicated to creating bespoke experiences tailored to your
-                desires.
+                Indulge in an unforgettable journey with us as we meticulously
+                curate every detail to create an extraordinary experience just
+                for you. From exquisite accommodations to personalized
+                itineraries, let us take you on a seamless and enchanting
+                adventure that surpasses all expectations.
               </p>
             </div>
           </div>
