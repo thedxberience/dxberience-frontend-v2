@@ -1,12 +1,10 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import CustomButton from "./shared/CustomButton";
 import ServiceCard from "./ServiceSection/ServiceCard";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 
 const ServicesSection = () => {
-  const servicesSectionRef = useRef(null);
   const stickySection = useRef(null);
   const scrollSection = useRef(null);
 
@@ -21,11 +19,14 @@ const ServicesSection = () => {
 
   const [stickySectionWidth, setStickySectionWidth] = useState(1082);
 
+  const mobileOddWidth = 301;
+  const mobileEvenWidth = 291;
+
   useEffect(() => {
     if (window) {
       if (window.innerWidth < 1024) {
-        setOddWidth(341);
-        setEvenWidth(290);
+        setOddWidth(mobileOddWidth);
+        setEvenWidth(mobileEvenWidth);
       }
     }
   }, []);
@@ -33,8 +34,8 @@ const ServicesSection = () => {
   const handleScrollThreshold = useCallback(() => {
     if (window.innerWidth < 1024) {
       setScrollThreshold(620);
-      setOddWidth(341);
-      setEvenWidth(290);
+      setOddWidth(mobileOddWidth);
+      setEvenWidth(mobileEvenWidth);
     } else {
       setScrollThreshold(desktopScrollThreshold);
     }
@@ -82,54 +83,6 @@ const ServicesSection = () => {
     },
   });
 
-  // const services = [
-  //   {
-  //     serviceName: "Vip Concierge",
-  //     image: "/vip_concierge.jpeg",
-  //     alt: "VIP concierge service in Dubai for exclusive experiences, personalized shopping, corporate services, travel booking.",
-  //   },
-  //   {
-  //     serviceName: "Luxury Rentals",
-  //     image: "/luxury_rentals.jpeg",
-  //     alt: "Luxury car rentals for your Dubai getaway, private chauffeur and limousine services.",
-  //   },
-  //   {
-  //     serviceName: "Private Jets",
-  //     image: "/private_jets.jpeg",
-  //     alt: "Private jet charters for seamless travel experiences in style.",
-  //   },
-  //   {
-  //     serviceName: "Yachts",
-  //     image: "/service_yacht.jpeg",
-  //     alt: "Luxury yacht rentals in Dubai for unforgettable memories and celebrations.",
-  //   },
-  //   {
-  //     serviceName: "Experiences",
-  //     image: "/experiences.jpeg",
-  //     alt: "Curated experiences in Dubai for desert activities, water sports, beach clubs, attractions and excursions.",
-  //   },
-  //   {
-  //     serviceName: "Reservations",
-  //     image: "/reservations.jpeg",
-  //     alt: "Exclusive tables reservations at Dubai's finest restaurants, nightclubs and bars.",
-  //   },
-  //   {
-  //     serviceName: "Events",
-  //     image: "/events.jpeg",
-  //     alt: "Attend private events and book your event tickets for sports, fashion, opera and film festivals.",
-  //   },
-  //   {
-  //     serviceName: "Luxury Stays",
-  //     image: "/luxury_stays.jpeg",
-  //     alt: "Indulge in luxury villas at premium accommodations.",
-  //   },
-  //   {
-  //     serviceName: "Visas and Business Formation",
-  //     image: "/visa_services.jpeg",
-  //     alt: "Streamlined visa services for hassle-free travel arrangements.",
-  //   },
-  // ];
-
   const handleStickyDimension = useCallback(() => {
     const serviceCount = services?.length;
     let oddWidth, evenWidth;
@@ -146,8 +99,8 @@ const ServicesSection = () => {
     const handleResize = () => {
       if (window.innerWidth < 1024) {
         setScrollThreshold(620);
-        setOddWidth(341);
-        setEvenWidth(290);
+        setOddWidth(mobileOddWidth);
+        setEvenWidth(mobileEvenWidth);
       } else {
         setScrollThreshold(desktopScrollThreshold);
       }
@@ -155,8 +108,8 @@ const ServicesSection = () => {
 
     if (window) {
       if (window.innerWidth < 1024) {
-        setOddWidth(341);
-        setEvenWidth(290);
+        setOddWidth(mobileOddWidth);
+        setEvenWidth(mobileEvenWidth);
       }
     }
     window.addEventListener("resize", handleResize);
@@ -193,9 +146,9 @@ const ServicesSection = () => {
                   featuring luxurious accommodations in the world's most
                   sought-after destinations.
                 </p>
-                <div>
+                {/* <div>
                   <CustomButton btnName="global private villa portfolio" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

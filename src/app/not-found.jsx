@@ -24,7 +24,7 @@ const NotFound = () => {
             That page that you're looking for does not exist
           </p>
         </div>
-        <CustomButton btnName="take me home" />
+        <CustomButton btnName="take me home" isLink href="/" />
       </div>
     </HelperLayout>
   );
