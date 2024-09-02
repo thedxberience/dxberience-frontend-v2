@@ -6,7 +6,7 @@ import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useCallback } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 
@@ -15,12 +15,14 @@ const page = ({ params }) => {
     queryKey: ["product", params.slug],
     queryFn: async () => {
       const data = await makeRequest(`/product/${params.slug}`);
+      console.log(data[0]?.subCategory?.name.toLowerCase().includes("rentals"));
+
       return data[0];
     },
   });
 
   function currencyFormat(num) {
-    return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    return num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   }
 
   const router = useRouter();
@@ -28,6 +30,14 @@ const page = ({ params }) => {
   const handlePagePop = () => {
     router.back();
   };
+
+  const handlePriceRate = useCallback(() => {
+    if (data?.subCategory?.name.toLowerCase().includes("rentals")) {
+      return "PER DAY";
+    } else {
+      return "PER PERSON";
+    }
+  }, [data]);
 
   return (
     <main>
@@ -55,17 +65,17 @@ const page = ({ params }) => {
                 <h3 className="font-IvyPresto font-bold text-2xl">
                   AED {currencyFormat(data?.price)}
                 </h3>
-                <p className="font-thin text-sm">PER PERSON</p>
+                <p className="font-thin text-sm">{handlePriceRate()}</p>
               </div>
             )}
           </div>
           <div className="flex justify-between items-center w-full">
-            <div className="flex flex-col w-full justify-center items-start gap-6">
-              <div className="event-gallery flex justify-center items-center gap-1">
+            <div className="flex flex-col w-full lg:w-8/12 justify-center items-start gap-6 flex-none">
+              <div className="event-gallery flex justify-start w-full items-center gap-1 lg:w-[60svw] flex-none flex-shrink-0 basis-full overflow-x-auto">
                 {data?.gallery?.map((image, key) => {
                   return (
                     <div
-                      className="relative w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
+                      className="relative flex-shrink-0 w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
                       key={key}
                     >
                       <Image
@@ -93,7 +103,9 @@ const page = ({ params }) => {
                 <h3 className="font-IvyPresto font-bold text-2xl lg:text-5xl">
                   AED {currencyFormat(data?.price)}
                 </h3>
-                <p className="font-thin text-sm lg:text-lg">PER PERSON</p>
+                <p className="font-thin text-sm lg:text-lg">
+                  {handlePriceRate()}
+                </p>
               </div>
             )}
           </div>

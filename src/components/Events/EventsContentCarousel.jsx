@@ -51,15 +51,17 @@ const EventsContentCarousel = ({
             <h2>Details</h2>
           </div>
         )}
+        {location && (
+          <div
+            className={`w-full cursor-pointer flex justify-center items-center border-b ${
+              selectedIndex == 1 ? "border-black" : "border-gray-50"
+            }`}
+            onClick={() => onTabClick(1)}
+          >
+            <h2>Get Directions</h2>
+          </div>
+        )}
 
-        <div
-          className={`w-full cursor-pointer flex justify-center items-center border-b ${
-            selectedIndex == 1 ? "border-black" : "border-gray-50"
-          }`}
-          onClick={() => onTabClick(1)}
-        >
-          <h2>Get Directions</h2>
-        </div>
         {terms_and_conditions && (
           <div
             className={`w-full cursor-pointer flex justify-center items-center border-b ${

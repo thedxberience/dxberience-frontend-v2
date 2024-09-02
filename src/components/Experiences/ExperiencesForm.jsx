@@ -7,10 +7,10 @@ import CustomSelectTag from "../shared/CustomSelectTag";
 import CustomOptionTag from "../shared/CustomOptionTag";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
-import { componentUseStore } from "@/store/componentStore";
+import { useComponentStore } from "@/store/componentStore";
 import { DatePickerWithPresets } from "../shared/DatePicker";
 import { DatePickerWithRange } from "../shared/DateRangePicker";
-import { apiUseStore } from "@/store/apiStore";
+import { useApiStore } from "@/store/apiStore";
 import { isError } from "react-query";
 
 const ExperiencesForm = ({}) => {
@@ -50,9 +50,9 @@ const ExperiencesForm = ({}) => {
     closeCategoryDropdown,
     closeBudgetDropdown,
     categoryFromSlug,
-  } = componentUseStore((state) => state);
+  } = useComponentStore((state) => state);
 
-  const { setProductData } = apiUseStore((state) => state);
+  const { setProductData } = useApiStore((state) => state);
 
   const btnRef = useRef();
   const [isSubCategory, setIsSubCategory] = useState(false);
@@ -76,7 +76,7 @@ const ExperiencesForm = ({}) => {
     queryFn: async () => {
       const data = await makeRequest(apiParams);
       if (!isProductError) {
-        setProductData(data);
+        setProductData(productData);
       }
       return data;
     },

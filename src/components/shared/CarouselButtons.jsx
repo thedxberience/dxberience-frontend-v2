@@ -38,7 +38,11 @@ export const usePrevNextButtons = (emblaApi) => {
   };
 };
 
-const CarouselButtons = ({ direction, disabled, onClick }) => {
+const CarouselButtons = ({
+  direction,
+  disabled = false,
+  onClick = () => {},
+}) => {
   return (
     <button
       onClick={onClick}
