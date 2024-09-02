@@ -414,7 +414,7 @@ body {
     }
 }
 
-@media screen and (min-width: 435px) and (max-width: 1279px) {
+@media screen and (min-width: 362px) and (max-width: 1279px) {
     .experiences {
         grid-template-columns: 1fr 1fr;
     }
