@@ -63,22 +63,24 @@ const page = ({ params }) => {
           </div>
           <div className="flex justify-between items-center w-full">
             <div className="flex flex-col w-full justify-center items-start gap-6">
-              <div className="event-gallery flex justify-center items-center gap-1">
+              <div className="event-gallery flex justify-start w-full items-center gap-1 lg:w-[55svw] flex-none flex-shrink-0 basis-full overflow-x-auto">
                 {data?.gallery?.map((image, key) => {
                   return (
-                    <div
-                      className="relative w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
-                      key={key}
-                    >
-                      <Image
-                        src={image.image}
-                        alt={image.altText}
-                        fill
-                        placeholder="blur"
-                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcP316LgAF5gI8MqGGhAAAAABJRU5ErkJggg=="
-                        className="object-cover"
-                      />
-                    </div>
+                    image.image && (
+                      <div
+                        className="relative flex-shrink-0 w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
+                        key={key}
+                      >
+                        <Image
+                          src={image.image}
+                          alt={image.altText}
+                          fill
+                          placeholder="blur"
+                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcP316LgAF5gI8MqGGhAAAAABJRU5ErkJggg=="
+                          className="object-cover"
+                        />
+                      </div>
+                    )
                   );
                 })}
               </div>
