@@ -6,7 +6,7 @@ import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useCallback } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 
@@ -15,12 +15,14 @@ const page = ({ params }) => {
     queryKey: ["product", params.slug],
     queryFn: async () => {
       const data = await makeRequest(`/product/${params.slug}`);
+      console.log(data[0]?.subCategory?.name.toLowerCase().includes("rentals"));
+
       return data[0];
     },
   });
 
   function currencyFormat(num) {
-    return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    return num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
   }
 
   const router = useRouter();
@@ -28,6 +30,14 @@ const page = ({ params }) => {
   const handlePagePop = () => {
     router.back();
   };
+
+  const handlePriceRate = useCallback(() => {
+    if (data?.subCategory?.name.toLowerCase().includes("rentals")) {
+      return "PER DAY";
+    } else {
+      return "PER PERSON";
+    }
+  }, [data]);
 
   return (
     <main>

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const apiUseStore = create((set, get) => ({
+export const useApiStore = create((set, get) => ({
   productData: [],
-  setProductData: (data) => set((state) => ({ productData: data })),
+  setProductData: (data) => set(() => ({ productData: data })),
 }));

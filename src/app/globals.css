@@ -227,6 +227,28 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.about-page-header .overlay{
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.about-page-header .car-overlay{
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.white-overlay{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .Visas p{
   font-size: 35px;
 }
@@ -275,9 +297,9 @@ body {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(100svw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(43.277svw, 1fr));
   row-gap: 16px;
-  column-gap: 12.44px;
+  column-gap: 6px;
 }
 
 .md{
@@ -303,7 +325,10 @@ body {
     url("/infinity_pool.jpeg") no-repeat center center/cover;
 }
 
-
+.bespoke-concierge-container{
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)),
+  url("/travel-about.jpeg") no-repeat center center/cover;
+}
 
 
 @keyframes pan-img {

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export const componentUseStore = create((set, get) => ({
+export const useComponentStore = create((set, get) => ({
   experienceFormDropdownState: {
     categoryDropdown: false,
     dateDropdown: false,
