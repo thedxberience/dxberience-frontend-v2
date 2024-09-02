@@ -61,7 +61,7 @@ function Footer() {
 
           <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight xl:flex gap-5 ">
             <li className="mt-4">
-              <Link href={"/explore-experiences"}>EXPERIENCES</Link>
+              <Link href={"/explore-experiences/all"}>EXPERIENCES</Link>
             </li>
             <li className="mt-4">
               <Link href={"/contact"}>CONTACT</Link>
@@ -72,7 +72,11 @@ function Footer() {
         <div className="flex justify-center items-center text-sm gap-[80px] border-t-[1px] border-b-[1px] h-[112.01px] 2xl:h-[252.01px] border-white">
           <div className="flex flex-col items-center p-4 gap-5">
             <span>CONTACT US</span>
-            <img src="/footer_whatsapp.png" alt="logo" onClick={openWhatsapp} />
+            <img
+              src="/footer_whatsapp.svg"
+              alt="WhatsApp logo"
+              onClick={openWhatsapp}
+            />
           </div>
 
           <div className="h-[50px] w-[1px] bg-white bg-opacity-50" />
@@ -83,7 +87,7 @@ function Footer() {
               href="https://www.instagram.com/thedxberience?igsh=MTdyY2k5NTdpZW5kcA=="
               target="_blank"
             >
-              <img src="/footer_insta.png" alt="logo" />
+              <img src="/footer_insta.svg" alt="Insta logo" />
             </Link>
           </div>
         </div>

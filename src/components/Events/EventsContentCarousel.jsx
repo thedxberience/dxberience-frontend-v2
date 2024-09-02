@@ -88,7 +88,7 @@ const EventsContentCarousel = ({
               </div>
               {terms_and_conditions && (
                 <div className="md embla__slide" key={3}>
-                  <ReactMarkdown>{terms_and_conditions}</ReactMarkdown>
+                  <PortableText value={terms_and_conditions} />
                 </div>
               )}
             </div>

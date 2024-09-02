@@ -13,7 +13,7 @@ import { DatePickerWithRange } from "../shared/DateRangePicker";
 import { useApiStore } from "@/store/apiStore";
 import { isError } from "react-query";
 
-const ExperiencesForm = ({}) => {
+const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
   const {
     register,
     handleSubmit,
@@ -50,13 +50,14 @@ const ExperiencesForm = ({}) => {
     closeCategoryDropdown,
     closeBudgetDropdown,
     categoryFromSlug,
+    categorySlugDisplay,
   } = useComponentStore((state) => state);
 
   const { setProductData } = useApiStore((state) => state);
 
   const btnRef = useRef();
   const [isSubCategory, setIsSubCategory] = useState(false);
-  const [apiParams, setApiParams] = useState("");
+  // const [apiParams, setApiParams] = useState("");
   const [categoryName, setCategoryName] = useState("Categories");
   const [budget, setBudget] = useState("Budget");
   const [budgetRange, setBudgetRange] = useState({
@@ -65,23 +66,23 @@ const ExperiencesForm = ({}) => {
   });
   const [date, setDate] = useState();
 
-  const {
-    data: productData,
-    error: productError,
-    isError: isProductError,
-    isSuccess: isProductSuccess,
-    isLoading: isProductLoading,
-  } = useQuery({
-    queryKey: ["product", apiParams],
-    queryFn: async () => {
-      const data = await makeRequest(apiParams);
-      if (!isProductError) {
-        setProductData(productData);
-      }
-      return data;
-    },
-    enabled: apiParams != "",
-  });
+  // const {
+  //   data: productData,
+  //   error: productError,
+  //   isError: isProductError,
+  //   isSuccess: isProductSuccess,
+  //   isLoading: isProductLoading,
+  // } = useQuery({
+  //   queryKey: ["product", apiParams],
+  //   queryFn: async () => {
+  //     const data = await makeRequest(apiParams);
+  //     if (!isProductError) {
+  //       setProductData(productData);
+  //     }
+  //     return data;
+  //   },
+  //   enabled: apiParams != "",
+  // });
 
   const handleSetCategoryName = (categoryName) => {
     setCategoryName(categoryName);
@@ -116,6 +117,9 @@ const ExperiencesForm = ({}) => {
       min: 2000,
       max: 2500,
     },
+    {
+      min: 2500,
+    },
   ];
 
   const handleFindExperiences = (e, categoryFromSlug = null) => {
@@ -142,10 +146,14 @@ const ExperiencesForm = ({}) => {
         }
       }
 
-      if (budget != "Budget" && budgetRange.max) {
-        apiParams += `${handleAppendSign()}minBudget=${
-          budgetRange.min
-        }&maxBudget=${budgetRange.max}`;
+      if (budget != "Budget" && (budgetRange.min || budgetRange.max)) {
+        if (budgetRange.min) {
+          apiParams += `${handleAppendSign()}minBudget=${budgetRange.min}`;
+        } else {
+          apiParams += `${handleAppendSign()}minBudget=${
+            budgetRange.min
+          }&maxBudget=${budgetRange.max}`;
+        }
       }
 
       if (date) {
@@ -164,7 +172,7 @@ const ExperiencesForm = ({}) => {
 
   useEffect(() => {
     if (categoryFromSlug) {
-      setCategoryName(categoryFromSlug);
+      setCategoryName(categorySlugDisplay);
       if (
         categoryFromSlug.toLowerCase() != "categories" &&
         categoryFromSlug.toLowerCase() != "all"
@@ -225,6 +233,8 @@ const ExperiencesForm = ({}) => {
               let budgetText = `AED ${option.min} - AED ${option.max}`;
               if (!option.min && !option.max) {
                 budgetText = "All";
+              } else if (option.min && !option.max) {
+                budgetText = `AED ${option.min} and above`;
               }
               return (
                 <CustomOptionTag

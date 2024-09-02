@@ -66,7 +66,7 @@ const page = ({ params }) => {
                   AED {currencyFormat(data?.price)}
                 </h3>
                 <p className="font-thin text-sm">
-                  {data.priceRate ? data.priceRate : "PER PERSON"}
+                  {data.priceRate ? data.priceRate : handlePriceRate()}
                 </p>
               </div>
             )}
@@ -108,7 +108,7 @@ const page = ({ params }) => {
                   AED {currencyFormat(data?.price)}
                 </h3>
                 <p className="font-thin text-sm lg:text-lg uppercase">
-                  {data.priceRate ? data.priceRate : "PER PERSON"}
+                  {data.priceRate ? data.priceRate : handlePriceRate()}
                 </p>
               </div>
             )}
@@ -129,7 +129,7 @@ const page = ({ params }) => {
                 longDescription={data.longDescription}
                 location={data.location}
                 locationCoordinate={data?.locationCoordinates}
-                terms_and_conditions={data.terms_and_conditions}
+                terms_and_conditions={data.termsAndCondition}
               />
             ) : (
               <div className="flex justify-center items-center min-h-screen">
