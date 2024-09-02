@@ -55,7 +55,9 @@ const page = ({ params }) => {
                 <h3 className="font-IvyPresto font-bold text-2xl">
                   AED {currencyFormat(data?.price)}
                 </h3>
-                <p className="font-thin text-sm">PER PERSON</p>
+                <p className="font-thin text-sm">
+                  {data.priceRate ? data.priceRate : "PER PERSON"}
+                </p>
               </div>
             )}
           </div>
@@ -93,7 +95,9 @@ const page = ({ params }) => {
                 <h3 className="font-IvyPresto font-bold text-2xl lg:text-5xl">
                   AED {currencyFormat(data?.price)}
                 </h3>
-                <p className="font-thin text-sm lg:text-lg">PER PERSON</p>
+                <p className="font-thin text-sm lg:text-lg uppercase">
+                  {data.priceRate ? data.priceRate : "PER PERSON"}
+                </p>
               </div>
             )}
           </div>
