@@ -1,279 +1,206 @@
 "use client";
-import React, { useState, useRef } from "react";
-
-function InfoCard({ title = "none", amount = "112" }) {
-  return (
-    <div className="flex flex-col w-full sm:w-[200px] bg-[#2A2A2A] rounded-[4px] px-5 py-4">
-      <span className="text-sm">{title}</span>
-      <span className="text-lg font-semibold">{amount}</span>
-    </div>
-  );
-}
-
-function FilterButton({ name, count = 0, isActive, onClick }) {
-  return (
-    <button
-      className={`flex gap-2 justify-center items-center px-4 py-2 rounded-[4px] ${
-        isActive ? "bg-[#424242]" : "bg-[#333233]"
-      }`}
-      onClick={onClick}
-    >
-      <span>{name}</span>
-      <div className="bg-[#2A2A2A] px-2 py-[2px] rounded-[2px] text-xs">
-        {count}
-      </div>
-    </button>
-  );
-}
-
-const BookingTable = ({ bookings, updateBookingStatus }) => {
-  const handleStatusChange = (bookingId, newStatus) => {
-    updateBookingStatus(bookingId, newStatus);
-  };
-
-  return (
-    <div className="overflow-x-auto text-sm">
-      <table className="min-w-full">
-        <thead>
-          <tr>
-            <th className="py-4 px-6 border-b border-[#333233]">Booking ID</th>
-            <th className="py-4 px-6 border-b border-[#333233]">Created At</th>
-            <th className="py-4 px-6 border-b border-[#333233]">Status</th>
-            <th className="py-4 px-6 border-b border-[#333233]">
-              Customer Name
-            </th>
-            <th className="py-4 px-6 border-b border-[#333233]">
-              Product Name
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map((booking) => (
-            <tr key={booking.bookingId} className="text-center">
-              <td className="border-b border-[#333233] py-3 px-6">
-                {booking.bookingId}
-              </td>
-              <td className="border-b border-[#333233] py-3 px-6">
-                {new Date(booking.createdAt).toLocaleDateString()}
-              </td>
-              <td className="border-b border-[#333233] py-3 px-6">
-                <select
-                  value={booking.status}
-                  onChange={(e) =>
-                    handleStatusChange(booking.bookingId, e.target.value)
-                  }
-                  className="bg-[#2A2A2A] border border-[#424242] rounded-[4px] p-2"
-                >
-                  <option value="Pending">Pending</option>
-                  <option value="Confirmed">Confirmed</option>
-                  <option value="Cancelled">Cancelled</option>
-                </select>
-              </td>
-              <td className="border-b border-[#333233] py-3 px-6">
-                {booking.customerName}
-              </td>
-              <td className="border-b border-[#333233] py-3 px-6">
-                {booking.productName}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+import React, { useEffect, useState } from "react";
+import InfoCard from "@/components/BookingAdmin/InfoCard";
+import FilterTabs from "@/components/BookingAdmin/FilterTab";
+import BookingTable from "@/components/BookingAdmin/BookingTable";
+import { MdExpandMore, MdExpandLess } from "react-icons/md";
+import { getUrlQueryString } from "@/utils/utils";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import UpdateModal from "@/components/BookingAdmin/UpdateModal";
+import axios from "axios";
 
 function BookingAdmin() {
-  const [bookings, setBookings] = useState([
-    {
-      bookingId: "A12345",
-      createdAt: "2023-09-01T09:00:00Z",
-      status: "Confirmed",
-      customerName: "Alice Johnson",
-      productName: "Luxury Villa Rental",
-    },
-    {
-      bookingId: "B67890",
-      createdAt: "2023-09-02T14:30:00Z",
-      status: "Pending",
-      customerName: "Bob Smith",
-      productName: "Private Jet Charter",
-    },
-    {
-      bookingId: "C13579",
-      createdAt: "2023-09-03T16:00:00Z",
-      status: "Cancelled",
-      customerName: "Charlie Davis",
-      productName: "Yacht Rental",
-    },
-  ]);
-  const [filteredBookings, setFilteredBookings] = useState(bookings);
+  const queryClient = useQueryClient();
+
   const [activeFilter, setActiveFilter] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [advancedFilter, setAdvancedFilter] = useState(false);
+  const [productName, setProductName] = useState("");
+  const [customerName, setCustomerName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [minAmount, setMinAmount] = useState("");
   const [maxAmount, setMaxAmount] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [targetBooking, setTargetBooking] = useState(null);
+  const [paymentStatus, setPaymentStatus] = useState(null);
+  const [confirmationStatus, setConfirmationStatus] = useState(null);
 
-  const [advancedFilter, setAdvancedFilter] = useState(false);
+  const { data: bookingQueryData, isFetching: bookingQueryFetching } = useQuery(
+    {
+      queryKey: [
+        "booking-query",
+        productName,
+        paymentStatus,
+        confirmationStatus,
+        customerName,
+        startDate,
+        endDate,
+        minAmount,
+        maxAmount,
+      ],
 
-  const updateBookingStatus = (bookingId, newStatus) => {
-    setBookings((prevBookings) =>
-      prevBookings.map((booking) =>
-        booking.bookingId === bookingId
-          ? { ...booking, status: newStatus }
-          : booking
-      )
-    );
-  };
+      queryFn: async () => {
+        const queryString = getUrlQueryString({
+          productName,
+          customerName,
+          paymentStatus,
+          confirmationStatus,
+          startDate,
+          endDate,
+          minAmount,
+          maxAmount,
+        });
 
-  const handleFilter = (status) => {
-    setActiveFilter(status);
-    filterBookings(
-      status,
-      searchTerm,
-      startDate,
-      endDate,
-      minAmount,
-      maxAmount
-    );
-  };
+        console.log(queryString);
 
-  const handleSearch = (event) => {
-    const value = event.target.value.toLowerCase();
-    setSearchTerm(value);
-    filterBookings(
-      activeFilter,
-      value,
-      startDate,
-      endDate,
-      minAmount,
-      maxAmount
-    );
-  };
-
-  const handleDateFilter = () => {
-    filterBookings(
-      activeFilter,
-      searchTerm,
-      startDate,
-      endDate,
-      minAmount,
-      maxAmount
-    );
-  };
-
-  const handleAmountFilter = () => {
-    filterBookings(
-      activeFilter,
-      searchTerm,
-      startDate,
-      endDate,
-      minAmount,
-      maxAmount
-    );
-  };
-
-  const filterBookings = (
-    status,
-    searchTerm,
-    startDate,
-    endDate,
-    minAmount,
-    maxAmount
-  ) => {
-    let filtered = bookings;
-
-    if (status !== "All") {
-      filtered = filtered.filter((booking) => booking.status === status);
+        const response = await fetch(
+          `http://localhost:3001/api/v1/booking/dashboard-info?${queryString}`
+        );
+        const result = await response.json();
+        console.log(result);
+        return result;
+      },
     }
+  );
 
-    if (searchTerm) {
-      filtered = filtered.filter((booking) =>
-        booking.customerName.toLowerCase().includes(searchTerm)
-      );
-    }
-
-    if (startDate) {
-      filtered = filtered.filter(
-        (booking) => new Date(booking.createdAt) >= new Date(startDate)
-      );
-    }
-
-    if (endDate) {
-      filtered = filtered.filter(
-        (booking) => new Date(booking.createdAt) <= new Date(endDate)
-      );
-    }
-
-    if (minAmount) {
-      filtered = filtered.filter(
-        (booking) => parseFloat(booking.amount) >= parseFloat(minAmount)
-      );
-    }
-
-    if (maxAmount) {
-      filtered = filtered.filter(
-        (booking) => parseFloat(booking.amount) <= parseFloat(maxAmount)
-      );
-    }
-
-    setFilteredBookings(filtered);
-  };
+  const bookingMutation = useMutation({
+    mutationFn: ({ id, data }) => {
+      return axios.patch(`http://localhost:3001/api/v1/booking/${id}`, data);
+    },
+    onSuccess: () => {
+      // Invalidate the bookings query so it refetches the latest data
+      queryClient.invalidateQueries({ queryKey: ["booking-query"] });
+    },
+  });
+  const bookings = [];
 
   return (
-    <div className="bg-[#212121] min-h-[100vh] text-white">
+    <div className="flex flex-col bg-[#212121] min-h-[100vh] text-white">
       <div className="px-4 sm:px-20 py-5">
         <h1 className="text-lg font-extrabold py-5">Bookings</h1>
         <div className="flex gap-4 flex-wrap">
-          <InfoCard title="Total Orders" amount={bookings.length.toString()} />
-          <InfoCard title="Total Revenue" amount="$2002.46" />
+          <InfoCard
+            title="Total Orders"
+            amount={`${bookingQueryData?.totalDocumentsMatchingQuery || 0}/${
+              bookingQueryData?.totalDocumentsInCollection
+            }`}
+          />
+          <InfoCard
+            title="Total Revenue"
+            amount={`AED ${bookingQueryData?.totalRevenue || 0}`}
+          />
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-20 py-3 w-full gap-4 sm:gap-10 border-b-[1px] border-[#333233] text-sm">
-        <div className="flex gap-4">
-          <FilterButton
-            name="All Orders"
-            isActive={activeFilter === "All"}
-            onClick={() => handleFilter("All")}
-            count={bookings.length}
-          />
-          <FilterButton
-            name="Pending"
-            isActive={activeFilter === "Pending"}
-            onClick={() => handleFilter("Pending")}
-            count={bookings.filter((b) => b.status === "Pending").length}
-          />
-          <FilterButton
-            name="Confirmed"
-            isActive={activeFilter === "Confirmed"}
-            onClick={() => handleFilter("Confirmed")}
-            count={bookings.filter((b) => b.status === "Confirmed").length}
-          />
-          <FilterButton
-            name="Cancelled"
-            isActive={activeFilter === "Cancelled"}
-            onClick={() => handleFilter("Cancelled")}
-            count={bookings.filter((b) => b.status === "Cancelled").length}
-          />
-
-          <button onClick={() => setAdvancedFilter(!advancedFilter)}>
-            {advancedFilter ? "Close " : " Open "}Advanced Filter
-          </button>
+      <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-20 w-full gap-4 sm:gap-10 border-b-[1px] border-[#333233] text-sm">
+        <div className="flex items-center justify-between w-full">
+          <div className="flex gap-4 ">
+            <FilterTabs
+              name="All Orders"
+              isActive={activeFilter === "All"}
+              onClick={() => {
+                setActiveFilter("All");
+                setConfirmationStatus(null), setPaymentStatus(null);
+              }}
+              count={bookingQueryData?.totalDocumentsInCollection || 0}
+            />
+            <FilterTabs
+              name="Pending"
+              isActive={activeFilter === "Pending"}
+              onClick={() => {
+                setActiveFilter("Pending");
+                setConfirmationStatus("PENDING"), setPaymentStatus(null);
+              }}
+              count={bookingQueryData?.pendingCount || 0}
+            />
+            <FilterTabs
+              name="Confirmed"
+              isActive={activeFilter === "Confirmed"}
+              onClick={() => {
+                setActiveFilter("Confirmed");
+                setConfirmationStatus("CONFIRMED"), setPaymentStatus(null);
+              }}
+              count={bookingQueryData?.confirmedCount || 0}
+            />
+            <FilterTabs
+              name="Cancelled"
+              isActive={activeFilter === "Cancelled"}
+              onClick={() => {
+                setActiveFilter("Cancelled");
+                setConfirmationStatus("CANCELLED"), setPaymentStatus(null);
+              }}
+              count={bookingQueryData?.cancelledCount || 0}
+            />
+            <FilterTabs
+              name="Paid"
+              isActive={activeFilter === "Paid"}
+              onClick={() => {
+                setActiveFilter("Paid");
+                setPaymentStatus("PAID"), setConfirmationStatus(null);
+              }}
+              count={bookingQueryData?.paidCount || 0}
+            />
+            <FilterTabs
+              name="Unpaid"
+              isActive={activeFilter === "Unpaid"}
+              onClick={() => {
+                setActiveFilter("Unpaid");
+                setPaymentStatus("UNPAID"), setConfirmationStatus(null);
+              }}
+              count={bookingQueryData?.unpaidCount || 0}
+            />
+            <FilterTabs
+              name="Refund"
+              isActive={activeFilter === "Refund"}
+              onClick={() => {
+                setActiveFilter("Refund");
+                setPaymentStatus("REFUND"), setConfirmationStatus(null);
+              }}
+              count={bookingQueryData?.refundCount || 0}
+            />
+          </div>
+          <div>
+            <button
+              onClick={() => setAdvancedFilter(!advancedFilter)}
+              title="Click to Show advanced Filters"
+            >
+              {advancedFilter ? (
+                <MdExpandLess size={20} />
+              ) : (
+                <MdExpandMore size={20} />
+              )}
+            </button>
+          </div>
         </div>
-        <input
-          type="text"
-          placeholder="Search by Customer Name"
-          value={searchTerm}
-          onChange={handleSearch}
-          className="bg-[#2A2A2A] border border-[#424242] rounded-[4px] p-2 w-full sm:w-[300px]"
-        />
       </div>
       <div
-        className={`flex-wrap justify-between items-center px-4 sm:px-20 py-3 w-full gap-4 sm:gap-10 border-b-[1px] border-[#333233] text-sm ${
+        className={`flex flex-col  px-4 sm:px-20 py-3 w-full gap-4 sm:gap-10 border-b-[1px] border-[#333233] text-sm ${
           advancedFilter ? "flex" : "hidden"
         }`}
       >
+        <div className="flex gap-4 items-center">
+          <input
+            type="text"
+            placeholder="Search by Product Name/Slug"
+            value={productName}
+            onChange={(event) => {
+              setProductName(event.target.value);
+            }}
+            className="bg-[#2A2A2A] border border-[#424242] rounded-[4px] p-2 w-full sm:w-[300px]"
+          />
+        </div>
+
+        <div className="flex gap-4 items-center">
+          <input
+            type="text"
+            placeholder="Search by Customer Name"
+            value={customerName}
+            onChange={(event) => {
+              setCustomerName(event.target.value);
+            }}
+            className="bg-[#2A2A2A] border border-[#424242] rounded-[4px] p-2 w-full sm:w-[300px]"
+          />
+        </div>
+
         <div className="flex gap-4 items-center">
           <div className="flex flex-col">
             <label className="text-xs">Start Date</label>
@@ -294,7 +221,7 @@ function BookingAdmin() {
             />
           </div>
           <button
-            onClick={handleDateFilter}
+            onClick={() => {}}
             className="bg-[#424242] px-4 py-2 rounded-[4px] mt-4"
           >
             Apply Date Filter
@@ -320,19 +247,37 @@ function BookingAdmin() {
             />
           </div>
           <button
-            onClick={handleAmountFilter}
+            onClick={() => {}}
             className="bg-[#424242] px-4 py-2 rounded-[4px] mt-4"
           >
             Apply Amount Filter
           </button>
         </div>
       </div>
-      <div className="px-4 sm:px-20 py-5">
-        <BookingTable
-          bookings={filteredBookings}
-          updateBookingStatus={updateBookingStatus}
-        />
+      <div className="flex flex-col flex-grow">
+        {bookingQueryFetching ? (
+          <div className="flex w-full h-[60vh] justify-center items-center">
+            <div class="flex flex-row gap-2">
+              <div class="w-2 h-2 rounded-full bg-gray-500 animate-bounce [animation-delay:.7s]"></div>
+              <div class="w-2 h-2 rounded-full bg-gray-500 animate-bounce [animation-delay:.3s]"></div>
+              <div class="w-2 h-2 rounded-full bg-gray-500 animate-bounce [animation-delay:.7s]"></div>
+            </div>
+          </div>
+        ) : (
+          <BookingTable
+            bookings={bookingQueryData?.documents || []}
+            toggleModal={setModalIsOpen}
+            setTargetBooking={setTargetBooking}
+          />
+        )}
       </div>
+      {modalIsOpen && (
+        <UpdateModal
+          toggleModal={setModalIsOpen}
+          booking={targetBooking}
+          bookingMutation={bookingMutation}
+        />
+      )}
     </div>
   );
 }
