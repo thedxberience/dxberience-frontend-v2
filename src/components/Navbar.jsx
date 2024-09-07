@@ -74,7 +74,7 @@ const Navbar = () => {
                   src="/dxberience_logo.svg"
                   alt="Dxberience Logo"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </Link>
             </div>

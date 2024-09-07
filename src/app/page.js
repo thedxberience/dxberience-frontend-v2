@@ -115,7 +115,7 @@ export default function Home() {
                 btnName="Inquire Now"
                 invert={true}
                 isLink
-                href="/explore-experiences/all"
+                href="/contact"
               />
             </div>
             <p className="text-sm lg:text-lg font-extralight pt-10">
@@ -199,7 +199,7 @@ export default function Home() {
       <ServicesSection />
       <section className="luxury-destination mt-11 lg:mt-[150px] p-6">
         <div className="header gap-6 flex flex-col justify-center items-center">
-          <h1 className="text-4xl lg:text-7xl text-center font-semibold font-IvyPresto">
+          <h1 className="text-4xl lg:text-7xl text-center font-IvyPresto">
             Tailored Travel & Itineraries
           </h1>
           <div className="w-full flex justify-center items-center">
