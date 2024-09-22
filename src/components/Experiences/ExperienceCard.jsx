@@ -44,6 +44,7 @@ const ExperienceCard = ({
           src={experienceImage}
           alt={experienceAlt ? experienceAlt : "image for a product"}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={`${
             pan ? "mouse-over-pan" : "mouse-over-no-pan"
           } object-cover`}

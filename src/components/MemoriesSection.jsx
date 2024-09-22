@@ -57,6 +57,7 @@ const MemoriesSection = () => {
                   src="/yacht_deck.jpeg"
                   alt="Luxury yacht rental and best charters yachts in Dubai"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -65,6 +66,7 @@ const MemoriesSection = () => {
                   src="/watch_shopping.jpeg"
                   alt="Personalized shopping experiences in Dubai"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -75,6 +77,7 @@ const MemoriesSection = () => {
                   src="/chauffeur.png"
                   alt="Limousine services for VIP transportation in Dubai"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -85,6 +88,7 @@ const MemoriesSection = () => {
                   src="/jet_interior.jpeg"
                   alt="Luxury private jet rental and best charter jets in Dubai"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -93,6 +97,7 @@ const MemoriesSection = () => {
                   src="/fine_dining.jpeg"
                   alt="Fine dining reservation at an exclusive restaurant in Dubai"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>

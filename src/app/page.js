@@ -20,6 +20,7 @@ export default function Home() {
               src="/dxberience_logo.svg"
               alt="Dxberience Logo"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-contain"
             />
           </div>
@@ -68,6 +69,7 @@ export default function Home() {
                 alt="Luxury car rental service in Dubai"
                 className="object-cover img-1"
                 fill
+                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 991px"
               />
             </div>
           </ImageScrollMotion>

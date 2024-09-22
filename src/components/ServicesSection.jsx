@@ -14,19 +14,32 @@ const ServicesSection = () => {
     desktopScrollThreshold
   );
 
-  const [oddWidthState, setOddWidth] = useState(600);
-  const [evenWidthState, setEvenWidth] = useState(373);
+  const [oddWidthState, setOddWidth] = useState();
+  const [evenWidthState, setEvenWidth] = useState();
 
   const [stickySectionWidth, setStickySectionWidth] = useState(1082);
 
   const mobileOddWidth = 301;
-  const mobileEvenWidth = 291;
+  const mobileEvenWidth = 218;
+  const laptopOddWidth = 341;
+  const laptopEvenWidth = 190;
+  const desktopOddWidth = 600;
+  const desktopEvenWidth = 373;
 
   useEffect(() => {
     if (window) {
       if (window.innerWidth < 1024) {
         setOddWidth(mobileOddWidth);
         setEvenWidth(mobileEvenWidth);
+        // console.log("Mobile width is now set", oddWidthState, evenWidthState);
+      } else if (window.innerWidth >= 1280 && window.innerWidth <= 1445) {
+        setOddWidth(laptopOddWidth);
+        setEvenWidth(laptopEvenWidth);
+        // console.log("Laptop width is now set", oddWidthState, evenWidthState);
+      } else {
+        setOddWidth(desktopOddWidth);
+        setEvenWidth(desktopEvenWidth);
+        // console.log("Desktop width is now set", oddWidthState, evenWidthState);
       }
     }
   }, []);
@@ -69,13 +82,7 @@ const ServicesSection = () => {
     }
   };
 
-  const {
-    data: services,
-    error: categoryError,
-    isError: isCategoryError,
-    isSuccess: isCategorySuccess,
-    isLoading: isCategoryLoading,
-  } = useQuery({
+  const { data: services } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const data = await makeRequest(`/categories`);
@@ -87,13 +94,22 @@ const ServicesSection = () => {
     const serviceCount = services?.length;
     let oddWidth, evenWidth;
 
-    if (serviceCount % 2 != 0) {
-      oddWidth = Math.floor(serviceCount / 2) * oddWidthState;
-      evenWidth = (Math.floor(serviceCount / 2) + 1) * evenWidthState;
-      console.log(oddWidthState, evenWidthState);
+    // console.log(serviceCount, serviceCount % 2);
+    if (oddWidthState && evenWidthState) {
+      if (serviceCount % 2 != 0) {
+        oddWidth = Math.ceil(serviceCount / 2) * oddWidthState;
+        evenWidth = (Math.ceil(serviceCount / 2) + 1) * evenWidthState;
+      } else {
+        oddWidth = Math.ceil(serviceCount / 2) * oddWidthState;
+        evenWidth = Math.ceil(serviceCount / 2) * evenWidthState;
+      }
+      // console.log(`Odd width: ${oddWidthState}, even width: ${evenWidthState}`);
     }
+
+    // console.log(oddWidth, evenWidth);
+
     setStickySectionWidth(oddWidth + evenWidth);
-  }, [services]);
+  }, [services, oddWidthState, evenWidthState]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -101,17 +117,18 @@ const ServicesSection = () => {
         setScrollThreshold(620);
         setOddWidth(mobileOddWidth);
         setEvenWidth(mobileEvenWidth);
+        // console.log("Mobile width is now set");
+      } else if (window.innerWidth >= 1280 && window.innerWidth <= 1440) {
+        setOddWidth(laptopOddWidth);
+        setEvenWidth(laptopEvenWidth);
+        // console.log("Laptop width is now set");
       } else {
+        setOddWidth(desktopOddWidth);
+        setEvenWidth(desktopEvenWidth);
         setScrollThreshold(desktopScrollThreshold);
+        // console.log("Desktop width is now set");
       }
     };
-
-    if (window) {
-      if (window.innerWidth < 1024) {
-        setOddWidth(mobileOddWidth);
-        setEvenWidth(mobileEvenWidth);
-      }
-    }
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -121,7 +138,7 @@ const ServicesSection = () => {
 
   useEffect(() => {
     handleStickyDimension();
-  }, [oddWidthState, evenWidthState]);
+  }, [services, oddWidthState, evenWidthState]);
 
   return (
     <section className="services w-full">

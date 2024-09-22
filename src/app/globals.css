@@ -505,11 +505,11 @@ body {
   }
 
   .services .scroll_section {
-    width: 700vw;
+    width: 600vw;
   }
 
   .services .sticky_parent {
-    height: 700vh !important;
+    height: 600vh !important;
   }
 
   .memories .scroll_section {
