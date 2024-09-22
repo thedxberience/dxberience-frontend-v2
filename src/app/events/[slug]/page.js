@@ -85,6 +85,7 @@ const page = ({ params }) => {
                           src={image.image}
                           alt={image.altText}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           placeholder="blur"
                           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcP316LgAF5gI8MqGGhAAAAABJRU5ErkJggg=="
                           className="object-cover"
@@ -104,12 +105,19 @@ const page = ({ params }) => {
             </div>
             {data?.price && (
               <div className="desktop-only uppercase w-[431px] flex-col justify-center items-center h-[279px] bg-primary px-4 py-2 text-center">
+                {data.priceRate?.toLowerCase() == "starting from" && (
+                  <p className="font-thin text-sm lg:text-lg uppercase">
+                    {data.priceRate ? data.priceRate : handlePriceRate()}
+                  </p>
+                )}
                 <h3 className="font-IvyPresto font-bold text-2xl lg:text-5xl">
                   AED {currencyFormat(data?.price)}
                 </h3>
-                <p className="font-thin text-sm lg:text-lg uppercase">
-                  {data.priceRate ? data.priceRate : handlePriceRate()}
-                </p>
+                {data.priceRate?.toLowerCase() !== "starting from" && (
+                  <p className="font-thin text-sm lg:text-lg uppercase">
+                    {data.priceRate ? data.priceRate : handlePriceRate()}
+                  </p>
+                )}
               </div>
             )}
           </div>

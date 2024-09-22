@@ -13,8 +13,6 @@ const ContactPage = () => {
   const [country, setCountry] = useState("");
   const [showStatus, setShowStatus] = useState(false);
 
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -84,9 +82,9 @@ const ContactPage = () => {
 
   return (
     <HelperLayout>
-      <section className="contact-form w-full h-full flex justify-center py-10">
+      <section className="contact-form w-full h-full flex justify-center mb-5 py-10">
         {!formSubmitted ? (
-          <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] h-max  flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:w-[450px] 2xl:w-[681px] 2xl:max-h-[768px] 2xl:px-[40px]">
+          <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:w-[450px] 2xl:w-[681px] 2xl:px-[40px]">
             <h1 className="font-IvyPresto font-semibold text-xl xl:text-3xl 2xl:text-6xl">
               Get In Touch
             </h1>

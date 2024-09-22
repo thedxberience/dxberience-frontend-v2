@@ -24,7 +24,11 @@ function CountrySelector({ country, setCountry }) {
     <div>
       <Select onValueChange={changeHandler}>
         {country && <label> Country </label>}
-        <SelectTrigger className="w-full h-[33px] py-1 outline-none px-0 bg-transparent border-white form-field-border-style">
+        <SelectTrigger
+          className={`w-full h-[33px] ${
+            !country && "text-gray-400"
+          } py-1 outline-none px-0 bg-transparent border-white form-field-border-style`}
+        >
           <SelectValue placeholder="Country" />
         </SelectTrigger>
         <SelectContent>
