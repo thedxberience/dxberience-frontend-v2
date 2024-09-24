@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AuthenticateModal from "./Auth/AuthenticateModal";
 
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -30,7 +31,13 @@ const Navbar = () => {
 
         <div className="nav-links flex justify-center items-center gap-12">
           <div className="nav-link text-white">
-            <ul className="text-base z-50">
+            <ul className="text-base flex justify-evenly items-center z-50 gap-8">
+              <li>
+                <Link className="uppercase" href={"/about"}>
+                  About
+                </Link>
+              </li>
+              <AuthenticateModal />
               <li>
                 <Link className="uppercase" href={"/contact"}>
                   Contact
@@ -84,12 +91,21 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className={`mobile-nav-menu p-4 w-full mt-5 ${
+          className={`mobile-nav-menu p-4 relative z-50 w-full mt-5 ${
             showNavMenu ? "reveal-nav" : "hide-nav"
           }`}
         >
           <div className="bg-white w-full p-4 flex flex-col gap-4 uppercase">
             <ul className="flex flex-col gap-4">
+              <li>
+                <Link className="uppercase" href={"/about"}>
+                  About
+                </Link>
+              </li>
+              <div className="w-full flex justify-start items-start">
+                <AuthenticateModal />
+              </div>
+
               <li className="cursor-pointer">
                 <Link href={"/contact"}>Contact</Link>
               </li>

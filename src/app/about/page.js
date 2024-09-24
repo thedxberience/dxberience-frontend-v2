@@ -7,6 +7,12 @@ import Footer from "@/components/shared/Footer";
 import Image from "next/image";
 import React from "react";
 
+export const metadata = {
+  title: "Luxury Experiences & VIP Concierge Services Dubai",
+  description:
+    "We offer luxury concierge services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
+};
+
 const page = () => {
   return (
     <main className="flex w-full min-h-screen flex-col items-center justify-between">
@@ -26,8 +32,8 @@ const page = () => {
             </div>
           </div>
 
-          <div className="header-content z-50 flex flex-col justify-between items-start gap-4 2xl:gap-16 lg:-ml-10 px-4 lg:px-0">
-            <h1 className="font-IvyPresto text-4xl lg:text-7xl w-11/12 lg:w-[45.156vw]">
+          <div className="header-content z-30 flex flex-col justify-between items-start gap-4 2xl:gap-16 lg:-ml-10 px-4 lg:px-0">
+            <h1 className="font-IvyPresto text-4xl lg:text-7xl w-11/12 lg:w-[44.156vw]">
               Dxberience refines Luxury with bespoke VIP services
             </h1>
             <p className="text-sm lg:text-lg lg:w-[28.229vw]">
@@ -152,7 +158,7 @@ const page = () => {
                 Esteemed Partners
               </h2>
             </header>
-            <p className="text-sm text-center lg:text-base lg:w-[46.719vw]">
+            <p className="text-sm text-center lg:text-base px-2 lg:w-[46.719vw]">
               Discover the essence of luxury through Dxberience's esteemed
               partners, carefully curated to elevate your experience in Dubai.
               From exclusive hotels and fine dining to private transport and VIP

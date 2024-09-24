@@ -14,6 +14,6 @@ export const makeRequest = async (url, options = {}) => {
     return response.data;
   } catch (error) {
     console.log("Error retrieving data:", error);
-    throw new Error(`Could not get data: ${error}`);
+    throw new Error(`Error: ${error?.response?.data?.message}`);
   }
 };

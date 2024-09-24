@@ -433,6 +433,10 @@ body {
   @apply font-noah border rounded-none border-l-0 border-t-0 border-r-0;
 }
 
+.flex-center{
+  @apply flex justify-center items-center;
+}
+
 @media screen and (max-width: 361px) {
     .experiences {
         margin-top: 6rem;

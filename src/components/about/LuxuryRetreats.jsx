@@ -5,7 +5,7 @@ import CarouselButtons from "../shared/CarouselButtons";
 const LuxuryRetreats = () => {
   return (
     <section className="luxury-retreats my-24">
-      <div className="luxury-retreats-container flex justify-between items-center lg:gap-24">
+      <div className="luxury-retreats-container flex justify-between items-center lg:gap-3 xl:gap-24">
         <div className="lhs desktop-only">
           <div className="relative w-[405.19px] h-[973px]">
             <div className="white-overlay"></div>
@@ -70,7 +70,7 @@ const LuxuryRetreats = () => {
                 <p className="underline font-bold">Register Now!</p>
               </div>
             </div>
-            <div className="image relative w-11/12 h-[192px] lg:w-[46.927vw] lg:h-[61.942vh]">
+            <div className="image relative w-11/12 h-[192px] lg:w-[38.927vw] lg:h-[55.942vh] xl:w-[46.927vw] xl:h-[61.942vh]">
               <div className="white-overlay"></div>
               <Image
                 src="/jumeirah_about.jpeg"

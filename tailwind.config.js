@@ -33,6 +33,7 @@ module.exports = {
         primary: "#171010",
         secondary: "#F0E3D9",
         accent: "#978C84",
+        "tab-inactive": "#E3E5E5",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",

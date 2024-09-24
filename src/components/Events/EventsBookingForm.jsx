@@ -40,7 +40,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
         method: "POST",
         data: data,
       });
-      console.log(request);
+      // console.log(request);
       setShowStatus(true);
       if (request["name"] !== "Error") {
         router.push("/booking-confirmation");
