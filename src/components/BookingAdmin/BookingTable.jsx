@@ -4,6 +4,7 @@ import StatusDiv from "./StatusDiv";
 import { MdModeEdit } from "react-icons/md";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useState } from "react";
+import { currencyFormat } from "@/utils/utils";
 
 function BookingTable({
   bookings,
@@ -33,7 +34,7 @@ function BookingTable({
   };
 
   return (
-    <div className="flex flex-col flex-grow overflow-x-auto text-sm justify-around">
+    <div className="table-region flex flex-col flex-grow overflow-x-auto text-sm justify-between h-full">
       <div className="flex flex-grow-0">
         <table className="min-w-full">
           <thead>
@@ -66,7 +67,7 @@ function BookingTable({
                   {booking._id}
                 </td>
                 <td className="border-b border-[#333233] py-3 px-6">
-                  {new Date(booking.createdAt).toLocaleDateString()}
+                  {new Date(booking.date).toLocaleDateString()} ({booking.time})
                 </td>
                 <td className="border-b border-[#333233] py-3 px-6">
                   <StatusDiv
@@ -83,7 +84,7 @@ function BookingTable({
                   {booking.customerName}
                 </td>
                 <td className="border-b border-[#333233] py-3 px-6">
-                  {booking.productPrice}
+                  AED {currencyFormat(booking.productPrice)}
                 </td>
                 <td className="border-b border-[#333233] py-3 px-6">
                   <StatusDiv
@@ -119,7 +120,7 @@ function BookingTable({
           </tbody>
         </table>
       </div>
-      <div className="px-20 w-full flex justify-center items-center gap-4">
+      <div className="px-20 w-full flex justify-center items-center gap-4 py-4">
         <IoChevronBack
           color={`${paginationCount == 1 ? "grey" : "white"}`}
           onClick={() => {

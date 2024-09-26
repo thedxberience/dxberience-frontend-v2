@@ -7,8 +7,9 @@ import CustomButton from "../shared/CustomButton";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { useApiStore } from "@/store/apiStore";
+import { useRouter } from "next/navigation";
 
-const LoginForm = () => {
+const LoginForm = ({ admin = true }) => {
   const {
     register,
     handleSubmit,
@@ -18,8 +19,12 @@ const LoginForm = () => {
     defaultValues: {
       email: "",
       password: "",
+      admin: admin,
+      refreshToken: true,
     },
   });
+
+  const router = useRouter();
 
   const { setLoginError, login, loginError } = useApiStore((state) => state);
 
@@ -27,12 +32,24 @@ const LoginForm = () => {
 
   const [rememberMe, setRememberMe] = useState();
   const [showStatus, setShowStatus] = useState();
+  const [requestError, setRequestError] = useState(false);
+
   //   const [loginError, setLoginError] = useState("");
 
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["login", watchAllFields.email],
     mutationFn: async (data) => {
-      await login(data);
+      const loginRequest = await login(data);
+      console.log(`LoginRequest: ${JSON.stringify(loginRequest)}`);
+
+      if (loginRequest.success) {
+        router.push("/admin");
+      }
+
+      return loginRequest;
+    },
+    onError: (error, vsriables, context) => {
+      setLoginError(error.message);
     },
   });
 
@@ -85,13 +102,13 @@ const LoginForm = () => {
           />
         </div>
 
-        <span className="text-sm">Forgot Password?</span>
+        {/* <span className="text-sm">Forgot Password?</span>
         <div className="flex flex-col justify-start items-start gap-9">
           <div className="flex justify-start items-center gap-2">
             <CustomCheckBox selected={rememberMe} setSelected={setRememberMe} />
             <p>Remember Me</p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full flex justify-center items-center pb-4">

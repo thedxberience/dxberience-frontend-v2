@@ -25,14 +25,18 @@ function UpdateModal({ toggleModal, booking, bookingMutation }) {
           />
           <div className="flex flex-col">
             <span>ID: {booking._id}</span>
-            <span>ProductName: {booking.productName}</span>
-            <span>CustomerName: {booking.customerName}</span>
+            <span>Product Name: {booking.productName}</span>
+            <span>Customer Name: {booking.customerName}</span>
             <span>Phone: {booking.customerPhone}</span>
             <span>Price: {booking.productPrice}</span>
+            <span>No Of Tickets: {booking.noOfTickets}</span>
           </div>
           <div className="text-gray-400 max-w-96">
-            Booking for 8 tickets Aston Marthin Prada made on Thursday 4 august,
-            with information about texas chicken fried rice
+            Booking for {booking.noOfTickets}{" "}
+            {booking.noOfTickets > 1 ? "tickets" : "ticket"} for{" "}
+            {booking.productName}, was made on{" "}
+            {new Date(booking.date).toDateString()}{" "}
+            {booking.time && `with a reservation by ${booking.time}`}
           </div>
 
           <div className="flex gap-2 justify-between">
@@ -70,8 +74,8 @@ function UpdateModal({ toggleModal, booking, bookingMutation }) {
           >
             Apply Changes
           </button>
-          <span className="text-xs text-gray-400">
-            **Note applying changes will trigger an email to be sent to the user
+          <span className="text-xs text-center text-gray-400">
+            **Note applying changes will send an email to the customer
           </span>
         </div>
       </div>

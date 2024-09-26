@@ -32,11 +32,11 @@ const Navbar = () => {
         <div className="nav-links flex justify-center items-center gap-12">
           <div className="nav-link text-white">
             <ul className="text-base flex justify-evenly items-center z-50 gap-8">
-              <li>
+              {/* <li>
                 <Link className="uppercase" href={"/about"}>
                   About
                 </Link>
-              </li>
+              </li> */}
               <AuthenticateModal />
               <li>
                 <Link className="uppercase" href={"/contact"}>
@@ -81,7 +81,7 @@ const Navbar = () => {
                   src="/dxberience_logo.svg"
                   alt="Dxberience Logo"
                   fill
-                  className="object-cover"
+                  className="object-cover aspect-video"
                 />
               </Link>
             </div>
@@ -97,11 +97,11 @@ const Navbar = () => {
         >
           <div className="bg-white w-full p-4 flex flex-col gap-4 uppercase">
             <ul className="flex flex-col gap-4">
-              <li>
+              {/* <li>
                 <Link className="uppercase" href={"/about"}>
                   About
                 </Link>
-              </li>
+              </li> */}
               <div className="w-full flex justify-start items-start">
                 <AuthenticateModal />
               </div>

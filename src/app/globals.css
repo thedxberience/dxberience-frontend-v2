@@ -494,6 +494,10 @@ body {
 
 }
 
+.table-region::-webkit-scrollbar{
+  display: none;
+}
+
 
 @media screen and (max-width: 1024px) {
   .service_image:nth-child(odd) {

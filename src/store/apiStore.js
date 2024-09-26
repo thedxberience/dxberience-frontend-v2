@@ -1,4 +1,5 @@
-import { makeRequest } from "@/utils/axios";
+import { makeMutation, makeRequest } from "@/utils/axios";
+import { AxiosError } from "axios";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
@@ -23,12 +24,16 @@ export const useApiStore = create(
             method: "POST",
             data: data,
           });
-
-          set(() => ({ openModal: false, accessToken: request.accessToken }));
-          return request;
+          set(() => ({
+            openModal: false,
+            accessToken: request.authTokens.accessToken,
+            user: request,
+          }));
+          return { success: true, ...request };
         } catch (error) {
-          console.log(error);
+          console.log(`API Store request: ${error.message}`);
           set(() => ({ loginError: error.message }));
+          return { error: error.message, success: false };
         }
       },
       registerUser: async (data) => {
@@ -47,6 +52,12 @@ export const useApiStore = create(
           console.log(error);
           set(() => ({ registerError: error.message }));
         }
+      },
+      logOutUser: () => {
+        set(() => ({
+          user: [],
+          accessToken: "",
+        }));
       },
     }),
     {

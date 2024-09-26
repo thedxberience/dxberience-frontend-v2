@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "https://dxberienceapi.up.railway.app/api/v1",
@@ -14,6 +14,6 @@ export const makeRequest = async (url, options = {}) => {
     return response.data;
   } catch (error) {
     console.log("Error retrieving data:", error);
-    throw new Error(`Error: ${error?.response?.data?.message}`);
+    throw new AxiosError(`Error: ${error?.response?.data?.message}`);
   }
 };

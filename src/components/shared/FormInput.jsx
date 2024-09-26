@@ -53,6 +53,18 @@ function FormInput({
             }`}
           />
         );
+      case "number":
+        return (
+          <input
+            placeholder={placeholder}
+            {...register(name, options)}
+            id={name}
+            type={inputType}
+            className={`bg-transparent border-b-[1px] pt-2 pb-1 outline-none ${
+              value.length > 0 ? "pt-8" : ""
+            }`}
+          />
+        );
       case "password":
         return (
           <div

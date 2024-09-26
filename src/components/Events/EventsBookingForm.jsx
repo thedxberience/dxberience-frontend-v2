@@ -28,21 +28,20 @@ const EventsBookingForm = ({ slug, price, product }) => {
       country: "",
       date: "",
       time: "",
-      options: "",
-      no_of_guest: "",
+      no_of_guest: "1",
     },
   });
 
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["create-booking-request", slug],
     mutationFn: async (data) => {
-      const request = await makeRequest("/booking/create-booking", {
+      const request = await makeRequest("/booking", {
         method: "POST",
         data: data,
       });
       // console.log(request);
       setShowStatus(true);
-      if (request["name"] !== "Error") {
+      if (request["statusCode"] !== 400) {
         router.push("/booking-confirmation");
       }
       return request;
@@ -53,20 +52,16 @@ const EventsBookingForm = ({ slug, price, product }) => {
 
   const handleSubmitBookingRequest = (data) => {
     const payload = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      phone: data.phone_number,
+      customerName: `${data.firstName} ${data.lastName}`,
+      customerEmail: data.email,
+      customerPhone: data.phone_number,
       country: country,
       date: date,
       time: data.time,
-      product: product,
-      options: data.options,
-      tickets: parseInt(data.no_of_guest),
-      data: {
-        price: price,
-        slug: slug,
-      },
+      productName: product,
+      productSlug: slug,
+      productPrice: price,
+      noOfTickets: parseInt(data.no_of_guest),
     };
 
     mutateAsync(payload);
@@ -149,14 +144,15 @@ const EventsBookingForm = ({ slug, price, product }) => {
               />
             </div>
           </div>
-          <FormInput
+          {/* <FormInput
             placeholder={"Options"}
             register={register}
             errors={errors}
             value={watchAllFields.options}
             name="options"
-          />
+          /> */}
           <FormInput
+            inputType="number"
             placeholder={"No of Guest/Tickets"}
             register={register}
             errors={errors}
