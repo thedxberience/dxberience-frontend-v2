@@ -14,11 +14,6 @@ import Navbar from "@/components/Navbar";
 
 function BookingAdmin() {
   const router = useRouter();
-  useEffect(() => {
-    if (process.env.NEXT_PUBLIC_ENVIRONMENT !== "local") {
-      router.replace("/");
-    }
-  }, []);
 
   const queryClient = useQueryClient();
 

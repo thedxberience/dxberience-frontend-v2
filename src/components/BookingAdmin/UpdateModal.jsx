@@ -1,22 +1,71 @@
 import { IoIosClose } from "react-icons/io";
 import { useState } from "react";
+import { makeRequest } from "@/utils/axios";
 function UpdateModal({ toggleModal, booking, bookingMutation }) {
   const [paymentStatus, setPaymentStatus] = useState(booking.paymentStatus);
   const [confirmationStatus, setConfirmationStatus] = useState(
     booking.confirmationStatus
   );
+  const [sendEmail, setSendEmail] = useState(false);
 
-  function applyChanges() {
+  async function applyChanges() {
+    let templateId = null;
+    let payload = {};
     bookingMutation.mutate({
       id: booking._id,
       data: { confirmationStatus, paymentStatus },
     });
+
+    if (confirmationStatus === "CONFIRMED" && paymentStatus !== "REFUND") {
+      templateId = 10;
+      payload = {};
+    } else if (paymentStatus === "REFUND") {
+      templateId = 11;
+      payload = {};
+    } else if (confirmationStatus === "CANCELLED") {
+      templateId = 12;
+      payload = {};
+    }
+
+    sendEmail &&
+      (await makeRequest(`/send-email`, {
+        method: "POST",
+        data: {
+          to: [
+            {
+              name: booking.customerName,
+              email: booking.customerEmail,
+            },
+          ],
+          templateId: templateId,
+          params: payload,
+        },
+      }));
+
     toggleModal(false);
+  }
+
+  function formatDateTime(isoString) {
+    const date = new Date(isoString);
+
+    // Get date components
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+      timeZoneName: "short",
+    };
+
+    // Convert the date to a readable format
+    return date.toLocaleString("en-US", options);
   }
 
   return (
     <>
-      <div className="absolute flex flex-col top-0 justify-center items-center w-[100vw] h-screen  z-10">
+      <div className="fixed flex flex-col top-0 justify-center items-center w-[100vw] h-screen  z-10">
         <div className="relative flex flex-col bg-[#212121] p-10 gap-4 rounded-sm">
           <IoIosClose
             size={30}
@@ -45,6 +94,9 @@ function UpdateModal({ toggleModal, booking, bookingMutation }) {
               value={confirmationStatus}
               onChange={(e) => {
                 setConfirmationStatus(e.target.value);
+                const updatedTemplateId =
+                  templateMapping[e.target.value.toLowerCase()];
+                updatedTemplateId && setTemplateId(updatedTemplateId);
               }}
               className="bg-[#2A2A2A] border border-[#424242] rounded-[4px] p-2"
             >
@@ -68,6 +120,19 @@ function UpdateModal({ toggleModal, booking, bookingMutation }) {
             </select>
           </div>
 
+          <div className="flex w-full justify-between">
+            <span>Send Email</span>
+            <input
+              type="checkbox"
+              className="w-fit"
+              checked={sendEmail}
+              value={sendEmail}
+              onChange={(e) => {
+                setSendEmail(e.target.checked);
+              }}
+            />
+          </div>
+
           <button
             className="bg-green-600 w-full p-2 rounded-sm"
             onClick={applyChanges}
@@ -79,7 +144,7 @@ function UpdateModal({ toggleModal, booking, bookingMutation }) {
           </span>
         </div>
       </div>
-      <div className="absolute top-0 bg-[#000000c0] w-[100vw] h-screen z-5"></div>
+      <div className="fixed top-0 bg-[#000000c0] w-[100vw] h-screen z-5"></div>
     </>
   );
 }
