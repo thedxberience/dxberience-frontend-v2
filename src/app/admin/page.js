@@ -4,20 +4,16 @@ import InfoCard from "@/components/BookingAdmin/InfoCard";
 import FilterTabs from "@/components/BookingAdmin/FilterTab";
 import BookingTable from "@/components/BookingAdmin/BookingTable";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
-import { getUrlQueryString } from "@/utils/utils";
+import { currencyFormat, getUrlQueryString } from "@/utils/utils";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import UpdateModal from "@/components/BookingAdmin/UpdateModal";
 import axios from "axios";
 import { makeRequest } from "@/utils/axios";
 import { useRouter } from "next/navigation";
+import Navbar from "@/components/Navbar";
 
 function BookingAdmin() {
   const router = useRouter();
-  useEffect(() => {
-    if (process.env.NEXT_PUBLIC_ENVIRONMENT !== "local") {
-      router.replace("/");
-    }
-  }, []);
 
   const queryClient = useQueryClient();
 
@@ -90,7 +86,8 @@ function BookingAdmin() {
   const bookings = [];
 
   return (
-    <div className="flex flex-col bg-[#212121] min-h-[100vh] text-white">
+    <div className="flex flex-col bg-[#212121] min-h-[100vh] text-white h-full">
+      <Navbar />
       <div className="px-4 sm:px-20 py-5">
         <h1 className="text-lg font-extrabold py-5">Bookings</h1>
         <div className="flex gap-4 flex-wrap">
@@ -102,11 +99,13 @@ function BookingAdmin() {
           />
           <InfoCard
             title="Total Revenue"
-            amount={`AED ${bookingQueryData?.totalRevenue || 0}`}
+            amount={`AED ${
+              currencyFormat(bookingQueryData?.totalRevenue) || 0
+            }`}
           />
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-20 w-full gap-4 sm:gap-10 border-b-[1px] border-[#333233] text-sm">
+      <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-20 w-full gap-4 sm:gap-10 border-b-[1px] border-[#333233] text-sm overflow-auto">
         <div className="flex items-center justify-between w-full">
           <div className="flex gap-4 ">
             <FilterTabs
@@ -269,7 +268,7 @@ function BookingAdmin() {
           </button>
         </div>
       </div>
-      <div className="flex flex-col flex-grow">
+      <div className="table-region flex flex-col h-[60svh]">
         {bookingQueryFetching ? (
           <div className="flex w-full h-[60vh] justify-center items-center">
             <div className="flex flex-row gap-2">
