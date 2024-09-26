@@ -65,7 +65,7 @@ function UpdateModal({ toggleModal, booking, bookingMutation }) {
 
   return (
     <>
-      <div className="fixed flex flex-col top-0 justify-center items-center w-[100vw] h-screen  z-10">
+      <div className="fixed text-white flex flex-col top-0 justify-center items-center w-[100vw] h-screen  z-10">
         <div className="relative flex flex-col bg-[#212121] p-10 gap-4 rounded-sm">
           <IoIosClose
             size={30}
