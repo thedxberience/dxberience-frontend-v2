@@ -10,7 +10,7 @@ const ExperienceCard = ({
   experienceImage = "/experience_bg.jpeg",
   experienceTitle = "Dubai Desert Safari Package",
   experienceAlt = "Image for a category",
-  experienceLocation = "Dubai, United Arab Emirates",
+  experienceLocation = "",
   experienceDescription = "Each show is a meticulously crafted spectacle, featuring elaborate costumes, intricate ",
   newExperience = false,
   priceStart = false,
@@ -44,6 +44,7 @@ const ExperienceCard = ({
           src={experienceImage}
           alt={experienceAlt ? experienceAlt : "image for a product"}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={`${
             pan ? "mouse-over-pan" : "mouse-over-no-pan"
           } object-cover`}

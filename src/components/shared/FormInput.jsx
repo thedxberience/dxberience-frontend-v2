@@ -48,8 +48,20 @@ function FormInput({
             {...register(name, options)}
             id={name}
             type={inputType}
-            className={`bg-transparent border-b-[1px] py-1 outline-none ${
-              value.length > 0 ? "pt-7" : ""
+            className={`bg-transparent border-b-[1px] pt-2 pb-1 outline-none ${
+              value.length > 0 ? "pt-8" : ""
+            }`}
+          />
+        );
+      case "number":
+        return (
+          <input
+            placeholder={placeholder}
+            {...register(name, options)}
+            id={name}
+            type={inputType}
+            className={`bg-transparent border-b-[1px] pt-2 pb-1 outline-none ${
+              value.length > 0 ? "pt-8" : ""
             }`}
           />
         );

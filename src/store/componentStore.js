@@ -60,6 +60,7 @@ export const useComponentStore = create((set, get) => ({
       selectedBudgetRange: budgetRange,
     })),
   categoryFromSlug: "",
+  categorySlugDisplay: "",
   setCategoryFromSlug: (slug) => {
     let category;
     if (slug) {
@@ -69,7 +70,8 @@ export const useComponentStore = create((set, get) => ({
         .join(" ");
     }
     return set(() => ({
-      categoryFromSlug: category,
+      categoryFromSlug: slug,
+      categorySlugDisplay: category,
     }));
   },
 }));

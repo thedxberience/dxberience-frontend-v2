@@ -19,7 +19,7 @@ const Map = ({ addressMD, coordinates = null }) => {
 
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(coordinates);
-    map.fitBounds(bounds);
+    // map.fitBounds(bounds);
 
     setMapState(map);
   }, []);
@@ -35,7 +35,7 @@ const Map = ({ addressMD, coordinates = null }) => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={coordinates}
-            zoom={8}
+            zoom={15}
             onLoad={onLoad}
             onUnmount={onUnmount}
           >

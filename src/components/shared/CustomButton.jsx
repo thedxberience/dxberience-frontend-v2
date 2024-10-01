@@ -80,8 +80,17 @@ const CustomButton = ({
           onClick={onClick}
         >
           {" "}
-          {isLink ? <Link href={href}>{btnName}</Link> : btnName}
-          {handleButtonIcon()}
+          {isLink ? (
+            <Link
+              className="flex justify-center items-center gap-3"
+              href={href}
+            >
+              {btnName} {handleButtonIcon()}
+            </Link>
+          ) : (
+            btnName
+          )}
+          {!isLink && handleButtonIcon()}
         </button>
       </div>
     </div>

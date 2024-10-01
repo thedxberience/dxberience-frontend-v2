@@ -443,7 +443,7 @@ body {
     }
 }
 
-@media screen and (min-width: 435px) and (max-width: 1279px) {
+@media screen and (min-width: 362px) and (max-width: 1279px) {
     .experiences {
         grid-template-columns: 1fr 1fr;
     }
@@ -475,6 +475,30 @@ body {
   }
 }
 
+@media screen and (min-width: 1280px) and (max-width: 1440px) {
+  .service_image:nth-child(odd) {
+    min-width: 341px;
+    width: 341px;
+    height: 190px;
+  }
+
+  .service_image:nth-child(even) {
+    min-width: 218px;
+    width: 218px;
+    height: 298px;
+  }
+
+  .service_image p{
+    font-size: larger;
+  }
+
+}
+
+.table-region::-webkit-scrollbar{
+  display: none;
+}
+
+
 @media screen and (max-width: 1024px) {
   .service_image:nth-child(odd) {
     min-width: 341px;
@@ -489,11 +513,11 @@ body {
   }
 
   .services .scroll_section {
-    width: 700vw;
+    width: 600vw;
   }
 
   .services .sticky_parent {
-    height: 700vh !important;
+    height: 600vh !important;
   }
 
   .memories .scroll_section {

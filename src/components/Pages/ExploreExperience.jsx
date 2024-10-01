@@ -4,23 +4,34 @@ import ExperiencesForm from "@/components/Experiences/ExperiencesForm";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useComponentStore } from "@/store/componentStore";
 import { useApiStore } from "@/store/apiStore";
 
 const ExploreExperience = ({ params }) => {
-  const { data, error, isError, isLoading, isSuccess } = useQuery({
-    queryKey: ["allProducts"],
+  // const { data, error, isError, isLoading, isSuccess } = useQuery({
+  //   queryKey: ["allProducts"],
+  //   queryFn: async () => {
+  //     const data = await makeRequest("/product");
+  //     if (!isError) {
+  //       setProductData(data);
+  //     }
+  //     return data;
+  //   },
+  //   // enabled: params.slug == "all",
+  // });
+
+  const [apiParams, setApiParams] = useState("/product");
+
+  const { data, error, isError, isSuccess, isLoading } = useQuery({
+    queryKey: ["product", apiParams],
     queryFn: async () => {
-      const data = await makeRequest("/product");
-      if (!isError) {
-        setProductData(data);
-      }
+      const data = await makeRequest(apiParams);
       return data;
     },
-    // enabled: params.slug == "all",
+    // enabled: apiParams != "",
   });
 
   const { productData, setProductData } = useApiStore((state) => state);
@@ -31,6 +42,7 @@ const ExploreExperience = ({ params }) => {
 
   useEffect(() => {
     setCategoryFromSlug(params.slug);
+    // if
   }, []);
 
   const handleShowExperiences = useCallback(() => {
@@ -46,15 +58,10 @@ const ExploreExperience = ({ params }) => {
           <Image src={"/Loader.svg"} alt="loader icon" width={48} height={48} />
         </div>
       );
-    } else if (
-      !isError &&
-      !isLoading &&
-      productData &&
-      productData.length != 0
-    ) {
+    } else if (!isError && !isLoading && data && data.length != 0) {
       // console.log(JSON.stringify(productData));
 
-      return productData.map((product) => (
+      return data.map((product) => (
         <ExperienceCard
           experienceDescription={product.shortDescription}
           experienceTitle={product.title}
@@ -71,10 +78,10 @@ const ExploreExperience = ({ params }) => {
     } else if (isError) {
       return (
         <div className="flex justify-center items-center w-full">
-          <h1>{error}</h1>
+          <h1>{error.message}</h1>
         </div>
       );
-    } else if (!productData || productData.length == 0) {
+    } else if (!data || data.length == 0) {
       return (
         <div className="flex justify-center text-black items-center w-full">
           <h1>
@@ -97,7 +104,7 @@ const ExploreExperience = ({ params }) => {
         </div>
       );
     }
-  }, [productData, isSuccess, isLoading, isError, params.slug]);
+  }, [data, isSuccess, isLoading, isError, params.slug]);
 
   return (
     <main>
@@ -114,7 +121,10 @@ const ExploreExperience = ({ params }) => {
             comfort.
           </p>
         </div>
-        <ExperiencesForm />
+        <ExperiencesForm
+          setApiParams={setApiParams}
+          isProductLoading={isLoading}
+        />
       </section>
       <section className="experiences-container flex justify-start lg:justify-center items-start mt-32 md:px-5 py-10">
         <div className="experiences w-full px-4 lg:px-0 lg:w-9/12 mt-8">

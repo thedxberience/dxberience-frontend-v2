@@ -65,28 +65,33 @@ const page = ({ params }) => {
                 <h3 className="font-IvyPresto font-bold text-2xl">
                   AED {currencyFormat(data?.price)}
                 </h3>
-                <p className="font-thin text-sm">{handlePriceRate()}</p>
+                <p className="font-thin text-sm">
+                  {data.priceRate ? data.priceRate : handlePriceRate()}
+                </p>
               </div>
             )}
           </div>
           <div className="flex justify-between items-center w-full">
-            <div className="flex flex-col w-full lg:w-8/12 justify-center items-start gap-6 flex-none">
-              <div className="event-gallery flex justify-start w-full items-center gap-1 lg:w-[60svw] flex-none flex-shrink-0 basis-full overflow-x-auto">
+            <div className="flex flex-col w-full justify-center items-start gap-6">
+              <div className="event-gallery flex justify-start w-full items-center gap-1 lg:w-[55svw] flex-none flex-shrink-0 basis-full overflow-x-auto">
                 {data?.gallery?.map((image, key) => {
                   return (
-                    <div
-                      className="relative flex-shrink-0 w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
-                      key={key}
-                    >
-                      <Image
-                        src={image.image}
-                        alt={image.altText}
-                        fill
-                        placeholder="blur"
-                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcP316LgAF5gI8MqGGhAAAAABJRU5ErkJggg=="
-                        className="object-cover"
-                      />
-                    </div>
+                    image.image && (
+                      <div
+                        className="relative flex-shrink-0 w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
+                        key={key}
+                      >
+                        <Image
+                          src={image.image}
+                          alt={image.altText}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          placeholder="blur"
+                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcP316LgAF5gI8MqGGhAAAAABJRU5ErkJggg=="
+                          className="object-cover"
+                        />
+                      </div>
+                    )
                   );
                 })}
               </div>
@@ -100,12 +105,19 @@ const page = ({ params }) => {
             </div>
             {data?.price && (
               <div className="desktop-only uppercase w-[431px] flex-col justify-center items-center h-[279px] bg-primary px-4 py-2 text-center">
+                {data.priceRate?.toLowerCase() == "starting from" && (
+                  <p className="font-thin text-sm lg:text-lg uppercase">
+                    {data.priceRate ? data.priceRate : handlePriceRate()}
+                  </p>
+                )}
                 <h3 className="font-IvyPresto font-bold text-2xl lg:text-5xl">
                   AED {currencyFormat(data?.price)}
                 </h3>
-                <p className="font-thin text-sm lg:text-lg">
-                  {handlePriceRate()}
-                </p>
+                {data.priceRate?.toLowerCase() !== "starting from" && (
+                  <p className="font-thin text-sm lg:text-lg uppercase">
+                    {data.priceRate ? data.priceRate : handlePriceRate()}
+                  </p>
+                )}
               </div>
             )}
           </div>
@@ -125,7 +137,7 @@ const page = ({ params }) => {
                 longDescription={data.longDescription}
                 location={data.location}
                 locationCoordinate={data?.locationCoordinates}
-                terms_and_conditions={data.terms_and_conditions}
+                terms_and_conditions={data.termsAndCondition}
               />
             ) : (
               <div className="flex justify-center items-center min-h-screen">

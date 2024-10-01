@@ -1,6 +1,9 @@
 "use client";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import React, { useState } from "react";
 
 const Provider = ({ children }) => {
@@ -10,6 +13,8 @@ const Provider = ({ children }) => {
     <QueryClientProvider client={client}>
       <ReactQueryDevtools initialIsOpen={false} />
       {children}
+      <Analytics />
+      <SpeedInsights />
     </QueryClientProvider>
   );
 };

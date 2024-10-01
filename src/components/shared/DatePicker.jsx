@@ -35,7 +35,11 @@ export function DatePickerWithPresets({ date, setDate, invert = false }) {
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date ? format(date, "PPP") : <span>Date</span>}
+            {date ? (
+              format(date, "PPP")
+            ) : (
+              <span className="text-gray-300">Date</span>
+            )}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="flex font-noah w-auto flex-col space-y-2 p-2">

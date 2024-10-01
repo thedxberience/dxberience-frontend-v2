@@ -20,6 +20,7 @@ export default function Home() {
               src="/dxberience_logo.svg"
               alt="Dxberience Logo"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-contain"
             />
           </div>
@@ -51,16 +52,11 @@ export default function Home() {
             {/* </TextMotion> */}
             <div className="lg:w-[38.906vw] font-noah">
               <p>
-                At Dxberience, we specialize in curating personalized
-                itineraries, providing VIP experiences, and curating
-                unforgettable excursions to ensure an unparalleled journey for
-                our clients. With our expertise in global travel and exclusive
-                partnerships with luxury providers, we deliver unrivalled luxury
-                across a spectrum of experiences, ranging from exploring local
-                delights to indulging in exotic destinations worldwide. Whether
-                you seek adventure, relaxation, or cultural immersion, we are
-                dedicated to creating bespoke experiences tailored to your
-                desires.
+                Indulge in an unforgettable journey with us as we meticulously
+                curate every detail to create an extraordinary experience just
+                for you. From exquisite accommodations to personalized
+                itineraries, let us take you on a seamless and enchanting
+                adventure that surpasses all expectations.
               </p>
             </div>
           </div>
@@ -73,6 +69,7 @@ export default function Home() {
                 alt="Luxury car rental service in Dubai"
                 className="object-cover img-1"
                 fill
+                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 991px"
               />
             </div>
           </ImageScrollMotion>
@@ -120,7 +117,7 @@ export default function Home() {
                 btnName="Inquire Now"
                 invert={true}
                 isLink
-                href="/explore-experiences/all"
+                href="/contact"
               />
             </div>
             <p className="text-sm lg:text-lg font-extralight pt-10">
@@ -204,7 +201,7 @@ export default function Home() {
       <ServicesSection />
       <section className="luxury-destination mt-11 lg:mt-[150px] p-6">
         <div className="header gap-6 flex flex-col justify-center items-center">
-          <h1 className="text-4xl lg:text-7xl text-center font-semibold font-IvyPresto">
+          <h1 className="text-4xl lg:text-7xl text-center font-IvyPresto">
             Tailored Travel & Itineraries
           </h1>
           <div className="w-full flex justify-center items-center">
