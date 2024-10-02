@@ -6,9 +6,10 @@ import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
+import PriceContainer from "@/components/Events/PriceContainer";
 
 const page = ({ params }) => {
   const { data, error, isError, isSuccess, isLoading } = useQuery({
@@ -21,14 +22,19 @@ const page = ({ params }) => {
     },
   });
 
-  function currencyFormat(num) {
-    return num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-  }
+  const [thumbnailLoading, setThumbnailLoading] = useState(false);
+
+  const [thumbnailImage, setThumbnailImage] = useState(data?.thumbnail.image);
 
   const router = useRouter();
 
   const handlePagePop = () => {
     router.back();
+  };
+
+  const handleThumbnailImage = (image) => {
+    setThumbnailImage(image);
+    setThumbnailLoading(true);
   };
 
   const handlePriceRate = useCallback(() => {
@@ -44,11 +50,27 @@ const page = ({ params }) => {
       <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
         <Navbar />
         <div className="overlay absolute top-0 left-0"></div>
+        {thumbnailLoading && (
+          <div>
+            <Image
+              src="/loader.svg"
+              alt="loader spinner"
+              className="animate-spin"
+              width={48}
+              height={48}
+            />
+          </div>
+        )}
+
         {data?.thumbnail && (
           <Image
             className="-z-10 object-cover"
-            src={data?.thumbnail.image}
+            src={thumbnailImage || data?.thumbnail.image}
             alt={data?.thumbnail.altText}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100%"
+            onLoad={() => setThumbnailLoading(false)}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOcP316LgAF5gI8MqGGhAAAAABJRU5ErkJggg=="
             fill
           />
         )}
@@ -60,16 +82,11 @@ const page = ({ params }) => {
               </h2>
             )}
 
-            {data?.price && (
-              <div className="mobile-only flex-col justify-center items-center uppercase bg-primary px-4 py-2 text-center">
-                <h3 className="font-IvyPresto font-bold text-2xl">
-                  AED {currencyFormat(data?.price)}
-                </h3>
-                <p className="font-thin text-sm">
-                  {data.priceRate ? data.priceRate : handlePriceRate()}
-                </p>
-              </div>
-            )}
+            <PriceContainer
+              price={data?.price}
+              priceRate={data?.priceRate}
+              subCategory={data?.subCategory}
+            />
           </div>
           <div className="flex justify-between items-center w-full">
             <div className="flex flex-col w-full justify-center items-start gap-6">
@@ -80,6 +97,7 @@ const page = ({ params }) => {
                       <div
                         className="relative flex-shrink-0 w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
                         key={key}
+                        onClick={() => handleThumbnailImage(image.image)}
                       >
                         <Image
                           src={image.image}
@@ -103,23 +121,13 @@ const page = ({ params }) => {
                 <span className="text-lg">Back</span>
               </div>
             </div>
-            {data?.price && (
-              <div className="desktop-only uppercase w-[431px] flex-col justify-center items-center h-[279px] bg-primary px-4 py-2 text-center">
-                {data.priceRate?.toLowerCase() == "starting from" && (
-                  <p className="font-thin text-sm lg:text-lg uppercase">
-                    {data.priceRate ? data.priceRate : handlePriceRate()}
-                  </p>
-                )}
-                <h3 className="font-IvyPresto font-bold text-2xl lg:text-5xl">
-                  AED {currencyFormat(data?.price)}
-                </h3>
-                {data.priceRate?.toLowerCase() !== "starting from" && (
-                  <p className="font-thin text-sm lg:text-lg uppercase">
-                    {data.priceRate ? data.priceRate : handlePriceRate()}
-                  </p>
-                )}
-              </div>
-            )}
+
+            <PriceContainer
+              price={data?.price}
+              priceRate={data?.priceRate}
+              subCategory={data?.subCategory}
+              isMobile={false}
+            />
           </div>
         </div>
       </header>

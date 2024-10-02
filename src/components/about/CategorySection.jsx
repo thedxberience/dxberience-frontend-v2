@@ -6,7 +6,7 @@ const CategorySection = () => {
     {
       serviceName: "Vip Concierge",
       image: "/vip_concierge.jpeg",
-      alt: "VIP concierge service in Dubai for exclusive experiences, personalized shopping, corporate services, travel booking.",
+      alt: "VIP lifestyle management service in Dubai for exclusive experiences, personalized shopping, corporate services, travel booking.",
     },
     {
       serviceName: "Luxury Rentals",
