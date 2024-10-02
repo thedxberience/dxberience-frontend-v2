@@ -15,7 +15,7 @@ const page = ({ params }) => {
     queryKey: ["product", params.slug],
     queryFn: async () => {
       const data = await makeRequest(`/product/${params.slug}`);
-      console.log(data[0]?.subCategory?.name.toLowerCase().includes("rentals"));
+      // console.log(data[0]?.subCategory?.name.toLowerCase().includes("rentals"));
 
       return data[0];
     },

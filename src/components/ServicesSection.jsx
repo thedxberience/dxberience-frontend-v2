@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import ServiceCard from "./ServiceSection/ServiceCard";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
+import Image from "next/image";
 
 const ServicesSection = () => {
   const stickySection = useRef(null);
@@ -14,8 +15,12 @@ const ServicesSection = () => {
     desktopScrollThreshold
   );
 
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
   const [oddWidthState, setOddWidth] = useState();
   const [evenWidthState, setEvenWidth] = useState();
+  const [scrollingUp, setScrollingUp] = useState();
+  const [y, setY] = useState(0);
 
   const [stickySectionWidth, setStickySectionWidth] = useState(1082);
 
@@ -45,6 +50,15 @@ const ServicesSection = () => {
   }, []);
 
   const handleScrollThreshold = useCallback(() => {
+    if (window) {
+      setY(window.scrollY || document.documentElement.scrollTop);
+      if (y > lastScrollTop) {
+        setScrollingUp(false);
+      } else {
+        setScrollingUp(true);
+      }
+      setLastScrollTop(y <= 0 ? 0 : y);
+    }
     if (window.innerWidth < 1024) {
       setScrollThreshold(620);
       setOddWidth(mobileOddWidth);
@@ -53,7 +67,7 @@ const ServicesSection = () => {
       setScrollThreshold(desktopScrollThreshold);
     }
     handleTransform();
-  });
+  }, [y, lastScrollTop]);
 
   useEffect(() => {
     if (window) {
@@ -63,7 +77,7 @@ const ServicesSection = () => {
     return () => {
       window.removeEventListener("scroll", handleScrollThreshold);
     };
-  }, [scrollThreshold]);
+  }, [scrollThreshold, y]);
 
   const handleTransform = () => {
     if (stickySection.current) {
@@ -150,7 +164,7 @@ const ServicesSection = () => {
       >
         <div ref={stickySection} className="sticky text-white">
           <div className="w-full flex justify-end items-center p-6 2xl:p-20 z-10 relative">
-            <div className="text flex flex-col lg:flex-row justify-evenly items-center">
+            <div className="text flex flex-col lg:flex-row justify-evenly items-center gap-2 lg:gap-4">
               <div className="flex flex-col justify-end lg:justify-center items-end w-full lg:w-5/12">
                 <h1 className="font-IvyPresto text-4xl lg:text-7xl">VIP</h1>
                 <p className="text-base lg:text-4xl">CURATED EXPERIENCES</p>
@@ -167,6 +181,21 @@ const ServicesSection = () => {
                   <CustomButton btnName="global private villa portfolio" />
                 </div> */}
               </div>
+              <div
+                className={`flex justify-center items-center flex-col ${
+                  scrollingUp ? "gap-1" : "gap-3"
+                }`}
+              >
+                <p className="uppercase text-xs">Scroll to continue</p>
+
+                <Image
+                  className={`animate-bounce ${scrollingUp ? "scroll-up" : ""}`}
+                  src="/scroll_icon.svg"
+                  alt="scroll icon"
+                  width={41}
+                  height={41}
+                />
+              </div>
             </div>
           </div>
           <div
@@ -174,7 +203,7 @@ const ServicesSection = () => {
             style={{
               width: stickySectionWidth + "px",
             }}
-            className="scroll_section pb-20"
+            className="scroll_section"
           >
             {services?.map((service, index) => (
               <ServiceCard {...service} key={`${service.name} ${index}`} />

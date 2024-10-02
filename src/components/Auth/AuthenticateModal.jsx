@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,15 +18,27 @@ import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import { useApiStore } from "@/store/apiStore";
 import UserPopover from "./UserPopover";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const AuthenticateModal = () => {
   const [login, setLogin] = useState(true);
+
+  const urlParams = useSearchParams();
+  const router = useRouter();
 
   // const [openModal, setOpenModal] = useState(false);
 
   const { openModal, setOpenModal, accessToken } = useApiStore(
     (state) => state
   );
+
+  useEffect(() => {
+    const urlParamsData = urlParams.get("admin");
+    if (urlParamsData) {
+      setOpenModal(true);
+      router.replace("/");
+    }
+  }, []);
 
   return (
     <>
@@ -40,7 +52,7 @@ const AuthenticateModal = () => {
           <AlertDialogTrigger asChild>
             <Button
               variant="ghost"
-              className="uppercase hover:bg-transparent hover:text-white p-0"
+              className="uppercase invisible hover:bg-transparent hover:text-white p-0"
             >
               Login
             </Button>

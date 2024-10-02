@@ -34,7 +34,7 @@ const NewsletterSection = () => {
         method: "POST",
         data: data,
       });
-      console.log(request);
+      // console.log(request);
       setShowStatus(true);
       return request;
     },

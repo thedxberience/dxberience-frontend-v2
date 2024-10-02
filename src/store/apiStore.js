@@ -31,7 +31,7 @@ export const useApiStore = create(
           }));
           return { success: true, ...request };
         } catch (error) {
-          console.log(`API Store request: ${error.message}`);
+          // console.log(`API Store request: ${error.message}`);
           set(() => ({ loginError: error.message }));
           return { error: error.message, success: false };
         }

@@ -285,7 +285,7 @@ function BookingAdmin() {
     }
 
     if (customerName) {
-      console.log("called", filtered);
+      // console.log("called", filtered);
       filtered = filtered.filter((booking) =>
         booking.customerName.toLowerCase().includes(customerName)
       );
@@ -310,9 +310,9 @@ function BookingAdmin() {
     }
 
     if (productName) {
-      console.log(productName);
+      // console.log(productName);
       filtered = filtered.filter((booking) => {
-        console.log(booking.productName);
+        // console.log(booking.productName);
         return (
           booking.productName.toLowerCase().includes(productName) ||
           booking.productSlug.toLowerCase().includes(productName)

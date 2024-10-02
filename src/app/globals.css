@@ -157,12 +157,16 @@ body {
   position: absolute;
   top: 100px;
   width: 500vh;
-  height: 100%;
+  height: calc(100vh - 160px);
   will-change: transform;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 46px;
+}
+
+.scroll-up{
+  rotate: 180deg;
 }
 
 .memories .scroll_section {
@@ -492,6 +496,12 @@ body {
     font-size: larger;
   }
 
+}
+
+@media screen and (max-width: 400px){
+  .services .scroll_section{
+    height: 120svh;
+  }
 }
 
 .table-region::-webkit-scrollbar{
