@@ -95,7 +95,7 @@ const page = ({ params }) => {
                   return (
                     image.image && (
                       <div
-                        className="relative flex-shrink-0 w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px]"
+                        className="relative flex-shrink-0 w-[17.497vw] lg:w-[195px] h-[56.69px] lg:h-[162px] cursor-pointer"
                         key={key}
                         onClick={() => handleThumbnailImage(image.image)}
                       >

@@ -13,12 +13,19 @@ const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
   if (isMobile) {
     return (
       <div className="mobile-only flex-col justify-center items-center uppercase bg-primary px-4 py-2 text-center">
-        <h3 className="font-IvyPresto font-bold text-2xl">
+        {priceRate?.toLowerCase() == "starting from" && (
+          <p className="font-thin text-sm lg:text-lg uppercase">
+            {priceRate ? priceRate : handlePriceRate()}
+          </p>
+        )}
+        <h3 className="font-IvyPresto font-bold text-xl">
           {price ? `AED ${currencyFormat(price)}` : "Request Quote"}
         </h3>
-        <p className="font-thin text-sm">
-          {priceRate ? priceRate : handlePriceRate()}
-        </p>
+        {priceRate?.toLowerCase() !== "starting from" && (
+          <p className="font-thin text-sm lg:text-lg uppercase">
+            {priceRate ? priceRate : handlePriceRate()}
+          </p>
+        )}
       </div>
     );
   } else {

@@ -451,6 +451,10 @@ body {
     .experiences {
         grid-template-columns: 1fr 1fr;
     }
+
+    .loading-experiences {
+      grid-template-columns: 1fr !important;
+    }
 }
 
 @media screen and (min-width: 1280px) {
