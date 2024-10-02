@@ -18,12 +18,11 @@ import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import { useApiStore } from "@/store/apiStore";
 import UserPopover from "./UserPopover";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const AuthenticateModal = () => {
   const [login, setLogin] = useState(true);
 
-  const urlParams = useSearchParams();
   const router = useRouter();
 
   // const [openModal, setOpenModal] = useState(false);
@@ -31,18 +30,6 @@ const AuthenticateModal = () => {
   const { openModal, setOpenModal, accessToken } = useApiStore(
     (state) => state
   );
-
-  useEffect(() => {
-    if (urlParams) {
-      const urlParamsData = urlParams.get("admin");
-      if (urlParamsData) {
-        setOpenModal(true);
-        router.replace("/");
-      }
-    } else {
-      return;
-    }
-  }, []);
 
   return (
     <>
