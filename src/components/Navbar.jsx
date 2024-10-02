@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -37,7 +37,9 @@ const Navbar = () => {
                   About
                 </Link>
               </li> */}
-              <AuthenticateModal />
+              <Suspense>
+                <AuthenticateModal />
+              </Suspense>
               <li>
                 <Link className="uppercase" href={"/contact"}>
                   Contact
@@ -75,13 +77,13 @@ const Navbar = () => {
             )}
           </div>
           <div className="brand-logo">
-            <div className="flex justify-center relative w-[31.538vw] h-[30px] items-center">
+            <div className="flex justify-center relative w-[32.538vw] h-[30px] items-center">
               <Link href={"/"}>
                 <Image
-                  src="/dxberience_logo.svg"
+                  src="/dxberience_logo_2.png"
                   alt="Dxberience Logo"
                   fill
-                  className="object-cover aspect-video"
+                  className="object-cover"
                 />
               </Link>
             </div>

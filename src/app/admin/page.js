@@ -69,13 +69,13 @@ function BookingAdmin() {
           page: paginationCount,
         });
 
-        console.log(queryString);
+        // console.log(queryString);
 
         const response = await makeRequest(
           `/booking/dashboard-info?${queryString}`
         );
 
-        console.log(response);
+        // console.log(response);
         return response;
       },
     }

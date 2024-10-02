@@ -48,7 +48,7 @@ const RegisterForm = () => {
 
   const handleRegister = async (data) => {
     const payload = { ...data, country: country };
-    console.log(errors);
+    // console.log(errors);
 
     if (agreedTerms) {
       await mutateAsync(payload);
