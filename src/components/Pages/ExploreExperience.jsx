@@ -11,18 +11,6 @@ import { useComponentStore } from "@/store/componentStore";
 import { useApiStore } from "@/store/apiStore";
 
 const ExploreExperience = ({ params }) => {
-  // const { data, error, isError, isLoading, isSuccess } = useQuery({
-  //   queryKey: ["allProducts"],
-  //   queryFn: async () => {
-  //     const data = await makeRequest("/product");
-  //     if (!isError) {
-  //       setProductData(data);
-  //     }
-  //     return data;
-  //   },
-  //   // enabled: params.slug == "all",
-  // });
-
   const [apiParams, setApiParams] = useState("/product");
 
   const { data, error, isError, isSuccess, isLoading } = useQuery({
@@ -31,7 +19,6 @@ const ExploreExperience = ({ params }) => {
       const data = await makeRequest(apiParams);
       return data;
     },
-    // enabled: apiParams != "",
   });
 
   const { productData, setProductData } = useApiStore((state) => state);
@@ -46,12 +33,6 @@ const ExploreExperience = ({ params }) => {
   }, []);
 
   const handleShowExperiences = useCallback(() => {
-    // console.log(
-    //   `Success: ${isSuccess} product data => ${JSON.stringify(
-    //     productData
-    //   )} Error: ${isError}`
-    // );
-
     if (isLoading) {
       return (
         <div className="loader animate-spin">
@@ -112,7 +93,8 @@ const ExploreExperience = ({ params }) => {
         <Navbar />
         <div className="content p-5 text-white lg:w-10/12 h-full flex flex-col justify-center items-start">
           <h1 className="text-4xl lg:text-7xl font-IvyPresto lg:w-[50.656vw] pb-8">
-            Explore our luxury experiences, activities and concierge services
+            Explore our luxury experiences, activities and lifestyle management
+            services
           </h1>
           <p className="lg:text-lg lg:w-[28.385vw]">
             From personalized travel itineraries to exclusive access to elite

@@ -8,9 +8,9 @@ import Image from "next/image";
 import React from "react";
 
 export const metadata = {
-  title: "Luxury Experiences & VIP Concierge Services Dubai",
+  title: "Luxury Experiences & VIP Lifestyle Management Services Dubai",
   description:
-    "We offer luxury concierge services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
+    "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
 };
 
 const page = () => {
@@ -59,7 +59,7 @@ const page = () => {
       <section className="all-inclusive flex justify-center items-center my-[100px]">
         <div className="flex flex-col justify-center items-center w-11/12 lg:w-[36.094vw] gap-8">
           <h2 className="text-4xl lg:text-7xl font-IvyPresto">
-            All-Inclusive Luxury Concierge in Dubai
+            All-Inclusive Luxury Lifestyle Management in Dubai
           </h2>
           <p className="text-sm lg:text-lg">
             We offer a bespoke service tailored to meet the unique needs and
@@ -71,8 +71,8 @@ const page = () => {
             Whether you seek a private yacht charter, tickets to a sold-out
             concert, or customized travel itineraries, Dxberience ensures an
             unparalleled experience, crafted with sophistication and precision.
-            Let us elevate your lifestyle with our exceptional concierge
-            services.
+            Let us elevate your lifestyle with our exceptional lifestyle
+            management services.
           </p>
         </div>
       </section>
@@ -83,7 +83,7 @@ const page = () => {
           </div>
           <div className="content flex flex-col justify-center items-start gap-8 w-full lg:w-[37.396vw]">
             <h2 className="text-3xl lg:text-7xl font-IvyPresto">
-              Bespoke Concierge Services
+              Bespoke Lifestyle Management Services
             </h2>
             <p className="text-sm lg:text-lg">
               Dxberience excels in tailoring services to meet the unique
@@ -109,19 +109,19 @@ const page = () => {
             </div>
             <div className="lg:pl-20 lg:w-[30.625vw]">
               <p>
-                Dxberience, the all-inclusive luxury concierge, offers all its
-                services exclusively in Dubai to capitalize on the city's
-                unparalleled blend of modern opulence and cultural richness.
-                Dubai, renowned for its world-class amenities, luxury shopping,
-                fine dining, and iconic landmarks, provides the perfect backdrop
-                for delivering extraordinary experiences. By focusing on this
-                vibrant city, Dxberience ensures that clients receive the
-                highest level of personalized service and access to exclusive
-                events, premium accommodations, and unique activities that only
-                Dubai can offer. Our deep local knowledge and connections enable
-                us to curate unforgettable moments, tailored specifically to our
-                clients' desires, making every experience with Dxberience truly
-                exceptional.
+                Dxberience, the all-inclusive luxury lifestyle management,
+                offers all its services exclusively in Dubai to capitalize on
+                the city's unparalleled blend of modern opulence and cultural
+                richness. Dubai, renowned for its world-class amenities, luxury
+                shopping, fine dining, and iconic landmarks, provides the
+                perfect backdrop for delivering extraordinary experiences. By
+                focusing on this vibrant city, Dxberience ensures that clients
+                receive the highest level of personalized service and access to
+                exclusive events, premium accommodations, and unique activities
+                that only Dubai can offer. Our deep local knowledge and
+                connections enable us to curate unforgettable moments, tailored
+                specifically to our clients' desires, making every experience
+                with Dxberience truly exceptional.
               </p>
             </div>
           </div>

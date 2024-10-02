@@ -28,10 +28,10 @@ const Sacramento = localFont({
 export const metadata = {
   title: {
     template: "%s | Dxberience",
-    default: "Luxury Lifestyle Concierge Services Dubai | Dxberience",
+    default: "Luxury Lifestyle Management Services Dubai | Dxberience",
   },
   description:
-    "We offer luxury concierge services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
+    "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
 };
 
 export default function RootLayout({ children }) {

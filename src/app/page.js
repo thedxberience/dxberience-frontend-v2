@@ -25,9 +25,9 @@ export default function Home() {
             />
           </div>
           <p className="text-center w-[80.256vw] lg:w-[34.219vw] text-lg">
-            Our luxury concierge service ensures that every aspect of your
-            experience is meticulously curated to perfection. No need to think,
-            just experience.
+            Our luxury lifestyle management service ensures that every aspect of
+            your experience is meticulously curated to perfection. No need to
+            think, just experience.
           </p>
         </div>
 
