@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -37,7 +37,9 @@ const Navbar = () => {
                   About
                 </Link>
               </li> */}
-              <AuthenticateModal />
+              <Suspense>
+                <AuthenticateModal />
+              </Suspense>
               <li>
                 <Link className="uppercase" href={"/contact"}>
                   Contact

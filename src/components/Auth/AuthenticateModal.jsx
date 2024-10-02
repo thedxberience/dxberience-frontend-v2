@@ -33,10 +33,14 @@ const AuthenticateModal = () => {
   );
 
   useEffect(() => {
-    const urlParamsData = urlParams.get("admin");
-    if (urlParamsData) {
-      setOpenModal(true);
-      router.replace("/");
+    if (urlParams) {
+      const urlParamsData = urlParams.get("admin");
+      if (urlParamsData) {
+        setOpenModal(true);
+        router.replace("/");
+      }
+    } else {
+      return;
     }
   }, []);
 
