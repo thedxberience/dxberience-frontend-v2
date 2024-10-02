@@ -35,7 +35,7 @@ const ExploreExperience = ({ params }) => {
   const handleShowExperiences = useCallback(() => {
     if (isLoading) {
       return (
-        <div className="loader animate-spin">
+        <div className="loader animate-spin flex justify-center items-center w-full">
           <Image src={"/Loader.svg"} alt="loader icon" width={48} height={48} />
         </div>
       );
@@ -109,7 +109,11 @@ const ExploreExperience = ({ params }) => {
         />
       </section>
       <section className="experiences-container flex justify-start lg:justify-center items-start mt-32 md:px-5 py-10">
-        <div className="experiences w-full px-4 lg:px-0 lg:w-9/12 mt-8">
+        <div
+          className={`experiences ${
+            !data && "loading-experiences mt-20"
+          } w-full px-4 lg:px-0 lg:w-9/12 mt-16`}
+        >
           {handleShowExperiences()}
         </div>
       </section>
