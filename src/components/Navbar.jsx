@@ -53,7 +53,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="mobile-nav z-50 relative flex flex-col lg:hidden w-full justify-between items-center px-4 py-6">
+      <div className="mobile-nav z-50 relative flex flex-col lg:hidden w-full justify-between items-center px-3 py-6">
         <div className="flex w-full justify-between items-center">
           <div
             className="flex flex-col justify-center items-center gap-1"
@@ -77,7 +77,7 @@ const Navbar = () => {
             )}
           </div>
           <div className="brand-logo">
-            <div className="flex justify-center relative w-[32.538vw] h-[30px] items-center">
+            <div className="flex justify-center relative w-[31.538vw] h-[30px] items-center">
               <Link href={"/"}>
                 <Image
                   src="/dxberience_logo_2.png"

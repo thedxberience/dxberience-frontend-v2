@@ -34,7 +34,9 @@ const page = ({ params }) => {
 
   const handleThumbnailImage = (image) => {
     setThumbnailImage(image);
-    setThumbnailLoading(true);
+    if (image !== thumbnailImage) {
+      setThumbnailLoading(true);
+    }
   };
 
   const handlePriceRate = useCallback(() => {
@@ -53,7 +55,7 @@ const page = ({ params }) => {
         {thumbnailLoading && (
           <div>
             <Image
-              src="/loader.svg"
+              src="/Loader.svg"
               alt="loader spinner"
               className="animate-spin"
               width={48}

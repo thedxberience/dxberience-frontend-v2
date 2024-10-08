@@ -90,6 +90,10 @@
   }
 } */
 
+/* *{
+  border: 0.1px solid red;
+} */
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
