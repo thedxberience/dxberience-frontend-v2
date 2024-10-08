@@ -15,13 +15,13 @@ export default function Home() {
       <section className="hero-section min-h-screen w-[100vw] md:w-full flex flex-col justify-between items-center">
         <Navbar />
         <div className="flex flex-col text-white justify-center items-center">
-          <div className="flex justify-center relative w-[226px] h-[55px] lg:w-[406.9px] lg:h-[100px] items-center">
+          <div className="flex justify-center relative w-[406px] h-[100px]  lg:w-[406.9px] lg:h-[100px] items-center">
             <Image
-              src="/dxberience_logo.svg"
+              src="/dxberience_logo_large.png"
               alt="Dxberience Logo"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-contain"
+              className="object-cover"
             />
           </div>
           <p className="text-center w-[80.256vw] lg:w-[34.219vw] text-lg">
