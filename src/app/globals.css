@@ -110,6 +110,10 @@ body {
     url("/hero_section.png") no-repeat center center/cover;
 }
 
+input {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
 
 .explore-text h1 {
   line-height: normal;
@@ -169,7 +173,7 @@ body {
   gap: 46px;
 }
 
-.scroll-up{
+.scroll-up {
   rotate: 180deg;
 }
 
@@ -228,28 +232,31 @@ body {
   /* rotate: 270deg; */
 }
 
-.service_image .overlay, .experience .overlay, .events-header .overlay, .overlay{
+.service_image .overlay,
+.experience .overlay,
+.events-header .overlay,
+.overlay {
   z-index: 2;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.about-page-header .overlay{
+.about-page-header .overlay {
   z-index: 2;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.about-page-header .car-overlay{
+.about-page-header .car-overlay {
   z-index: 2;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.white-overlay{
+.white-overlay {
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -257,7 +264,7 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.Visas p{
+.Visas p {
   font-size: 35px;
 }
 
@@ -310,7 +317,7 @@ body {
   column-gap: 6px;
 }
 
-.md{
+.md {
   display: flex !important;
   flex-direction: column;
   justify-content: start !important;
@@ -318,11 +325,11 @@ body {
   gap: 1rem;
 }
 
-.mouse-over-pan{
+.mouse-over-pan {
   animation: pan-img 0.3s ease-in-out forwards;
 }
 
-.mouse-over-no-pan{
+.mouse-over-no-pan {
   animation: no-pan-img 0.3s ease-in-out forwards;
 }
 
@@ -333,30 +340,28 @@ body {
     url("/infinity_pool.jpeg") no-repeat center center/cover;
 }
 
-.bespoke-concierge-container{
+.bespoke-concierge-container {
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)),
-  url("/travel-about.jpeg") no-repeat center center/cover;
+    url("/travel-about.jpeg") no-repeat center center/cover;
 }
 
-
 @keyframes pan-img {
-  0%{
+  0% {
     transform: scale(1);
   }
-  100%{
+  100% {
     transform: scale(1.2);
   }
 }
 
 @keyframes no-pan-img {
-  0%{
+  0% {
     transform: scale(1.2);
   }
-  100%{
+  100% {
     transform: scale(1);
   }
 }
-
 
 @keyframes reveal-nav {
   0% {
@@ -392,17 +397,17 @@ body {
 }
 
 @keyframes reveal-options {
-  0%{
+  0% {
     display: none;
     opacity: 0;
     transform: translateY(-500%);
     height: 0px;
   }
-  80%{
+  80% {
     display: flex;
     opacity: 0;
   }
-  100%{
+  100% {
     display: flex;
     height: fit-content;
     opacity: 1;
@@ -411,17 +416,17 @@ body {
 }
 
 @keyframes hide-options {
-  0%{
+  0% {
     display: flex;
     opacity: 1;
     transform: translateY(0px);
     height: fit-content;
   }
-  20%{
+  20% {
     opacity: 0.2;
     display: none;
   }
-  100%{
+  100% {
     display: none;
     opacity: 0;
     transform: translateY(-500%);
@@ -437,28 +442,28 @@ body {
   @apply lg:flex hidden;
 }
 
-.form-field-border-style{
+.form-field-border-style {
   @apply font-noah border rounded-none border-l-0 border-t-0 border-r-0;
 }
 
-.flex-center{
+.flex-center {
   @apply flex justify-center items-center;
 }
 
 @media screen and (max-width: 361px) {
-    .experiences {
-        margin-top: 6rem;
-    }
+  .experiences {
+    margin-top: 6rem;
+  }
 }
 
 @media screen and (min-width: 362px) and (max-width: 1279px) {
-    .experiences {
-        grid-template-columns: 1fr 1fr;
-    }
+  .experiences {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .loading-experiences {
-      grid-template-columns: 1fr !important;
-    }
+  .loading-experiences {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -500,22 +505,20 @@ body {
     height: 298px;
   }
 
-  .service_image p{
+  .service_image p {
     font-size: larger;
   }
-
 }
 
-@media screen and (max-width: 400px){
-  .services .scroll_section{
+@media screen and (max-width: 400px) {
+  .services .scroll_section {
     height: 120svh;
   }
 }
 
-.table-region::-webkit-scrollbar{
+.table-region::-webkit-scrollbar {
   display: none;
 }
-
 
 @media screen and (max-width: 1024px) {
   .service_image:nth-child(odd) {
@@ -549,7 +552,7 @@ body {
     height: 130px;
   }
 
-  .Visas p{
+  .Visas p {
     font-size: 1.2rem;
   }
 }
