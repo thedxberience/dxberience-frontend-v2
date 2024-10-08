@@ -17,7 +17,7 @@ export default function Home() {
         <div className="flex flex-col text-white justify-center items-center">
           <div className="flex justify-center relative w-[226px] h-[55px]  lg:w-[406.9px] lg:h-[100px] items-center">
             <Image
-              src="/dxberience_logo.svg"
+              src="/dxberience_logo_large.png"
               alt="Dxberience Logo"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
