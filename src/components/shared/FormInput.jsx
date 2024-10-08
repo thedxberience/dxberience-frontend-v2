@@ -35,7 +35,8 @@ function FormInput({
             {...register(name, options)}
             id={name}
             type={inputType}
-            className={`bg-transparent border-b-[1px] py-1 outline-none ${
+            maxLength={180}
+            className={`bg-transparent border-b-[1px] py-1 outline-none resize-none h-[100px] ${
               value.length > 0 ? "pt-7" : ""
             }`}
           ></textarea>
