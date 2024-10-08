@@ -104,7 +104,7 @@ const Navbar = () => {
                   About
                 </Link>
               </li> */}
-              <div className="w-full flex justify-start items-start">
+              <div className="w-full absolute -top-[500px] -z-40 left-0 flex justify-start items-start">
                 <AuthenticateModal />
               </div>
 
