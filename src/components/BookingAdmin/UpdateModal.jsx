@@ -76,6 +76,7 @@ function UpdateModal({ toggleModal, booking, bookingMutation }) {
             <span>ID: {booking._id}</span>
             <span>Product Name: {booking.productName}</span>
             <span>Customer Name: {booking.customerName}</span>
+            <span>Customer Email: {booking.customerEmail}</span>
             <span>Phone: {booking.customerPhone}</span>
             <span>Price: {booking.productPrice}</span>
             <span>No Of Tickets: {booking.noOfTickets}</span>

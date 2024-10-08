@@ -18,6 +18,24 @@ export const useApiStore = create(
       setProductData: (data) => set(() => ({ productData: data })),
       accessToken: "",
       setAccessToken: (token) => set(() => ({ accessToken: token })),
+      adminLogin: async (data) => {
+        try {
+          const request = await makeRequest("/auth/admin-login", {
+            method: "POST",
+            data: data,
+          });
+          set(() => ({
+            openModal: false,
+            accessToken: request.authTokens.accessToken,
+            user: request,
+          }));
+          return { success: true, ...request };
+        } catch (error) {
+          // console.log(`API Store request: ${error.message}`);
+          set(() => ({ loginError: error.message }));
+          return { error: error.message, success: false };
+        }
+      },
       login: async (data) => {
         try {
           const request = await makeRequest("/auth/login", {

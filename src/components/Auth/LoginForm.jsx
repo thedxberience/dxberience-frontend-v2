@@ -19,14 +19,17 @@ const LoginForm = ({ admin = true }) => {
     defaultValues: {
       email: "",
       password: "",
-      admin: admin,
       refreshToken: true,
     },
   });
 
   const router = useRouter();
+  let setLoginError, loginError, login;
+  const data = useApiStore((state) => state);
 
-  const { setLoginError, login, loginError } = useApiStore((state) => state);
+  setLoginError = data.setLoginError;
+  loginError = data.loginError;
+  login = admin ? data.adminLogin : data.login;
 
   const watchAllFields = watch();
 
