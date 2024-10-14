@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <>
       <div className="relative px-4 lg:px-20 z-50 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
-        <div className="flex justify-center relative w-[13.651vw] h-[60px] lg:w-[262.1px] lg:h-[64px] items-center">
+        <div className="flex justify-center relative w-[13.651vw] h-[60px] lg:w-[172px] lg:h-[42px] items-center">
           <Link href={"/"}>
             <Image
               src="/dxberience_logo.svg"

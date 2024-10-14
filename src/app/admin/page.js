@@ -18,10 +18,10 @@ function BookingAdmin() {
 
   const queryClient = useQueryClient();
 
-  const { setOpenModal, accessToken } = useApiStore((state) => state);
+  const { setOpenModal, accessToken, user } = useApiStore((state) => state);
 
   useEffect(() => {
-    if (!accessToken) {
+    if (!accessToken && !user) {
       router.replace("/");
       setOpenModal(true);
     }
