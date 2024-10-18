@@ -32,11 +32,11 @@ const Navbar = () => {
         <div className="nav-links flex justify-center items-center gap-12">
           <div className="nav-link text-white">
             <ul className="text-base flex justify-evenly items-center z-50 gap-8">
-              {/* <li>
+              <li>
                 <Link className="uppercase" href={"/about"}>
                   About
                 </Link>
-              </li> */}
+              </li>
               <Suspense>
                 <AuthenticateModal />
               </Suspense>

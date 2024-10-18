@@ -43,7 +43,7 @@ const AuthenticateModal = () => {
           <AlertDialogTrigger asChild>
             <Button
               variant="ghost"
-              className="uppercase invisible hover:bg-transparent hover:text-white p-0"
+              className="uppercase hover:bg-transparent hover:text-white p-0"
             >
               Login
             </Button>
@@ -57,34 +57,34 @@ const AuthenticateModal = () => {
 
             <AlertDialogHeader>
               <AlertDialogTitle className="font-IvyPresto text-2xl lg:text-5xl mb-9">
-                {login ? "Admin Login" : "Sign Up"}
+                {login ? "Login" : "Sign Up"}
               </AlertDialogTitle>
               <AlertDialogDescription>
                 <div className="form-body w-full flex-center flex-col gap-6">
                   <div className="auth-switch flex justify-center items-center w-full">
-                    {/* <div
+                    <div
                       onClick={() => setLogin(true)}
                       className={`w-full cursor-pointer border-b ${
                         login ? "border-black" : "border-tab-inactive"
                       }  flex justify-center items-center`}
                     >
                       <p>Login</p>
-                    </div> */}
-                    {/* <div
+                    </div>
+                    <div
                       onClick={() => setLogin(false)}
                       className={`w-full cursor-pointer border-b ${
                         !login ? "border-black" : "border-tab-inactive"
                       }  flex justify-center items-center`}
                     >
                       <p>Sign Up</p>
-                    </div> */}
+                    </div>
                   </div>
 
-                  {/* <div className="w-full">
+                  <div className="w-full">
                     <GoogleAuthButton />
-                  </div> */}
+                  </div>
 
-                  {/* <div className="line-break flex-center w-full">
+                  <div className="line-break flex-center w-full">
                     <div className="h-[1px] w-3/12 bg-black/40"></div>
                     <div className="w-full flex-center">
                       <p className="text-lg w-full text-center">
@@ -92,8 +92,10 @@ const AuthenticateModal = () => {
                       </p>
                     </div>
                     <div className="h-[1px] w-3/12 bg-black/40"></div>
-                  </div> */}
-
+                  </div>
+                  {
+                    // TODO: Implement new Login Form for Admin, LoginForm now reverted to normal user form
+                  }
                   {login ? <LoginForm /> : <RegisterForm />}
                 </div>
               </AlertDialogDescription>

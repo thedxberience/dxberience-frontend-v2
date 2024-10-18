@@ -51,7 +51,7 @@ const LoginForm = ({ admin = true }) => {
 
       return loginRequest;
     },
-    onError: (error, vsriables, context) => {
+    onError: (error, variables, context) => {
       setLoginError(error.message);
     },
   });
