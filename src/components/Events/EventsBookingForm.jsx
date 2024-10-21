@@ -48,6 +48,122 @@ const EventsBookingForm = ({ slug, price, product }) => {
     },
   });
 
+  const handleSendEmail = async (data) => {
+    // we send an email to this email list
+    // email list, we put the PUG file or the html content here
+    const htmlContent = `<!DOCTYPE html>
+              <html lang="en">
+              <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>New Booking Notification</title>
+                  <style>
+                      body {
+                          font-family: Arial, sans-serif;
+                          background-color: #f4f4f4;
+                          margin: 0;
+                          padding: 20px;
+                      }
+                      .container {
+                          max-width: 600px;
+                          margin: 0 auto;
+                          background-color: #ffffff;
+                          border: 1px solid #dddddd;
+                          padding: 20px;
+                          border-radius: 10px;
+                      }
+                      h1 {
+                          font-size: 24px;
+                          color: #333333;
+                      }
+                      p {
+                          font-size: 16px;
+                          color: #555555;
+                      }
+                      .details {
+                          margin-top: 20px;
+                      }
+                      .details td {
+                          padding: 8px 0;
+                      }
+                      .button {
+                          margin-top: 30px;
+                          text-align: center;
+                      }
+                      .button a {
+                          padding: 10px 20px;
+                          background-color: #28a745;
+                          color: #ffffff;
+                          text-decoration: none;
+                          border-radius: 5px;
+                      }
+                  </style>
+              </head>
+              <body>
+                  <div class="container">
+                      <h1>New Booking Notification</h1>
+                      <p>Hello Admin,</p>
+                      <p>A new user has made a booking on the platform. Here are the details:</p>
+
+                      <table class="details">
+                          <tr>
+                              <td><strong>User Name:</strong></td>
+                              <td>${data.firstName} ${data.lastName}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>Email:</strong></td>
+                              <td>${data.email}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>Phone:</strong></td>
+                              <td>${data.phone_number}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>Product Name:</strong></td>
+                              <td>${product}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>Booking Date:</strong></td>
+                              <td>${date}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>Price:</strong></td>
+                              <td>${price}</td>
+                          </tr>
+                      </table>
+
+                      <div class="button">
+                          <a href="${window.location.origin}/admin">View Booking in Dashboard</a>
+                      </div>
+                  </div>
+              </body>
+              </html>
+    `;
+    const emailData = {
+      subject: "New Booking Request",
+      sender: {
+        name: "KHY",
+        email: "khy@thedxberience.com",
+      },
+      to: [
+        {
+          name: "Jerome",
+          email: "jerome.ojuroye@thedxberience.com",
+        },
+        {
+          name: "Sydney Idundun",
+          email: "sydney.idundun@gmail.com",
+        },
+        {
+          name: "Harith Onigemo",
+          email: "onigemotosin@gmail.com",
+        },
+      ],
+      htmlContent,
+    };
+    makeRequest("/send-email", { method: "POST", data: emailData });
+  };
+
   const watchAllFields = watch();
 
   const handleSubmitBookingRequest = (data) => {
@@ -65,6 +181,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
     };
 
     mutateAsync(payload);
+    (async () => await handleSendEmail(data))();
   };
 
   useEffect(() => {

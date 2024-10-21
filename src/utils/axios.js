@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://dxberienceapi.up.railway.app/api/v1",
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
