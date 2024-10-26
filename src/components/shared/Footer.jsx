@@ -61,6 +61,9 @@ function Footer() {
 
           <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight xl:flex gap-5 ">
             <li className="mt-4">
+              <Link href={"/tailored-experiences"}>TAILORED EXPERIENCES</Link>
+            </li>
+            <li className="mt-4">
               <Link href={"/explore-experiences/all"}>EXPERIENCES</Link>
             </li>
             <li className="mt-4">
@@ -102,7 +105,7 @@ function Footer() {
           reachedFooter ? "bottom-60 md:bottom-40" : "bottom-6"
         } md:right-5  gap-5 z-30 md:flex-row`}
       >
-        <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
+        {/* <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
           <Image
             src="/whatsapp_logo.png"
             alt="whatsapp-logo"
@@ -110,7 +113,7 @@ function Footer() {
             className="object-cover"
             onClick={openWhatsapp}
           />
-        </div>
+        </div> */}
         {scrolled && (
           <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
             <Image

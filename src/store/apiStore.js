@@ -1,23 +1,20 @@
-import { makeMutation, makeRequest } from "@/utils/axios";
-import { AxiosError } from "axios";
+import { makeRequest } from "@/utils/axios";
+import axios, { AxiosError } from "axios";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { useUserStore } from "./userStore";
 
 export const useApiStore = create(
   persist(
-    (set, get) => ({
-      user: [],
-      setUser: (user) => set(() => ({ user: user })),
+    (set) => ({
       productData: [],
       openModal: false,
-      setOpenModal: (openModal) => set((store) => ({ openModal: openModal })),
+      setOpenModal: (openModal) => set(() => ({ openModal: openModal })),
       loginError: "",
       setLoginError: (error) => set(() => ({ loginError: error })),
       registerError: "",
       setRegisterError: (error) => set(() => ({ registerError: error })),
       setProductData: (data) => set(() => ({ productData: data })),
-      accessToken: "",
-      setAccessToken: (token) => set(() => ({ accessToken: token })),
       login: async (data) => {
         try {
           const request = await makeRequest("/auth/login", {
@@ -26,9 +23,11 @@ export const useApiStore = create(
           });
           set(() => ({
             openModal: false,
-            accessToken: request.authTokens.accessToken,
-            user: request,
           }));
+          useUserStore.setState({
+            user: request,
+            accessToken: request.authTokens.accessToken,
+          });
           return { success: true, ...request };
         } catch (error) {
           // console.log(`API Store request: ${error.message}`);
@@ -44,20 +43,16 @@ export const useApiStore = create(
           });
           set(() => ({
             openModal: false,
-            accessToken: request.accessToken,
-            user: request,
           }));
+          useUserStore.setState({
+            user: request,
+            accessToken: request.accessToken,
+          });
           return request;
         } catch (error) {
           console.log(error);
           set(() => ({ registerError: error.message }));
         }
-      },
-      logOutUser: () => {
-        set(() => ({
-          user: [],
-          accessToken: "",
-        }));
       },
     }),
     {

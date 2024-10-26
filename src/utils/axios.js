@@ -1,7 +1,8 @@
+import { useUserStore } from "@/store/userStore";
 import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://dxberienceapi.up.railway.app/api/v1",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
@@ -10,7 +11,14 @@ const axiosInstance = axios.create({
 
 export const makeRequest = async (url, options = {}) => {
   try {
-    const response = await axiosInstance(url, options);
+    const accessToken = useUserStore.getState().accessToken;
+    const response = await axiosInstance(url, {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     return response.data;
   } catch (error) {
     // console.log("Error retrieving data:", error);

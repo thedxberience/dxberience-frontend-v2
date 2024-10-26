@@ -96,7 +96,9 @@ const ContactPage = () => {
               fill out the form below, and let us create an experience just for
               you.
             </p>
-            {isError && <span>{error}</span>}
+            {showStatus && isError && (
+              <span className="text-red-300">{error}</span>
+            )}
             <form
               className="flex flex-col items-center w-full"
               onSubmit={handleSubmit(handleContactUs)}
