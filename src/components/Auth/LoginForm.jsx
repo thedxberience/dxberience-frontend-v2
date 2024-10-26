@@ -19,12 +19,12 @@ const LoginForm = ({ admin = true }) => {
     defaultValues: {
       email: "",
       password: "",
-      admin: admin,
       refreshToken: true,
     },
   });
 
   const router = useRouter();
+  const data = useApiStore((state) => state);
 
   const { setLoginError, login, loginError } = useApiStore((state) => ({
     setLoginError: state.setLoginError,

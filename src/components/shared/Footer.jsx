@@ -32,7 +32,7 @@ function Footer() {
   }, []);
 
   function openWhatsapp() {
-    window.open("https://wa.me/+447432018813", "_blank");
+    window.open("https://wa.me/+971585787558", "_blank");
   }
 
   function toPageTop() {
