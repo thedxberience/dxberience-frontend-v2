@@ -72,7 +72,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="flex justify-center items-center text-sm gap-[80px] border-t-[1px] border-b-[1px] h-[112.01px] 2xl:h-[252.01px] border-white">
+        <div className="flex justify-center items-center text-sm lg:gap-[80px] border-t-[1px] border-b-[1px] h-[112.01px] 2xl:h-[252.01px] border-white">
           <div className="flex flex-col items-center p-4 gap-5">
             <span>CONTACT US</span>
             <img
