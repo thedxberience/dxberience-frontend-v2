@@ -13,7 +13,7 @@ import countryList from "react-select-country-list";
 import { useForm } from "react-hook-form";
 import FormInput from "../shared/FormInput";
 
-function CountrySelector({ country, setCountry }) {
+function CountrySelector({ country, setCountry, invert = false }) {
   const options = useMemo(() => countryList().getData(), []);
 
   const changeHandler = (value) => {
@@ -23,11 +23,15 @@ function CountrySelector({ country, setCountry }) {
   return (
     <div>
       <Select onValueChange={changeHandler}>
-        {country && <label> Country </label>}
+        {country && (
+          <label className={`${invert && "text-white"}`}> Country </label>
+        )}
         <SelectTrigger
           className={`w-full h-[33px] ${
             !country && "text-gray-400"
-          } py-1 outline-none px-0 bg-transparent border-white form-field-border-style`}
+          } py-1 outline-none px-0 bg-transparent border-white ${
+            country && invert && "text-white"
+          } form-field-border-style`}
         >
           <SelectValue placeholder="Country" />
         </SelectTrigger>

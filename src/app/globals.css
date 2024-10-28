@@ -134,6 +134,11 @@ input {
     url("/Interior_car.jpeg") center center/cover no-repeat;
 }
 
+.tailored-experiences-form{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+  url("/tailored_experiences_form.jpeg") center center/cover no-repeat;
+}
+
 .services .sticky {
   overflow: hidden;
   position: sticky;
@@ -242,7 +247,11 @@ input {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.about-page-header .overlay {
+.tailored-experiences .overlay{
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.about-page-header .overlay{
   z-index: 2;
   width: 100%;
   height: 100%;
@@ -345,6 +354,35 @@ input {
     url("/travel-about.jpeg") no-repeat center center/cover;
 }
 
+.tailored-text{
+  rotate: 270deg;
+  transform-origin: 50% 50%;
+}
+
+.tailored-eperiences-floating-form{
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/wide_ocean.jpeg") no-repeat center center/cover;
+}
+
+.tailored-experience-button .reveal-form{
+  animation: reveal-tailored-experience-form 2s ease-in-out 500ms forwards;
+  transition: all 3s ease-in-out;
+}
+
+.tailored-experience-button .hide-form{
+  animation: hide-tailored-experience-form 2s ease-in-out 500ms forwards;
+  transition: all 3s ease-in-out;
+}
+
+.explore-tailored-experiences-form .top-box{
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/tailored_experiences_form.jpeg") no-repeat center center/cover;
+}
+
+.floating-form::-webkit-scrollbar{
+  display: none;
+}
+
 @keyframes pan-img {
   0% {
     transform: scale(1);
@@ -434,6 +472,25 @@ input {
   }
 }
 
+@keyframes reveal-tailored-experience-form {
+  0%{
+    transform: translateX(-5000px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
+}
+
+@keyframes hide-tailored-experience-form {
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(-5000px);
+    display: none;
+  }
+}
+
 .mobile-only {
   @apply flex lg:hidden;
 }
@@ -513,6 +570,18 @@ input {
 @media screen and (max-width: 400px) {
   .services .scroll_section {
     height: 120svh;
+  }
+
+  .tailored-experiences {
+    height: 800px;
+  }
+
+  .tailored-experiences .bg-image{
+    height: 800px;
+  }
+
+  .tailored-form-desc{
+    font-size: xx-small;
   }
 }
 

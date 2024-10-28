@@ -28,7 +28,13 @@ const ExperienceCard = ({
   const router = useRouter();
 
   const handleExperienceRoute = () => {
-    router.push(`/events/${slug}`);
+    if (window) {
+      if (window.innerWidth < 1024) {
+        router.push(`/events/${slug}`);
+      } else {
+        window.open(`/events/${slug}`);
+      }
+    }
   };
 
   return (

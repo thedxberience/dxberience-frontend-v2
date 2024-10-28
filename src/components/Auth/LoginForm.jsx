@@ -24,18 +24,18 @@ const LoginForm = ({ admin = true }) => {
   });
 
   const router = useRouter();
-  let setLoginError, loginError, login;
   const data = useApiStore((state) => state);
 
-  setLoginError = data.setLoginError;
-  loginError = data.loginError;
-  login = admin ? data.adminLogin : data.login;
+  const { setLoginError, login, loginError } = useApiStore((state) => ({
+    setLoginError: state.setLoginError,
+    login: state.login,
+    loginError: state.loginError,
+  }));
 
   const watchAllFields = watch();
 
   const [rememberMe, setRememberMe] = useState();
   const [showStatus, setShowStatus] = useState();
-  const [requestError, setRequestError] = useState(false);
 
   //   const [loginError, setLoginError] = useState("");
 
