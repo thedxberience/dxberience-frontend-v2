@@ -110,7 +110,7 @@ body {
     url("/hero_section.png") no-repeat center center/cover;
 }
 
-input {
+input[type="text"] {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
 }
@@ -134,9 +134,9 @@ input {
     url("/Interior_car.jpeg") center center/cover no-repeat;
 }
 
-.tailored-experiences-form{
+.tailored-experiences-form {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-  url("/tailored_experiences_form.jpeg") center center/cover no-repeat;
+    url("/tailored_experiences_form.jpeg") center center/cover no-repeat;
 }
 
 .services .sticky {
@@ -247,11 +247,11 @@ input {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.tailored-experiences .overlay{
+.tailored-experiences .overlay {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.about-page-header .overlay{
+.about-page-header .overlay {
   z-index: 2;
   width: 100%;
   height: 100%;
@@ -354,32 +354,32 @@ input {
     url("/travel-about.jpeg") no-repeat center center/cover;
 }
 
-.tailored-text{
+.tailored-text {
   rotate: 270deg;
   transform-origin: 50% 50%;
 }
 
-.tailored-eperiences-floating-form{
+.tailored-eperiences-floating-form {
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/wide_ocean.jpeg") no-repeat center center/cover;
+    url("/wide_ocean.jpeg") no-repeat center center/cover;
 }
 
-.tailored-experience-button .reveal-form{
+.tailored-experience-button .reveal-form {
   animation: reveal-tailored-experience-form 2s ease-in-out 500ms forwards;
   transition: all 3s ease-in-out;
 }
 
-.tailored-experience-button .hide-form{
+.tailored-experience-button .hide-form {
   animation: hide-tailored-experience-form 2s ease-in-out 500ms forwards;
   transition: all 3s ease-in-out;
 }
 
-.explore-tailored-experiences-form .top-box{
+.explore-tailored-experiences-form .top-box {
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/tailored_experiences_form.jpeg") no-repeat center center/cover;
+    url("/tailored_experiences_form.jpeg") no-repeat center center/cover;
 }
 
-.floating-form::-webkit-scrollbar{
+.floating-form::-webkit-scrollbar {
   display: none;
 }
 
@@ -473,19 +473,19 @@ input {
 }
 
 @keyframes reveal-tailored-experience-form {
-  0%{
+  0% {
     transform: translateX(-5000px);
   }
-  100%{
+  100% {
     transform: translateX(0px);
   }
 }
 
 @keyframes hide-tailored-experience-form {
-  0%{
+  0% {
     transform: translateX(0px);
   }
-  100%{
+  100% {
     transform: translateX(-5000px);
     display: none;
   }
@@ -576,11 +576,11 @@ input {
     height: 800px;
   }
 
-  .tailored-experiences .bg-image{
+  .tailored-experiences .bg-image {
     height: 800px;
   }
 
-  .tailored-form-desc{
+  .tailored-form-desc {
     font-size: xx-small;
   }
 }
@@ -644,8 +644,8 @@ input {
   background-image: url("/footer_background.jpeg");
 }
 
-input {
-  @apply bg-transparent border-b-[1px] py-1 outline-none w-full;
+input[type="text"] {
+  @apply bg-transparent border-b-[1px]  outline-none w-full;
 }
 
 #input-container {
