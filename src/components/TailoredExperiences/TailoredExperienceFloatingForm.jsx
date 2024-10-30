@@ -21,6 +21,7 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -32,6 +33,7 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
       phoneNumber: "",
       company: "",
       message: "Hello, I'd like to request a tailored experience.",
+      consent: true,
     },
   });
 
@@ -223,6 +225,17 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
                   errors={errors}
                   value={watchAllFields.message}
                 />
+
+                <div className="mt-2">
+                  <FormInput
+                    inputType="consent"
+                    value={watchAllFields.consent}
+                    setValue={setValue}
+                    errors={errors}
+                    name="consent"
+                    register={register}
+                  />
+                </div>
                 <div className="flex my-5 justify-center">
                   <CustomButton
                     btnName="Design your experience"

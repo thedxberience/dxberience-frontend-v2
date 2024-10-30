@@ -19,6 +19,7 @@ const TailoredExperienceForm = () => {
     handleSubmit,
     register,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -28,6 +29,7 @@ const TailoredExperienceForm = () => {
       phoneNumber: "",
       country: "",
       company: "",
+      consent: true,
       message: "Hello, I'd like to request a tailored experience.",
     },
   });
@@ -171,6 +173,16 @@ const TailoredExperienceForm = () => {
             Fill out the form above, and let us create an experience just for
             you.
           </p>
+        </div>
+        <div className="mt-2">
+          <FormInput
+            inputType="consent"
+            value={watchAllFields.consent}
+            setValue={setValue}
+            errors={errors}
+            name="consent"
+            register={register}
+          />
         </div>
         <div className="w-full flex justify-start items-start">
           <CustomButton btnName="Enquire Now" isPending={isPending} />
