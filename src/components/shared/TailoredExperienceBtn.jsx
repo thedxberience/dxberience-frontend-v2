@@ -38,7 +38,7 @@ const TailoredExperienceBtn = () => {
     <div className="tailored-experience-button fixed top-96 left-0 z-50 cursor-pointer">
       <div
         className={`fixed ${
-          revealForm ? "top-0" : "top-96"
+          revealForm ? "top-0" : "top-[calc(50%-100px)]"
         } left-0 flex justify-center items-center`}
       >
         {revealForm && (

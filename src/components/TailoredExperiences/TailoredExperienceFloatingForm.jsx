@@ -90,7 +90,7 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
   };
 
   return (
-    <div className="tailored-eperiences-floating-form max-w-[98svw] md:max-w-[600px] w-full px-8 md:px-[70px] py-[68px] flex flex-col justify-center items-center gap-6">
+    <div className="tailored-eperiences-floating-form max-w-[98svw] h-fit md:max-w-[600px] w-full px-8 md:px-[70px] py-[68px] flex flex-col justify-center items-center gap-6">
       <>
         {formSubmitted ? (
           <div className="flex flex-col gap-6 h-screen justify-center items-center w-full text-white">
@@ -135,7 +135,7 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
               </span>
             )}
             <form
-              className="floating-form w-full max-h-[50svh] lg:max-h-[70svh]  h-full overflow-auto"
+              className="floating-form w-full max-h-[50svh] lg:max-h-[60svh] h-full overflow-auto"
               onSubmit={handleSubmit(handleMakeTailoredExperienceRequest)}
             >
               <div className=" flex flex-col gap-2 w-full min-h-[238px] 2xl:gap-10">
