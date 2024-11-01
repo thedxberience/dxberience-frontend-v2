@@ -59,6 +59,7 @@ const NewsletterSection = () => {
           firstName: subscriberData.firstName,
           lastName: subscriberData.lastName,
           country: country,
+          consent: subscriberData.consent,
         },
       };
 

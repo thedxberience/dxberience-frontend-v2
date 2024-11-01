@@ -71,6 +71,7 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
           company: contactData.company,
           phoneNumber: contactData.phoneNumber,
           message: message,
+          consent: contactData.consent,
         },
       };
       const response = await mutateAsync(payload);

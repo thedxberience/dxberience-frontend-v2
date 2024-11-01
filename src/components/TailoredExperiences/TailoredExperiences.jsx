@@ -68,6 +68,7 @@ const TailoredExperienceForm = () => {
           company: contactData.company,
           phoneNumber: contactData.phoneNumber,
           message: message,
+          consent: contactData.consent,
         },
       };
       const response = await mutateAsync(payload);

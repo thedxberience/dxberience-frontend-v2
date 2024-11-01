@@ -63,6 +63,7 @@ const ContactPage = () => {
           company: contactData.company,
           phoneNumber: contactData.phoneNumber,
           message: contactData.message,
+          consent: contactData.consent,
         },
       };
       const response = await mutateAsync(payload);
