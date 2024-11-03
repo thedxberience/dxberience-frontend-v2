@@ -8,9 +8,16 @@ import {
 import Image from "next/image";
 import { useApiStore } from "@/store/apiStore";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/userStore";
 
 const UserPopover = () => {
-  const { user, logOutUser } = useApiStore((state) => state);
+  const router = useRouter();
+
+  const { user, logOutUser } = useUserStore((state) => ({
+    user: state.user,
+    logOutUser: state.logOutUser,
+  }));
   return (
     <Popover>
       <PopoverTrigger className="mix-blend-exclusion text-white bg-transparent">
@@ -27,7 +34,7 @@ const UserPopover = () => {
             {/* <li>Wishlist</li>
             <li>Interests</li>
             <li>Profile</li> */}
-            <li className="cursor-pointer" onClick={() => logOutUser()}>
+            <li className="cursor-pointer" onClick={() => logOutUser(router)}>
               Logout
             </li>
           </ul>

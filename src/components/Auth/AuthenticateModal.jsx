@@ -19,6 +19,7 @@ import LoginForm from "./LoginForm";
 import { useApiStore } from "@/store/apiStore";
 import UserPopover from "./UserPopover";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/userStore";
 
 const AuthenticateModal = () => {
   const [login, setLogin] = useState(true);
@@ -27,13 +28,16 @@ const AuthenticateModal = () => {
 
   // const [openModal, setOpenModal] = useState(false);
 
-  const { openModal, setOpenModal, accessToken } = useApiStore(
-    (state) => state
-  );
+  const { openModal, setOpenModal } = useApiStore((state) => ({
+    openModal: state.openModal,
+    setOpenModal: state.setOpenModal,
+  }));
+
+  const { user } = useUserStore((state) => ({ user: state.user }));
 
   return (
     <>
-      {accessToken ? (
+      {user ? (
         <UserPopover />
       ) : (
         <AlertDialog

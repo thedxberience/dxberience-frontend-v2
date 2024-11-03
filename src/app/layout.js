@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${IvyPresto.variable} ${noah.variable} ${Sacramento.variable} font-noah`}
+        className={`${IvyPresto.variable} ${noah.variable} ${Sacramento.variable} font-noah relative`}
       >
         <Provider>{children}</Provider>
       </body>

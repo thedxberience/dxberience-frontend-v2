@@ -11,7 +11,7 @@ const HelperLayout = ({
   return (
     <>
       <div
-        className={`relative bg-cover bg-center w-full z-2 min-h-fit sm:h-[110vh] lg:h-[130vh] ${className}`}
+        className={`relative bg-cover bg-center w-full z-2 min-h-fit ${className}`}
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}

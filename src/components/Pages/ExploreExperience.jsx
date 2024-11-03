@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useComponentStore } from "@/store/componentStore";
 import { useApiStore } from "@/store/apiStore";
+import TailoredExperienceContainer from "../TailoredExperiences/TailoredExperienceContainer";
 
 const ExploreExperience = ({ params }) => {
   const [apiParams, setApiParams] = useState("/product");
@@ -117,6 +118,10 @@ const ExploreExperience = ({ params }) => {
           {handleShowExperiences()}
         </div>
       </section>
+
+      <div className="w-full md:mt-28 lg:mt-[20%]">
+        <TailoredExperienceContainer />
+      </div>
 
       <Footer />
     </main>

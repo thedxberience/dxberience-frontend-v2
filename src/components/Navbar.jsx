@@ -5,6 +5,7 @@ import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AuthenticateModal from "./Auth/AuthenticateModal";
+import TailoredExperienceBtn from "./shared/TailoredExperienceBtn";
 
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -17,6 +18,8 @@ const Navbar = () => {
 
   return (
     <>
+      <TailoredExperienceBtn />
+
       <div className="relative px-4 lg:px-20 z-50 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
         <div className="flex justify-center relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] items-center">
           <Link href={"/"}>
@@ -40,6 +43,11 @@ const Navbar = () => {
               <Suspense>
                 <AuthenticateModal />
               </Suspense>
+              <li>
+                <Link className="uppercase" href={"/tailored-experiences"}>
+                  TAILORED EXPERIENCES
+                </Link>
+              </li>
               <li>
                 <Link className="uppercase" href={"/contact"}>
                   Contact

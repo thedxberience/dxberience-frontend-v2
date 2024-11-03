@@ -8,6 +8,7 @@ function FormInput({
   placeholder,
   inputType = "text",
   register,
+  setValue = null,
   errors,
   value,
   invertText = false,
@@ -15,6 +16,7 @@ function FormInput({
 }) {
   const handleInputType = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [isChecked, setIsChecked] = useState(true);
     switch (inputType) {
       case "text":
         return (
@@ -101,6 +103,46 @@ function FormInput({
             </span>
           </div>
         );
+
+      case "consent":
+        return (
+          <div className="relative flex gap-2 items-start">
+            <input
+              type="checkbox"
+              id={name}
+              {...register(name, options)}
+              className="sr-only peer"
+              checked={isChecked}
+            />
+
+            {/* Custom checkbox */}
+            <div
+              className="w-5 h-5 flex-shrink-0 bg-white border-2 border-gray-300 rounded-md relative transition-colors flex items-center justify-center"
+              onClick={(e) => {
+                setIsChecked((prev) => {
+                  const newValue = !prev;
+                  setValue(name, newValue);
+                  return !prev;
+                });
+              }}
+            >
+              {isChecked && (
+                <Image
+                  src="/tick-mark.svg"
+                  alt="Tick mark"
+                  width={12}
+                  height={12}
+                />
+              )}
+            </div>
+
+            <p className="text-sm">
+              I would like to receive exclusive communications about products,
+              events, and travel-related products from thedxberience.com
+            </p>
+          </div>
+        );
+
       default:
         return (
           <input
@@ -127,10 +169,10 @@ function FormInput({
         className={`absolute ${value.length > 0 ? "" : "hidden"}`}
       >
         {placeholder}
-        {errors[name] && <span className="text-red-500"> *</span>}
+        {errors && errors[name] && <span className="text-red-500"> *</span>}
       </label>
       {handleInputType()}
-      {errors[name] && (
+      {errors && errors[name] && (
         <span className="text-red-500">
           {errors[name].message ? errors[name].message : `${name} is not valid`}
         </span>

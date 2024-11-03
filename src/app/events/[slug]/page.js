@@ -29,7 +29,21 @@ const page = ({ params }) => {
   const router = useRouter();
 
   const handlePagePop = () => {
-    router.back();
+    if (document) {
+      const prevPage = document.referrer;
+      console.log(document.referrer);
+      console.log(
+        prevPage.includes("thedxberience.com") || prevPage.includes("localhost")
+      );
+
+      if (data) {
+        router.push(
+          `/explore-experiences/${data?.category?.name.toLowerCase()}`
+        );
+      } else {
+        router.push("/explore-experiences/all");
+      }
+    }
   };
 
   const handleThumbnailImage = (image) => {
