@@ -35,14 +35,14 @@ const Navbar = () => {
         <div className="nav-links flex justify-center items-center gap-12">
           <div className="nav-link text-white">
             <ul className="text-base flex justify-evenly items-center z-50 gap-8">
-              {/* <li>
-                <Link className="uppercase" href={"/about"}>
-                  About
-                </Link>
-              </li> */}
               <Suspense>
                 <AuthenticateModal />
               </Suspense>
+              <li>
+                <Link className="uppercase" href={"/about"}>
+                  About
+                </Link>
+              </li>
               <li>
                 <Link className="uppercase" href={"/tailored-experiences"}>
                   TAILORED EXPERIENCES
@@ -107,15 +107,14 @@ const Navbar = () => {
         >
           <div className="bg-white w-full p-4 flex flex-col gap-4 uppercase">
             <ul className="flex flex-col gap-4">
-              {/* <li>
-                <Link className="uppercase" href={"/about"}>
-                  About
-                </Link>
-              </li> */}
               <div className="w-full absolute -top-[500px] -z-40 left-0 flex justify-start items-start">
                 <AuthenticateModal />
               </div>
-
+              <li>
+                <Link className="uppercase" href={"/about"}>
+                  About
+                </Link>
+              </li>
               <li className="cursor-pointer">
                 <Link href={"/contact"}>Contact</Link>
               </li>

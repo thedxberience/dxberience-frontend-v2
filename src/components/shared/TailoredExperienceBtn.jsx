@@ -50,7 +50,7 @@ const TailoredExperienceBtn = () => {
 
         <div>
           <div
-            className="bg-[#570EB7] p-3 flex flex-col justify-evenly gap-2 w-12 h-[16rem] 2xl:h-52 py-2"
+            className="bg-primary p-3 flex flex-col justify-evenly gap-2 w-12 h-[16rem] 2xl:h-52 py-2"
             onClick={handleRevealFloatingForm}
           >
             <p className="text-white tailored-text w-36 h-36 font-bold whitespace-nowrap">

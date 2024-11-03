@@ -3,13 +3,12 @@ import axios, { AxiosError } from "axios";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { useUserStore } from "./userStore";
+import { useComponentStore } from "./componentStore";
 
 export const useApiStore = create(
   persist(
     (set) => ({
       productData: [],
-      openModal: false,
-      setOpenModal: (openModal) => set(() => ({ openModal: openModal })),
       loginError: "",
       setLoginError: (error) => set(() => ({ loginError: error })),
       registerError: "",
@@ -21,9 +20,9 @@ export const useApiStore = create(
             method: "POST",
             data: data,
           });
-          set(() => ({
+          useComponentStore.setState({
             openModal: false,
-          }));
+          });
           useUserStore.setState({
             user: request,
             accessToken: request.authTokens.accessToken,
@@ -41,9 +40,9 @@ export const useApiStore = create(
             method: "POST",
             data: data,
           });
-          set(() => ({
+          useComponentStore.setState({
             openModal: false,
-          }));
+          });
           useUserStore.setState({
             user: request,
             accessToken: request.accessToken,
@@ -56,7 +55,7 @@ export const useApiStore = create(
       },
     }),
     {
-      name: "dxberienceV2Store",
+      name: "dxberienceV2ApiStore",
       storage: createJSONStorage(() => sessionStorage),
     }
   )

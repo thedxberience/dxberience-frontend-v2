@@ -20,6 +20,7 @@ import { useApiStore } from "@/store/apiStore";
 import UserPopover from "./UserPopover";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/userStore";
+import { useComponentStore } from "@/store/componentStore";
 
 const AuthenticateModal = () => {
   const [login, setLogin] = useState(true);
@@ -28,7 +29,7 @@ const AuthenticateModal = () => {
 
   // const [openModal, setOpenModal] = useState(false);
 
-  const { openModal, setOpenModal } = useApiStore((state) => ({
+  const { openModal, setOpenModal } = useComponentStore((state) => ({
     openModal: state.openModal,
     setOpenModal: state.setOpenModal,
   }));
@@ -47,7 +48,7 @@ const AuthenticateModal = () => {
           <AlertDialogTrigger asChild>
             <Button
               variant="ghost"
-              className="uppercase invisible hover:bg-transparent hover:text-white p-0"
+              className="uppercase hover:bg-transparent hover:text-white p-0"
             >
               Login
             </Button>
