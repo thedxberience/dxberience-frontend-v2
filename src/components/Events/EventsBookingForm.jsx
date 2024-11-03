@@ -8,6 +8,7 @@ import { makeRequest } from "@/utils/axios";
 import { useRouter } from "next/navigation";
 import CountrySelector from "../NewsletterSection/CountrySelect";
 import { DatePickerWithPresets } from "../shared/DatePicker";
+import { useApiStore } from "@/store/apiStore";
 
 const EventsBookingForm = ({ slug, price, product }) => {
   const router = useRouter();
@@ -31,6 +32,8 @@ const EventsBookingForm = ({ slug, price, product }) => {
       no_of_guest: "1",
     },
   });
+
+  const affiliateId = useApiStore((state) => state.affiliateId);
 
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["create-booking-request", slug],
@@ -62,6 +65,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
       productSlug: slug,
       productPrice: price,
       noOfTickets: parseInt(data.no_of_guest),
+      partnerId: affiliateId,
     };
 
     mutateAsync(payload);
