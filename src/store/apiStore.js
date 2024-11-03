@@ -53,6 +53,16 @@ export const useApiStore = create(
           set(() => ({ registerError: error.message }));
         }
       },
+      getCategoryPage: async (slug) => {
+        try {
+          const getCategoryPageReq = await makeRequest(`/categories/${slug}`);
+
+          return getCategoryPageReq[0];
+        } catch (error) {
+          console.log(`Could not get Category Page: ${error}`);
+          return null;
+        }
+      },
     }),
     {
       name: "dxberienceV2ApiStore",

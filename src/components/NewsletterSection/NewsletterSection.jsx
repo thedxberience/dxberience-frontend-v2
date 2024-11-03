@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import FormInput from "../shared/FormInput";
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 import CustomButton from "../shared/CustomButton";
 import CountrySelector from "./CountrySelect";
 import { useMutation } from "@tanstack/react-query";
@@ -15,6 +15,7 @@ const NewsletterSection = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -24,8 +25,11 @@ const NewsletterSection = () => {
       lastName: "",
       country: "",
       email: "",
+      consent: true,
     },
   });
+
+  register("consent", {});
 
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["subscribe-to-newsletter"],
@@ -43,6 +47,7 @@ const NewsletterSection = () => {
   const watchAllFields = watch();
 
   const handleSubscribeToNewsletter = async (subscriberData) => {
+    console.log(subscriberData);
     try {
       const payload = {
         email: subscriberData.email,
@@ -54,6 +59,7 @@ const NewsletterSection = () => {
           firstName: subscriberData.firstName,
           lastName: subscriberData.lastName,
           country: country,
+          consent: subscriberData.consent,
         },
       };
 
@@ -138,6 +144,17 @@ const NewsletterSection = () => {
               <div className="w-full flex justify-center items-center lg:w-4/12 ">
                 <CustomButton btnName="Subscribe Now" isPending={isPending} />
               </div>
+            </div>
+
+            <div className="mt-2">
+              <FormInput
+                inputType="consent"
+                value={watchAllFields.consent}
+                setValue={setValue}
+                errors={errors}
+                name="consent"
+                register={register}
+              />
             </div>
           </form>
           <div className="privacy-policy text-white text-sm font-extralight pt-3">

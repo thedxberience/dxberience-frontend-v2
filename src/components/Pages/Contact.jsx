@@ -16,6 +16,7 @@ const ContactPage = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm({
@@ -27,6 +28,7 @@ const ContactPage = () => {
       email: "",
       phoneNumber: "",
       company: "",
+      consent: true,
       message: "",
     },
   });
@@ -61,6 +63,7 @@ const ContactPage = () => {
           company: contactData.company,
           phoneNumber: contactData.phoneNumber,
           message: contactData.message,
+          consent: contactData.consent,
         },
       };
       const response = await mutateAsync(payload);
@@ -173,6 +176,16 @@ const ContactPage = () => {
                 />
                 <div className="flex mt-5 justify-center">
                   <CustomButton btnName="Send Message" isPending={isPending} />
+                </div>
+                <div className="mt-2">
+                  <FormInput
+                    inputType="consent"
+                    value={watchAllFields.consent}
+                    setValue={setValue}
+                    errors={errors}
+                    name="consent"
+                    register={register}
+                  />
                 </div>
               </div>
             </form>

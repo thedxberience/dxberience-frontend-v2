@@ -62,7 +62,7 @@ const AuthenticateModal = () => {
 
             <AlertDialogHeader>
               <AlertDialogTitle className="font-IvyPresto text-2xl lg:text-5xl mb-9">
-                {login ? "Admin Login" : "Sign Up"}
+                {login ? "Login" : "Sign Up"}
               </AlertDialogTitle>
               <AlertDialogDescription>
                 <div className="form-body w-full flex-center flex-col gap-6">
