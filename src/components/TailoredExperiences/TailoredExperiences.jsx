@@ -29,7 +29,7 @@ const TailoredExperienceForm = () => {
       phoneNumber: "",
       country: "",
       company: "",
-      consent: true,
+      optin: true,
       message: "Hello, I'd like to request a tailored experience.",
     },
   });
@@ -68,7 +68,7 @@ const TailoredExperienceForm = () => {
           company: contactData.company,
           phoneNumber: contactData.phoneNumber,
           message: message,
-          consent: contactData.consent,
+          optin: contactData.optin,
         },
       };
       const response = await mutateAsync(payload);
@@ -177,11 +177,11 @@ const TailoredExperienceForm = () => {
         </div>
         <div className="mt-2">
           <FormInput
-            inputType="consent"
-            value={watchAllFields.consent}
+            inputType="optin"
+            value={watchAllFields.optin}
             setValue={setValue}
             errors={errors}
-            name="consent"
+            name="optin"
             register={register}
           />
         </div>

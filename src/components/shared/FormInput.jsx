@@ -104,7 +104,7 @@ function FormInput({
           </div>
         );
 
-      case "consent":
+      case "optin":
         return (
           <div className="relative flex gap-2 items-start">
             <input

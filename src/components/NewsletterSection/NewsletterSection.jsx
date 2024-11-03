@@ -25,11 +25,9 @@ const NewsletterSection = () => {
       lastName: "",
       country: "",
       email: "",
-      consent: true,
+      optin: true,
     },
   });
-
-  register("consent", {});
 
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["subscribe-to-newsletter"],
@@ -59,7 +57,7 @@ const NewsletterSection = () => {
           firstName: subscriberData.firstName,
           lastName: subscriberData.lastName,
           country: country,
-          consent: subscriberData.consent,
+          optin: subscriberData.optin,
         },
       };
 
@@ -148,11 +146,11 @@ const NewsletterSection = () => {
 
             <div className="mt-2">
               <FormInput
-                inputType="consent"
-                value={watchAllFields.consent}
+                inputType="optin"
+                value={watchAllFields.optin}
                 setValue={setValue}
                 errors={errors}
-                name="consent"
+                name="optin"
                 register={register}
               />
             </div>
