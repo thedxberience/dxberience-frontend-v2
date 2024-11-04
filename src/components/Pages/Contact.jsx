@@ -174,9 +174,7 @@ const ContactPage = () => {
                   errors={errors}
                   value={watchAllFields.message}
                 />
-                <div className="flex mt-5 justify-center">
-                  <CustomButton btnName="Send Message" isPending={isPending} />
-                </div>
+
                 <div className="mt-2">
                   <FormInput
                     inputType="optin"
@@ -186,6 +184,9 @@ const ContactPage = () => {
                     name="optin"
                     register={register}
                   />
+                </div>
+                <div className="flex mt-3 justify-center">
+                  <CustomButton btnName="Send Message" isPending={isPending} />
                 </div>
               </div>
             </form>
