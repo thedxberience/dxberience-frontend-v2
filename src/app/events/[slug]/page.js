@@ -13,24 +13,7 @@ import PriceContainer from "@/components/Events/PriceContainer";
 import { useApiStore } from "@/store/apiStore";
 
 const page = ({ params }) => {
-  const searchParams = useSearchParams();
-  const affiliateID = searchParams.get("affiliate");
-
-  const validateAffiliate = useApiStore((state) => state.validateAffiliate);
-
-  const {
-    data: affiliateData,
-    error: affiliateError,
-    isError: affiliateIsError,
-    isSuccess: affiliateIsSuccess,
-  } = useQuery({
-    queryKey: ["affiliate", affiliateID],
-    queryFn: async () => {
-      const req = await validateAffiliate(affiliateID, params.slug);
-
-      return req;
-    },
-  });
+  const affiliateId = useApiStore((state) => state.affiliateId);
 
   const { data, error, isError, isSuccess, isLoading } = useQuery({
     queryKey: ["product", params.slug],

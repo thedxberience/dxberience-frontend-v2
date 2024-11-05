@@ -21,8 +21,6 @@ export function FormSelectTag({
     setSelectValue(value);
   };
 
-  console.log(selectValue);
-
   return (
     <div className="w-full">
       <Select onValueChange={handleChangeSelect} className="outline-none">
