@@ -5,13 +5,33 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import PriceContainer from "@/components/Events/PriceContainer";
+import { useApiStore } from "@/store/apiStore";
 
 const page = ({ params }) => {
+  const searchParams = useSearchParams();
+  const affiliateID = searchParams.get("affiliate");
+
+  const validateAffiliate = useApiStore((state) => state.validateAffiliate);
+
+  const {
+    data: affiliateData,
+    error: affiliateError,
+    isError: affiliateIsError,
+    isSuccess: affiliateIsSuccess,
+  } = useQuery({
+    queryKey: ["affiliate", affiliateID],
+    queryFn: async () => {
+      const req = await validateAffiliate(affiliateID, params.slug);
+
+      return req;
+    },
+  });
+
   const { data, error, isError, isSuccess, isLoading } = useQuery({
     queryKey: ["product", params.slug],
     queryFn: async () => {

@@ -146,8 +146,11 @@ input[type="text"] {
   bottom: 71px;
   width: 100%;
   height: 1082px;
+}
+
+.services .sticky-bg{
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)),
-    url("/woman_bed.jpeg") center center/cover no-repeat;
+  url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
 .memories .sticky_parent {

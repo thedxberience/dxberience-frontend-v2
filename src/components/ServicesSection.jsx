@@ -4,8 +4,9 @@ import ServiceCard from "./ServiceSection/ServiceCard";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
+import CustomButton from "./shared/CustomButton";
 
-const ServicesSection = () => {
+const ServicesSection = ({ category = null, header = null }) => {
   const stickySection = useRef(null);
   const scrollSection = useRef(null);
 
@@ -104,6 +105,8 @@ const ServicesSection = () => {
     },
   });
 
+  const [serviceCategories, setServiceCategories] = useState(services);
+
   const handleStickyDimension = useCallback(() => {
     const serviceCount = services?.length;
     let oddWidth, evenWidth;
@@ -126,6 +129,12 @@ const ServicesSection = () => {
   }, [services, oddWidthState, evenWidthState]);
 
   useEffect(() => {
+    if (category && category.subCategories.length !== 0) {
+      setServiceCategories(category.subCategories);
+    } else {
+      setServiceCategories(services);
+    }
+
     const handleResize = () => {
       if (window.innerWidth < 1024) {
         setScrollThreshold(620);
@@ -154,6 +163,64 @@ const ServicesSection = () => {
     handleStickyDimension();
   }, [services, oddWidthState, evenWidthState]);
 
+  const handleServiceContainerHeader = () => {
+    if (category && category.subCategories.length !== 0) {
+      return (
+        <div className="subcategory-header w-11/12 py-5 flex justify-end items-center">
+          <div className="flex flex-col justify-start items-start gap-4">
+            <h2 className="text-lg lg:text-4xl">GLOBAL & LOCAL EVENTS</h2>
+            <h2 className="font-IvyPresto text-4xl lg:text-7xl">
+              at your fingertips
+            </h2>
+            <CustomButton
+              btnName="indulge today"
+              isLink
+              href={`/explore-experiencees/${category.slug}`}
+            />
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="w-full flex justify-end items-center p-6 2xl:p-20 z-10 relative">
+          <div className="text flex flex-col lg:flex-row justify-evenly items-center gap-2 lg:gap-4">
+            <div className="flex flex-col justify-end lg:justify-center items-end w-full lg:w-5/12">
+              <h1 className="font-IvyPresto text-4xl lg:text-7xl">VIP</h1>
+              <p className="text-base lg:text-4xl">CURATED EXPERIENCES</p>
+            </div>
+            <div className="flex flex-col gap-8 justify-center items-start w-full lg:w-5/12">
+              <p className="text-base">
+                Dxberience offers VIP experiences that redefine luxury living in
+                Dubai, from bespoke services to curated experiences. Discover
+                our exclusive global private villa portfolio, featuring
+                luxurious accommodations in the world's most sought-after
+                destinations.
+              </p>
+              {/* <div>
+                  <CustomButton btnName="global private villa portfolio" />
+                </div> */}
+            </div>
+            <div
+              className={`flex justify-center items-center flex-col ${
+                scrollingUp ? "gap-1" : "gap-3"
+              }`}
+            >
+              <p className="uppercase text-xs">Scroll to continue</p>
+
+              <Image
+                className={`animate-bounce ${scrollingUp ? "scroll-up" : ""}`}
+                src="/scroll_icon.svg"
+                alt="scroll icon"
+                width={41}
+                height={41}
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
+
   return (
     <section className="services w-full">
       <div
@@ -162,42 +229,13 @@ const ServicesSection = () => {
         }}
         className="sticky_parent"
       >
-        <div ref={stickySection} className="sticky text-white">
-          <div className="w-full flex justify-end items-center p-6 2xl:p-20 z-10 relative">
-            <div className="text flex flex-col lg:flex-row justify-evenly items-center gap-2 lg:gap-4">
-              <div className="flex flex-col justify-end lg:justify-center items-end w-full lg:w-5/12">
-                <h1 className="font-IvyPresto text-4xl lg:text-7xl">VIP</h1>
-                <p className="text-base lg:text-4xl">CURATED EXPERIENCES</p>
-              </div>
-              <div className="flex flex-col gap-8 justify-center items-start w-full lg:w-5/12">
-                <p className="text-base">
-                  Dxberience offers VIP experiences that redefine luxury living
-                  in Dubai, from bespoke services to curated experiences.
-                  Discover our exclusive global private villa portfolio,
-                  featuring luxurious accommodations in the world's most
-                  sought-after destinations.
-                </p>
-                {/* <div>
-                  <CustomButton btnName="global private villa portfolio" />
-                </div> */}
-              </div>
-              <div
-                className={`flex justify-center items-center flex-col ${
-                  scrollingUp ? "gap-1" : "gap-3"
-                }`}
-              >
-                <p className="uppercase text-xs">Scroll to continue</p>
-
-                <Image
-                  className={`animate-bounce ${scrollingUp ? "scroll-up" : ""}`}
-                  src="/scroll_icon.svg"
-                  alt="scroll icon"
-                  width={41}
-                  height={41}
-                />
-              </div>
-            </div>
-          </div>
+        <div
+          ref={stickySection}
+          className={`sticky  ${
+            category ? "bg-[#171010]" : "sticky-bg"
+          } text-white`}
+        >
+          {handleServiceContainerHeader()}
           <div
             ref={scrollSection}
             style={{
@@ -205,7 +243,7 @@ const ServicesSection = () => {
             }}
             className="scroll_section"
           >
-            {services?.map((service, index) => (
+            {serviceCategories?.map((service, index) => (
               <ServiceCard {...service} key={`${service.name} ${index}`} />
             ))}
           </div>

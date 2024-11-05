@@ -14,6 +14,7 @@ export const useApiStore = create(
       registerError: "",
       setRegisterError: (error) => set(() => ({ registerError: error })),
       setProductData: (data) => set(() => ({ productData: data })),
+      affiliateId: null,
       login: async (data) => {
         try {
           const request = await makeRequest("/auth/login", {
@@ -61,6 +62,26 @@ export const useApiStore = create(
         } catch (error) {
           console.log(`Could not get Category Page: ${error}`);
           return null;
+        }
+      },
+      validateAffiliate: async (affiliateId, slug) => {
+        try {
+          const affiliateVerification = await makeRequest(
+            `/affiliate/validate?partnerId=${affiliateId}&product=${slug}`
+          );
+
+          if (affiliateVerification) {
+            set(() => ({
+              affiliateId: affiliateId,
+            }));
+          } else {
+            set(() => ({
+              affiliateId: null,
+            }));
+          }
+          return affiliateVerification;
+        } catch (error) {
+          console.log(`Error validating affiliate: ${error}`);
         }
       },
     }),

@@ -114,7 +114,12 @@ const page = ({ params }) => {
               <p className="text-sm lg:text-lg">{data.sectionADescription}</p>
             </div>
             <div className="section-b-btn w-full flex-center lg:justify-start">
-              <CustomButton btnName="find events" invert />
+              <CustomButton
+                btnName="Explore"
+                invert
+                isLink
+                href={`/explore-experiences/${data.category.slug}`}
+              />
             </div>
           </div>
           <div className="w-full hidden lg:flex">
@@ -129,7 +134,12 @@ const page = ({ params }) => {
           </div>
         </div>
       </section>
-      <ServicesSection />
+      {data.category && data.category.subCategories && (
+        <ServicesSection
+          category={data.category}
+          header={data.sectionBHeader}
+        />
+      )}
       <section className="section-d flex-center py-9 lg:py-[100px]">
         <div className="flex flex-col gap-16 justify-center items-center w-10/12">
           <div className="section-d-text-content flex flex-col gap-8 lg:flex-row justify-between items-center">
