@@ -10,8 +10,32 @@ import Image from "next/image";
 import { useComponentStore } from "@/store/componentStore";
 import { useApiStore } from "@/store/apiStore";
 import TailoredExperienceContainer from "../TailoredExperiences/TailoredExperienceContainer";
+import { useSearchParams } from "next/navigation";
 
 const ExploreExperience = ({ params }) => {
+  const searchParams = useSearchParams();
+  const affiliateID = searchParams.get("affiliate");
+
+  const validateAffiliate = useApiStore((state) => state.validateAffiliate);
+
+  const setRevealTailoredExperiencForm = useComponentStore(
+    (state) => state.setRevealTailoredExperiencForm
+  );
+
+  const {
+    data: affiliateData,
+    error: affiliateError,
+    isError: affiliateIsError,
+    isSuccess: affiliateIsSuccess,
+  } = useQuery({
+    queryKey: ["affiliate", affiliateID],
+    queryFn: async () => {
+      const req = await validateAffiliate(affiliateID, params.slug);
+
+      return req;
+    },
+  });
+
   const [apiParams, setApiParams] = useState("/product");
 
   const { data, error, isError, isSuccess, isLoading } = useQuery({
@@ -22,15 +46,15 @@ const ExploreExperience = ({ params }) => {
     },
   });
 
-  const { productData, setProductData } = useApiStore((state) => state);
-
-  const { categoryFromSlug, setCategoryFromSlug } = useComponentStore(
-    (state) => state
+  const setCategoryFromSlug = useComponentStore(
+    (state) => state.setCategoryFromSlug
   );
 
   useEffect(() => {
     setCategoryFromSlug(params.slug);
-    // if
+    if (affiliateID) {
+      setRevealTailoredExperiencForm(true);
+    }
   }, []);
 
   const handleShowExperiences = useCallback(() => {

@@ -1,14 +1,30 @@
 "use client";
-import TailoredExperienceBtn from "@/components/shared/TailoredExperienceBtn";
+// import { useApiStore } from "@/store/apiStore";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+// import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Provider = ({ children }) => {
   const [client] = useState(() => new QueryClient());
+
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
+  // const pathname = usePathname();
+
+  // useEffect(() => {
+  //   const affiliateId = useApiStore.getState().affiliateId;
+
+  //   if (affiliateId) {
+  //     const affiliateExists = searchParams.get("affiliate");
+  //     if (!affiliateExists) {
+  //       router.replace(`${pathname}?affiliate=${affiliateId}`);
+  //     }
+  //   }
+  // }, [router, pathname]);
 
   return (
     <QueryClientProvider client={client}>
