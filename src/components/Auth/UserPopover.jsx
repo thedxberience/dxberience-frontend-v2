@@ -18,12 +18,24 @@ const UserPopover = () => {
     user: state.user,
     logOutUser: state.logOutUser,
   }));
+
+  const handleLoggedInName = () => {
+    if (user) {
+      if (user.isAdmin) {
+        return "ADMIN";
+      } else {
+        if (user.firstName) {
+          return user.firstName;
+        } else {
+          return "USER";
+        }
+      }
+    }
+  };
   return (
     <Popover>
       <PopoverTrigger className="mix-blend-exclusion text-white bg-transparent">
-        <h2 className="uppercase">
-          {user.firstName ? user.firstName : "USER"}
-        </h2>
+        <h2 className="uppercase">{handleLoggedInName()}</h2>
       </PopoverTrigger>
       <PopoverContent>
         <div className="flex justify-start items-center">

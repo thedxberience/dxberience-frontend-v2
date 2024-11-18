@@ -16,7 +16,7 @@ export const useUserStore = create(
 
           if (request) {
             set((state) => ({
-              userAuthenticated: state.user && request.admin, // Checks if there is a user state and the access token is valid
+              userAuthenticated: state.user && request.isAdmin, // Checks if there is a user state and the access token is valid
             }));
           } else {
             set(() => ({ userAuthenticated: false }));
