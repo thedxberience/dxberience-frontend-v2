@@ -34,7 +34,8 @@ function BookingAdmin() {
       const request = await checkUser();
       console.log(`User Authenticated: ${userAuthenticated}`);
 
-      if (!userAuthenticated) {
+      // the predicate is necessary as the default value of userAuthenticated is null and falsy.
+      if (userAuthenticated === false || userAuthenticated === undefined) {
         router.replace("/");
         setOpenModal(true);
       }
