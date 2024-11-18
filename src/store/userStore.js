@@ -21,6 +21,7 @@ export const useUserStore = create(
           } else {
             set(() => ({ userAuthenticated: false }));
           }
+          return request;
         } catch (error) {
           console.log(`Unable to check user details: ${error}`);
           set(() => ({ userAuthenticated: false }));

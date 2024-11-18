@@ -34,7 +34,7 @@ function BookingAdmin() {
       const request = await checkUser();
       console.log(`User Authenticated: ${userAuthenticated}`);
 
-      if (!userAuthenticated) {
+      if (userAuthenticated === false || userAuthenticated === undefined) {
         router.replace("/");
         setOpenModal(true);
       }
