@@ -1,5 +1,4 @@
 "use client";
-import TailoredExperienceBtn from "@/components/shared/TailoredExperienceBtn";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";

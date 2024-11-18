@@ -21,6 +21,7 @@ import UserPopover from "./UserPopover";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/userStore";
 import { useComponentStore } from "@/store/componentStore";
+import AdminAuthModal from "./AdminAuthModal";
 
 const AuthenticateModal = () => {
   const [login, setLogin] = useState(true);
@@ -36,9 +37,11 @@ const AuthenticateModal = () => {
 
   const { user } = useUserStore((state) => ({ user: state.user }));
 
+  const openAdminModal = useComponentStore((state) => state.openAdminModal);
+
   return (
     <>
-      {user ? (
+      {user && !user.admin ? (
         <UserPopover />
       ) : (
         <AlertDialog
@@ -67,29 +70,29 @@ const AuthenticateModal = () => {
               <AlertDialogDescription>
                 <div className="form-body w-full flex-center flex-col gap-6">
                   <div className="auth-switch flex justify-center items-center w-full">
-                    {/* <div
+                    <div
                       onClick={() => setLogin(true)}
                       className={`w-full cursor-pointer border-b ${
                         login ? "border-black" : "border-tab-inactive"
                       }  flex justify-center items-center`}
                     >
                       <p>Login</p>
-                    </div> */}
-                    {/* <div
+                    </div>
+                    <div
                       onClick={() => setLogin(false)}
                       className={`w-full cursor-pointer border-b ${
                         !login ? "border-black" : "border-tab-inactive"
                       }  flex justify-center items-center`}
                     >
                       <p>Sign Up</p>
-                    </div> */}
+                    </div>
                   </div>
 
-                  {/* <div className="w-full">
+                  <div className="w-full">
                     <GoogleAuthButton />
-                  </div> */}
+                  </div>
 
-                  {/* <div className="line-break flex-center w-full">
+                  <div className="line-break flex-center w-full">
                     <div className="h-[1px] w-3/12 bg-black/40"></div>
                     <div className="w-full flex-center">
                       <p className="text-lg w-full text-center">
@@ -97,7 +100,7 @@ const AuthenticateModal = () => {
                       </p>
                     </div>
                     <div className="h-[1px] w-3/12 bg-black/40"></div>
-                  </div> */}
+                  </div>
 
                   {login ? <LoginForm /> : <RegisterForm />}
                 </div>

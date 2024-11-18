@@ -6,9 +6,6 @@ export const useComponentStore = create(
     (set, get) => ({
       openModal: false,
       setOpenModal: (openModal) => set(() => ({ openModal: openModal })),
-      openAdminModal: false,
-      setOpenAdminModal: (openAdminModal) =>
-        set(() => ({ openAdminModal: openAdminModal })),
       experienceFormDropdownState: {
         categoryDropdown: false,
         dateDropdown: false,

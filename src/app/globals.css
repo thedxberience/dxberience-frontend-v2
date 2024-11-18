@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,7 +69,27 @@
   }
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@layer components {
+  .flex-center{
+    @apply flex justify-center items-center;
+  }
+
+  .flex-center-col{
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .flex-start{
+    @apply flex justify-start items-start;
+  }
+
+  .flex-start-col{
+    @apply flex flex-col justify-start items-start;
+  }
+
+  .flex-between{
+    @apply flex justify-between items-center;
+  }
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -290,6 +311,9 @@ input[type="text"] {
   width: 22.5px;
   height: 2px;
   background-color: white;
+}
+.mobile-nav .hamburger-black {
+  background-color: black;
 }
 
 .mobile-nav .mobile-nav-menu {

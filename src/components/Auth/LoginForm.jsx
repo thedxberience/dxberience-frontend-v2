@@ -43,10 +43,14 @@ const LoginForm = ({ admin = true }) => {
     mutationKey: ["login", watchAllFields.email],
     mutationFn: async (data) => {
       const loginRequest = await login(data);
-      // console.log(`LoginRequest: ${JSON.stringify(loginRequest)}`);
+      console.log(`LoginRequest: ${JSON.stringify(loginRequest)}`);
 
       if (loginRequest.success) {
-        router.push("/admin");
+        if (loginRequest.admin) {
+          router.push("/admin");
+        } else {
+          router.push("/dashboard");
+        }
       }
 
       return loginRequest;

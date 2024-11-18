@@ -11,15 +11,15 @@ import axios from "axios";
 import { makeRequest } from "@/utils/axios";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import { useApiStore } from "@/store/apiStore";
 import { useUserStore } from "@/store/userStore";
+import { useComponentStore } from "@/store/componentStore";
 
 function BookingAdmin() {
   const router = useRouter();
 
   const queryClient = useQueryClient();
 
-  const { setOpenModal } = useApiStore((state) => ({
+  const { setOpenModal } = useComponentStore((state) => ({
     setOpenModal: state.setOpenModal,
   }));
 
@@ -34,7 +34,7 @@ function BookingAdmin() {
       console.log(`User Authenticated: ${userAuthenticated}`);
 
       const request = await checkUser();
-      if (userAuthenticated === false) {
+      if (userAuthenticated === false || !user.isAdmin) {
         router.replace("/");
         setOpenModal(true);
       }
@@ -47,7 +47,7 @@ function BookingAdmin() {
   useEffect(() => {
     checkUserValidator();
     return;
-  }, [userAuthenticated]);
+  }, [userAuthenticated, user]);
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [advancedFilter, setAdvancedFilter] = useState(false);

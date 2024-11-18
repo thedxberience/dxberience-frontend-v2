@@ -22,10 +22,8 @@ const ExploreExperience = ({ params }) => {
     },
   });
 
-  const { productData, setProductData } = useApiStore((state) => state);
-
-  const { categoryFromSlug, setCategoryFromSlug } = useComponentStore(
-    (state) => state
+  const setCategoryFromSlug = useComponentStore(
+    (state) => state.setCategoryFromSlug
   );
 
   useEffect(() => {

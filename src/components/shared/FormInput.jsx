@@ -26,7 +26,7 @@ function FormInput({
             id={name}
             type={inputType}
             className={`bg-transparent border-b-[1px] py-1 outline-none ${
-              value.length > 0 ? "pt-7" : ""
+              value ? "pt-7" : ""
             }`}
           />
         );
@@ -39,7 +39,7 @@ function FormInput({
             type={inputType}
             maxLength={180}
             className={`bg-transparent border-b-[1px] py-1 outline-none resize-none h-[100px] ${
-              value.length > 0 ? "pt-7" : ""
+              value ? "pt-7" : ""
             }`}
           ></textarea>
         );
@@ -72,7 +72,7 @@ function FormInput({
         return (
           <div
             className={`bg-transparent w-full flex justify-between items-center border-b-[1px] py-1 outline-none ${
-              value.length > 0 ? "pt-7" : ""
+              value ? "pt-7" : ""
             }`}
           >
             <input
@@ -151,7 +151,7 @@ function FormInput({
             id={name}
             type={inputType}
             className={`bg-transparent border-b-[1px] py-1 outline-none ${
-              value.length > 0 ? "pt-7" : ""
+              value > 0 ? "pt-7" : ""
             }`}
           />
         );
@@ -164,10 +164,7 @@ function FormInput({
         invertText ? "text-black" : "text-white"
       }`}
     >
-      <label
-        htmlFor={name}
-        className={`absolute ${value.length > 0 ? "" : "hidden"}`}
-      >
+      <label htmlFor={name} className={`absolute ${value ? "" : "hidden"}`}>
         {placeholder}
         {errors && errors[name] && <span className="text-red-500"> *</span>}
       </label>

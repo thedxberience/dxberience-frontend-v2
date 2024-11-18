@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
 import CustomButton from "./shared/CustomButton";
+import { usePathname } from "next/navigation";
 
 const ServicesSection = ({ category = null, header = null }) => {
   const stickySection = useRef(null);
@@ -31,6 +32,8 @@ const ServicesSection = ({ category = null, header = null }) => {
   const laptopEvenWidth = 190;
   const desktopOddWidth = 600;
   const desktopEvenWidth = 373;
+
+  const pathname = usePathname();
 
   useEffect(() => {
     if (window) {
@@ -129,12 +132,6 @@ const ServicesSection = ({ category = null, header = null }) => {
   }, [services, oddWidthState, evenWidthState]);
 
   useEffect(() => {
-    if (category && category.subCategories.length !== 0) {
-      setServiceCategories(category.subCategories);
-    } else {
-      setServiceCategories(services);
-    }
-
     const handleResize = () => {
       if (window.innerWidth < 1024) {
         setScrollThreshold(620);
@@ -161,6 +158,12 @@ const ServicesSection = ({ category = null, header = null }) => {
 
   useEffect(() => {
     handleStickyDimension();
+
+    if (category && category.subCategories.length !== 0) {
+      setServiceCategories(category.subCategories);
+    } else {
+      setServiceCategories(services);
+    }
   }, [services, oddWidthState, evenWidthState]);
 
   const handleServiceContainerHeader = () => {

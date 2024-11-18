@@ -4,9 +4,14 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Heart from "./Heart";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/userStore";
 
 const ExperienceCard = ({
   slug,
+  bookingDate,
+  bookingTime,
+  no_of_guest,
+  bookingState = "",
   experienceImage = "/experience_bg.jpeg",
   experienceTitle = "Dubai Desert Safari Package",
   experienceAlt = "Image for a category",
@@ -14,6 +19,7 @@ const ExperienceCard = ({
   experienceDescription = "Each show is a meticulously crafted spectacle, featuring elaborate costumes, intricate ",
   newExperience = false,
   priceStart = false,
+  showLocation = true,
 }) => {
   const [pan, setPan] = useState(false);
 
@@ -25,6 +31,8 @@ const ExperienceCard = ({
     setPan(false);
   };
 
+  const userAuthenticated = useUserStore((state) => state.userAuthenticated);
+
   const router = useRouter();
 
   const handleExperienceRoute = () => {
@@ -34,6 +42,49 @@ const ExperienceCard = ({
       } else {
         window.open(`/events/${slug}`);
       }
+    }
+  };
+
+  const handleBookingState = () => {
+    switch (bookingState.toLowerCase()) {
+      case "confirmed":
+        return (
+          <div className="flex-center px-2 py-[2px] bg-text-secondary max-w-[154px]">
+            <p className="text-[10px] uppercase leading-4">
+              Reservation Confirmed
+            </p>
+          </div>
+        );
+      case "pending":
+        return (
+          <div className="flex-center px-2 py-[2px] text-black bg-white max-w-[154px]">
+            <p className="text-[10px] uppercase leading-4">
+              Reservation Pending
+            </p>
+          </div>
+        );
+      case "cancelled":
+        return (
+          <div className="flex-center px-2 py-[2px] bg-text-secondary max-w-[154px]">
+            <p className="text-[10px] uppercase leading-4">
+              Cancellation Confirmed
+            </p>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const handleBookindDate = () => {
+    if (bookingDate) {
+      const date = new Date(bookingDate);
+
+      const formattedDate = date.toDateString();
+
+      return formattedDate;
+    } else {
+      return null;
     }
   };
 
@@ -69,7 +120,7 @@ const ExperienceCard = ({
         </div>
       )}
       <div className="content relative p-1 lg:p-2 flex flex-col h-full w-full justify-end items-start gap-1 z-10 border">
-        {/* <Heart /> */}
+        {userAuthenticated && <Heart />}
         <div className="flex flex-col gap-2">
           {priceStart && (
             <div className="price-starts pb-4 lg:pb-8">
@@ -79,15 +130,29 @@ const ExperienceCard = ({
               </h2>
             </div>
           )}
+          {handleBookingState()}
           <h1 className="text-sm lg:text-2xl font-IvyPresto w-[23.846vw] md:w-10/12">
             {experienceTitle}
           </h1>
-          <div className="location text-[10px] lg:text-sm flex justify-start items-center gap-[1.24px]">
-            <div className="w-3 h-4 lg:w-4 lg:h-4 flex justify-start items-center">
-              <IoLocationOutline />{" "}
+          {showLocation ? (
+            <div className="location text-[10px] lg:text-sm flex justify-start items-center gap-[1.24px]">
+              <div className="w-3 h-4 lg:w-4 lg:h-4 flex justify-start items-center">
+                <IoLocationOutline />{" "}
+              </div>
+              <span>{experienceLocation}</span>
             </div>
-            <span>{experienceLocation}</span>
-          </div>
+          ) : (
+            <div className="flex flex-col justify-start gap-1">
+              <p>{handleBookindDate()}</p>
+              <p>{bookingTime}</p>
+              <p>
+                {no_of_guest > 1
+                  ? `${no_of_guest} guests`
+                  : `${no_of_guest} guest`}{" "}
+              </p>
+            </div>
+          )}
+
           {pan && (
             <div className="text-[10px] lg:text-sm w-10/12">
               <p>{experienceDescription}</p>

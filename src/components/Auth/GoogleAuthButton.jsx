@@ -6,7 +6,7 @@ const GoogleAuthButton = () => {
     <div>
       <div
         id="g_id_onload"
-        data-client_id="1012324152547-6hvmdkhhc2fraebgjkp8d8os1o13n18e.apps.googleusercontent.com"
+        data-client_id="600357945990-0sp7q6h5rbnqelpuci1u0len3hvhvk95.apps.googleusercontent.com"
         data-ux_mode="redirect"
         data-auto_prompt="true"
         data-context="use"

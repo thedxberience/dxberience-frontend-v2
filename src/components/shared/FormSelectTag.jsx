@@ -5,7 +5,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -20,8 +19,6 @@ export function FormSelectTag({
   const handleChangeSelect = (value) => {
     setSelectValue(value);
   };
-
-  console.log(selectValue);
 
   return (
     <div className="w-full">

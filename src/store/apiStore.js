@@ -84,6 +84,15 @@ export const useApiStore = create(
           console.log(`Error validating affiliate: ${error}`);
         }
       },
+      getUserBookings: async () => {
+        try {
+          const userBookingsReq = await makeRequest("/booking/me");
+
+          return userBookingsReq;
+        } catch (error) {
+          throw new AxiosError(`Could not call get user bookings: ${error}`);
+        }
+      },
     }),
     {
       name: "dxberienceV2ApiStore",
