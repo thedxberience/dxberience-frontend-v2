@@ -52,6 +52,7 @@ const ExploreExperience = ({ params }) => {
           experienceLocation={
             product.location ? product.location : "Dubai, United Arab Emirates"
           }
+          category={product?.category?.name}
           key={product.slug}
         />
       ));

@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { useUserStore } from "@/store/userStore";
 import { useComponentStore } from "@/store/componentStore";
+import { useAuthGuard } from "@/utils/CustomHooks";
+import LoadingIcon from "@/components/shared/LoadingIcon";
 
 function BookingAdmin() {
   const router = useRouter();
@@ -29,25 +31,7 @@ function BookingAdmin() {
     checkUser: state.checkUser,
   }));
 
-  const checkUserValidator = async () => {
-    try {
-      console.log(`User Authenticated: ${userAuthenticated}`);
-
-      const request = await checkUser();
-      if (userAuthenticated === false || !user.isAdmin) {
-        router.replace("/");
-        setOpenModal(true);
-      }
-    } catch (error) {
-      console.log(`Error validating user: ${error}`);
-      // router.replace("/");
-    }
-  };
-
-  useEffect(() => {
-    checkUserValidator();
-    return;
-  }, [userAuthenticated, user]);
+  const isAuthenticated = useAuthGuard({ adminRoute: true });
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [advancedFilter, setAdvancedFilter] = useState(false);
@@ -119,7 +103,7 @@ function BookingAdmin() {
 
   return (
     <>
-      {userAuthenticated && user && (
+      {isAuthenticated ? (
         <div className="flex flex-col bg-[#212121] min-h-[100vh]  h-full">
           <Navbar />
           <div className="px-4 sm:px-20 py-5 text-white">
@@ -330,6 +314,10 @@ function BookingAdmin() {
               bookingMutation={bookingMutation}
             />
           )}
+        </div>
+      ) : (
+        <div className="flex-center h-screen bg-[#212121]">
+          <LoadingIcon />
         </div>
       )}
     </>

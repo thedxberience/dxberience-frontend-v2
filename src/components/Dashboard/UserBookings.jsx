@@ -14,6 +14,7 @@ import LoadingIcon from "../shared/LoadingIcon";
 import EmptyState from "./EmptyState";
 import ExperienceCard from "../Experiences/ExperienceCard";
 import ErrorState from "./ErrorState";
+import FilterPopover from "./FilterPopover";
 
 const UserBookings = () => {
   const user = useUserStore((state) => state.user);
@@ -50,16 +51,7 @@ const UserBookings = () => {
     <div className="bookings-container w-full flex-center">
       <div className="w-10/12 flex-center-col">
         <div className="booking-header w-full flex-between">
-          <div className="filters flex-center gap-4">
-            <Image
-              src="/filter_icon.svg"
-              alt="filter icon"
-              width={25}
-              height={25}
-            />
-
-            <p className="text-lg">Filters</p>
-          </div>
+          <FilterPopover />
           <div>
             <Select>
               <SelectTrigger className="w-[222px] bg-transparent border-x-0 border-t-0 rounded-none text-lg border-b-[0.5px] border-b-[#4e4e4e]">
@@ -72,7 +64,7 @@ const UserBookings = () => {
             </Select>
           </div>
         </div>
-        <div className="user-bookings experiences w-full mt-10 px-4 lg:px-0 lg:w-9/12 ">
+        <div className="user-bookings experiences w-full mt-10 px-4 lg:px-0 lg:w-10/12 ">
           {data?.bookings?.map((booking) => (
             <ExperienceCard
               bookingState={booking.confirmationStatus}
@@ -90,6 +82,7 @@ const UserBookings = () => {
               bookingTime={booking.time}
               no_of_guest={booking.noOfTickets}
               showLocation={false}
+              category={booking.productData.category.name}
               key={booking.productData.slug}
             />
           ))}

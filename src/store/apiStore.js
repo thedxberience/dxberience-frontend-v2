@@ -15,6 +15,7 @@ export const useApiStore = create(
       setRegisterError: (error) => set(() => ({ registerError: error })),
       setProductData: (data) => set(() => ({ productData: data })),
       affiliateId: null,
+      wishlistedSlug: [],
       login: async (data) => {
         try {
           const request = await makeRequest("/auth/login", {
@@ -91,6 +92,29 @@ export const useApiStore = create(
           return userBookingsReq;
         } catch (error) {
           throw new AxiosError(`Could not call get user bookings: ${error}`);
+        }
+      },
+      getUserWishlist: async () => {
+        try {
+          const userWishlist = await makeRequest("/user/wishlist");
+
+          let wishlistedSlug = [];
+
+          if (userWishlist.length > 0) {
+            userWishlist.forEach((wishlist) => {
+              const wishlistSlug = wishlist.slug;
+
+              wishlistedSlug.push(wishlistSlug);
+            });
+          }
+
+          set(() => ({
+            wishlistedSlug: wishlistedSlug,
+          }));
+
+          return userWishlist;
+        } catch (error) {
+          console.log(`Could not call get user wishlist: ${error}`);
         }
       },
     }),

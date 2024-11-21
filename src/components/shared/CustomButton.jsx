@@ -56,6 +56,7 @@ const CustomButton = ({
             alt="button arrow"
             width={24}
             height={24}
+            className="w-auto h-auto"
           />
         </span>
       );

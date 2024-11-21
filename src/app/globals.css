@@ -410,6 +410,16 @@ input[type="text"] {
   display: none;
 }
 
+.weather-container{
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/weather_bg.jpeg") no-repeat center center/cover;
+}
+
+.experiences-dropdown-container {
+  /* background-color: rgba(23, 16, 16, 0.3); */
+  background-color: white;
+}
+
 @keyframes pan-img {
   0% {
     transform: scale(1);

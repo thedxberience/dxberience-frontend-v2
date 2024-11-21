@@ -63,9 +63,9 @@ const EventsBookingForm = ({ slug, price, product }) => {
       time: data.time,
       productName: product,
       productSlug: slug,
-      productPrice: price,
+      productPrice: price ?? 0,
       noOfTickets: parseInt(data.no_of_guest),
-      partnerId: affiliateId,
+      partnerId: affiliateId ? affiliateId : "",
     };
 
     mutateAsync(payload);

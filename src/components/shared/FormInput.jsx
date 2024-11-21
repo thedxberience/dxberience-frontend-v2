@@ -21,11 +21,12 @@ function FormInput({
       case "text":
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
             type={inputType}
-            className={`bg-transparent border-b-[1px] py-1 outline-none ${
+            className={`bg-transparent w-full border-b-[1px] py-1 outline-none ${
               value ? "pt-7" : ""
             }`}
           />
@@ -33,12 +34,13 @@ function FormInput({
       case "textarea":
         return (
           <textarea
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
             type={inputType}
             maxLength={180}
-            className={`bg-transparent border-b-[1px] py-1 outline-none resize-none h-[100px] ${
+            className={`bg-transparent border-b-[1px] w-full py-1 outline-none resize-none h-[100px] ${
               value ? "pt-7" : ""
             }`}
           ></textarea>
@@ -47,6 +49,7 @@ function FormInput({
       case "time":
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
@@ -59,6 +62,7 @@ function FormInput({
       case "number":
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
@@ -81,7 +85,7 @@ function FormInput({
               id={name}
               type={showPassword ? "text" : inputType}
               autoComplete="new-password"
-              className={`bg-transparent border-none outline-none`}
+              className={`bg-transparent border-none w-full outline-none`}
             />
 
             <span onClick={() => setShowPassword(!showPassword)}>
@@ -146,6 +150,7 @@ function FormInput({
       default:
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}

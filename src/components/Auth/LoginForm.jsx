@@ -46,7 +46,7 @@ const LoginForm = ({ admin = true }) => {
       console.log(`LoginRequest: ${JSON.stringify(loginRequest)}`);
 
       if (loginRequest.success) {
-        if (loginRequest.admin) {
+        if (loginRequest.isAdmin) {
           router.push("/admin");
         } else {
           router.push("/dashboard");
@@ -55,7 +55,7 @@ const LoginForm = ({ admin = true }) => {
 
       return loginRequest;
     },
-    onError: (error, vsriables, context) => {
+    onError: (error, variables, context) => {
       setLoginError(error.message);
     },
   });

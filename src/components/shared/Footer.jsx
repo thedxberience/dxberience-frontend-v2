@@ -46,7 +46,7 @@ function Footer() {
     >
       <div className="w-full flex justify-center z-20">
         <div className="relative w-[223.79px] 2xl:w-[325.52px] h-[80px] pt-[30px]">
-          <Link href="/">
+          <Link href="/" className=" w-[223.79px] 2xl:w-[325.52px] h-[80px]">
             <Image src="/dxberience_logo.svg" alt="logo" fill />
           </Link>
         </div>

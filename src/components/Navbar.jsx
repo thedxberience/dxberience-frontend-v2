@@ -8,6 +8,7 @@ import AuthenticateModal from "./Auth/AuthenticateModal";
 import TailoredExperienceBtn from "./shared/TailoredExperienceBtn";
 import AdminAuthModal from "./Auth/AdminAuthModal";
 import { useUserStore } from "@/store/userStore";
+import CategoryDropdown from "./shared/CategoryDropdown";
 
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
@@ -34,7 +35,10 @@ const Navbar = () => {
 
       <div className="relative px-4 lg:px-20 z-50 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
         <div className="flex justify-center relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] items-center">
-          <Link href={"/"}>
+          <Link
+            href={"/"}
+            className="relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] "
+          >
             {invertStyles ? (
               <Image
                 src="/dxberience_logo_black.png"
@@ -63,6 +67,7 @@ const Navbar = () => {
               }`}
             >
               <Suspense>{!user?.admin && <AuthenticateModal />}</Suspense>
+              <CategoryDropdown />
               <li>
                 <Link className="uppercase" href={"/about"}>
                   About
@@ -130,7 +135,10 @@ const Navbar = () => {
           </div>
           <div className="brand-logo">
             <div className="flex justify-center relative w-[31.538vw] h-[30px] items-center">
-              <Link href={"/"}>
+              <Link
+                href={"/"}
+                className="flex justify-center relative w-[31.538vw] h-[30px] items-center"
+              >
                 <Image
                   src="/dxberience_logo_2.png"
                   alt="Dxberience Logo"
@@ -167,7 +175,8 @@ const Navbar = () => {
                 <Link href={"/contact"}>Contact</Link>
               </li>
               <li className="cursor-pointer">
-                <Link href={"/explore-experiences/all"}>Experiences</Link>
+                {/* <Link href={"/explore-experiences/all"}>Experiences</Link> */}
+                <CategoryDropdown />
               </li>
             </ul>
           </div>

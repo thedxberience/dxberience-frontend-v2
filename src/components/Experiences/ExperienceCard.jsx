@@ -1,10 +1,11 @@
 "use client";
 import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Heart from "./Heart";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/userStore";
+import { useAuthGuard } from "@/utils/CustomHooks";
 
 const ExperienceCard = ({
   slug,
@@ -20,8 +21,11 @@ const ExperienceCard = ({
   newExperience = false,
   priceStart = false,
   showLocation = true,
+  category = "",
 }) => {
   const [pan, setPan] = useState(false);
+  const experienceCardRef = useRef(null);
+  const heartRef = useRef(null);
 
   const handleMouseOverPan = () => {
     setPan(true);
@@ -31,19 +35,39 @@ const ExperienceCard = ({
     setPan(false);
   };
 
-  const userAuthenticated = useUserStore((state) => state.userAuthenticated);
+  const isAuthenticated = useAuthGuard({ adminRoute: false });
 
   const router = useRouter();
 
-  const handleExperienceRoute = () => {
-    if (window) {
-      if (window.innerWidth < 1024) {
-        router.push(`/events/${slug}`);
-      } else {
-        window.open(`/events/${slug}`);
+  const handleExperienceRoute = (e) => {
+    if (e.target && heartRef.current && !heartRef.current.contains(e.target)) {
+      if (window) {
+        if (window.innerWidth < 1024) {
+          router.push(`/events/${slug}`);
+        } else {
+          window.open(`/events/${slug}`);
+        }
       }
     }
   };
+
+  useEffect(() => {
+    if (experienceCardRef && experienceCardRef.current) {
+      experienceCardRef.current.addEventListener(
+        "click",
+        handleExperienceRoute
+      );
+    }
+
+    return () => {
+      if (experienceCardRef && experienceCardRef.current) {
+        experienceCardRef.current.removeEventListener(
+          "click",
+          handleExperienceRoute
+        );
+      }
+    };
+  }, []);
 
   const handleBookingState = () => {
     switch (bookingState.toLowerCase()) {
@@ -71,6 +95,14 @@ const ExperienceCard = ({
             </p>
           </div>
         );
+      case "refund":
+        return (
+          <div className="flex-center px-2 py-[2px] text-black bg-white max-w-[154px]">
+            <p className="text-[10px] uppercase leading-4">
+              Cancellation Pending
+            </p>
+          </div>
+        );
       default:
         return null;
     }
@@ -90,10 +122,11 @@ const ExperienceCard = ({
 
   return (
     <div
+      ref={experienceCardRef}
       className="experience cursor-pointer relative w-[43.277vw] max-w-[43.277vw] xl:max-w-[21.198vw] p-2 lg:p-4 lg:w-full h-full min-h-[210px] md:h-[52.263vh] flex flex-col justify-end items-end text-white overflow-hidden"
       onMouseEnter={handleMouseOverPan}
       onMouseLeave={handleRemoveMouseOverPan}
-      onClick={handleExperienceRoute}
+      // onClick={handleExperienceRoute}
     >
       <div className="overlay absolute top-0 left-0"></div>
       {experienceImage && (
@@ -119,8 +152,15 @@ const ExperienceCard = ({
           </div>
         </div>
       )}
-      <div className="content relative p-1 lg:p-2 flex flex-col h-full w-full justify-end items-start gap-1 z-10 border">
-        {userAuthenticated && <Heart />}
+      <div className="content relative p-1 lg:p-2 flex flex-col h-full w-full justify-between items-start gap-1 z-10 border">
+        {isAuthenticated && (
+          <Heart
+            title={experienceTitle}
+            slug={slug}
+            category={category}
+            ref={heartRef}
+          />
+        )}
         <div className="flex flex-col gap-2">
           {priceStart && (
             <div className="price-starts pb-4 lg:pb-8">

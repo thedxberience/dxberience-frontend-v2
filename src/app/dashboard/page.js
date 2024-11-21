@@ -1,12 +1,15 @@
 "use client";
-import EmptyState from "@/components/Dashboard/EmptyState";
 import ProfileForm from "@/components/Dashboard/ProfileForm";
 import UserBookings from "@/components/Dashboard/UserBookings";
+import UserWishlist from "@/components/Dashboard/UserWishlist";
 import Navbar from "@/components/Navbar";
 import { useUserStore } from "@/store/userStore";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
+import { useAuthGuard } from "@/utils/CustomHooks";
+import LoadingIcon from "@/components/shared/LoadingIcon";
+import Weather from "@/components/Dashboard/Weather";
 
 const page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -17,6 +20,8 @@ const page = () => {
   const user = useUserStore((state) => state.user);
 
   const [mainTitle, setMainTitle] = useState("My Bookings");
+
+  const isAuthenticated = useAuthGuard({ adminRoute: false });
 
   const onTabClick = useCallback(
     (index) => {
@@ -70,12 +75,12 @@ const page = () => {
     }
   };
 
-  return (
+  return isAuthenticated ? (
     <main className="h-full min-h-screen">
       <header>
         <Navbar />
-        <div className="main-content flex-center h-[25svh] lg:h-[75svh]">
-          <div className="flex-between w-11/12">
+        <div className="main-content  flex-center h-[25svh] lg:h-[80svh]">
+          <div className="flex-between relative w-11/12 h-full">
             <div className="luxury-dashboard w-10/12 flex-start flex-col gap-4 lg:gap-10">
               <h2 className="text-2xl lg:text-7xl font-IvyPresto w-10/12">
                 My Luxury Dashboard
@@ -97,6 +102,7 @@ const page = () => {
                 />
               </div>
             </div>
+            {/* <Weather /> */}
           </div>
         </div>
       </header>
@@ -139,10 +145,10 @@ const page = () => {
               <div className="embla__viewport" ref={emblaMainRef}>
                 <div className="embla__container">
                   <div className="details md embla__slide" key={1}>
-                    {true ? <UserBookings /> : <EmptyState />}
+                    <UserBookings />
                   </div>
                   <div className="md embla__slide" key={2}>
-                    <EmptyState />
+                    <UserWishlist />
                   </div>
                   <div className="md embla__slide" key={3}>
                     <ProfileForm />
@@ -154,6 +160,10 @@ const page = () => {
         </div>
       </section>
     </main>
+  ) : (
+    <div className="flex-center h-screen">
+      <LoadingIcon />
+    </div>
   );
 };
 

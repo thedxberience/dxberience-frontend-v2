@@ -8,6 +8,7 @@ import CustomCheckBox from "../shared/CustomCheckBox";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { useApiStore } from "@/store/apiStore";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const {
@@ -39,10 +40,20 @@ const RegisterForm = () => {
 
   const watchAllFields = watch();
 
+  const router = useRouter();
+
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["register", watchAllFields.email],
     mutationFn: async (data) => {
-      await registerUser(data);
+      const registerReq = await registerUser(data);
+
+      if (registerReq.success) {
+        if (registerReq.isAdmin) {
+          router.push("/admin");
+        } else {
+          router.push("/dashboard");
+        }
+      }
     },
   });
 

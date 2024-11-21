@@ -1,29 +1,49 @@
+"use client";
 import { makeRequest } from "@/utils/axios";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 export const useUserStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       userAuthenticated: null,
       accessToken: "",
-      checkUser: async () => {
+      checkUser: async (admin = false) => {
         try {
           const request = await makeRequest("/user/me");
 
-          //   console.log(`Check User Request: ${JSON.stringify(request)}`);
+          console.log(`Check User Request: ${JSON.stringify(request)}`);
 
-          if (request) {
-            set((state) => ({
-              userAuthenticated: state.user && request.admin, // Checks if there is a user state and the access token is valid
+          let loggedIn;
+          if (admin) {
+            loggedIn =
+              useUserStore.getState().user && request.isAdmin ? true : false; // Checks if there is a user state and the access token is valid
+          } else {
+            loggedIn = request; // Checks if there is a user state and the access token is valid
+          }
+
+          if (loggedIn) {
+            set(() => ({
+              userAuthenticated: loggedIn,
             }));
           } else {
-            set(() => ({ userAuthenticated: false }));
+            set(() => ({
+              userAuthenticated: false,
+              user: null,
+              accessToken: "",
+            }));
           }
+
+          // return request;
         } catch (error) {
           console.log(`Unable to check user details: ${error}`);
-          set(() => ({ userAuthenticated: false }));
+          set(() => ({
+            userAuthenticated: false,
+            user: null,
+            accessToken: "",
+          }));
+          throw new Error(`Error: ${error}`);
         }
       },
       logOutUser: (router) => {
