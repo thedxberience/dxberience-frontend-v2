@@ -43,13 +43,7 @@ const Heart = forwardRef(({ title, slug, category }, ref) => {
     },
   });
 
-  const {
-    mutateAsync: removeFromWishlistMutateAsync,
-    isPending: removeFromWishlistPending,
-    isSuccess: removeFromWishlistSuccess,
-    isError: removeFromWishlistIsError,
-    error: removeFromWishlistError,
-  } = useMutation({
+  const { mutateAsync: removeFromWishlistMutateAsync } = useMutation({
     mutationKey: ["add_to_wishlist", slug],
     mutationFn: async () => {
       const addToWishlistReq = await makeRequest("/user/wishlist", {
@@ -66,14 +60,14 @@ const Heart = forwardRef(({ title, slug, category }, ref) => {
   const handleHeartClick = async (addToWishlist) => {
     setHeartClicked(addToWishlist);
 
-    console.log(`Add To Wishlist: ${addToWishlist}`);
+    // console.log(`Add To Wishlist: ${addToWishlist}`);
 
     if (addToWishlist) {
-      console.log(`Adding to wishlist: ${slug}`);
+      // console.log(`Adding to wishlist: ${slug}`);
 
       await addToWishlistMutateAsync();
     } else {
-      console.log(`Removing from wishlist: ${slug}`);
+      // console.log(`Removing from wishlist: ${slug}`);
 
       await removeFromWishlistMutateAsync();
     }

@@ -70,23 +70,23 @@
 }
 
 @layer components {
-  .flex-center{
+  .flex-center {
     @apply flex justify-center items-center;
   }
 
-  .flex-center-col{
+  .flex-center-col {
     @apply flex flex-col justify-center items-center;
   }
 
-  .flex-start{
+  .flex-start {
     @apply flex justify-start items-start;
   }
 
-  .flex-start-col{
+  .flex-start-col {
     @apply flex flex-col justify-start items-start;
   }
 
-  .flex-between{
+  .flex-between {
     @apply flex justify-between items-center;
   }
 }
@@ -169,9 +169,9 @@ input[type="text"] {
   height: 1082px;
 }
 
-.services .sticky-bg{
+.services .sticky-bg {
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)),
-  url("/woman_bed.jpeg") center center/cover no-repeat;
+    url("/woman_bed.jpeg") center center/cover no-repeat;
 }
 
 .memories .sticky_parent {
@@ -410,14 +410,38 @@ input[type="text"] {
   display: none;
 }
 
-.weather-container{
+.weather-container {
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/weather_bg.jpeg") no-repeat center center/cover;
+    url("/weather_bg.jpeg") no-repeat center center/cover;
 }
 
 .experiences-dropdown-container {
   /* background-color: rgba(23, 16, 16, 0.3); */
   background-color: white;
+}
+
+.profile-form-height {
+  min-height: fit-content;
+  height: 500px;
+}
+
+.partner-hero-section {
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/partners_legend_bg.jpeg") no-repeat center center/cover;
+}
+
+.partner-form-bg {
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.2), rgba(0, 0, 0, 0.2)),
+    url("/partner_form_bg.png") no-repeat center center/cover;
+}
+
+.partner-header-container {
+  height: calc(468px - 110px);
+}
+
+.partner-form input, .partner-form textarea, .partner-form ::-webkit-input-placeholder, .partner-form .country-select{
+  border-color: black;
+  color: black;
 }
 
 @keyframes pan-img {
@@ -548,11 +572,25 @@ input[type="text"] {
   .experiences {
     margin-top: 6rem;
   }
+
+  .mobile-user-text {
+    color: black;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .partner-header-container {
+    height: calc(812px - 110px);
+  }
 }
 
 @media screen and (min-width: 362px) and (max-width: 1279px) {
   .experiences {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .mobile-user-text {
+    color: black;
   }
 
   .loading-experiences {

@@ -4,7 +4,7 @@ import FormInput from "../shared/FormInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "../shared/CustomButton";
 import { useUserStore } from "@/store/userStore";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 
 const ProfileForm = () => {
@@ -31,6 +31,8 @@ const ProfileForm = () => {
   });
 
   const formValue = watch();
+
+  const queryClient = useQueryClient();
 
   const handleFormUpdate = useCallback(() => {
     if (user && formValue) {
@@ -60,6 +62,11 @@ const ProfileForm = () => {
 
   const handleUpdateUser = async (data) => {
     await mutateAsync(data);
+
+    await queryClient.invalidateQueries({
+      queryKey: ["userAuthenticated", user?._id, false],
+      refetchType: "active",
+    });
   };
 
   return (

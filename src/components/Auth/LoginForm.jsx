@@ -43,7 +43,7 @@ const LoginForm = ({ admin = true }) => {
     mutationKey: ["login", watchAllFields.email],
     mutationFn: async (data) => {
       const loginRequest = await login(data);
-      console.log(`LoginRequest: ${JSON.stringify(loginRequest)}`);
+      // console.log(`LoginRequest: ${JSON.stringify(loginRequest)}`);
 
       if (loginRequest.success) {
         if (loginRequest.isAdmin) {

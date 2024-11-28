@@ -11,7 +11,7 @@ const UserWishlist = () => {
   const user = useUserStore((state) => state.user);
   const getUserWishlist = useApiStore((state) => state.getUserWishlist);
 
-  const { data, isLoading, isPending, isSuccess, isError, error } = useQuery({
+  const { data, isLoading, isPending, isFetching } = useQuery({
     queryKey: ["wishlist", user?._id],
     queryFn: async () => {
       const getUserWishlistReq = await getUserWishlist();
@@ -20,7 +20,7 @@ const UserWishlist = () => {
     },
   });
 
-  if (isPending || isLoading) {
+  if (isPending || isLoading || isFetching) {
     return (
       <div className="w-full h-full flex-center">
         <LoadingIcon />
@@ -42,9 +42,9 @@ const UserWishlist = () => {
 
   return (
     <div className="w-full flex-center">
-      <div className="w-10/12 flex-center">
+      <div className="w-full lg:w-10/12 flex-center">
         <div className="experiences w-full px-4 mt-16 lg:px-0 lg:w-10/12">
-          {data.map((wishlist) => (
+          {data?.map((wishlist) => (
             <ExperienceCard
               experienceDescription={wishlist.productData.shortDescription}
               experienceTitle={wishlist.productData.title}

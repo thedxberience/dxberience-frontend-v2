@@ -51,7 +51,7 @@ const AuthenticateModal = () => {
           <AlertDialogTrigger asChild>
             <Button
               variant="ghost"
-              className="uppercase hover:bg-transparent hover:text-white p-0"
+              className="uppercase hover:bg-transparent mix-blend-darken hover:text-white p-0"
             >
               Login
             </Button>

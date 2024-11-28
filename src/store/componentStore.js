@@ -4,6 +4,16 @@ import { createJSONStorage, persist } from "zustand/middleware";
 export const useComponentStore = create(
   persist(
     (set, get) => ({
+      filterData: {
+        confirmationStatus: "",
+        startDate: "",
+        endDate: "",
+        sortBy: "",
+      },
+      setFilterData: (data) =>
+        set((state) => ({
+          filterData: { ...state.filterData, ...data },
+        })),
       openModal: false,
       setOpenModal: (openModal) => set(() => ({ openModal: openModal })),
       experienceFormDropdownState: {

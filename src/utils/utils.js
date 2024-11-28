@@ -23,8 +23,6 @@ export const checkUser = async (admin = false) => {
   try {
     const request = await makeRequest("/user/me");
 
-    console.log(`Check User Request: ${JSON.stringify(request)}`);
-
     let loggedIn;
     if (admin) {
       loggedIn = useUserStore.getState().user && request.isAdmin ? true : false; // Checks if there is a user state and the access token is valid
@@ -35,6 +33,7 @@ export const checkUser = async (admin = false) => {
     if (loggedIn) {
       useUserStore.setState(() => ({
         userAuthenticated: loggedIn,
+        user: request,
       }));
     } else {
       useUserStore.setState(() => ({
@@ -52,6 +51,6 @@ export const checkUser = async (admin = false) => {
       user: null,
       accessToken: "",
     }));
-    throw new Error(`Error: ${error}`);
+    throw new Error(`Unable to check user details: ${error}`);
   }
 };

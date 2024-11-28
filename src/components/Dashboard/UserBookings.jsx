@@ -1,29 +1,34 @@
-import Image from "next/image";
+"use client";
 import React from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useQuery } from "@tanstack/react-query";
 import { useUserStore } from "@/store/userStore";
 import { useApiStore } from "@/store/apiStore";
 import LoadingIcon from "../shared/LoadingIcon";
-import EmptyState from "./EmptyState";
 import ExperienceCard from "../Experiences/ExperienceCard";
 import ErrorState from "./ErrorState";
 import FilterPopover from "./FilterPopover";
+import { useComponentStore } from "@/store/componentStore";
+import SelectSortBy from "./SelectSortBy";
 
 const UserBookings = () => {
   const user = useUserStore((state) => state.user);
   const getUserBookings = useApiStore((state) => state.getUserBookings);
 
-  const { data, isLoading, isSuccess, isError, error } = useQuery({
-    queryKey: ["bookings", user?._id],
+  const filterData = useComponentStore((state) => state.filterData);
+
+  const { data, isLoading, isFetching, isError, error } = useQuery({
+    queryKey: [
+      "bookings",
+      user?._id,
+      filterData.confirmationStatus,
+      filterData.startDate,
+      filterData.endDate,
+      filterData.sortBy,
+    ],
     queryFn: async () => {
-      return await getUserBookings();
+      return await getUserBookings({
+        ...filterData,
+      });
     },
   });
 
@@ -35,34 +40,58 @@ const UserBookings = () => {
     );
   }
 
+  const handleEmptyStateMessage = () => {
+    if (filterData.confirmationStatus !== "") {
+      return `You currently don't have any bookings ${filterData.confirmationStatus.toLowerCase()} within the requested period`;
+    } else if (filterData.startDate !== "" && filterData.endDate !== "") {
+      return "You currently don't have any bookings within the requested period";
+    } else {
+      return "You don’t have any experiences booked yet. Explore our VIP concierge services and luxury experiences with Dxberience to plan your next adventure or contact us to create a personalised experience.";
+    }
+  };
+
+  if (isError) {
+    return (
+      <div className="bookings-container w-full flex-center">
+        <div className="w-full lg:w-10/12 flex-center-col">
+          <div className="booking-header w-11/12 lg:w-full flex-between">
+            <FilterPopover />
+            <SelectSortBy />
+          </div>
+          <ErrorState
+            error={error.message}
+            showBtn
+            btnLink="/explore-experiences/all"
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (!data || data?.bookings?.length == 0) {
     return (
-      <ErrorState
-        error={
-          "You don’t have any experiences booked yet. Explore our VIP concierge services and luxury experiences with Dxberience to plan your next adventure or contact us to create a personalised experience."
-        }
-        showBtn
-        btnLink="/explore-experiences/all"
-      />
+      <div className="bookings-container w-full flex-center">
+        <div className="w-full lg:w-10/12 flex-center-col">
+          <div className="booking-header w-11/12 lg:w-full flex-between">
+            <FilterPopover />
+            <SelectSortBy />
+          </div>
+          <ErrorState
+            error={handleEmptyStateMessage()}
+            showBtn
+            btnLink="/explore-experiences/all"
+          />
+        </div>
+      </div>
     );
   }
 
   return (
     <div className="bookings-container w-full flex-center">
-      <div className="w-10/12 flex-center-col">
-        <div className="booking-header w-full flex-between">
+      <div className="w-full lg:w-10/12 flex-center-col">
+        <div className="booking-header w-11/12 lg:w-full flex-between">
           <FilterPopover />
-          <div>
-            <Select>
-              <SelectTrigger className="w-[222px] bg-transparent border-x-0 border-t-0 rounded-none text-lg border-b-[0.5px] border-b-[#4e4e4e]">
-                <SelectValue placeholder="Sort by:" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Most Recent">Most Recent</SelectItem>
-                <SelectItem value="Least Recent">Least Recent</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <SelectSortBy />
         </div>
         <div className="user-bookings experiences w-full mt-10 px-4 lg:px-0 lg:w-10/12 ">
           {data?.bookings?.map((booking) => (
@@ -83,6 +112,7 @@ const UserBookings = () => {
               no_of_guest={booking.noOfTickets}
               showLocation={false}
               category={booking.productData.category.name}
+              id={booking._id}
               key={booking.productData.slug}
             />
           ))}

@@ -11,6 +11,7 @@ import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import PriceContainer from "@/components/Events/PriceContainer";
 import { useApiStore } from "@/store/apiStore";
+import { useAuthGuard } from "@/utils/CustomHooks";
 
 const page = ({ params }) => {
   const searchParams = useSearchParams();
@@ -48,13 +49,18 @@ const page = ({ params }) => {
 
   const router = useRouter();
 
+  const isAuthenticated = useAuthGuard({
+    adminRoute: false,
+    redirect: false,
+  });
+
   const handlePagePop = () => {
     if (document) {
       const prevPage = document.referrer;
-      console.log(document.referrer);
-      console.log(
-        prevPage.includes("thedxberience.com") || prevPage.includes("localhost")
-      );
+      // console.log(document.referrer);
+      // console.log(
+      //   prevPage.includes("thedxberience.com") || prevPage.includes("localhost")
+      // );
 
       if (data) {
         router.push(
@@ -197,11 +203,15 @@ const page = ({ params }) => {
           </div>
         </div>
 
-        <EventsBookingForm
-          slug={params.slug}
-          price={data?.price}
-          product={data?.title}
-        />
+        {isAuthenticated ? (
+          <EventsBookingForm
+            slug={params.slug}
+            price={data?.price}
+            product={data?.title}
+          />
+        ) : (
+          <div className="w-5/12 h-full"></div>
+        )}
       </section>
       <Footer />
     </main>

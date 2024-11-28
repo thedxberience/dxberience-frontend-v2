@@ -163,7 +163,7 @@ const Navbar = () => {
         >
           <div className="bg-white w-full p-4 flex flex-col gap-4 uppercase">
             <ul className="flex flex-col gap-4">
-              <div className="w-full absolute -top-[500px] -z-40 left-0 flex justify-start items-start">
+              <div className="w-full flex justify-start items-start">
                 <AuthenticateModal />
               </div>
               <li>
@@ -175,7 +175,6 @@ const Navbar = () => {
                 <Link href={"/contact"}>Contact</Link>
               </li>
               <li className="cursor-pointer">
-                {/* <Link href={"/explore-experiences/all"}>Experiences</Link> */}
                 <CategoryDropdown />
               </li>
             </ul>

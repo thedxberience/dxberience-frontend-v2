@@ -50,8 +50,8 @@ const UserPopover = () => {
   };
   return (
     <Popover>
-      <PopoverTrigger className="mix-blend-exclusion bg-transparent">
-        <h2 className="uppercase">
+      <PopoverTrigger className="lg:mix-blend-exclusion bg-transparent">
+        <h2 className="uppercase mobile-user-text">
           {user.firstName ? user.firstName : "USER"}
         </h2>
       </PopoverTrigger>

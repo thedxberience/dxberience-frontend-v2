@@ -13,7 +13,7 @@ export const useUserStore = create(
         try {
           const request = await makeRequest("/user/me");
 
-          console.log(`Check User Request: ${JSON.stringify(request)}`);
+          // console.log(`Check User Request: ${JSON.stringify(request)}`);
 
           let loggedIn;
           if (admin) {

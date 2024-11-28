@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { checkUser } from "./utils";
 
-export const useAuthGuard = ({ adminRoute = false }) => {
+export const useAuthGuard = ({ adminRoute = false, redirect = true }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
 
@@ -26,8 +26,10 @@ export const useAuthGuard = ({ adminRoute = false }) => {
     if (!isLoading) {
       if (isError) {
         // console.log(`Not authenticated: ${data} ${isError}`);
-        router.replace("/");
-        setOpenModal(true);
+        if (redirect) {
+          router.replace("/");
+          setOpenModal(true);
+        }
         setIsAuthenticated(false);
       } else {
         setIsAuthenticated(true);

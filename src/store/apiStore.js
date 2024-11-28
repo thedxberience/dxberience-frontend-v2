@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { useUserStore } from "./userStore";
 import { useComponentStore } from "./componentStore";
+import { getUrlQueryString } from "@/utils/utils";
 
 export const useApiStore = create(
   persist(
@@ -85,9 +86,12 @@ export const useApiStore = create(
           console.log(`Error validating affiliate: ${error}`);
         }
       },
-      getUserBookings: async () => {
+      getUserBookings: async (filterData) => {
         try {
-          const userBookingsReq = await makeRequest("/booking/me");
+          const queryString = getUrlQueryString(filterData);
+          const userBookingsReq = await makeRequest(
+            `/booking/me?${queryString}`
+          );
 
           return userBookingsReq;
         } catch (error) {
@@ -115,6 +119,20 @@ export const useApiStore = create(
           return userWishlist;
         } catch (error) {
           console.log(`Could not call get user wishlist: ${error}`);
+        }
+      },
+      filterUserBooking: async (filterData) => {
+        try {
+          const queryString = getUrlQueryString(filterData);
+
+          const filterBookingsReq = await makeRequest(
+            `/booking?${queryString}`
+          );
+
+          return filterBookingsReq;
+        } catch (error) {
+          console.log(`Could not filter date: ${error}`);
+          throw new Error(`Could not filter user bookings: ${error}`);
         }
       },
     }),

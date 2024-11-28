@@ -144,13 +144,30 @@ const page = () => {
             <div className="embla">
               <div className="embla__viewport" ref={emblaMainRef}>
                 <div className="embla__container">
-                  <div className="details md embla__slide" key={1}>
+                  <div
+                    className={`details md embla__slide ${
+                      mainTitle.toLowerCase() != "my bookings" ? "h-0" : "h-fit"
+                    }`}
+                    key={1}
+                  >
                     <UserBookings />
                   </div>
-                  <div className="md embla__slide" key={2}>
+                  <div
+                    className={`md embla__slide ${
+                      mainTitle.toLowerCase() != "my wishlist" ? "h-0" : "h-fit"
+                    }`}
+                    key={2}
+                  >
                     <UserWishlist />
                   </div>
-                  <div className="md embla__slide" key={3}>
+                  <div
+                    className={`md embla__slide ${
+                      mainTitle.toLowerCase() != "my profile"
+                        ? "h-0"
+                        : "profile-form-height"
+                    }`}
+                    key={3}
+                  >
                     <ProfileForm />
                   </div>
                 </div>

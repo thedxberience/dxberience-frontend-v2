@@ -44,9 +44,6 @@ const EventsBookingForm = ({ slug, price, product }) => {
       });
       // console.log(request);
       setShowStatus(true);
-      if (request["statusCode"] !== 400) {
-        router.push("/booking-confirmation");
-      }
       return request;
     },
   });
@@ -72,10 +69,15 @@ const EventsBookingForm = ({ slug, price, product }) => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setShowStatus(false);
-    }, 5000);
-  }, [showStatus]);
+    if (showStatus) {
+      setTimeout(() => {
+        setShowStatus(false);
+      }, 5000);
+    }
+    if (isSuccess) {
+      router.push("/booking-confirmation");
+    }
+  }, [showStatus, isSuccess]);
 
   return (
     <div className="contact-form p-4 w-full lg:w-4/12">

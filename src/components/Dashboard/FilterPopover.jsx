@@ -6,8 +6,55 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import RadioGroupContainer from "../shared/RadioGroupContainer";
 
 const FilterPopover = () => {
+  const filterByStatus = [
+    {
+      name: "All",
+      value: "All",
+    },
+    {
+      name: "Reservations Confirmed",
+      value: "CONFIRMED",
+    },
+    {
+      name: "Reservations Pending",
+      value: "PENDING",
+    },
+    {
+      name: "Cancellation Confirmed",
+      value: "CANCELLED",
+    },
+    {
+      name: "Cancellation Pending",
+      value: "PENDING CANCELLATION",
+    },
+  ];
+
+  const filterByDate = [
+    {
+      name: "All",
+      value: "All",
+    },
+    {
+      name: "Last 30 Days",
+      value: "last 30 days",
+    },
+    {
+      name: "Last 3 Months",
+      value: "last 3 months",
+    },
+    {
+      name: "Last 6 Months",
+      value: "last 6 months",
+    },
+    {
+      name: "Last Year",
+      value: "last year",
+    },
+  ];
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -27,45 +74,29 @@ const FilterPopover = () => {
       </PopoverTrigger>
       <PopoverContent className="w-80">
         <div className="flex flex-col gap-12 justify-start items-start">
-          <div className="status flex flex-col justify-start items-start gap-4">
+          <div className="status flex flex-col justify-start items-start gap-4 w-full">
             <div className="popover-group-header">
               <h3 className="text-lg">Fiter by Status</h3>
             </div>
-            <div>
-              <div className="flex flex-col gap-4 justify-start items-start">
-                <div>
-                  <p className="text-sm">Reservations Confirmed</p>
-                </div>
-                <div>
-                  <p className="text-sm">Reservations Pending</p>
-                </div>
-                <div>
-                  <p className="text-sm">Cancellation Confirmed</p>
-                </div>
-                <div>
-                  <p className="text-sm">Cancellation Pending</p>
-                </div>
+            <div className="w-full">
+              <div className="flex flex-col gap-4 justify-start items-start w-full">
+                <RadioGroupContainer
+                  radioItems={filterByStatus}
+                  radioType={"status"}
+                />
               </div>
             </div>
           </div>
-          <div className="date flex flex-col justify-start items-start gap-4">
+          <div className="date flex flex-col justify-start items-start w-full gap-4">
             <div className="popover-group-header">
               <h3 className="text-lg">Fiter by Date</h3>
             </div>
-            <div>
-              <div className="flex flex-col gap-4 justify-start items-start">
-                <div>
-                  <p className="text-sm">Last 30 Days</p>
-                </div>
-                <div>
-                  <p className="text-sm">Last 3 Months</p>
-                </div>
-                <div>
-                  <p className="text-sm">Last 6 Months</p>
-                </div>
-                <div>
-                  <p className="text-sm">Last Yearg</p>
-                </div>
+            <div className="w-full">
+              <div className="flex flex-col gap-4 w-full justify-start items-start">
+                <RadioGroupContainer
+                  radioItems={filterByDate}
+                  radioType={"date"}
+                />
               </div>
             </div>
           </div>

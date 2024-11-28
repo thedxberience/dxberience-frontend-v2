@@ -4,8 +4,8 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Heart from "./Heart";
 import { useRouter } from "next/navigation";
-import { useUserStore } from "@/store/userStore";
 import { useAuthGuard } from "@/utils/CustomHooks";
+import CancelBookingButton from "./CancelButton";
 
 const ExperienceCard = ({
   slug,
@@ -22,10 +22,12 @@ const ExperienceCard = ({
   priceStart = false,
   showLocation = true,
   category = "",
+  id = "",
 }) => {
   const [pan, setPan] = useState(false);
   const experienceCardRef = useRef(null);
   const heartRef = useRef(null);
+  const cancelRef = useRef(null);
 
   const handleMouseOverPan = () => {
     setPan(true);
@@ -35,12 +37,16 @@ const ExperienceCard = ({
     setPan(false);
   };
 
-  const isAuthenticated = useAuthGuard({ adminRoute: false });
+  const isAuthenticated = useAuthGuard({ adminRoute: false, redirect: false });
 
   const router = useRouter();
 
   const handleExperienceRoute = (e) => {
-    if (e.target && heartRef.current && !heartRef.current.contains(e.target)) {
+    if (
+      e.target &&
+      !heartRef?.current?.contains(e.target) &&
+      !cancelRef?.current?.contains(e.target)
+    ) {
       if (window) {
         if (window.innerWidth < 1024) {
           router.push(`/events/${slug}`);
@@ -95,7 +101,7 @@ const ExperienceCard = ({
             </p>
           </div>
         );
-      case "refund":
+      case "pending cancellation":
         return (
           <div className="flex-center px-2 py-[2px] text-black bg-white max-w-[154px]">
             <p className="text-[10px] uppercase leading-4">
@@ -152,7 +158,11 @@ const ExperienceCard = ({
           </div>
         </div>
       )}
-      <div className="content relative p-1 lg:p-2 flex flex-col h-full w-full justify-between items-start gap-1 z-10 border">
+      <div
+        className={`content relative p-1 lg:p-2 flex flex-col h-full w-full  ${
+          isAuthenticated ? "justify-between" : "justify-end"
+        } items-start gap-1 z-10 border`}
+      >
         {isAuthenticated && (
           <Heart
             title={experienceTitle}
@@ -162,6 +172,14 @@ const ExperienceCard = ({
           />
         )}
         <div className="flex flex-col gap-2">
+          <CancelBookingButton
+            isAuthenticated={isAuthenticated}
+            pan={pan}
+            id={id}
+            bookingState={bookingState}
+            ref={cancelRef}
+          />
+
           {priceStart && (
             <div className="price-starts pb-4 lg:pb-8">
               <p className="text-xs lg:text-sm">STARTS FROM</p>
@@ -182,7 +200,7 @@ const ExperienceCard = ({
               <span>{experienceLocation}</span>
             </div>
           ) : (
-            <div className="flex flex-col justify-start gap-1">
+            <div className="flex flex-col justify-start text-[10px] lg:text-sm gap-[2px] lg:gap-1">
               <p>{handleBookindDate()}</p>
               <p>{bookingTime}</p>
               <p>
@@ -193,7 +211,7 @@ const ExperienceCard = ({
             </div>
           )}
 
-          {pan && (
+          {!isAuthenticated && pan && (
             <div className="text-[10px] lg:text-sm w-10/12">
               <p>{experienceDescription}</p>
             </div>

@@ -141,8 +141,9 @@ function FormInput({
             </div>
 
             <p className="text-sm">
-              I would like to receive exclusive communications about products,
-              events, and travel-related products from thedxberience.com
+              {placeholder
+                ? placeholder
+                : "I would like to receive exclusive communications about products, events, and travel-related products from thedxberience.com"}
             </p>
           </div>
         );
@@ -170,7 +171,7 @@ function FormInput({
       }`}
     >
       <label htmlFor={name} className={`absolute ${value ? "" : "hidden"}`}>
-        {placeholder}
+        {name != "optin" && name != "agreePrivacyPolicy" && placeholder}
         {errors && errors[name] && <span className="text-red-500"> *</span>}
       </label>
       {handleInputType()}
