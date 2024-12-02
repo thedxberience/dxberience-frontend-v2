@@ -8,7 +8,6 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useComponentStore } from "@/store/componentStore";
-import { useApiStore } from "@/store/apiStore";
 import TailoredExperienceContainer from "../TailoredExperiences/TailoredExperienceContainer";
 
 const ExploreExperience = ({ params }) => {

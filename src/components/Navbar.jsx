@@ -15,9 +15,14 @@ const Navbar = () => {
 
   const pathname = usePathname();
 
-  const invertRoutes = ["/dashboard"];
+  const invertRoutes = ["/dashboard", "/terms-conditions", "/privacy-policy"];
 
-  const hideTailoredBtnPathname = ["/dashboard", "/admin"];
+  const hideTailoredBtnPathname = [
+    "/dashboard",
+    "/admin",
+    "/terms-conditions",
+    "/privacy-policy",
+  ];
 
   const handleShowNavMenu = () => {
     setShowNavMenu(!showNavMenu);
@@ -67,15 +72,21 @@ const Navbar = () => {
               }`}
             >
               <Suspense>{!user?.admin && <AuthenticateModal />}</Suspense>
-              <CategoryDropdown />
+
               <li>
                 <Link className="uppercase" href={"/about"}>
                   About
                 </Link>
               </li>
+              <CategoryDropdown />
               <li>
                 <Link className="uppercase" href={"/tailored-experiences"}>
                   TAILORED EXPERIENCES
+                </Link>
+              </li>
+              <li>
+                <Link className="uppercase" href={"/partners"}>
+                  Partners
                 </Link>
               </li>
               <li>
@@ -139,12 +150,21 @@ const Navbar = () => {
                 href={"/"}
                 className="flex justify-center relative w-[31.538vw] h-[30px] items-center"
               >
-                <Image
-                  src="/dxberience_logo_2.png"
-                  alt="Dxberience Logo"
-                  fill
-                  className="object-cover"
-                />
+                {invertStyles ? (
+                  <Image
+                    src="/dxberience_logo_black.png"
+                    alt="Dxberience Logo"
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <Image
+                    src="/dxberience_logo.svg"
+                    alt="Dxberience Logo"
+                    fill
+                    className="object-cover"
+                  />
+                )}
               </Link>
             </div>
           </div>
@@ -170,6 +190,9 @@ const Navbar = () => {
                 <Link className="uppercase" href={"/about"}>
                   About
                 </Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link href={"/partners"}>Partners</Link>
               </li>
               <li className="cursor-pointer">
                 <Link href={"/contact"}>Contact</Link>

@@ -91,6 +91,12 @@
   }
 }
 
+@font-face {
+  font-family: "Ivy Presto";
+  src: url("/font/Ivy Presto/Ivy Presto 3.otf");
+  font-weight: bold;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
@@ -439,9 +445,23 @@ input[type="text"] {
   height: calc(468px - 110px);
 }
 
-.partner-form input, .partner-form textarea, .partner-form ::-webkit-input-placeholder, .partner-form .country-select{
+.partner-form input,
+.partner-form textarea,
+.partner-form ::-webkit-input-placeholder,
+.partner-form .country-select {
   border-color: black;
   color: black;
+}
+
+.legal-page-content-container h3 {
+  font-family: "Ivy Presto";
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.legal-page-content-container a{
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 @keyframes pan-img {
@@ -489,7 +509,7 @@ input[type="text"] {
     height: 0px;
   }
   100% {
-    transform: translateY(-200px);
+    transform: translateY(-5000px);
     height: 0;
     opacity: 0;
   }
@@ -581,6 +601,12 @@ input[type="text"] {
 @media screen and (min-width: 1024px) {
   .partner-header-container {
     height: calc(812px - 110px);
+  }
+
+  .legal-page-content-container h3 {
+    font-family: "Ivy Presto";
+    font-size: 24px;
+    line-height: 38.4px;
   }
 }
 

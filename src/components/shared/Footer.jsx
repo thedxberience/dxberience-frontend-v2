@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import CategoryDropdown from "./CategoryDropdown";
 function Footer() {
   const [scrolled, setScrolled] = useState(false);
   const [reachedFooter, setReachedFooter] = useState(false);
@@ -42,7 +43,7 @@ function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="footer relative flex flex-col w-full h-[454px] 2xl:h-[526px] bg-bottom bg-cover 2xl:py-5"
+      className="footer relative flex flex-col w-full min-h-[454px] h-fit 2xl:min-h-[526px] bg-bottom bg-cover 2xl:py-5"
     >
       <div className="w-full flex justify-center z-20">
         <div className="relative w-[223.79px] 2xl:w-[325.52px] h-[80px] pt-[30px]">
@@ -59,12 +60,18 @@ function Footer() {
             No need to think, just experience
           </h1>
 
-          <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight xl:flex gap-5 ">
+          <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight xl:flex gap-5 uppercase">
+            <li className="mt-4">
+              <Link href={"/about"}>ABOUT</Link>
+            </li>
+            <li className="mt-4">
+              <CategoryDropdown />
+            </li>
             <li className="mt-4">
               <Link href={"/tailored-experiences"}>TAILORED EXPERIENCES</Link>
             </li>
             <li className="mt-4">
-              <Link href={"/explore-experiences/all"}>EXPERIENCES</Link>
+              <Link href={"/partners"}>PARTNERS</Link>
             </li>
             <li className="mt-4">
               <Link href={"/contact"}>CONTACT</Link>
@@ -78,6 +85,7 @@ function Footer() {
             <img
               src="/footer_whatsapp.svg"
               alt="WhatsApp logo"
+              className="cursor-pointer"
               onClick={openWhatsapp}
             />
           </div>
@@ -95,9 +103,13 @@ function Footer() {
           </div>
         </div>
 
-        <ul className="flex justify-evenly pt-5 md:text-transparent">
-          <li>Terms & Conditions</li>
-          <li>Privacy Policy</li>
+        <ul className="flex justify-evenly py-2 lg:pt-5">
+          <li>
+            <Link href={"/terms-conditions"}>Terms & Conditions</Link>
+          </li>
+          <li>
+            <Link href={"/privacy-policy"}>Privacy Policy</Link>
+          </li>
         </ul>
       </div>
       <div
