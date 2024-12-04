@@ -74,6 +74,9 @@ function Footer() {
               <Link href={"/partners"}>PARTNERS</Link>
             </li>
             <li className="mt-4">
+              <Link href={"/dashboard"}>BOOKINGS</Link>
+            </li>
+            <li className="mt-4">
               <Link href={"/contact"}>CONTACT</Link>
             </li>
           </ul>

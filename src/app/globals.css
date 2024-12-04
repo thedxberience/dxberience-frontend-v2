@@ -208,6 +208,12 @@ input[type="text"] {
   gap: 46px;
 }
 
+.services .single_service {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .scroll-up {
   rotate: 180deg;
 }
@@ -459,7 +465,7 @@ input[type="text"] {
   line-height: 32px;
 }
 
-.legal-page-content-container a{
+.legal-page-content-container a {
   text-decoration: underline;
   font-weight: bold;
 }

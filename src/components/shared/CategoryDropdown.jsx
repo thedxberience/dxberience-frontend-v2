@@ -27,7 +27,7 @@ const CategoryDropdown = () => {
           <Link
             key={category._id}
             className="hover:underline"
-            href={`/explore-experiences/${category.slug}`}
+            href={`/categories/${category.slug}`}
           >
             {category.name}
           </Link>
@@ -35,34 +35,6 @@ const CategoryDropdown = () => {
       </div>
     </PopoverContainer>
   );
-
-  //   return (
-  //     <div className="relative">
-  //       <div onClick={() => setShowDropDown(!showDropDown)}>
-  //         <p className="cursor-pointer">EXPERIENCES</p>
-  //       </div>
-  //       <div
-  //         className={`experiences-dropdown-container  gap-4 absolute top-8 w-[240px] left-0 ${
-  //           showDropDown ? "flex flex-center" : "hidden"
-  //         }`}
-  //       >
-  //         <div className="experiences-dropdown text-black flex-start flex-col gap-3 p-4 w-full">
-  //           <Link className="hover:underline" href={"/explore-experiences/all"}>
-  //             All
-  //           </Link>
-  //           {data?.map((category) => (
-  //             <Link
-  //               key={category._id}
-  //               className="hover:underline"
-  //               href={`/explore-experiences/${category.slug}`}
-  //             >
-  //               {category.name}
-  //             </Link>
-  //           ))}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
 };
 
 export default CategoryDropdown;

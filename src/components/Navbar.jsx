@@ -15,13 +15,19 @@ const Navbar = () => {
 
   const pathname = usePathname();
 
-  const invertRoutes = ["/dashboard", "/terms-conditions", "/privacy-policy"];
+  const invertRoutes = [
+    "/dashboard",
+    "/terms-conditions",
+    "/privacy-policy",
+    "/email-center",
+  ];
 
   const hideTailoredBtnPathname = [
     "/dashboard",
     "/admin",
     "/terms-conditions",
     "/privacy-policy",
+    "/email-center",
   ];
 
   const handleShowNavMenu = () => {
@@ -30,13 +36,17 @@ const Navbar = () => {
 
   const user = useUserStore((state) => state.user);
 
-  const invertStyles = invertRoutes.includes(pathname);
+  const invertStyles = invertRoutes.includes(
+    pathname.split("/").slice(0, 2).join("/")
+  );
 
   const router = useRouter();
 
   return (
     <>
-      {!hideTailoredBtnPathname.includes(pathname) && <TailoredExperienceBtn />}
+      {!hideTailoredBtnPathname.includes(
+        pathname.split("/").slice(0, 2).join("/")
+      ) && <TailoredExperienceBtn />}
 
       <div className="relative px-4 lg:px-20 z-50 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
         <div className="flex justify-center relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] items-center">

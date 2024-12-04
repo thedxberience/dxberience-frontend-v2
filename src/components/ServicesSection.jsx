@@ -244,7 +244,9 @@ const ServicesSection = ({ category = null, header = null }) => {
             style={{
               width: stickySectionWidth + "px",
             }}
-            className="scroll_section"
+            className={`scroll_section ${
+              serviceCategories?.length == 1 && "single_service"
+            }`}
           >
             {serviceCategories?.map((service, index) => (
               <ServiceCard {...service} key={`${service.name} ${index}`} />
