@@ -41,8 +41,18 @@ export default function RootLayout({ children }) {
         className={`${IvyPresto.variable} ${noah.variable} ${Sacramento.variable} font-noah relative`}
       >
         <Provider>{children}</Provider>
+        <div
+          id="g_id_onload"
+          data-client_id={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+          data-ux_mode="redirect"
+          data-auto_prompt="false"
+          data-context="use"
+          data-itp_support="true"
+          data-login_uri={
+            process.env.NEXT_PUBLIC_BACKEND_API_URL + "/auth/login"
+          }
+        ></div>
       </body>
-      <Script src="https://accounts.google.com/gsi/client" async defer></Script>
     </html>
   );
 }
