@@ -2,13 +2,15 @@ import ContactForm from "@/components/Contact/ContactForm";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
     <main className="min-h-screen">
       <header className="partner-hero-section flex-center-col w-full h-full min-h-[468px] lg:min-h-[812px]">
-        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
+        </Suspense>
         <div className="partner-header-container flex-between justify-evenly text-white w-11/12 relative">
           <div className="absolute lg:relative bottom-3 lg:top-0 left-[20px] lg:left-0">
             <div className="header-img relative w-[231px] h-[351px] lg:w-[37.604vw] lg:max-h-[650px] lg:h-[64.214vh]">

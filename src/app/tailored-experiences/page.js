@@ -3,13 +3,15 @@ import RatingsSection from "@/components/RatingsSection";
 import Footer from "@/components/shared/Footer";
 import TailoredExperienceForm from "@/components/TailoredExperiences/TailoredExperiences";
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
     <main>
       <header className="tailored-experiences max-w-full w-full max-h-svh h-[628px] lg:h-[800px] flex flex-col lg:justify-between items-center pb-4">
-        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
+        </Suspense>
         <div className="bg-image absolute top-0 left-0 w-full max-w-full h-[688px] lg:h-[800px]">
           <div className="w-full h-full relative">
             <div className="overlay absolute"></div>

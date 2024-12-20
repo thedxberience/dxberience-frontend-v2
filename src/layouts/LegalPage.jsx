@@ -1,7 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
-import React from "react";
+import React, { Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { PortableText } from "@portabletext/react";
@@ -57,7 +57,9 @@ const LegalPageLayout = ({ pageName, lastUpdated, children }) => {
 
   return (
     <main className="w-full flex-center flex-col gap-10">
-      <Navbar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Navbar />
+      </Suspense>
       <section className="w-11/12 flex flex-col justify-start items-start gap-10">
         <div className="w-full flex-start gap-2 items-center">
           <div className="rounded-[50%] bg-text-primary w-3 h-3"></div>

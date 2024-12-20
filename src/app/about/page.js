@@ -5,7 +5,7 @@ import ServicesSection from "@/components/ServicesSection";
 import CustomButton from "@/components/shared/CustomButton";
 import Footer from "@/components/shared/Footer";
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 
 export const metadata = {
   title: "Luxury Experiences & VIP Lifestyle Management Services Dubai",
@@ -18,7 +18,9 @@ const page = () => {
     <main className="flex w-full min-h-screen flex-col items-center justify-between">
       <header className="about-page-header relative w-full h-[468px] md:min-h-screen">
         {/* <div className="overlay h-full relative"></div> */}
-        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
+        </Suspense>
         <div className="flex justify-center items-center text-white h-[265px] md:h-full lg:px-24">
           <div className="absolute left-4 bottom-16 lg:relative">
             <div className="left-img relative w-[147px] h-[317px] md:w-[18.781vw] md:h-[70.724vh]">
