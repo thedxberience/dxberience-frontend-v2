@@ -144,7 +144,7 @@ const RegisterForm = () => {
             value:
               /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
             message:
-              "Password must validate the following: Min 8 characters, at least one uppercase and lowercase letter, at least one digit and at least one special character",
+              "Your password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character. Allowed special characters are: @$!%*?&-+_(){}[]:;'\"<>,.?/~#|",
           },
         }}
         invertText

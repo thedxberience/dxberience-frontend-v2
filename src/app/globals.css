@@ -214,6 +214,10 @@ input[type="text"] {
   align-items: center;
 }
 
+.single_service_container {
+  height: calc(100svh - 33.33%);
+}
+
 .scroll-up {
   rotate: 180deg;
 }
@@ -283,7 +287,8 @@ input[type="text"] {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.tailored-experiences .overlay {
+.tailored-experiences .overlay,
+.category-page-header .overlay {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -468,6 +473,28 @@ input[type="text"] {
 .legal-page-content-container a {
   text-decoration: underline;
   font-weight: bold;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%) brightness(100%) contrast(100%);
+}
+
+input[type="time"] {
+  position: relative;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: block;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
 }
 
 @keyframes pan-img {

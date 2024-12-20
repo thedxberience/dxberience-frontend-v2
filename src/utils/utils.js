@@ -54,3 +54,20 @@ export const checkUser = async (admin = false) => {
     throw new Error(`Unable to check user details: ${error}`);
   }
 };
+
+export const updateUserFromGoogleSSO = async (googleToken) => {
+  try {
+    const request = await makeRequest("/user/me");
+
+    if (request && googleToken) {
+      useUserStore.setState(() => ({
+        user: request,
+      }));
+    }
+
+    return request;
+  } catch (error) {
+    console.log(`Unable to update user from google sso: ${error}`);
+    throw new Error(`Unable to update user from google sso: ${error}`);
+  }
+};

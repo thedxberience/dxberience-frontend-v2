@@ -82,7 +82,7 @@ const ContactForm = () => {
   }, [isError]);
 
   return (
-    <section className="contact-form w-full h-full flex justify-center py-10">
+    <section className="w-full h-full flex justify-center py-10">
       {!formSubmitted ? (
         <div className="bg-gradient-to-br bg-[#FFFFFFB2] w-[350px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-black lg:w-[450px] 2xl:w-[681px] 2xl:px-[40px]">
           <h1 className="font-IvyPresto font-semibold text-xl xl:text-3xl 2xl:text-6xl">
@@ -102,7 +102,7 @@ const ContactForm = () => {
             className="flex flex-col items-center w-full"
             onSubmit={handleSubmit(handleContactUs)}
           >
-            <div className="partner-form flex flex-col gap-2 w-full min-h-[238px] 2xl:gap-10 text-black border-black">
+            <div className="hide-scrollbar overflow-auto h-[750px] max-h-[800px] partner-form flex flex-col gap-10 w-full min-h-[238px] 2xl:gap-10 text-black border-black">
               <FormInput
                 invertText
                 name="firstName"
@@ -177,7 +177,7 @@ const ContactForm = () => {
                 value={watchAllFields.message}
               />
 
-              <div className="mt-2">
+              <div className="mt-2 flex-start flex-col w-full gap-2">
                 <FormInput
                   invertText
                   inputType="optin"

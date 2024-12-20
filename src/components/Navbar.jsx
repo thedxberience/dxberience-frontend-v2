@@ -6,12 +6,14 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import AuthenticateModal from "./Auth/AuthenticateModal";
 import TailoredExperienceBtn from "./shared/TailoredExperienceBtn";
-import AdminAuthModal from "./Auth/AdminAuthModal";
 import { useUserStore } from "@/store/userStore";
 import CategoryDropdown from "./shared/CategoryDropdown";
+import { useCheckGoogleToken } from "@/utils/CustomHooks";
 
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
+
+  useCheckGoogleToken();
 
   const pathname = usePathname();
 
@@ -40,15 +42,13 @@ const Navbar = () => {
     pathname.split("/").slice(0, 2).join("/")
   );
 
-  const router = useRouter();
-
   return (
-    <>
+    <nav className="flex-center w-full">
       {!hideTailoredBtnPathname.includes(
         pathname.split("/").slice(0, 2).join("/")
       ) && <TailoredExperienceBtn />}
 
-      <div className="relative px-4 lg:px-20 z-50 lg:py-6 py-5 w-full hidden lg:flex justify-between items-center">
+      <div className="relative w-11/12 z-50 lg:py-6 py-5 hidden xl:flex justify-between items-center">
         <div className="flex justify-center relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] items-center">
           <Link
             href={"/"}
@@ -81,8 +81,6 @@ const Navbar = () => {
                 invertStyles ? "text-black" : "text-white"
               }`}
             >
-              <Suspense>{!user?.admin && <AuthenticateModal />}</Suspense>
-
               <li>
                 <Link className="uppercase" href={"/about"}>
                   About
@@ -104,6 +102,9 @@ const Navbar = () => {
                   Contact
                 </Link>
               </li>
+              <li className="flex-center">
+                <Suspense>{!user?.admin && <AuthenticateModal />}</Suspense>
+              </li>
             </ul>
           </div>
           <div className="nav-button">
@@ -116,7 +117,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="mobile-nav z-50 relative flex flex-col lg:hidden w-full justify-between items-center px-3 py-6">
+      <div className="mobile-nav z-50 relative flex flex-col xl:hidden w-full justify-between items-center py-6">
         <div className="flex w-11/12 justify-between items-center">
           <div
             className="flex flex-col justify-center items-center gap-1"
@@ -180,6 +181,7 @@ const Navbar = () => {
           </div>
           <div>
             <CustomButton
+              minWidth={false}
               isLink
               href="/explore-experiences/all"
               invert={invertStyles}
@@ -193,12 +195,17 @@ const Navbar = () => {
         >
           <div className="bg-white w-full p-4 flex flex-col gap-4 uppercase">
             <ul className="flex flex-col gap-4">
-              <div className="w-full flex justify-start items-start">
-                <AuthenticateModal />
-              </div>
               <li>
                 <Link className="uppercase" href={"/about"}>
                   About
+                </Link>
+              </li>
+              <li className="cursor-pointer">
+                <CategoryDropdown />
+              </li>
+              <li>
+                <Link className="uppercase" href={"/tailored-experiences"}>
+                  TAILORED EXPERIENCES
                 </Link>
               </li>
               <li className="cursor-pointer">
@@ -207,14 +214,15 @@ const Navbar = () => {
               <li className="cursor-pointer">
                 <Link href={"/contact"}>Contact</Link>
               </li>
-              <li className="cursor-pointer">
-                <CategoryDropdown />
-              </li>
+
+              <div className="w-full flex justify-start items-start">
+                <AuthenticateModal />
+              </div>
             </ul>
           </div>
         </div>
       </div>
-    </>
+    </nav>
   );
 };
 

@@ -92,8 +92,8 @@ const page = ({ params }) => {
             />
           </div>
         </div>
-        <div className="main-content h-full lg:h-5/6 w-11/12 lg:w-full flex justify-center items-start lg:items-center relative z-50">
-          <div className="main-img absolute left-5 bottom-12 lg:relative w-[231px] h-[351px] lg:w-[59.219svw] lg:h-[60.484svh]">
+        <div className="main-content h-full lg:h-5/6 w-11/12 lg:w-full flex justify-center items-start lg:items-center relative z-40">
+          <div className="main-img absolute left-5 bottom-4 lg:relative w-[231px] h-[351px] lg:w-[59.219svw] lg:h-[60.484svh]">
             <div className="lg:hidden absolute overlay"></div>
             <Image
               src={data.headerImg.image}
@@ -152,18 +152,19 @@ const page = ({ params }) => {
       <section className="section-d flex-center py-9 lg:py-[100px]">
         <div className="flex flex-col gap-16 justify-center items-center w-10/12">
           <div className="section-d-text-content flex flex-col gap-8 lg:flex-row justify-between items-center">
-            <div>
-              <h2 className="section-d-header lg:w-7/12 text-4xl lg:text-7xl font-IvyPresto">
+            <div className="lg:w-5/12 xl:w-4/12">
+              <h2 className="section-d-header text-4xl xl:text-5xl 2xl:text-7xl font-IvyPresto">
                 {data.sectionCHeader}
               </h2>
             </div>
-            <div className="w-full lg:w-6/12 flex flex-col justify-start items-start gap-9">
+            <div className="w-full lg:w-7/12 flex flex-col justify-start items-start gap-9">
               <div className="section-d-description">
                 <p className="text-sm lg:text-lg">{data.sectionCDescription}</p>
               </div>
               <div className="w-full flex justify-center lg:justify-start items-center">
                 <CustomButton
                   btnName="indulge today"
+                  invert
                   isLink
                   href={`/explore-experiences/${data.category.slug}`}
                 />

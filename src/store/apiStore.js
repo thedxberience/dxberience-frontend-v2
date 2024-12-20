@@ -28,7 +28,7 @@ export const useApiStore = create(
           });
           useUserStore.setState({
             user: request,
-            accessToken: request.authTokens.accessToken,
+            accessToken: request.accessToken,
           });
           return { success: true, ...request };
         } catch (error) {

@@ -1,10 +1,14 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TailoredExperienceFloatingForm from "../TailoredExperiences/TailoredExperienceFloatingForm";
+import { useComponentStore } from "@/store/componentStore";
 
 const TailoredExperienceBtn = () => {
   const [revealForm, setRevealForm] = useState(false);
+  const [stopScroll, setStopScroll] = useState(false);
+
+  const footerHeight = useComponentStore((state) => state.footerHeight);
 
   const handleScroll = () => {
     if (document) {
@@ -26,6 +30,29 @@ const TailoredExperienceBtn = () => {
     setRevealForm(!revealForm);
   };
 
+  const handleBtnScroll = () => {
+    if (window && footerHeight) {
+      const documentScrollHeight = document.documentElement.scrollHeight;
+      const scrollOfset = documentScrollHeight - (footerHeight * 2 + 100);
+
+      if (window.scrollY > scrollOfset) {
+        setStopScroll(true);
+      } else {
+        setStopScroll(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (window) {
+      document.addEventListener("scroll", handleBtnScroll);
+    }
+
+    return () => {
+      document.removeEventListener("scroll", handleBtnScroll);
+    };
+  }, [footerHeight]);
+
   function openWhatsapp() {
     window.open("https://wa.me/+971585787558", "_blank");
   }
@@ -37,8 +64,9 @@ const TailoredExperienceBtn = () => {
   return (
     <div className="tailored-experience-button fixed top-96 left-0 z-50 cursor-pointer">
       <div
+        style={{ bottom: stopScroll ? footerHeight : "" }}
         className={`fixed ${
-          revealForm ? "top-0" : "top-[calc(50%-100px)]"
+          revealForm ? "top-0" : stopScroll ? "" : "top-[calc(50%-100px)]"
         } left-0 flex justify-center items-center`}
       >
         {revealForm && (

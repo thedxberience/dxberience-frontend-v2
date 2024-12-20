@@ -1,9 +1,9 @@
 import { useComponentStore } from "@/store/componentStore";
 import { useUserStore } from "@/store/userStore";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { checkUser } from "./utils";
+import { checkUser, updateUserFromGoogleSSO } from "./utils";
 
 export const useAuthGuard = ({ adminRoute = false, redirect = true }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,4 +38,37 @@ export const useAuthGuard = ({ adminRoute = false, redirect = true }) => {
   }, [isError, isSuccess, router, adminRoute]);
 
   return isAuthenticated;
+};
+
+export const useCheckGoogleToken = () => {
+  const searchParams = useSearchParams();
+
+  const googleToken = searchParams.get("token");
+
+  const setAccessToken = useUserStore((state) => state.setAccessToken);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (googleToken) {
+      setAccessToken(googleToken);
+    }
+  }, [googleToken]);
+
+  const checkUserReq = useQuery({
+    queryKey: ["googleToken", googleToken],
+    queryFn: async () => {
+      const checkGoogleTokenReq = await updateUserFromGoogleSSO(googleToken);
+      if (!checkGoogleTokenReq?.isAdmin) {
+        router.replace("/dashboard"); // This might be an issue for admins. We possibly need to redirect to the admin dashboard if the user is an admin. It also depends on if the request returns if the user is an admin or not.
+      } else {
+        router.replace("/admin");
+      }
+
+      return checkGoogleTokenReq;
+    },
+    retry: false,
+  });
+
+  return checkUserReq;
 };

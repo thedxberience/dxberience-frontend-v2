@@ -224,6 +224,31 @@ const ServicesSection = ({ category = null, header = null }) => {
     }
   };
 
+  if (serviceCategories && serviceCategories?.length <= 2) {
+    return (
+      <section
+        className={`services w-full min-h-screen h-screen ${
+          category ? "bg-[#171010]" : "sticky-bg"
+        } text-white`}
+      >
+        <div
+          className={`
+          ${category ? "bg-[#171010]" : "sticky-bg"} text-white 
+          `}
+        >
+          {handleServiceContainerHeader()}
+        </div>
+        <div className="w-full single_service_container flex-center">
+          <div className="single_service gap-4 w-full h-full">
+            {serviceCategories?.map((service, index) => (
+              <ServiceCard {...service} key={`${service.name} ${index}`} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="services w-full">
       <div

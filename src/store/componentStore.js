@@ -4,6 +4,12 @@ import { createJSONStorage, persist } from "zustand/middleware";
 export const useComponentStore = create(
   persist(
     (set, get) => ({
+      footerHeight: null,
+      setFooterHeight: (height) => {
+        return set({
+          footerHeight: height,
+        });
+      },
       filterData: {
         confirmationStatus: "",
         startDate: "",

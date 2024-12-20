@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InfoCard from "@/components/BookingAdmin/InfoCard";
 import FilterTabs from "@/components/BookingAdmin/FilterTab";
 import BookingTable from "@/components/BookingAdmin/BookingTable";
@@ -7,29 +7,13 @@ import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { currencyFormat, getUrlQueryString } from "@/utils/utils";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import UpdateModal from "@/components/BookingAdmin/UpdateModal";
-import axios from "axios";
 import { makeRequest } from "@/utils/axios";
-import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import { useUserStore } from "@/store/userStore";
-import { useComponentStore } from "@/store/componentStore";
 import { useAuthGuard } from "@/utils/CustomHooks";
 import LoadingIcon from "@/components/shared/LoadingIcon";
 
 function BookingAdmin() {
-  const router = useRouter();
-
   const queryClient = useQueryClient();
-
-  const { setOpenModal } = useComponentStore((state) => ({
-    setOpenModal: state.setOpenModal,
-  }));
-
-  const { user, userAuthenticated, checkUser } = useUserStore((state) => ({
-    user: state.user,
-    userAuthenticated: state.userAuthenticated,
-    checkUser: state.checkUser,
-  }));
 
   const isAuthenticated = useAuthGuard({ adminRoute: true });
 

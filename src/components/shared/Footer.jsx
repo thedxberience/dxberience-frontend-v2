@@ -3,15 +3,20 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CategoryDropdown from "./CategoryDropdown";
+import { useComponentStore } from "@/store/componentStore";
 function Footer() {
   const [scrolled, setScrolled] = useState(false);
   const [reachedFooter, setReachedFooter] = useState(false);
   const footerRef = useRef(null);
 
+  const setFooterHeight = useComponentStore((state) => state.setFooterHeight);
+  const footerHeight = useComponentStore((state) => state.footerHeight);
+
   const handleDomChecking = useCallback(() => {
     if (document && footerRef.current) {
       const windowScrollHeight = document.documentElement.scrollHeight;
       const footerHeight = footerRef.current.getBoundingClientRect().height;
+      setFooterHeight(footerHeight);
       const footerOffsetHeight = windowScrollHeight - footerHeight * 2 - 100;
       if (window.scrollY >= footerOffsetHeight) {
         setReachedFooter(true);
@@ -19,7 +24,7 @@ function Footer() {
         setReachedFooter(false);
       }
     }
-  }, []);
+  }, [footerHeight]);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -55,7 +60,7 @@ function Footer() {
 
       <div className="absolute inset-0 bg-[#171010] bg-opacity-90 z-10" />
       <div className="relative z-20 text-white">
-        <div className="px-8 2xl:flex justify-between">
+        <div className="px-8 xl:flex justify-between">
           <h1 className="py-2 text-2xl font-bold font-IvyPresto ">
             No need to think, just experience
           </h1>

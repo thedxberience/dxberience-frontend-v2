@@ -148,7 +148,7 @@ const page = () => {
         </div>
       </section>
       <ServicesSection />
-      <LuxuryRetreats />
+      {/* <LuxuryRetreats /> */}
       <section className="w-full flex flex-col justify-center items-center text-white bg-primary py-20">
         <div className="esteemed-partners flex flex-col justify-center items-center gap-16">
           <div className="section-header flex flex-col justify-center items-center gap-8">
@@ -167,7 +167,11 @@ const page = () => {
               creating unforgettable moments by submitting your partnership
               request below.
             </p>
-            <CustomButton btnName="Indulge Today" />
+            <CustomButton
+              btnName="Join the Elite Network"
+              isLink
+              href="/partners"
+            />
           </div>
           <div className="relative w-11/12 h-[200px] lg:w-[56.667vw] lg:h-[45.968vh]">
             <Image

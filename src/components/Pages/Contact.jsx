@@ -85,7 +85,7 @@ const ContactPage = () => {
 
   return (
     <HelperLayout>
-      <section className="contact-form w-full h-full flex justify-center mb-5 py-10">
+      <section className="w-full h-full flex justify-center mb-5 py-10">
         {!formSubmitted ? (
           <div className="bg-gradient-to-br from-[#001618db] to-[#00161800] w-[350px] flex flex-col items-center py-[40px] px-[20px] gap-4 text-white lg:w-[450px] 2xl:w-[681px] 2xl:px-[40px]">
             <h1 className="font-IvyPresto font-semibold text-xl xl:text-3xl 2xl:text-6xl">
@@ -106,7 +106,7 @@ const ContactPage = () => {
               className="flex flex-col items-center w-full"
               onSubmit={handleSubmit(handleContactUs)}
             >
-              <div className="flex flex-col gap-2 w-full min-h-[238px] 2xl:gap-10">
+              <div className="hide-scrollbar flex flex-col gap-10 w-full min-h-[238px] 2xl:gap-10 overflow-auto h-[750px] max-h-[800px]">
                 <FormInput
                   name="firstName"
                   placeholder={"First Name"}
@@ -201,7 +201,6 @@ const ContactPage = () => {
                 <br />
                 We've received your request.
               </h1>
-
               <p className="text-sm 2xl:text-xl">
                 Our team will reach out to finalize your booking and payment. We
                 will customize the experience to suit your needs.

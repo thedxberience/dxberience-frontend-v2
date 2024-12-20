@@ -9,12 +9,14 @@ import { useRouter } from "next/navigation";
 import CountrySelector from "../NewsletterSection/CountrySelect";
 import { DatePickerWithPresets } from "../shared/DatePicker";
 import { useApiStore } from "@/store/apiStore";
+import { useUserStore } from "@/store/userStore";
 
 const EventsBookingForm = ({ slug, price, product }) => {
   const router = useRouter();
   const [country, setCountry] = useState();
   const [date, setDate] = React.useState();
   const [showStatus, setShowStatus] = useState(false);
+  const user = useUserStore((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -22,9 +24,9 @@ const EventsBookingForm = ({ slug, price, product }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
+      firstName: user ? user.firstName : "",
+      lastName: user ? user.lastName : "",
+      email: user ? user.email : "",
       phone_number: "",
       country: "",
       date: "",
@@ -80,7 +82,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
   }, [showStatus, isSuccess]);
 
   return (
-    <div className="contact-form p-4 w-full lg:w-4/12">
+    <div className="hide-scrollbar p-4 w-full lg:w-4/12">
       <form
         className="bg-primary px-11 flex flex-col text-white justify-center items-center w-full h-full py-12"
         onSubmit={handleSubmit(handleSubmitBookingRequest)}
@@ -135,7 +137,7 @@ const EventsBookingForm = ({ slug, price, product }) => {
           <div className="w-full">
             <CountrySelector country={country} setCountry={setCountry} />
           </div>
-          <div className="flex justify-center items-center gap-4 w-full">
+          <div className="flex justify-center items-end gap-4 w-full">
             <div className="w-full">
               <DatePickerWithPresets date={date} setDate={setDate} invert />
             </div>

@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import PriceContainer from "@/components/Events/PriceContainer";
 import { useApiStore } from "@/store/apiStore";
 import { useAuthGuard } from "@/utils/CustomHooks";
+import Heart from "@/components/Experiences/Heart";
 
 const page = ({ params }) => {
   const searchParams = useSearchParams();
@@ -19,12 +20,7 @@ const page = ({ params }) => {
 
   const validateAffiliate = useApiStore((state) => state.validateAffiliate);
 
-  const {
-    data: affiliateData,
-    error: affiliateError,
-    isError: affiliateIsError,
-    isSuccess: affiliateIsSuccess,
-  } = useQuery({
+  const { data: affiliateData } = useQuery({
     queryKey: ["affiliate", affiliateID],
     queryFn: async () => {
       const req = await validateAffiliate(affiliateID, params.slug);
@@ -57,10 +53,6 @@ const page = ({ params }) => {
   const handlePagePop = () => {
     if (document) {
       const prevPage = document.referrer;
-      // console.log(document.referrer);
-      // console.log(
-      //   prevPage.includes("thedxberience.com") || prevPage.includes("localhost")
-      // );
 
       if (data) {
         router.push(
@@ -176,12 +168,23 @@ const page = ({ params }) => {
       <section className="content mt-32 flex flex-col lg:flex-row justify-evenly items-start gap-6 w-full mb-16">
         <div className="w-full flex justify-center items-center">
           <div className="event-description w-11/12 ">
-            <div className="event-name flex flex-col justify-start items-start gap-2">
-              <h1 className="font-IvyPresto capitalize text-xl">
-                {data?.title}
-              </h1>
-              <p className="text-sm">{data?.shortDescription}</p>
+            <div className="flex-between">
+              <div className="event-name flex flex-col justify-start items-start gap-2">
+                <h1 className="font-IvyPresto capitalize text-xl">
+                  {data?.title}
+                </h1>
+                <p className="text-sm">{data?.shortDescription}</p>
+              </div>
+              <div>
+                <Heart
+                  title={data?.title}
+                  slug={data?.slug}
+                  category={data?.category.name}
+                  invert={true}
+                />
+              </div>
             </div>
+
             {data ? (
               <EventsContentCarousel
                 longDescription={data.longDescription}

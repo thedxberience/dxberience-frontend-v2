@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,12 +16,10 @@ import GoogleAuthButton from "./GoogleAuthButton";
 import Image from "next/image";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
-import { useApiStore } from "@/store/apiStore";
 import UserPopover from "./UserPopover";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/userStore";
 import { useComponentStore } from "@/store/componentStore";
-import AdminAuthModal from "./AdminAuthModal";
 
 const AuthenticateModal = () => {
   const [login, setLogin] = useState(true);
@@ -37,8 +35,6 @@ const AuthenticateModal = () => {
 
   const { user } = useUserStore((state) => ({ user: state.user }));
 
-  const openAdminModal = useComponentStore((state) => state.openAdminModal);
-
   return (
     <>
       {user && !user.admin ? (
@@ -51,7 +47,7 @@ const AuthenticateModal = () => {
           <AlertDialogTrigger asChild>
             <Button
               variant="ghost"
-              className="uppercase hover:bg-transparent mix-blend-darken hover:text-white p-0"
+              className="uppercase hover:bg-transparent mix-blend-darken p-0 max-h-6"
             >
               Login
             </Button>

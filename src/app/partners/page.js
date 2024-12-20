@@ -9,9 +9,9 @@ const page = () => {
     <main className="min-h-screen">
       <header className="partner-hero-section flex-center-col w-full h-full min-h-[468px] lg:min-h-[812px]">
         <Navbar />
-        <div className="partner-header-container flex-between justify-evenly text-white w-11/12">
-          <div className="absolute lg:relative top-[70px] lg:top-0 left-[20px] lg:left-0">
-            <div className="header-img relative w-[37.605vw] h-[34.996vh] lg:w-[37.604vw] lg:max-h-[650px] lg:h-[64.214vh]">
+        <div className="partner-header-container flex-between justify-evenly text-white w-11/12 relative">
+          <div className="absolute lg:relative bottom-3 lg:top-0 left-[20px] lg:left-0">
+            <div className="header-img relative w-[231px] h-[351px] lg:w-[37.604vw] lg:max-h-[650px] lg:h-[64.214vh]">
               <Image
                 src={"/partner_header_img.jpeg"}
                 alt="Luxury concierge services in Dubai"

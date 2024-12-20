@@ -66,24 +66,6 @@ const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
   });
   const [date, setDate] = useState();
 
-  // const {
-  //   data: productData,
-  //   error: productError,
-  //   isError: isProductError,
-  //   isSuccess: isProductSuccess,
-  //   isLoading: isProductLoading,
-  // } = useQuery({
-  //   queryKey: ["product", apiParams],
-  //   queryFn: async () => {
-  //     const data = await makeRequest(apiParams);
-  //     if (!isProductError) {
-  //       setProductData(productData);
-  //     }
-  //     return data;
-  //   },
-  //   enabled: apiParams != "",
-  // });
-
   const handleSetCategoryName = (categoryName) => {
     setCategoryName(categoryName);
   };

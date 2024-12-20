@@ -159,18 +159,14 @@ const ExperienceCard = ({
         </div>
       )}
       <div
-        className={`content relative p-1 lg:p-2 flex flex-col h-full w-full  ${
-          isAuthenticated ? "justify-between" : "justify-end"
-        } items-start gap-1 z-10 border`}
+        className={`content relative p-1 lg:p-2 flex flex-col h-full w-full justify-between items-start gap-1 z-10 border`}
       >
-        {isAuthenticated && (
-          <Heart
-            title={experienceTitle}
-            slug={slug}
-            category={category}
-            ref={heartRef}
-          />
-        )}
+        <Heart
+          title={experienceTitle}
+          slug={slug}
+          category={category}
+          ref={heartRef}
+        />
         <div className="flex flex-col gap-2">
           <CancelBookingButton
             isAuthenticated={isAuthenticated}

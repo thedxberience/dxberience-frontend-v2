@@ -113,7 +113,7 @@ const page = () => {
           </h1>
         </div>
         <div>
-          <div className="event-tabs py-8 flex justify-center items-center w-full text-xs lg:text-lg">
+          <div className="event-tabs py-8 flex justify-center items-center w-full text-sm lg:text-lg">
             <div
               className={`w-full cursor-pointer flex justify-center items-center border-b ${
                 selectedIndex == 0 ? "border-black" : "border-gray-50"
