@@ -31,6 +31,7 @@ export const useUserStore = create(
         set(() => ({
           user: null,
           accessToken: "",
+          userAuthenticated: false,
         }));
         router.replace("/");
       },

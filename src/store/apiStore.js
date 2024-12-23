@@ -27,13 +27,17 @@ export const useApiStore = create(
           }));
           useUserStore.setState({
             user: request,
-            accessToken: request.authTokens.accessToken,
+            accessToken: request.accessToken,
+            userAuthenticated: true,
           });
           return { success: true, ...request };
         } catch (error) {
           // console.log(`API Store request: ${error.message}`);
-          set(() => ({ loginError: error.message }));
-          return { error: error.message, success: false };
+          set(() => ({ loginError: error.message ? error.message : error }));
+          return {
+            error: error.message ? error.message : error,
+            success: false,
+          };
         }
       },
       registerUser: async (data) => {
@@ -48,6 +52,7 @@ export const useApiStore = create(
           useUserStore.setState({
             user: request,
             accessToken: request.accessToken,
+            userAuthenticated: true,
           });
           return request;
         } catch (error) {
