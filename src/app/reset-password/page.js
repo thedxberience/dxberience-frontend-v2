@@ -3,11 +3,12 @@ import CustomButton from "@/components/shared/CustomButton";
 import FormInput from "@/components/shared/FormInput";
 import HelperLayout from "@/layouts/HelperPageLayout";
 import { useCheckURLToken } from "@/utils/CustomHooks";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { useComponentStore } from "@/store/componentStore";
+import { useUserStore } from "@/store/userStore";
 
 const page = () => {
   const {
@@ -44,12 +45,12 @@ const page = () => {
 
   const watchAllFields = watch();
 
-  const token = useCheckURLToken();
+  const accessToken = useUserStore((state) => state.accessToken);
 
   const handleResetPassword = async (data) => {
     const requestPasswordpayload = {
       ...data,
-      token: token,
+      token: accessToken,
     };
     mutateAsync(requestPasswordpayload);
 

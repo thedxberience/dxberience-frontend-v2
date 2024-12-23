@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import FormInput from "../shared/FormInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "../shared/CustomButton";
 import CustomSelectTag from "../shared/CustomSelectTag";
@@ -11,7 +10,6 @@ import { useComponentStore } from "@/store/componentStore";
 import { DatePickerWithPresets } from "../shared/DatePicker";
 import { DatePickerWithRange } from "../shared/DateRangePicker";
 import { useApiStore } from "@/store/apiStore";
-import { isError } from "react-query";
 
 const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
   const {
