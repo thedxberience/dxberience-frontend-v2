@@ -40,35 +40,35 @@ export const useAuthGuard = ({ adminRoute = false, redirect = true }) => {
   return isAuthenticated;
 };
 
-export const useCheckGoogleToken = () => {
+export const useCheckURLToken = () => {
   const searchParams = useSearchParams();
 
-  const googleToken = searchParams.get("token");
+  const token = searchParams.get("token");
 
   const setAccessToken = useUserStore((state) => state.setAccessToken);
 
   const router = useRouter();
 
   useEffect(() => {
-    if (googleToken) {
-      setAccessToken(googleToken);
+    if (token) {
+      setAccessToken(token);
     }
-  }, [googleToken]);
+  }, [token]);
 
   const checkUserReq = useQuery({
-    queryKey: ["googleToken", googleToken],
+    queryKey: ["token", token],
     queryFn: async () => {
-      const checkGoogleTokenReq = await updateUserFromGoogleSSO(googleToken);
-      if (!checkGoogleTokenReq?.isAdmin) {
-        router.replace("/dashboard"); // This might be an issue for admins. We possibly need to redirect to the admin dashboard if the user is an admin. It also depends on if the request returns if the user is an admin or not.
-      } else {
-        router.replace("/admin");
-      }
+      const checkTokenReq = await updateUserFromGoogleSSO(token);
+      // if (!checkTokenReq?.isAdmin) {
+      //   router.replace("/dashboard"); // This might be an issue for admins. We possibly need to redirect to the admin dashboard if the user is an admin. It also depends on if the request returns if the user is an admin or not.
+      // } else {
+      //   router.replace("/admin");
+      // }
 
-      return checkGoogleTokenReq;
+      return checkTokenReq;
     },
     retry: false,
   });
 
-  return checkUserReq;
+  return token;
 };

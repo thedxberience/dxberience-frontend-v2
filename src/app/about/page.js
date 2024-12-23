@@ -1,4 +1,3 @@
-import LuxuryRetreats from "@/components/about/LuxuryRetreats";
 import Navbar from "@/components/Navbar";
 import RatingsSection from "@/components/RatingsSection";
 import ServicesSection from "@/components/ServicesSection";

@@ -22,6 +22,9 @@ export const useComponentStore = create(
         })),
       openModal: false,
       setOpenModal: (openModal) => set(() => ({ openModal: openModal })),
+      openForgotPasswordModal: false,
+      setOpenForgotPasswordModal: (openForgotPasswordModal) =>
+        set(() => ({ openForgotPasswordModal: openForgotPasswordModal })),
       experienceFormDropdownState: {
         categoryDropdown: false,
         dateDropdown: false,

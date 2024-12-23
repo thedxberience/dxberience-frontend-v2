@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { useApiStore } from "@/store/apiStore";
 import { useRouter } from "next/navigation";
+import { useComponentStore } from "@/store/componentStore";
 
 const LoginForm = ({ admin = true }) => {
   const {
@@ -25,6 +26,11 @@ const LoginForm = ({ admin = true }) => {
 
   const router = useRouter();
   const data = useApiStore((state) => state);
+
+  const setOpenForgotPasswordModal = useComponentStore(
+    (state) => state.setOpenForgotPasswordModal
+  );
+  const setOpenModal = useComponentStore((state) => state.setOpenModal);
 
   const { setLoginError, login, loginError } = useApiStore((state) => ({
     setLoginError: state.setLoginError,
@@ -109,8 +115,17 @@ const LoginForm = ({ admin = true }) => {
           />
         </div>
 
-        {/* <span className="text-sm">Forgot Password?</span>
-        <div className="flex flex-col justify-start items-start gap-9">
+        <span
+          onClick={() => {
+            setOpenForgotPasswordModal(true);
+            setOpenModal(false);
+          }}
+          className="text-sm cursor-pointer"
+        >
+          Forgot Password?
+        </span>
+
+        {/* <div className="flex flex-col justify-start items-start gap-9">
           <div className="flex justify-start items-center gap-2">
             <CustomCheckBox selected={rememberMe} setSelected={setRememberMe} />
             <p>Remember Me</p>

@@ -497,6 +497,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   background: transparent;
 }
 
+.forgot-password-container {
+  height: calc(100svh - 200px);
+}
+
 @keyframes pan-img {
   0% {
     transform: scale(1);

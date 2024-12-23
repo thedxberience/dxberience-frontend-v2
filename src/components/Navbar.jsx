@@ -8,12 +8,14 @@ import AuthenticateModal from "./Auth/AuthenticateModal";
 import TailoredExperienceBtn from "./shared/TailoredExperienceBtn";
 import { useUserStore } from "@/store/userStore";
 import CategoryDropdown from "./shared/CategoryDropdown";
-import { useCheckGoogleToken } from "@/utils/CustomHooks";
+import { useCheckURLToken } from "@/utils/CustomHooks";
+import ForgotPasswordModal from "./Auth/ForgotPasswordModal";
+import { useComponentStore } from "@/store/componentStore";
 
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
 
-  useCheckGoogleToken();
+  useCheckURLToken();
 
   const pathname = usePathname();
 
@@ -42,11 +44,17 @@ const Navbar = () => {
     pathname.split("/").slice(0, 2).join("/")
   );
 
+  const openForgotPasswordModal = useComponentStore(
+    (state) => state.openForgotPasswordModal
+  );
+
   return (
     <nav className="flex-center w-full">
       {!hideTailoredBtnPathname.includes(
         pathname.split("/").slice(0, 2).join("/")
       ) && <TailoredExperienceBtn />}
+
+      {openForgotPasswordModal && <ForgotPasswordModal />}
 
       <div className="relative w-11/12 z-50 lg:py-6 py-5 hidden xl:flex justify-between items-center">
         <div className="flex justify-center relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] items-center">

@@ -6,7 +6,7 @@ import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import PriceContainer from "@/components/Events/PriceContainer";
@@ -20,20 +20,21 @@ const page = ({ params }) => {
 
   const validateAffiliate = useApiStore((state) => state.validateAffiliate);
 
-  const { data: affiliateData } = useQuery({
+  useQuery({
     queryKey: ["affiliate", affiliateID],
     queryFn: async () => {
       const req = await validateAffiliate(affiliateID, params.slug);
 
       return req;
     },
+
+    enabled: !!affiliateID,
   });
 
-  const { data, error, isError, isSuccess, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["product", params.slug],
     queryFn: async () => {
       const data = await makeRequest(`/product/${params.slug}`);
-      // console.log(data[0]?.subCategory?.name.toLowerCase().includes("rentals"));
 
       return data[0];
     },
@@ -70,14 +71,6 @@ const page = ({ params }) => {
       setThumbnailLoading(true);
     }
   };
-
-  const handlePriceRate = useCallback(() => {
-    if (data?.subCategory?.name.toLowerCase().includes("rentals")) {
-      return "PER DAY";
-    } else {
-      return "PER PERSON";
-    }
-  }, [data]);
 
   return (
     <main>
