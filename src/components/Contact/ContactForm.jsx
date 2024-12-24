@@ -74,11 +74,18 @@ const ContactForm = () => {
   };
 
   useEffect(() => {
+    let timeout;
     if (isError) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowStatus(false);
       }, [5000]);
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [isError]);
 
   return (

@@ -10,6 +10,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useAuthGuard } from "@/utils/CustomHooks";
 import LoadingIcon from "@/components/shared/LoadingIcon";
 import Weather from "@/components/Dashboard/Weather";
+import ProfileContainer from "@/components/Dashboard/ProfileContainer";
 
 const page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -168,7 +169,7 @@ const page = () => {
                     }`}
                     key={3}
                   >
-                    <ProfileForm />
+                    <ProfileContainer />
                   </div>
                 </div>
               </div>

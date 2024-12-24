@@ -2,8 +2,7 @@
 import CustomButton from "@/components/shared/CustomButton";
 import FormInput from "@/components/shared/FormInput";
 import HelperLayout from "@/layouts/HelperPageLayout";
-import { useCheckURLToken } from "@/utils/CustomHooks";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
@@ -58,14 +57,21 @@ const page = () => {
   };
 
   useEffect(() => {
+    let timeout;
     if (showStatus) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowStatus(false);
         if (isSuccess) {
           setOpenModal(true);
         }
       }, 5000);
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [showStatus, isSuccess]);
 
   return (

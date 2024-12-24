@@ -12,28 +12,7 @@ import { DatePickerWithRange } from "../shared/DateRangePicker";
 import { useApiStore } from "@/store/apiStore";
 
 const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      categories: "",
-      interests: "",
-      date: "",
-      no_of_travellers: "",
-      budget: "",
-    },
-  });
-
-  const {
-    data: categoryData,
-    error: categoryError,
-    isError: isCategoryError,
-    isSuccess: isCategorySuccess,
-    isLoading: isCategoryLoading,
-  } = useQuery({
+  const { data: categoryData } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const data = await makeRequest(`/categories`);
@@ -50,8 +29,6 @@ const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
     categoryFromSlug,
     categorySlugDisplay,
   } = useComponentStore((state) => state);
-
-  const { setProductData } = useApiStore((state) => state);
 
   const btnRef = useRef();
   const [isSubCategory, setIsSubCategory] = useState(false);

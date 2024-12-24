@@ -72,10 +72,16 @@ const LoginForm = ({ admin = true }) => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       setShowStatus(false);
       setLoginError("");
     }, 5000);
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [showStatus]);
 
   return (

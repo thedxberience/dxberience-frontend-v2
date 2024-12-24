@@ -68,11 +68,18 @@ const NewsletterSection = () => {
   };
 
   useEffect(() => {
+    let timeout;
     if (isSuccess || isError) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowStatus(false);
       }, [5000]);
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [isSuccess, isError]);
 
   return (

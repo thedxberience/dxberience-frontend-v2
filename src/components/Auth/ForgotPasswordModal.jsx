@@ -55,12 +55,19 @@ const ForgotPasswordModal = () => {
   });
 
   useEffect(() => {
+    let timeout;
     if (showStatus) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowStatus(false);
         setOpenForgotPasswordModal(false);
       }, 5000);
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [showStatus]);
 
   const openForgotPasswordModal = useComponentStore(

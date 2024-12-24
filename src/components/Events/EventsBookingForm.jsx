@@ -71,14 +71,21 @@ const EventsBookingForm = ({ slug, price, product }) => {
   };
 
   useEffect(() => {
+    let timeout;
     if (showStatus) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowStatus(false);
       }, 5000);
     }
     if (isSuccess) {
       router.push("/booking-confirmation");
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [showStatus, isSuccess]);
 
   return (

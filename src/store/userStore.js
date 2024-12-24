@@ -19,7 +19,9 @@ export const useUserStore = create(
           user: null,
           accessToken: "",
         }));
-        router.replace("/");
+        if (router) {
+          router.replace("/");
+        }
       },
     }),
     {

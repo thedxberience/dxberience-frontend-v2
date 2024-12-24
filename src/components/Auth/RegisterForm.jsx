@@ -70,10 +70,16 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       setShowStatus(false);
       setRegisterError("");
     }, 5000);
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [showStatus]);
 
   return (
