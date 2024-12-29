@@ -1,6 +1,11 @@
-import Footer from "@/components/shared/Footer";
 import LegalPageLayout from "@/layouts/LegalPage";
 import React from "react";
+
+export const metadata = {
+  title: "Terms & Conditions",
+  description:
+    "Explore the terms and conditions governing your use of Dxberience's luxury services and experiences.",
+};
 
 const page = () => {
   return (

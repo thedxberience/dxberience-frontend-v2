@@ -2,8 +2,6 @@ import "./globals.css";
 import "./css/base.css";
 import "./css/embla.css";
 
-import Script from "next/script";
-
 import localFont from "next/font/local";
 import Provider from "@/utils/Provider";
 
@@ -32,6 +30,21 @@ export const metadata = {
   },
   description:
     "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
+  image: "/dxberience_logo.png",
+  url: "https://thedxberience.com",
+  twitter: {
+    site: "@thedxberience",
+    card: "summary_large_image",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    site_name: "Dxberience",
+    title: "Luxury Lifestyle Management Services Dubai | Dxberience",
+    description:
+      "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
+    image: "/dxberience_logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {

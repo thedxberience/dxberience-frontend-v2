@@ -4,6 +4,12 @@ import Footer from "@/components/shared/Footer";
 import Image from "next/image";
 import React, { Suspense } from "react";
 
+export const metadata = {
+  title: "Esteemed Partners to deliver exceptional concierge services",
+  description:
+    "Discover Dxberience's esteemed partners, enabling exceptional concierge services with trusted collaborations and premium offerings.",
+};
+
 const page = () => {
   return (
     <main className="min-h-screen">
