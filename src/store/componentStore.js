@@ -99,6 +99,9 @@ export const useComponentStore = create(
           categorySlugDisplay: category,
         }));
       },
+      showVideoModal: false,
+      setShowVideoModal: (showVideoModal) =>
+        set({ showVideoModal: showVideoModal }),
     }),
     {
       name: "dxberienceV2ComponentStore",

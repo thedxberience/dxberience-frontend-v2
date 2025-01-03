@@ -1,19 +1,23 @@
 import CategoryPage from "./page.client";
 
 export async function generateMetadata({ params }) {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${params.category}`;
-  const data = await fetch(url).then((res) => res.json());
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${params.category}`;
+    const data = await fetch(url).then((res) => res.json());
 
-  return {
-    title: data[0].headerTitle,
-    description: data[0].headerCaption,
-    image: data[0].headerImg.image,
-    openGraph: {
+    return {
       title: data[0].headerTitle,
       description: data[0].headerCaption,
       image: data[0].headerImg.image,
-    },
-  };
+      openGraph: {
+        title: data[0].headerTitle,
+        description: data[0].headerCaption,
+        image: data[0].headerImg.image,
+      },
+    };
+  } catch (error) {
+    console.log("Coukld not fetch metadata", error);
+  }
 }
 
 const page = ({ params }) => {

@@ -7,10 +7,11 @@ import Footer from "@/components/shared/Footer";
 import Image from "next/image";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { makeRequest } from "@/utils/axios";
 import { useApiStore } from "@/store/apiStore";
 import LoadingIcon from "@/components/shared/LoadingIcon";
 import { useRouter } from "next/navigation";
+import VideoPlayer from "@/components/shared/VideoPlayer";
+import { useComponentStore } from "@/store/componentStore";
 
 const CategoryPage = ({ params }) => {
   const { getCategoryPage } = useApiStore((state) => ({
@@ -26,6 +27,10 @@ const CategoryPage = ({ params }) => {
   });
 
   const router = useRouter();
+
+  const setShowVideoModal = useComponentStore(
+    (state) => state.setShowVideoModal
+  );
 
   const handleLoadingState = () => {
     return (
@@ -172,7 +177,10 @@ const CategoryPage = ({ params }) => {
             </div>
           </div>
           <div className="section-d-video">
-            <div className="relative w-[90svw] lg:w-[82.813vw] h-[222px] lg:h-[74.093vh] flex-center">
+            <div
+              className="relative w-[90svw] lg:w-[82.813vw] h-[222px] lg:h-[74.093vh] flex-center cursor-pointer"
+              onClick={() => setShowVideoModal(true)}
+            >
               <Image
                 src={data.sectionCVideoThumbnail.image}
                 alt={data.sectionCVideoThumbnail.alt}
@@ -190,6 +198,8 @@ const CategoryPage = ({ params }) => {
           </div>
         </div>
       </section>
+      <VideoPlayer videoURL={data.sectionCVideo} />
+
       <RatingsSection />
       <Footer />
     </main>
