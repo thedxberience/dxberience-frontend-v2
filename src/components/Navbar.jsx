@@ -48,6 +48,8 @@ const Navbar = () => {
     (state) => state.openForgotPasswordModal
   );
 
+  const removeTailoredExpBtnRoute = ["/admin", "/dashboard"];
+
   return (
     <nav className="flex-center w-full">
       {!hideTailoredBtnPathname.includes(

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
       },
     };
   } catch (error) {
-    console.log("Coukld not fetch metadata", error);
+    console.log("Could not fetch metadata", error);
   }
 }
 

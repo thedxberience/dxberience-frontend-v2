@@ -97,7 +97,6 @@ const AuthenticateModal = () => {
                     </div>
                     <div className="h-[1px] w-3/12 bg-black/40"></div>
                   </div>
-
                   {login ? <LoginForm /> : <RegisterForm />}
                 </div>
               </AlertDialogDescription>

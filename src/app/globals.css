@@ -139,7 +139,9 @@ body {
 
 input[type="text"] {
   -webkit-appearance: none;
+  appearance: none;
   -webkit-border-radius: 0px;
+  border-radius: 0px;
 }
 
 .explore-text h1 {
