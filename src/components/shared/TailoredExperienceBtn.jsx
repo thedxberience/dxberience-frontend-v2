@@ -2,9 +2,13 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import TailoredExperienceFloatingForm from "../TailoredExperiences/TailoredExperienceFloatingForm";
+import { useComponentStore } from "@/store/componentStore";
 
 const TailoredExperienceBtn = () => {
-  const [revealForm, setRevealForm] = useState(false);
+  const { revealForm, setRevealForm } = useComponentStore((state) => ({
+    revealForm: state.revealTailoredExperienceForm,
+    setRevealForm: state.setRevealTailoredExperiencForm,
+  }));
 
   const handleScroll = () => {
     if (document) {

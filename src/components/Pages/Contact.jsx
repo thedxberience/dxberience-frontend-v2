@@ -28,7 +28,7 @@ const ContactPage = () => {
       email: "",
       phoneNumber: "",
       company: "",
-      consent: true,
+      optin: true,
       message: "",
     },
   });
@@ -63,7 +63,7 @@ const ContactPage = () => {
           company: contactData.company,
           phoneNumber: contactData.phoneNumber,
           message: contactData.message,
-          consent: contactData.consent,
+          optin: contactData.optin,
         },
       };
       const response = await mutateAsync(payload);
@@ -174,18 +174,19 @@ const ContactPage = () => {
                   errors={errors}
                   value={watchAllFields.message}
                 />
-                <div className="flex mt-5 justify-center">
-                  <CustomButton btnName="Send Message" isPending={isPending} />
-                </div>
+
                 <div className="mt-2">
                   <FormInput
-                    inputType="consent"
-                    value={watchAllFields.consent}
+                    inputType="optin"
+                    value={watchAllFields.optin}
                     setValue={setValue}
                     errors={errors}
-                    name="consent"
+                    name="optin"
                     register={register}
                   />
+                </div>
+                <div className="flex mt-3 justify-center">
+                  <CustomButton btnName="Send Message" isPending={isPending} />
                 </div>
               </div>
             </form>

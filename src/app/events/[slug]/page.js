@@ -5,13 +5,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import PriceContainer from "@/components/Events/PriceContainer";
+import { useApiStore } from "@/store/apiStore";
 
 const page = ({ params }) => {
+  const affiliateId = useApiStore((state) => state.affiliateId);
+
   const { data, error, isError, isSuccess, isLoading } = useQuery({
     queryKey: ["product", params.slug],
     queryFn: async () => {

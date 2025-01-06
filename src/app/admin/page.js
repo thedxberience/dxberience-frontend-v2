@@ -31,10 +31,11 @@ function BookingAdmin() {
 
   const checkUserValidator = async () => {
     try {
+      const request = await checkUser();
       console.log(`User Authenticated: ${userAuthenticated}`);
 
-      const request = await checkUser();
-      if (userAuthenticated === false) {
+      // the predicate is necessary as the default value of userAuthenticated is null and falsy.
+      if (userAuthenticated === false || userAuthenticated === undefined) {
         router.replace("/");
         setOpenModal(true);
       }

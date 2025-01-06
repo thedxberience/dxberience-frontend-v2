@@ -6,6 +6,12 @@ export const useComponentStore = create((set, get) => ({
     dateDropdown: false,
     budgetDropdown: false,
   },
+  revealTailoredExperienceForm: false,
+  setRevealTailoredExperiencForm: (reveal) => {
+    set(() => ({
+      revealTailoredExperienceForm: reveal,
+    }));
+  },
   toggleCategoryDropdown: () =>
     set((state) => ({
       experienceFormDropdownState: {

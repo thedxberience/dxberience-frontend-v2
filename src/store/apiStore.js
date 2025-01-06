@@ -15,6 +15,7 @@ export const useApiStore = create(
       registerError: "",
       setRegisterError: (error) => set(() => ({ registerError: error })),
       setProductData: (data) => set(() => ({ productData: data })),
+      affiliateId: null,
       login: async (data) => {
         try {
           const request = await makeRequest("/auth/login", {
@@ -26,13 +27,17 @@ export const useApiStore = create(
           }));
           useUserStore.setState({
             user: request,
-            accessToken: request.authTokens.accessToken,
+            accessToken: request.accessToken,
+            userAuthenticated: true,
           });
           return { success: true, ...request };
         } catch (error) {
           // console.log(`API Store request: ${error.message}`);
-          set(() => ({ loginError: error.message }));
-          return { error: error.message, success: false };
+          set(() => ({ loginError: error.message ? error.message : error }));
+          return {
+            error: error.message ? error.message : error,
+            success: false,
+          };
         }
       },
       registerUser: async (data) => {
@@ -47,11 +52,32 @@ export const useApiStore = create(
           useUserStore.setState({
             user: request,
             accessToken: request.accessToken,
+            userAuthenticated: true,
           });
           return request;
         } catch (error) {
           console.log(error);
           set(() => ({ registerError: error.message }));
+        }
+      },
+      validateAffiliate: async (affiliateId, slug) => {
+        try {
+          const affiliateVerification = await makeRequest(
+            `/affiliate/validate?partnerId=${affiliateId}&product=${slug}`
+          );
+
+          if (affiliateVerification) {
+            set(() => ({
+              affiliateId: affiliateId,
+            }));
+          } else {
+            set(() => ({
+              affiliateId: null,
+            }));
+          }
+          return affiliateVerification;
+        } catch (error) {
+          console.log(`Error validating affiliate: ${error}`);
         }
       },
     }),

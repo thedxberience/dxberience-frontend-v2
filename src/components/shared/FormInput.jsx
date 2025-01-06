@@ -81,7 +81,7 @@ function FormInput({
               id={name}
               type={showPassword ? "text" : inputType}
               autoComplete="new-password"
-              className={`bg-transparent border-none outline-none`}
+              className={`bg-transparent w-full border-none outline-none`}
             />
 
             <span onClick={() => setShowPassword(!showPassword)}>
@@ -104,7 +104,7 @@ function FormInput({
           </div>
         );
 
-      case "consent":
+      case "optin":
         return (
           <div className="relative flex gap-2 items-start">
             <input

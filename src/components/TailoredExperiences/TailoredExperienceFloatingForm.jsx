@@ -33,7 +33,7 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
       phoneNumber: "",
       company: "",
       message: "Hello, I'd like to request a tailored experience.",
-      consent: true,
+      optin: true,
     },
   });
 
@@ -71,7 +71,7 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
           company: contactData.company,
           phoneNumber: contactData.phoneNumber,
           message: message,
-          consent: contactData.consent,
+          optin: contactData.optin,
         },
       };
       const response = await mutateAsync(payload);
@@ -229,11 +229,11 @@ const TailoredExperienceFloatingForm = ({ revealForm, setRevealForm }) => {
 
                 <div className="mt-2">
                   <FormInput
-                    inputType="consent"
-                    value={watchAllFields.consent}
+                    inputType="optin"
+                    value={watchAllFields.optin}
                     setValue={setValue}
                     errors={errors}
-                    name="consent"
+                    name="optin"
                     register={register}
                   />
                 </div>
