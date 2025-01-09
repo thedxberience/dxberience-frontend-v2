@@ -27,7 +27,7 @@ function CountrySelector({ country, setCountry, invert = false }) {
           <label className={`${invert && "text-white"}`}> Country </label>
         )}
         <SelectTrigger
-          className={`w-full h-[33px] ${
+          className={`country-select w-full h-[33px] ${
             !country && "text-gray-400"
           } py-1 outline-none px-0 bg-transparent border-white ${
             country && invert && "text-white"

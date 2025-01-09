@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InfoCard from "@/components/BookingAdmin/InfoCard";
 import FilterTabs from "@/components/BookingAdmin/FilterTab";
 import BookingTable from "@/components/BookingAdmin/BookingTable";
@@ -7,48 +7,15 @@ import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { currencyFormat, getUrlQueryString } from "@/utils/utils";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import UpdateModal from "@/components/BookingAdmin/UpdateModal";
-import axios from "axios";
 import { makeRequest } from "@/utils/axios";
-import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import { useApiStore } from "@/store/apiStore";
-import { useUserStore } from "@/store/userStore";
+import { useAuthGuard } from "@/utils/CustomHooks";
+import LoadingIcon from "@/components/shared/LoadingIcon";
 
 function BookingAdmin() {
-  const router = useRouter();
-
   const queryClient = useQueryClient();
 
-  const { setOpenModal } = useApiStore((state) => ({
-    setOpenModal: state.setOpenModal,
-  }));
-
-  const { user, userAuthenticated, checkUser } = useUserStore((state) => ({
-    user: state.user,
-    userAuthenticated: state.userAuthenticated,
-    checkUser: state.checkUser,
-  }));
-
-  const checkUserValidator = async () => {
-    try {
-      const request = await checkUser();
-      console.log(`User Authenticated: ${userAuthenticated}`);
-
-      // the predicate is necessary as the default value of userAuthenticated is null and falsy.
-      if (userAuthenticated === false || userAuthenticated === undefined) {
-        router.replace("/");
-        setOpenModal(true);
-      }
-    } catch (error) {
-      console.log(`Error validating user: ${error}`);
-      // router.replace("/");
-    }
-  };
-
-  useEffect(() => {
-    checkUserValidator();
-    return;
-  }, [userAuthenticated]);
+  const isAuthenticated = useAuthGuard({ adminRoute: true });
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [advancedFilter, setAdvancedFilter] = useState(false);
@@ -120,7 +87,7 @@ function BookingAdmin() {
 
   return (
     <>
-      {userAuthenticated && user && (
+      {isAuthenticated ? (
         <div className="flex flex-col bg-[#212121] min-h-[100vh]  h-full">
           <Navbar />
           <div className="px-4 sm:px-20 py-5 text-white">
@@ -331,6 +298,10 @@ function BookingAdmin() {
               bookingMutation={bookingMutation}
             />
           )}
+        </div>
+      ) : (
+        <div className="flex-center h-screen bg-[#212121]">
+          <LoadingIcon />
         </div>
       )}
     </>

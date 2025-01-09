@@ -5,7 +5,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -36,8 +35,12 @@ export function FormSelectTag({
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {options.map((option) => {
-              return <SelectItem value={option}>{option}</SelectItem>;
+            {options.map((option, key) => {
+              return (
+                <SelectItem value={option} key={key}>
+                  {option}
+                </SelectItem>
+              );
             })}
           </SelectGroup>
         </SelectContent>

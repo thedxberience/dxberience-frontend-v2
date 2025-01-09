@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import FormInput from "../shared/FormInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "../shared/CustomButton";
 import CustomSelectTag from "../shared/CustomSelectTag";
@@ -11,31 +10,9 @@ import { useComponentStore } from "@/store/componentStore";
 import { DatePickerWithPresets } from "../shared/DatePicker";
 import { DatePickerWithRange } from "../shared/DateRangePicker";
 import { useApiStore } from "@/store/apiStore";
-import { isError } from "react-query";
 
 const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      categories: "",
-      interests: "",
-      date: "",
-      no_of_travellers: "",
-      budget: "",
-    },
-  });
-
-  const {
-    data: categoryData,
-    error: categoryError,
-    isError: isCategoryError,
-    isSuccess: isCategorySuccess,
-    isLoading: isCategoryLoading,
-  } = useQuery({
+  const { data: categoryData } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const data = await makeRequest(`/categories`);
@@ -53,8 +30,6 @@ const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
     categorySlugDisplay,
   } = useComponentStore((state) => state);
 
-  const { setProductData } = useApiStore((state) => state);
-
   const btnRef = useRef();
   const [isSubCategory, setIsSubCategory] = useState(false);
   // const [apiParams, setApiParams] = useState("");
@@ -65,24 +40,6 @@ const ExperiencesForm = ({ setApiParams, isProductLoading }) => {
     max: 0,
   });
   const [date, setDate] = useState();
-
-  // const {
-  //   data: productData,
-  //   error: productError,
-  //   isError: isProductError,
-  //   isSuccess: isProductSuccess,
-  //   isLoading: isProductLoading,
-  // } = useQuery({
-  //   queryKey: ["product", apiParams],
-  //   queryFn: async () => {
-  //     const data = await makeRequest(apiParams);
-  //     if (!isProductError) {
-  //       setProductData(productData);
-  //     }
-  //     return data;
-  //   },
-  //   enabled: apiParams != "",
-  // });
 
   const handleSetCategoryName = (categoryName) => {
     setCategoryName(categoryName);

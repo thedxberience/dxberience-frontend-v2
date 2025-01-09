@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,7 +69,33 @@
   }
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@layer components {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-center-col {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .flex-start {
+    @apply flex justify-start items-start;
+  }
+
+  .flex-start-col {
+    @apply flex flex-col justify-start items-start;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+}
+
+@font-face {
+  font-family: "Ivy Presto";
+  src: url("/font/Ivy Presto/Ivy Presto 3.otf");
+  font-weight: bold;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -112,7 +139,9 @@ body {
 
 input[type="text"] {
   -webkit-appearance: none;
+  appearance: none;
   -webkit-border-radius: 0px;
+  border-radius: 0px;
 }
 
 .explore-text h1 {
@@ -146,6 +175,9 @@ input[type="text"] {
   bottom: 71px;
   width: 100%;
   height: 1082px;
+}
+
+.services .sticky-bg {
   background: linear-gradient(0deg, rgba(2, 2, 2, 0.7), rgba(0, 0, 0, 0.7)),
     url("/woman_bed.jpeg") center center/cover no-repeat;
 }
@@ -176,6 +208,16 @@ input[type="text"] {
   justify-content: space-between;
   align-items: center;
   gap: 46px;
+}
+
+.services .single_service {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single_service_container {
+  height: calc(100svh - 33.33%);
 }
 
 .scroll-up {
@@ -247,7 +289,8 @@ input[type="text"] {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.tailored-experiences .overlay {
+.tailored-experiences .overlay,
+.category-page-header .overlay {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -287,6 +330,9 @@ input[type="text"] {
   width: 22.5px;
   height: 2px;
   background-color: white;
+}
+.mobile-nav .hamburger-black {
+  background-color: black;
 }
 
 .mobile-nav .mobile-nav-menu {
@@ -383,6 +429,80 @@ input[type="text"] {
   display: none;
 }
 
+.weather-container {
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/weather_bg.jpeg") no-repeat center center/cover;
+}
+
+.experiences-dropdown-container {
+  /* background-color: rgba(23, 16, 16, 0.3); */
+  background-color: white;
+}
+
+.profile-form-height {
+  min-height: fit-content;
+  height: 520px;
+}
+
+.partner-hero-section {
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/partners_legend_bg.jpeg") no-repeat center center/cover;
+}
+
+.partner-form-bg {
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.2), rgba(0, 0, 0, 0.2)),
+    url("/partner_form_bg.png") no-repeat center center/cover;
+}
+
+.partner-header-container {
+  height: calc(468px - 110px);
+}
+
+.partner-form input,
+.partner-form textarea,
+.partner-form ::-webkit-input-placeholder,
+.partner-form .country-select {
+  border-color: black;
+  color: black;
+}
+
+.legal-page-content-container h3 {
+  font-family: "Ivy Presto";
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.legal-page-content-container a {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%) brightness(100%) contrast(100%);
+}
+
+input[type="time"] {
+  position: relative;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: block;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
+}
+
+.forgot-password-container {
+  height: calc(100svh - 200px);
+}
+
 @keyframes pan-img {
   0% {
     transform: scale(1);
@@ -428,7 +548,7 @@ input[type="text"] {
     height: 0px;
   }
   100% {
-    transform: translateY(-200px);
+    transform: translateY(-5000px);
     height: 0;
     opacity: 0;
   }
@@ -511,11 +631,31 @@ input[type="text"] {
   .experiences {
     margin-top: 6rem;
   }
+
+  .mobile-user-text {
+    color: black;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .partner-header-container {
+    height: calc(812px - 110px);
+  }
+
+  .legal-page-content-container h3 {
+    font-family: "Ivy Presto";
+    font-size: 24px;
+    line-height: 38.4px;
+  }
 }
 
 @media screen and (min-width: 362px) and (max-width: 1279px) {
   .experiences {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .mobile-user-text {
+    color: black;
   }
 
   .loading-experiences {

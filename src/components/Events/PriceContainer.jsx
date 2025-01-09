@@ -1,5 +1,8 @@
+import { useComponentStore } from "@/store/componentStore";
 import { currencyFormat } from "@/utils/utils";
 import React, { useCallback } from "react";
+import CustomButton from "../shared/CustomButton";
+import { useAuthGuard } from "@/utils/CustomHooks";
 
 const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
   const handlePriceRate = useCallback(() => {
@@ -9,6 +12,13 @@ const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
       return "PER PERSON";
     }
   }, []);
+
+  const setOpenModal = useComponentStore((state) => state.setOpenModal);
+
+  const isAuthenticated = useAuthGuard({
+    adminRoute: false,
+    redirect: false,
+  });
 
   if (isMobile) {
     return (
@@ -30,7 +40,7 @@ const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
     );
   } else {
     return (
-      <div className="desktop-only uppercase w-[431px] flex-col justify-center items-center h-[279px] bg-primary px-4 py-2 text-center">
+      <div className="desktop-only uppercase w-[431px] gap-2 flex-col justify-center items-center h-[279px] bg-primary px-4 py-2 text-center">
         {priceRate?.toLowerCase() == "starting from" && (
           <p className="font-thin text-sm lg:text-lg uppercase">
             {priceRate ? priceRate : handlePriceRate()}
@@ -43,6 +53,13 @@ const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
           <p className="font-thin text-sm lg:text-lg uppercase">
             {priceRate ? priceRate : handlePriceRate()}
           </p>
+        )}
+
+        {!isAuthenticated && (
+          <CustomButton
+            btnName="Log in to book"
+            onClick={() => setOpenModal(true)}
+          />
         )}
       </div>
     );

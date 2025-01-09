@@ -142,7 +142,7 @@ const CustomOptionTag = ({
                 showSubCategories && subCategoriesArray.length > 0
                   ? "block"
                   : "hidden"
-              } absolute w-fit top-0 -right-0 lg:-right-3 bg-white p-4 shadow-sm dropdown-list z-50 flex flex-col justify-start items-start gap-4`}
+              } absolute w-fit top-0 -right-0 lg:-right-40 bg-white p-4 drop-shadow-lg dropdown-list min-w-40 z-50 flex flex-col justify-start items-start gap-4`}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >

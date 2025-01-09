@@ -8,12 +8,17 @@ import CustomButton from "@/components/shared/CustomButton";
 import Image from "next/image";
 import RatingsSection from "@/components/RatingsSection";
 import NewsletterSection from "@/components/NewsletterSection/NewsletterSection";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <section className="hero-section min-h-screen w-[100vw] md:w-full flex flex-col justify-between items-center">
-        <Navbar />
+        <Suspense
+          fallback={<div className="w-full h-full flex-start">Loading...</div>}
+        >
+          <Navbar />
+        </Suspense>
         <div className="flex flex-col text-white justify-center items-center">
           <div className="flex justify-center relative w-[226px] h-[55px]  lg:w-[406.9px] lg:h-[100px] items-center">
             <Image

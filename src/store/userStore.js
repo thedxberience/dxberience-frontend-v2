@@ -1,31 +1,17 @@
-import { makeRequest } from "@/utils/axios";
+"use client";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 export const useUserStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       userAuthenticated: null,
       accessToken: "",
-      checkUser: async () => {
-        try {
-          const request = await makeRequest("/user/me");
-
-          //   console.log(`Check User Request: ${JSON.stringify(request)}`);
-
-          if (request) {
-            set((state) => ({
-              userAuthenticated: state.user && request.isAdmin, // Checks if there is a user state and the access token is valid
-            }));
-          } else {
-            set(() => ({ userAuthenticated: false }));
-          }
-          return request;
-        } catch (error) {
-          console.log(`Unable to check user details: ${error}`);
-          set(() => ({ userAuthenticated: false }));
-        }
+      setAccessToken: (token) => {
+        return set({
+          accessToken: token,
+        });
       },
       logOutUser: (router) => {
         set(() => ({
@@ -33,7 +19,9 @@ export const useUserStore = create(
           accessToken: "",
           userAuthenticated: false,
         }));
-        router.replace("/");
+        if (router) {
+          router.replace("/");
+        }
       },
     }),
     {

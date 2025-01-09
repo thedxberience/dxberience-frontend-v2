@@ -78,16 +78,31 @@ const EventsContentCarousel = ({
           <div className="embla__viewport" ref={emblaMainRef}>
             <div className="embla__container">
               {longDescription && (
-                <div className="details md embla__slide" key={1}>
+                <div
+                  className={`details md embla__slide ${
+                    selectedIndex == 0 ? "h-fit" : "h-0"
+                  }`}
+                  key={1}
+                >
                   <PortableText value={longDescription} />
                 </div>
               )}
 
-              <div className="md embla__slide" key={2}>
+              <div
+                className={`md embla__slide ${
+                  selectedIndex == 1 ? "h-fit" : "h-0"
+                }`}
+                key={2}
+              >
                 <Map addressMD={location} coordinates={locationCoordinate} />
               </div>
               {terms_and_conditions && (
-                <div className="md embla__slide" key={3}>
+                <div
+                  className={`md embla__slide ${
+                    selectedIndex == 2 ? "h-fit" : "h-0"
+                  }`}
+                  key={3}
+                >
                   <PortableText value={terms_and_conditions} />
                 </div>
               )}

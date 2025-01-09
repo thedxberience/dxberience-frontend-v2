@@ -8,6 +8,7 @@ import CustomCheckBox from "../shared/CustomCheckBox";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { useApiStore } from "@/store/apiStore";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const {
@@ -39,10 +40,20 @@ const RegisterForm = () => {
 
   const watchAllFields = watch();
 
+  const router = useRouter();
+
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationKey: ["register", watchAllFields.email],
     mutationFn: async (data) => {
-      await registerUser(data);
+      const registerReq = await registerUser(data);
+
+      if (registerReq.success) {
+        if (registerReq.isAdmin) {
+          router.push("/admin");
+        } else {
+          router.push("/dashboard");
+        }
+      }
     },
   });
 
@@ -59,10 +70,16 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       setShowStatus(false);
       setRegisterError("");
     }, 5000);
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [showStatus]);
 
   return (
@@ -133,7 +150,7 @@ const RegisterForm = () => {
             value:
               /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
             message:
-              "Password must validate the following: Min 8 characters, at least one uppercase and lowercase letter, at least one digit and at least one special character",
+              "Your password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character. Allowed special characters are: @$!%*?&-+_(){}[]:;'\"<>,.?/~#|",
           },
         }}
         invertText

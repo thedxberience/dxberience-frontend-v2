@@ -35,7 +35,7 @@ const MemoriesSection = () => {
                   LUXURY
                 </h1>
                 <h2 className="text-4xl font-IvyPresto lg:text-7xl font-thin">
-                  cars, yachts and jets
+                  Cars, Yachts and Jets
                 </h2>
               </div>
             </div>

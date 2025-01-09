@@ -1,18 +1,20 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TailoredExperienceFloatingForm from "../TailoredExperiences/TailoredExperienceFloatingForm";
 import { useComponentStore } from "@/store/componentStore";
 
 const TailoredExperienceBtn = () => {
-  const { revealForm, setRevealForm } = useComponentStore((state) => ({
-    revealForm: state.revealTailoredExperienceForm,
-    setRevealForm: state.setRevealTailoredExperiencForm,
-  }));
+  const [revealForm, setRevealForm] = useState(false);
+  const [stopScroll, setStopScroll] = useState(false);
+  const [y, setY] = useState(0);
+
+  const footerHeight = useComponentStore((state) => state.footerHeight);
 
   const handleScroll = () => {
     if (document) {
       const windowScroll = window.scrollY;
+
       if (revealForm) {
         document.body.style.position = "fixed";
         document.body.style.top = `-${windowScroll}px`;
@@ -30,6 +32,29 @@ const TailoredExperienceBtn = () => {
     setRevealForm(!revealForm);
   };
 
+  const handleBtnScroll = () => {
+    if (window && footerHeight) {
+      const documentScrollHeight = document.documentElement.scrollHeight;
+      const scrollOfset = documentScrollHeight - (footerHeight * 2 + 100);
+
+      if (window.scrollY > scrollOfset) {
+        setStopScroll(true);
+      } else {
+        setStopScroll(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (window) {
+      document.addEventListener("scroll", handleBtnScroll);
+    }
+
+    return () => {
+      document.removeEventListener("scroll", handleBtnScroll);
+    };
+  }, [footerHeight]);
+
   function openWhatsapp() {
     window.open("https://wa.me/+971585787558", "_blank");
   }
@@ -41,8 +66,11 @@ const TailoredExperienceBtn = () => {
   return (
     <div className="tailored-experience-button fixed top-96 left-0 z-50 cursor-pointer">
       <div
+        style={{
+          bottom: stopScroll && !revealForm && footerHeight,
+        }}
         className={`fixed ${
-          revealForm ? "top-0" : "top-[calc(50%-100px)]"
+          revealForm ? "top-0" : stopScroll ? "" : "top-[calc(50%-100px)]"
         } left-0 flex justify-center items-center`}
       >
         {revealForm && (
@@ -52,9 +80,9 @@ const TailoredExperienceBtn = () => {
           />
         )}
 
-        <div>
+        <div className="overflow-hidden">
           <div
-            className="bg-primary p-3 flex flex-col justify-evenly gap-2 w-12 h-[16rem] 2xl:h-52 py-2"
+            className="bg-primary p-3 flex flex-col justify-evenly gap-2 w-12 h-[16rem] 2xl:h-52 py-2 overflow-hidden"
             onClick={handleRevealFloatingForm}
           >
             <p className="text-white tailored-text w-36 h-36 font-bold whitespace-nowrap">

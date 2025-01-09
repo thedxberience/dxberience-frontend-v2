@@ -21,25 +21,27 @@ function FormInput({
       case "text":
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
             type={inputType}
-            className={`bg-transparent border-b-[1px] py-1 outline-none ${
-              value.length > 0 ? "pt-7" : ""
+            className={`bg-transparent w-full border-b-[1px] py-1 outline-none ${
+              value ? "pt-7" : ""
             }`}
           />
         );
       case "textarea":
         return (
           <textarea
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
             type={inputType}
             maxLength={180}
-            className={`bg-transparent border-b-[1px] py-1 outline-none resize-none h-[100px] ${
-              value.length > 0 ? "pt-7" : ""
+            className={`bg-transparent border-b-[1px] w-full py-1 outline-none resize-none h-[100px] ${
+              value ? "pt-7" : ""
             }`}
           ></textarea>
         );
@@ -47,6 +49,7 @@ function FormInput({
       case "time":
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
@@ -59,6 +62,7 @@ function FormInput({
       case "number":
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
@@ -71,8 +75,8 @@ function FormInput({
       case "password":
         return (
           <div
-            className={`bg-transparent w-full flex-center border-b-[1px] py-1 outline-none ${
-              value.length > 0 ? "pt-7" : ""
+            className={`bg-transparent w-full flex justify-between items-center border-b-[1px] py-1 outline-none ${
+              value ? "pt-7" : ""
             }`}
           >
             <input
@@ -81,7 +85,7 @@ function FormInput({
               id={name}
               type={showPassword ? "text" : inputType}
               autoComplete="new-password"
-              className={`bg-transparent w-full border-none outline-none`}
+              className={`bg-transparent border-none w-full outline-none`}
             />
 
             <span onClick={() => setShowPassword(!showPassword)}>
@@ -137,8 +141,9 @@ function FormInput({
             </div>
 
             <p className="text-sm">
-              I would like to receive exclusive communications about products,
-              events, and travel-related products from thedxberience.com
+              {placeholder
+                ? placeholder
+                : "I would like to receive exclusive communications about products, events, and travel-related products from thedxberience.com"}
             </p>
           </div>
         );
@@ -146,12 +151,13 @@ function FormInput({
       default:
         return (
           <input
+            autoComplete={name}
             placeholder={placeholder}
             {...register(name, options)}
             id={name}
             type={inputType}
             className={`bg-transparent border-b-[1px] py-1 outline-none ${
-              value.length > 0 ? "pt-7" : ""
+              value > 0 ? "pt-7" : ""
             }`}
           />
         );
@@ -164,11 +170,8 @@ function FormInput({
         invertText ? "text-black" : "text-white"
       }`}
     >
-      <label
-        htmlFor={name}
-        className={`absolute ${value.length > 0 ? "" : "hidden"}`}
-      >
-        {placeholder}
+      <label htmlFor={name} className={`absolute ${value ? "" : "hidden"}`}>
+        {name != "optin" && name != "agreePrivacyPolicy" && placeholder}
         {errors && errors[name] && <span className="text-red-500"> *</span>}
       </label>
       {handleInputType()}

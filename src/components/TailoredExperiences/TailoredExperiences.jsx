@@ -175,7 +175,7 @@ const TailoredExperienceForm = () => {
             you.
           </p>
         </div>
-        <div className="mt-2">
+        <div className="mt-2 w-full">
           <FormInput
             inputType="optin"
             value={watchAllFields.optin}

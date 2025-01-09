@@ -2,7 +2,10 @@ import { useUserStore } from "@/store/userStore";
 import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL:
+    process.env.NEXT_PUBLIC_ENVIRONMENT == "local"
+      ? process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL
+      : process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
@@ -21,7 +24,6 @@ export const makeRequest = async (url, options = {}) => {
     });
     return response.data;
   } catch (error) {
-    // console.log("Error retrieving data:", error);
     throw new AxiosError(`Error: ${error?.response?.data?.message}`);
   }
 };

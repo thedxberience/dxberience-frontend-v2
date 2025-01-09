@@ -45,7 +45,7 @@ const NewsletterSection = () => {
   const watchAllFields = watch();
 
   const handleSubscribeToNewsletter = async (subscriberData) => {
-    console.log(subscriberData);
+    // console.log(subscriberData);
     try {
       const payload = {
         email: subscriberData.email,
@@ -68,11 +68,18 @@ const NewsletterSection = () => {
   };
 
   useEffect(() => {
+    let timeout;
     if (isSuccess || isError) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowStatus(false);
       }, [5000]);
     }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
   }, [isSuccess, isError]);
 
   return (

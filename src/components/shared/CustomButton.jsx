@@ -10,6 +10,7 @@ const CustomButton = ({
   btnRef = null,
   isLink = false,
   href = "",
+  minWidth = true,
   onClick = () => {},
 }) => {
   const handleButtonIcon = () => {
@@ -56,6 +57,7 @@ const CustomButton = ({
             alt="button arrow"
             width={24}
             height={24}
+            className="w-auto h-auto"
           />
         </span>
       );
@@ -67,12 +69,16 @@ const CustomButton = ({
       <div
         className={`${
           invert ? "bg-white border-black" : "bg-black border-white"
-        } border-[1px]  w-full -z-0 h-10 absolute -bottom-3 left-3`}
+        } border-[1px] ${
+          minWidth && "min-w-[180px]"
+        } w-full -z-0 h-10 absolute -bottom-3 left-3`}
       ></div>
       <div
         className={` ${
           invert ? "bg-black text-white" : "bg-white text-black"
-        } p-[13.5px] z-40 border-black relative flex justify-center w-fit lg:min-w-[187px]`}
+        } p-[13.5px] ${
+          minWidth && "min-w-[180px]"
+        } z-40 border border-black relative flex justify-center w-fit lg:min-w-[187px]`}
       >
         <button
           ref={btnRef}

@@ -1,16 +1,30 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const ServiceCard = ({ name, slug, image, alt }) => {
+  const pathname = usePathname();
+
+  const handleServiceCardRoute = () => {
+    const routeToCategoryPageRoutes = ["/about"];
+
+    if (routeToCategoryPageRoutes.includes(pathname)) {
+      return `/categories/${slug}`;
+    } else {
+      return `/explore-experiences/${slug}`;
+    }
+  };
+
   return (
     <div className={`service_image relative ${name}`}>
-      <Link href={`/explore-experiences/${slug}`}>
+      <Link href={handleServiceCardRoute()}>
         <div className="overlay absolute top-0 left-0"></div>
         {image && (
           <Image
             src={image}
-            alt={alt}
+            alt={alt ?? name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-top"
