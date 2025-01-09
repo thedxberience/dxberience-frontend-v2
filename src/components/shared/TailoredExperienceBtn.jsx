@@ -7,12 +7,14 @@ import { useComponentStore } from "@/store/componentStore";
 const TailoredExperienceBtn = () => {
   const [revealForm, setRevealForm] = useState(false);
   const [stopScroll, setStopScroll] = useState(false);
+  const [y, setY] = useState(0);
 
   const footerHeight = useComponentStore((state) => state.footerHeight);
 
   const handleScroll = () => {
     if (document) {
       const windowScroll = window.scrollY;
+
       if (revealForm) {
         document.body.style.position = "fixed";
         document.body.style.top = `-${windowScroll}px`;
@@ -64,7 +66,9 @@ const TailoredExperienceBtn = () => {
   return (
     <div className="tailored-experience-button fixed top-96 left-0 z-50 cursor-pointer">
       <div
-        style={{ bottom: stopScroll ? footerHeight : "" }}
+        style={{
+          bottom: stopScroll && !revealForm && footerHeight,
+        }}
         className={`fixed ${
           revealForm ? "top-0" : stopScroll ? "" : "top-[calc(50%-100px)]"
         } left-0 flex justify-center items-center`}

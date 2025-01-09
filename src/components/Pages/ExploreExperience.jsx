@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useComponentStore } from "@/store/componentStore";
 import TailoredExperienceContainer from "../TailoredExperiences/TailoredExperienceContainer";
 import { useSearchParams } from "next/navigation";
+import { useApiStore } from "@/store/apiStore";
 
 const ExploreExperience = ({ params }) => {
   const searchParams = useSearchParams();
@@ -21,12 +22,7 @@ const ExploreExperience = ({ params }) => {
     (state) => state.setRevealTailoredExperiencForm
   );
 
-  const {
-    data: affiliateData,
-    error: affiliateError,
-    isError: affiliateIsError,
-    isSuccess: affiliateIsSuccess,
-  } = useQuery({
+  const affiliateReq = useQuery({
     queryKey: ["affiliate", affiliateID],
     queryFn: async () => {
       const req = await validateAffiliate(affiliateID, params.slug);

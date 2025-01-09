@@ -55,7 +55,7 @@ const EventsDetailsPage = ({ params }) => {
     if (document) {
       const prevPage = document.referrer;
 
-      if (data) {
+      if (data && data?.category?.name) {
         router.push(
           `/explore-experiences/${data?.category?.name.toLowerCase()}`
         );
@@ -172,7 +172,7 @@ const EventsDetailsPage = ({ params }) => {
                 <Heart
                   title={data?.title}
                   slug={data?.slug}
-                  category={data?.category.name}
+                  category={data?.category?.name}
                   invert={true}
                 />
               </div>
