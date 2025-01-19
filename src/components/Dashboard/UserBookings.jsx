@@ -95,28 +95,31 @@ const UserBookings = () => {
         </div>
         <div className="user-bookings experiences w-full mt-10 px-4 lg:px-0 lg:w-10/12 ">
           {data?.length > 0 &&
-            data.bookings?.map((booking) => (
-              <ExperienceCard
-                bookingState={booking.confirmationStatus}
-                experienceDescription={booking.productData.shortDescription}
-                experienceTitle={booking.productData.title}
-                slug={booking.productData.slug}
-                experienceImage={booking.productData.thumbnail.image}
-                experienceAlt={booking.productData.thumbnail.altText}
-                experienceLocation={
-                  booking.productData.location
-                    ? booking.productData.location
-                    : "Dubai, United Arab Emirates"
-                }
-                bookingDate={booking.date}
-                bookingTime={booking.time}
-                no_of_guest={booking.noOfTickets}
-                showLocation={false}
-                category={booking.productData.category.name}
-                id={booking._id}
-                key={booking.productData.slug}
-              />
-            ))}
+            data.bookings?.map(
+              (booking) =>
+                booking.productData && (
+                  <ExperienceCard
+                    bookingState={booking.confirmationStatus}
+                    experienceDescription={booking.productData.shortDescription}
+                    experienceTitle={booking.productData.title}
+                    slug={booking.productData.slug}
+                    experienceImage={booking.productData.thumbnail.image}
+                    experienceAlt={booking.productData.thumbnail.altText}
+                    experienceLocation={
+                      booking.productData.location
+                        ? booking.productData.location
+                        : "Dubai, United Arab Emirates"
+                    }
+                    bookingDate={booking.date}
+                    bookingTime={booking.time}
+                    no_of_guest={booking.noOfTickets}
+                    showLocation={false}
+                    category={booking.productData.category.name}
+                    id={booking._id}
+                    key={booking.productData.slug}
+                  />
+                )
+            )}
         </div>
       </div>
     </div>
