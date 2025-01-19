@@ -44,8 +44,8 @@ const UserWishlist = () => {
     <div className="w-full flex-center">
       <div className="w-full lg:w-10/12 flex-center">
         <div className="experiences w-full px-4 mt-16 lg:px-0 lg:w-10/12">
-          {data.length > 0 &&
-            data?.map((wishlist) => (
+          {data?.length > 0 &&
+            data.map((wishlist) => (
               <ExperienceCard
                 experienceDescription={wishlist.productData.shortDescription}
                 experienceTitle={wishlist.productData.title}
