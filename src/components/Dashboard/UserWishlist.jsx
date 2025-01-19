@@ -44,23 +44,24 @@ const UserWishlist = () => {
     <div className="w-full flex-center">
       <div className="w-full lg:w-10/12 flex-center">
         <div className="experiences w-full px-4 mt-16 lg:px-0 lg:w-10/12">
-          {data?.map((wishlist) => (
-            <ExperienceCard
-              experienceDescription={wishlist.productData.shortDescription}
-              experienceTitle={wishlist.productData.title}
-              slug={wishlist.productData.slug}
-              experienceImage={wishlist.productData.thumbnail.image}
-              experienceAlt={wishlist.productData.thumbnail.altText}
-              priceStart={wishlist.productData.price}
-              experienceLocation={
-                wishlist.productData.location
-                  ? wishlist.productData.location
-                  : "Dubai, United Arab Emirates"
-              }
-              category={wishlist.productData.category.name}
-              key={wishlist.productData.slug}
-            />
-          ))}
+          {data.length > 0 &&
+            data?.map((wishlist) => (
+              <ExperienceCard
+                experienceDescription={wishlist.productData.shortDescription}
+                experienceTitle={wishlist.productData.title}
+                slug={wishlist.productData.slug}
+                experienceImage={wishlist.productData.thumbnail.image}
+                experienceAlt={wishlist.productData.thumbnail.altText}
+                priceStart={wishlist.productData.price}
+                experienceLocation={
+                  wishlist.productData.location
+                    ? wishlist.productData.location
+                    : "Dubai, United Arab Emirates"
+                }
+                category={wishlist.productData.category.name}
+                key={wishlist.productData.slug}
+              />
+            ))}
         </div>
       </div>
     </div>
