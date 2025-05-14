@@ -80,14 +80,14 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="nav-links flex justify-center items-center gap-12">
+          <div className="nav-links flex justify-center items-center gap-10">
             <div
               className={`nav-link ${
                 invertStyles ? "text-black" : "text-white"
               }`}
             >
               <ul
-                className={`text-base flex justify-evenly items-center z-50 gap-8 ${
+                className={`text-base flex justify-evenly items-center z-50 gap-6 2xl:gap-8 ${
                   invertStyles ? "text-black" : "text-white"
                 }`}
               >
@@ -110,6 +110,14 @@ const Navbar = () => {
                 <li>
                   <Link className="uppercase" href={"/contact"}>
                     Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="uppercase"
+                    href={"https://valens.jetluxe.com/affiliate/dxberiencejets"}
+                  >
+                    Book a private jet
                   </Link>
                 </li>
                 <li className="flex-center">
@@ -224,7 +232,14 @@ const Navbar = () => {
                 <li className="cursor-pointer">
                   <Link href={"/contact"}>Contact</Link>
                 </li>
-
+                <li>
+                  <Link
+                    className="uppercase"
+                    href={"https://valens.jetluxe.com/affiliate/dxberiencejets"}
+                  >
+                    Book a private jet
+                  </Link>
+                </li>
                 <div className="w-full flex justify-start items-start">
                   <AuthenticateModal />
                 </div>

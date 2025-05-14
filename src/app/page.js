@@ -330,6 +330,13 @@ export default function Home() {
               />
             </div>
           </div>
+          <div className="flex justify-center items-center w-full pt-10">
+            <CustomButton
+              btnName="Join Our Personal SHopping Community"
+              isLink
+              href="https://chat.whatsapp.com/K30lEpyv7OWAbqK6bfxUBV"
+            />
+          </div>
         </div>
       </section>
       <NewsletterSection />
