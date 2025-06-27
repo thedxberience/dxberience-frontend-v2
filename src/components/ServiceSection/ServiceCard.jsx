@@ -13,7 +13,7 @@ const ServiceCard = ({ name, slug, image, alt }) => {
     if (routeToCategoryPageRoutes.includes(pathname)) {
       return `/categories/${slug}`;
     } else {
-      return `/explore-experiences/${slug}`;
+      return `/explore-experiences/${slug}/all`;
     }
   };
 
