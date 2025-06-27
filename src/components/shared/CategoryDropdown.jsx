@@ -1,14 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import Link from "next/link";
 import PopoverContainer from "./PopoverContainer";
 
 const CategoryDropdown = () => {
-  const [showDropDown, setShowDropDown] = useState(false);
-
-  const { data, isPending, isError, error, isSuccess } = useQuery({
+  const { data } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const getCategoryReq = await makeRequest("/categories");
@@ -27,7 +25,7 @@ const CategoryDropdown = () => {
           <Link
             key={category._id}
             className="hover:underline"
-            href={`/categories/${category.slug}`}
+            href={`/explore-experiences/${category.slug}`}
           >
             {category.name}
           </Link>

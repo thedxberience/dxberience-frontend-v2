@@ -1,3 +1,4 @@
+"use client";
 import { useComponentStore } from "@/store/componentStore";
 import ReactPlayer from "react-player/lazy";
 import {
@@ -5,9 +6,6 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import Image from "next/image";
 

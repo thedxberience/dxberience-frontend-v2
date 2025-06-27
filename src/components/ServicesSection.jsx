@@ -166,19 +166,45 @@ const ServicesSection = ({ category = null, header = null }) => {
     }
   }, [services, oddWidthState, evenWidthState]);
 
+  function separateByCase(strings) {
+    const uppercase = [];
+    const lowercase = [];
+
+    if (!strings) {
+      return {
+        uppercase: null,
+        lowercase: null,
+      };
+    }
+
+    for (const str of strings) {
+      if (str === str.toUpperCase() && /[A-Z]/.test(str)) {
+        uppercase.push(str);
+      } else {
+        lowercase.push(str);
+      }
+    }
+
+    return { uppercase, lowercase };
+  }
+
+  const { uppercase, lowercase } = separateByCase(header);
+
   const handleServiceContainerHeader = () => {
     if (category && category.subCategories.length !== 0) {
       return (
         <div className="subcategory-header w-11/12 py-5 flex justify-end items-center">
           <div className="flex flex-col justify-start items-start gap-4">
-            <h2 className="text-lg lg:text-4xl">GLOBAL & LOCAL EVENTS</h2>
+            <h2 className="text-lg lg:text-4xl">
+              {uppercase || "GLOBAL & LOCAL EVENTS"}{" "}
+            </h2>
             <h2 className="font-IvyPresto text-4xl lg:text-7xl">
-              at your fingertips
+              {lowercase || "at your fingertips"}
             </h2>
             <CustomButton
               btnName="indulge today"
               isLink
-              href={`/explore-experiencees/${category.slug}`}
+              href={`/explore-experiencees/${category.slug}/all`}
             />
           </div>
         </div>
