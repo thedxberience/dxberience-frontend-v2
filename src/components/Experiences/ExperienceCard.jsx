@@ -6,6 +6,7 @@ import Heart from "./Heart";
 import { useRouter } from "next/navigation";
 import { useAuthGuard } from "@/utils/CustomHooks";
 import CancelBookingButton from "./CancelButton";
+import { sluggify } from "@/utils/utils";
 
 const ExperienceCard = ({
   slug,
@@ -49,9 +50,9 @@ const ExperienceCard = ({
     ) {
       if (window) {
         if (window.innerWidth < 1024) {
-          router.push(`/events/${slug}`);
+          router.push(`/explore-experiences/${sluggify(category)}/${slug}`);
         } else {
-          window.open(`/events/${slug}`);
+          window.open(`/explore-experiences/${sluggify(category)}/${slug}`);
         }
       }
     }

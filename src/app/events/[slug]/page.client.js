@@ -13,6 +13,7 @@ import PriceContainer from "@/components/Events/PriceContainer";
 import { useApiStore } from "@/store/apiStore";
 import { useAuthGuard } from "@/utils/CustomHooks";
 import Heart from "@/components/Experiences/Heart";
+import { sluggify } from "@/utils/utils";
 
 const EventsDetailsPage = ({ params }) => {
   const searchParams = useSearchParams();
@@ -57,7 +58,9 @@ const EventsDetailsPage = ({ params }) => {
 
       if (data && data?.category?.name) {
         router.push(
-          `/explore-experiences/${data?.category?.name.toLowerCase()}`
+          `/explore-experiences/${sluggify(
+            data?.category?.name.toLowerCase()
+          )}/all`
         );
       } else {
         router.push("/explore-experiences/all");

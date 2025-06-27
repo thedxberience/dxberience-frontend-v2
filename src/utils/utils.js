@@ -71,3 +71,12 @@ export const updateUserFromGoogleSSO = async (googleToken) => {
     throw new Error(`Unable to update user from google sso: ${error}`);
   }
 };
+
+export function sluggify(str) {
+  return str
+    .toLowerCase() // Convert to lowercase
+    .trim() // Remove leading/trailing whitespace
+    .replace(/[^\w\s-]/g, "") // Remove non-word characters except spaces and hyphens
+    .replace(/[\s_-]+/g, "-") // Replace spaces/underscores with a single hyphen
+    .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+}
