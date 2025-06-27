@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
 
   if (category && allServices && allServices !== "all") {
     const data = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/product/${params.slug}`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/product/${allServices}`
     ).then((res) => res.json());
 
     return {
