@@ -60,7 +60,7 @@ export async function generateMetadata({ params }) {
 const page = ({ params }) => {
   const [category, allServices] = params.slug;
 
-  console.log(`Category: ${category}, All Service: ${allServices}`);
+  // console.log(`Category: ${category}, All Service: ${allServices}`);
 
   if (category && allServices && allServices !== "all") {
     return <EventsDetailsPage params={{ slug: allServices }} />;
@@ -79,7 +79,6 @@ const page = ({ params }) => {
   }
 
   notFound();
-  // return <ExploreExperience params={params} />;`
 };
 
 export default page;
