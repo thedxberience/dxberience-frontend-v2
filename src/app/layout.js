@@ -4,6 +4,8 @@ import "./css/embla.css";
 
 import localFont from "next/font/local";
 import Provider from "@/utils/Provider";
+import { GoogleTagManager } from "@next/third-parties/google";
+import Script from "next/script";
 
 const IvyPresto = localFont({
   src: "../../public/font/Ivy Presto/Ivy Presto 3.otf",
@@ -30,7 +32,7 @@ export const metadata = {
   },
   description:
     "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
-  image: "/dxberience_logo.png",
+  image: "https://thedxberience.com/dxberience_logo.png",
   url: "https://thedxberience.com",
   twitter: {
     site: "@thedxberience",
@@ -43,13 +45,32 @@ export const metadata = {
     title: "Luxury Lifestyle Management Services Dubai | Dxberience",
     description:
       "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
-    image: "/dxberience_logo.png",
+    image: "https://thedxberience.com/dxberience_logo.png",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="xEtWbLOZ4OIEmKGbRhGEtSRH4e80PVtRL_dc-je0nyg"
+        />
+        <GoogleTagManager gtmId="G-E83NFRVJPZ" />
+        <Script
+          async
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-E83NFRVJPZ');`,
+          }}
+        />
+      </head>
+
       <body
         className={`${IvyPresto.variable} ${noah.variable} ${Sacramento.variable} font-noah relative`}
       >
