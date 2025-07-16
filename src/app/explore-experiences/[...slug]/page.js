@@ -1,11 +1,13 @@
 import React from "react";
 import ExploreExperience from "@/components/Pages/ExploreExperience";
 import CategoryPage from "@/app/categories/[category]/page.client";
+import AllCategoriesOverview from "@/components/Pages/AllCategoriesOverview";
 import { notFound } from "next/navigation";
 import EventsDetailsPage from "@/app/events/[slug]/page.client";
 
 export async function generateMetadata({ params }) {
-  const [category, allServices] = params.slug;
+  const { slug } = await params;
+  const [category, allServices] = slug || [];
 
   if (category && allServices && allServices !== "all") {
     const data = await fetch(
@@ -55,12 +57,25 @@ export async function generateMetadata({ params }) {
       };
     }
   }
+
+  // Default metadata for all categories overview
+  return {
+    title: "Dubai Luxury Services | VIP Concierge, Yachts, Cars & Events",
+    description:
+      "Discover Dubai's premier luxury services including VIP concierge, luxury car & yacht rentals, exclusive events, fine dining, and luxury stays. Experience unparalleled sophistication with our curated lifestyle management services.",
+    openGraph: {
+      title: "Dubai Luxury Services | VIP Concierge, Yachts, Cars & Events",
+      description:
+        "Discover Dubai's premier luxury services including VIP concierge, luxury car & yacht rentals, exclusive events, fine dining, and luxury stays. Experience unparalleled sophistication with our curated lifestyle management services.",
+    },
+  };
 }
 
-const page = ({ params }) => {
-  const [category, allServices] = params.slug;
+const page = async ({ params }) => {
+  const { slug } = await params;
+  const [category, allServices] = slug || [];
 
-  // console.log(`Category: ${category}, All Service: ${allServices}`);
+  console.log(`Category: ${category}, All Service: ${allServices}`);
 
   if (category && allServices && allServices !== "all") {
     return <EventsDetailsPage params={{ slug: allServices }} />;
@@ -78,7 +93,7 @@ const page = ({ params }) => {
     return <CategoryPage params={{ category }} />;
   }
 
-  notFound();
+  return <AllCategoriesOverview />;
 };
 
 export default page;
