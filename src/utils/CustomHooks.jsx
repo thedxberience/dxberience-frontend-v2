@@ -43,7 +43,7 @@ export const useAuthGuard = ({ adminRoute = false, redirect = true }) => {
 export const useCheckURLToken = () => {
   const searchParams = useSearchParams();
 
-  const token = searchParams.get("token");
+  const token = searchParams?.get("token");
 
   const setAccessToken = useUserStore((state) => state.setAccessToken);
 

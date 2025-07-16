@@ -12,7 +12,7 @@ import { useCheckURLToken } from "@/utils/CustomHooks";
 import ForgotPasswordModal from "./Auth/ForgotPasswordModal";
 import { useComponentStore } from "@/store/componentStore";
 
-const Navbar = () => {
+const NavbarContent = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
 
   useCheckURLToken();
@@ -249,6 +249,15 @@ const Navbar = () => {
         </div>
       </nav>
     </>
+  );
+};
+
+// Wrapper component with Suspense boundary
+const Navbar = () => {
+  return (
+    <Suspense fallback={<div className="h-20 bg-transparent"></div>}>
+      <NavbarContent />
+    </Suspense>
   );
 };
 

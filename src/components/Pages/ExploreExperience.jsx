@@ -4,7 +4,7 @@ import ExperiencesForm from "@/components/Experiences/ExperiencesForm";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useComponentStore } from "@/store/componentStore";
@@ -12,7 +12,7 @@ import TailoredExperienceContainer from "../TailoredExperiences/TailoredExperien
 import { useSearchParams } from "next/navigation";
 import { useApiStore } from "@/store/apiStore";
 
-const ExploreExperience = ({ params }) => {
+const ExploreExperienceContent = ({ params }) => {
   const searchParams = useSearchParams();
   const affiliateID = searchParams.get("affiliate");
 
@@ -145,6 +145,29 @@ const ExploreExperience = ({ params }) => {
 
       <Footer />
     </main>
+  );
+};
+
+// Wrapper component with Suspense boundary
+const ExploreExperience = ({ params }) => {
+  return (
+    <Suspense
+      fallback={
+        <main>
+          <section className="header-section h-[468px] relative lg:h-[800px] flex flex-col justify-between items-center">
+            <Navbar />
+            <div className="content p-5 text-white lg:w-10/12 h-full flex flex-col justify-center items-start">
+              <h1 className="text-4xl lg:text-7xl font-IvyPresto lg:w-[50.656vw] pb-8">
+                Loading...
+              </h1>
+            </div>
+          </section>
+          <Footer />
+        </main>
+      }
+    >
+      <ExploreExperienceContent params={params} />
+    </Suspense>
   );
 };
 

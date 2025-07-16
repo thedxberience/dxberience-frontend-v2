@@ -93,7 +93,12 @@ const page = async ({ params }) => {
     return <CategoryPage params={{ category }} />;
   }
 
-  return <AllCategoriesOverview />;
+  // If no category is provided, show all categories overview
+  if (!category) {
+    return <AllCategoriesOverview />;
+  }
+
+  notFound();
 };
 
 export default page;
