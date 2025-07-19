@@ -1,13 +1,6 @@
-import DashboardPage from "./page.client";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Member Dashboard - Your Luxury dashboard",
-  description:
-    "Explore your luxury dashboard to find your bookings, wishlist, interests and personal details.",
-};
-
-const page = () => {
-  return <DashboardPage />;
-};
-
-export default page;
+export default function DashboardPage() {
+  // Redirect to home page since login functionality is disabled
+  redirect("/");
+}

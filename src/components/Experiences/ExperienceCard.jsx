@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Heart from "./Heart";
 import { useRouter } from "next/navigation";
-import { useAuthGuard } from "@/utils/CustomHooks";
+
 import CancelBookingButton from "./CancelButton";
 import { sluggify } from "@/utils/utils";
 
@@ -38,7 +38,8 @@ const ExperienceCard = ({
     setPan(false);
   };
 
-  const isAuthenticated = useAuthGuard({ adminRoute: false, redirect: false });
+  // Authentication disabled - always show authenticated features
+  const isAuthenticated = true;
 
   const router = useRouter();
 
