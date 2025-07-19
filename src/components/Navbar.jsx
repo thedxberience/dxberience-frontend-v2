@@ -4,31 +4,21 @@ import React, { Suspense, useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import AuthenticateModal from "./Auth/AuthenticateModal";
 import TailoredExperienceBtn from "./shared/TailoredExperienceBtn";
-import { useUserStore } from "@/store/userStore";
 import CategoryDropdown from "./shared/CategoryDropdown";
-import { useCheckURLToken } from "@/utils/CustomHooks";
-import ForgotPasswordModal from "./Auth/ForgotPasswordModal";
-import { useComponentStore } from "@/store/componentStore";
 
 const NavbarContent = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
 
-  useCheckURLToken();
-
   const pathname = usePathname();
 
   const invertRoutes = [
-    "/dashboard",
     "/terms-conditions",
     "/privacy-policy",
     "/email-center",
   ];
 
   const hideTailoredBtnPathname = [
-    "/dashboard",
-    "/admin",
     "/terms-conditions",
     "/privacy-policy",
     "/email-center",
@@ -38,14 +28,8 @@ const NavbarContent = () => {
     setShowNavMenu(!showNavMenu);
   };
 
-  const user = useUserStore((state) => state.user);
-
   const invertStyles = invertRoutes.includes(
     pathname.split("/").slice(0, 2).join("/")
-  );
-
-  const openForgotPasswordModal = useComponentStore(
-    (state) => state.openForgotPasswordModal
   );
 
   return (
@@ -54,7 +38,7 @@ const NavbarContent = () => {
         pathname.split("/").slice(0, 2).join("/")
       ) && <TailoredExperienceBtn />}
 
-      {openForgotPasswordModal && <ForgotPasswordModal />}
+
       <nav className="flex-center w-full">
         <div className="relative w-11/12 z-50 lg:py-6 py-5 hidden xl:flex justify-between items-center">
           <div className="flex justify-center relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] items-center">
@@ -120,9 +104,10 @@ const NavbarContent = () => {
                     Book a private jet
                   </Link>
                 </li>
-                <li className="flex-center">
+                {/* Authentication disabled - login functionality removed */}
+                {/* <li className="flex-center">
                   <Suspense>{!user?.admin && <AuthenticateModal />}</Suspense>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="nav-button">
@@ -240,9 +225,10 @@ const NavbarContent = () => {
                     Book a private jet
                   </Link>
                 </li>
-                <div className="w-full flex justify-start items-start">
+                {/* Authentication disabled - login functionality removed */}
+                {/* <div className="w-full flex justify-start items-start">
                   <AuthenticateModal />
-                </div>
+                </div> */}
               </ul>
             </div>
           </div>

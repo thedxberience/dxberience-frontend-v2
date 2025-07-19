@@ -11,7 +11,7 @@ import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import PriceContainer from "@/components/Events/PriceContainer";
 import { useApiStore } from "@/store/apiStore";
-import { useAuthGuard } from "@/utils/CustomHooks";
+
 import Heart from "@/components/Experiences/Heart";
 import { sluggify } from "@/utils/utils";
 
@@ -47,10 +47,8 @@ const EventsDetailsPage = ({ params }) => {
 
   const router = useRouter();
 
-  const isAuthenticated = useAuthGuard({
-    adminRoute: false,
-    redirect: false,
-  });
+  // Authentication disabled - always show booking form
+  const isAuthenticated = true;
 
   const handlePagePop = () => {
     if (document) {

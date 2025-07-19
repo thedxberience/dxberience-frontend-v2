@@ -2,7 +2,7 @@ import { useComponentStore } from "@/store/componentStore";
 import { currencyFormat } from "@/utils/utils";
 import React, { useCallback } from "react";
 import CustomButton from "../shared/CustomButton";
-import { useAuthGuard } from "@/utils/CustomHooks";
+
 
 const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
   const handlePriceRate = useCallback(() => {
@@ -15,10 +15,8 @@ const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
 
   const setOpenModal = useComponentStore((state) => state.setOpenModal);
 
-  const isAuthenticated = useAuthGuard({
-    adminRoute: false,
-    redirect: false,
-  });
+  // Authentication disabled - always show authenticated features
+  const isAuthenticated = true;
 
   if (isMobile) {
     return (
