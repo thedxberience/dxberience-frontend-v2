@@ -1,6 +1,7 @@
 "use client";
 import ExperienceCard from "@/components/Experiences/ExperienceCard";
-import ExperiencesForm from "@/components/Experiences/ExperiencesForm";
+// import ExperiencesForm from "@/components/Experiences/ExperiencesForm"; // OLD FORM - COMMENTED OUT
+import ExperiencesFormV2 from "@/components/Experiences/ExperiencesFormV2"; // NEW FORM
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/shared/Footer";
 import { makeRequest } from "@/utils/axios";
@@ -9,27 +10,29 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useComponentStore } from "@/store/componentStore";
 import TailoredExperienceContainer from "../TailoredExperiences/TailoredExperienceContainer";
+// import ExploreExperienceV2 from "./ExploreExperienceV2"; // REMOVED - NO LONGER NEEDED
 import { useSearchParams } from "next/navigation";
 import { useApiStore } from "@/store/apiStore";
 
 const ExploreExperienceContent = ({ params }) => {
-  const searchParams = useSearchParams();
-  const affiliateID = searchParams.get("affiliate");
+  // const searchParams = useSearchParams();
+  // const affiliateID = searchParams.get("affiliate");
 
-  const validateAffiliate = useApiStore((state) => state.validateAffiliate);
+  // const validateAffiliate = useApiStore((state) => state.validateAffiliate);
 
   const setRevealTailoredExperiencForm = useComponentStore(
     (state) => state.setRevealTailoredExperiencForm
   );
 
-  const affiliateReq = useQuery({
-    queryKey: ["affiliate", affiliateID],
-    queryFn: async () => {
-      const req = await validateAffiliate(affiliateID, params.slug);
+  // const affiliateReq = useQuery({
+  //   queryKey: ["affiliate", affiliateID],
+  //   queryFn: async () => {
+  //     const req = await validateAffiliate(affiliateID, params.slug);
 
-      return req;
-    },
-  });
+  //     return req;
+  //   },
+  // });
+
 
   const [apiParams, setApiParams] = useState("/product");
 
@@ -47,10 +50,10 @@ const ExploreExperienceContent = ({ params }) => {
 
   useEffect(() => {
     setCategoryFromSlug(params.slug);
-    if (affiliateID) {
-      setRevealTailoredExperiencForm(true);
-    }
-  }, []);
+    // if (affiliateID) {
+    //   setRevealTailoredExperiencForm(true);
+    // }
+  }, [params.slug, setCategoryFromSlug]);
 
   const handleShowExperiences = useCallback(() => {
     if (isLoading) {
@@ -60,8 +63,6 @@ const ExploreExperienceContent = ({ params }) => {
         </div>
       );
     } else if (!isError && !isLoading && data && data.length != 0) {
-      // console.log(JSON.stringify(productData));
-
       return data.map((product) => (
         <ExperienceCard
           experienceDescription={product.shortDescription}
@@ -124,9 +125,16 @@ const ExploreExperienceContent = ({ params }) => {
             comfort.
           </p>
         </div>
-        <ExperiencesForm
+        {/* OLD FORM - COMMENTED OUT */}
+        {/* <ExperiencesForm
           setApiParams={setApiParams}
           isProductLoading={isLoading}
+        /> */}
+        
+        {/* NEW FORM WITH QUERY REQUEST GATEWAY */}
+        <ExperiencesFormV2
+          setApiParams={setApiParams}
+          categoryFromSlug={params.slug}
         />
       </section>
       <section className="experiences-container flex justify-start lg:justify-center items-start mt-32 md:px-5 py-10">

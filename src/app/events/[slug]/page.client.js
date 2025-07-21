@@ -1,49 +1,59 @@
 "use client";
-import EventsBookingForm from "@/components/Events/EventsBookingForm";
-import EventsContentCarousel from "@/components/Events/EventsContentCarousel";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/shared/Footer";
+import React, { useState, useEffect } from "react";
 import { makeRequest } from "@/utils/axios";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { IoChevronDown } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/shared/Footer";
 import PriceContainer from "@/components/Events/PriceContainer";
-import { useApiStore } from "@/store/apiStore";
+import EventsBookingForm from "@/components/Events/EventsBookingForm";
+import EventsContentCarousel from "@/components/Events/EventsContentCarousel";
+
 
 import Heart from "@/components/Experiences/Heart";
 import { sluggify } from "@/utils/utils";
 
-const EventsDetailsPage = ({ params }) => {
-  const searchParams = useSearchParams();
-  const affiliateID = searchParams.get("affiliate");
+const EventsDetailsPage = ({ params, category }) => {
+  // const searchParams = useSearchParams();
+  // const affiliateID = searchParams.get("affiliate");
 
-  const validateAffiliate = useApiStore((state) => state.validateAffiliate);
+  // const validateAffiliate = useApiStore((state) => state.validateAffiliate);
 
-  useQuery({
-    queryKey: ["affiliate", affiliateID],
-    queryFn: async () => {
-      const req = await validateAffiliate(affiliateID, params.slug);
+  // useQuery({
+  //   queryKey: ["affiliate", affiliateID],
+  //   queryFn: async () => {
+  //     const req = await validateAffiliate(affiliateID, params.slug);
 
-      return req;
-    },
+  //     return req;
+  //   },
 
-    enabled: !!affiliateID,
-  });
+  //   enabled: !!affiliateID,
+  // });
 
-  const { data } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["product", params.slug],
     queryFn: async () => {
-      const data = await makeRequest(`/product/${params.slug}`);
 
+      let data;
+      if(category === "luxury-yacht-rentals"){
+        data = await makeRequest(`/yachts/${params.slug}?asProduct=true`);
+      }else{
+        data = await makeRequest(`/product/${params.slug}`);
+      }
+      
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        throw new Error('Product not found');
+      }
+      
       return data[0];
     },
   });
 
   const [thumbnailLoading, setThumbnailLoading] = useState(false);
 
-  const [thumbnailImage, setThumbnailImage] = useState(data?.thumbnail.image);
+  const [thumbnailImage, setThumbnailImage] = useState(null);
 
   const router = useRouter();
 
@@ -66,6 +76,13 @@ const EventsDetailsPage = ({ params }) => {
     }
   };
 
+  // Update thumbnail image when data becomes available
+  useEffect(() => {
+    if (data?.thumbnail?.image && !thumbnailImage) {
+      setThumbnailImage(data.thumbnail.image);
+    }
+  }, [data, thumbnailImage]);
+
   const handleThumbnailImage = (image) => {
     setThumbnailImage(image);
     if (image !== thumbnailImage) {
@@ -73,9 +90,65 @@ const EventsDetailsPage = ({ params }) => {
     }
   };
 
+  // Show loading state
+  if (isLoading) {
+    return (
+      <main>
+        <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
+          <Navbar />
+          <div className="overlay absolute top-0 left-0"></div>
+          <div className="flex justify-center items-center h-full">
+            <Image
+              src="/Loader.svg"
+              alt="loader spinner"
+              className="animate-spin"
+              width={48}
+              height={48}
+            />
+          </div>
+        </header>
+      </main>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <main>
+        <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
+          <Navbar />
+          <div className="overlay absolute top-0 left-0"></div>
+          <div className="flex justify-center items-center h-full text-white">
+            <div className="text-center">
+              <h1 className="text-2xl font-IvyPresto mb-4">Product Not Found</h1>
+              <p className="text-lg">The requested product could not be found.</p>
+            </div>
+          </div>
+        </header>
+      </main>
+    );
+  }
+
+  // Don't render if data is not available
+  if (!data) {
+    return (
+      <main>
+        <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
+          <Navbar />
+          <div className="overlay absolute top-0 left-0"></div>
+          <div className="flex justify-center items-center h-full text-white">
+            <div className="text-center">
+              <h1 className="text-2xl font-IvyPresto mb-4">Loading...</h1>
+            </div>
+          </div>
+        </header>
+      </main>
+    );
+  }
+
   return (
     <main>
-      <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
+       <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
         <Navbar />
         <div className="overlay absolute top-0 left-0"></div>
         {thumbnailLoading && (
@@ -94,7 +167,7 @@ const EventsDetailsPage = ({ params }) => {
           <Image
             className="-z-10 object-cover"
             src={thumbnailImage || data?.thumbnail.image}
-            alt={data?.thumbnail.altText}
+            alt={data?.thumbnail?.altText || data?.title}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100%"
             onLoad={() => setThumbnailLoading(false)}
             placeholder="blur"
@@ -129,7 +202,7 @@ const EventsDetailsPage = ({ params }) => {
                       >
                         <Image
                           src={image.image}
-                          alt={image.altText}
+                          alt={image.altText || data?.title}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           placeholder="blur"
