@@ -72,6 +72,39 @@ export const updateUserFromGoogleSSO = async (googleToken) => {
   }
 };
 
+export function urlBuilder(path) {
+  // Handle null/undefined path
+  if (!path) {
+    throw new Error('Path is required');
+  }
+
+  // Convert path to string and trim whitespace
+  const cleanPath = String(path).trim();
+  
+  // Get base URL from environment variable
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  
+  if (!baseUrl) {
+    throw new Error('NEXT_PUBLIC_API_BASE_URL environment variable is not defined');
+  }
+
+  // Remove trailing slash from base URL
+  const cleanBaseUrl = baseUrl.replace(/\/$/, '');
+  
+  // If path already starts with http/https, return as is (absolute URL)
+  if (cleanPath.startsWith('http://') || cleanPath.startsWith('https://')) {
+    return cleanPath;
+  }
+  
+  // If path starts with slash, append to base URL
+  if (cleanPath.startsWith('/')) {
+    return cleanBaseUrl + cleanPath;
+  }
+  
+  // Otherwise, add slash between base URL and path
+  return cleanBaseUrl + '/' + cleanPath;
+}
+
 export function sluggify(str) {
   return str
     .toLowerCase() // Convert to lowercase

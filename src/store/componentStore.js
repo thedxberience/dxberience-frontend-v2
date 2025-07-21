@@ -25,58 +25,70 @@ export const useComponentStore = create(
       openForgotPasswordModal: false,
       setOpenForgotPasswordModal: (openForgotPasswordModal) =>
         set(() => ({ openForgotPasswordModal: openForgotPasswordModal })),
-      experienceFormDropdownState: {
-        categoryDropdown: false,
-        dateDropdown: false,
-        budgetDropdown: false,
-      },
+      // Keep only the methods that are still being used by existing components
       toggleCategoryDropdown: () =>
         set((state) => ({
           experienceFormDropdownState: {
-            categoryDropdown:
-              !state.experienceFormDropdownState.categoryDropdown,
+            categoryDropdown: !state.experienceFormDropdownState?.categoryDropdown,
+            statusDropdown: false,
+            priceDropdown: false,
             dateDropdown: false,
-            budgetDropdown: false,
-          },
-        })),
-      toggleDateDropdown: () =>
-        set((state) => ({
-          experienceFormDropdownState: {
-            categoryDropdown: false,
-            dateDropdown: !state.experienceFormDropdownState.dateDropdown,
-            budgetDropdown: false,
+            locationDropdown: false,
+            durationDropdown: false,
+            groupSizeDropdown: false,
+            ratingDropdown: false,
           },
         })),
       toggleBudgetDropdown: () =>
         set((state) => ({
           experienceFormDropdownState: {
             categoryDropdown: false,
+            statusDropdown: false,
+            priceDropdown: !state.experienceFormDropdownState?.priceDropdown,
             dateDropdown: false,
-            budgetDropdown: !state.experienceFormDropdownState.budgetDropdown,
+            locationDropdown: false,
+            durationDropdown: false,
+            groupSizeDropdown: false,
+            ratingDropdown: false,
           },
         })),
       closeCategoryDropdown: () =>
         set((state) => ({
           experienceFormDropdownState: {
             categoryDropdown: false,
+            statusDropdown: false,
+            priceDropdown: false,
             dateDropdown: false,
-            budgetDropdown: false,
-          },
-        })),
-      closeDateDropdown: () =>
-        set((state) => ({
-          experienceFormDropdownState: {
-            categoryDropdown: false,
-            dateDropdown: false,
-            budgetDropdown: false,
+            locationDropdown: false,
+            durationDropdown: false,
+            groupSizeDropdown: false,
+            ratingDropdown: false,
           },
         })),
       closeBudgetDropdown: () =>
         set((state) => ({
           experienceFormDropdownState: {
             categoryDropdown: false,
+            statusDropdown: false,
+            priceDropdown: false,
             dateDropdown: false,
-            budgetDropdown: false,
+            locationDropdown: false,
+            durationDropdown: false,
+            groupSizeDropdown: false,
+            ratingDropdown: false,
+          },
+        })),
+      closeDateDropdown: () =>
+        set((state) => ({
+          experienceFormDropdownState: {
+            categoryDropdown: false,
+            statusDropdown: false,
+            priceDropdown: false,
+            dateDropdown: false,
+            locationDropdown: false,
+            durationDropdown: false,
+            groupSizeDropdown: false,
+            ratingDropdown: false,
           },
         })),
       selectedBudgetRange: "",
