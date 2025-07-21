@@ -181,7 +181,8 @@ class QueryRequestGateway {
         }
         
         // Handle all other filters with the new system
-        const optionValue = this.getOptionValue(config, key, value)?.value;
+        const rawOptionValue = this.getOptionValue(config, key, value);
+        const optionValue = (typeof rawOptionValue === 'object' && rawOptionValue !== null) ? rawOptionValue.value : rawOptionValue;
         
         // Handle Django QuerySet-style parameters
         if (optionValue && optionValue.includes('&')) {
