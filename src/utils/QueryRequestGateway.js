@@ -17,7 +17,6 @@ class QueryRequestGateway {
     
     // If specific config exists, use its endpoint
     if (filterConfig && filterConfig.apiEndpoint) {
-      // return 
       return urlBuilder(filterConfig.apiEndpoint);
     }
 
