@@ -130,21 +130,6 @@ const ExperiencesFormV2 = ({ setApiParams, categoryFromSlug = null }) => {
     setIsSubCategory(false);
   };
 
-  // Build API URL with subcategory support
-  // const buildApiUrlWithSubcategories = () => {
-  //   let apiUrl = buildApiUrl();
-    
-  //   // Handle category/subcategory directly here
-  //   const categoryValue = getFilterValue('category');
-  //   if (categoryValue && categoryValue !== "All") {
-  //     const urlObj = new URL(apiUrl, 'http://dummy.com');
-      
-  //     if (isSubCategory) {
-  //       urlObj.searchParams.set('subCategory', categoryValue);
-  //     } else {
-  //       urlObj.searchParams.set('category', categoryValue);
-  //     }
-      
   //     apiUrl = urlObj.pathname + urlObj.search;
   //   }
     
