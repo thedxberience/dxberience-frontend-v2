@@ -11,7 +11,6 @@ import PriceContainer from "@/components/Events/PriceContainer";
 import EventsBookingForm from "@/components/Events/EventsBookingForm";
 import EventsContentCarousel from "@/components/Events/EventsContentCarousel";
 
-
 import Heart from "@/components/Experiences/Heart";
 import { sluggify } from "@/utils/utils";
 
@@ -35,18 +34,17 @@ const EventsDetailsPage = ({ params, category }) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["product", params.slug],
     queryFn: async () => {
-
       let data;
-      if(category === "luxury-yacht-rentals"){
+      if (category === "luxury-yacht-rentals") {
         data = await makeRequest(`/yachts/${params.slug}?asProduct=true`);
-      }else{
+      } else {
         data = await makeRequest(`/product/${params.slug}`);
       }
-      
+
       if (!data || !Array.isArray(data) || data.length === 0) {
-        throw new Error('Product not found');
+        throw new Error("Product not found");
       }
-      
+
       return data[0];
     },
   });
@@ -120,8 +118,12 @@ const EventsDetailsPage = ({ params, category }) => {
           <div className="overlay absolute top-0 left-0"></div>
           <div className="flex justify-center items-center h-full text-white">
             <div className="text-center">
-              <h1 className="text-2xl font-IvyPresto mb-4">Product Not Found</h1>
-              <p className="text-lg">The requested product could not be found.</p>
+              <h1 className="text-2xl font-IvyPresto mb-4">
+                Product Not Found
+              </h1>
+              <p className="text-lg">
+                The requested product could not be found.
+              </p>
             </div>
           </div>
         </header>
@@ -148,7 +150,7 @@ const EventsDetailsPage = ({ params, category }) => {
 
   return (
     <main>
-       <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
+      <header className="events-header relative w-full h-[468px] lg:h-[800px] flex flex-col justify-between items-center">
         <Navbar />
         <div className="overlay absolute top-0 left-0"></div>
         {thumbnailLoading && (
@@ -242,14 +244,14 @@ const EventsDetailsPage = ({ params, category }) => {
                 </h1>
                 <p className="text-sm">{data?.shortDescription}</p>
               </div>
-              <div>
+              {/* <div>
                 <Heart
                   title={data?.title}
                   slug={data?.slug}
                   category={data?.category?.name}
                   invert={true}
                 />
-              </div>
+              </div> */}
             </div>
 
             {data ? (

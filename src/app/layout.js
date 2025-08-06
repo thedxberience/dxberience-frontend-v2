@@ -45,7 +45,7 @@ export const metadata = {
     title: "Luxury Lifestyle Management Services Dubai | Dxberience",
     description:
       "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
-    image: "https://thedxberience.com/dxberience_logo.png",
+    image: "/dxberience_logo.png",
   },
 };
 
@@ -69,6 +69,37 @@ export default function RootLayout({ children }) {
           gtag('config', 'G-E83NFRVJPZ');`,
           }}
         />
+        {/* <!-- Meta Pixel Code --> */}
+        <Script
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '960479412870471');
+        fbq('track', 'PageView');`,
+          }}
+        />
+        <noscript
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            <img
+              height="1"
+              width="1"
+              style="display:none"
+              src="https://www.facebook.com/tr?id=960479412870471&ev=PageView&noscript=1"
+            />
+            `,
+          }}
+        />
+        {/* <!-- End Meta Pixel Code --> */}
       </head>
 
       <body
