@@ -12,6 +12,7 @@ const CustomButton = ({
   href = "",
   minWidth = true,
   onClick = () => {},
+  icon = null,
 }) => {
   const handleButtonIcon = () => {
     if (invert) {
@@ -26,6 +27,9 @@ const CustomButton = ({
             />
           </span>
         );
+      }
+      if (icon) {
+        return icon;
       }
       return (
         <span>
@@ -50,6 +54,9 @@ const CustomButton = ({
           </span>
         );
       }
+      if (icon) {
+        return icon;
+      }
       return (
         <span>
           <Image
@@ -65,13 +72,13 @@ const CustomButton = ({
   };
 
   return (
-    <div className="relative w-fit lg:min-w-[187px]">
+    <div className="group relative w-fit lg:min-w-[187px]">
       <div
         className={`${
           invert ? "bg-white border-black" : "bg-black border-white"
         } border-[1px] ${
           minWidth && "min-w-[180px]"
-        } w-full -z-0 h-10 absolute -bottom-3 left-3`}
+        } w-full -z-0 h-full absolute  group-hover:translate-y-3 group-hover:translate-x-3 transition-all`}
       ></div>
       <div
         className={` ${

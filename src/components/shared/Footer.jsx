@@ -123,9 +123,9 @@ function Footer() {
       <div
         className={`flex flex-col fixed right-5 ${
           reachedFooter ? "bottom-60 md:bottom-40" : "bottom-6"
-        } md:right-5  gap-5 z-30 md:flex-row`}
+        } md:right-5  gap-5 z-50 md:flex-row`}
       >
-        {/* <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
+        <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
           <Image
             src="/whatsapp_logo.png"
             alt="whatsapp-logo"
@@ -133,7 +133,7 @@ function Footer() {
             className="object-cover"
             onClick={openWhatsapp}
           />
-        </div> */}
+        </div>
         {scrolled && (
           <div className="relative w-10 h-10 lg:w-[50px] lg:h-[50px]">
             <Image

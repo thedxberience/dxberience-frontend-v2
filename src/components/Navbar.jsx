@@ -4,7 +4,7 @@ import React, { Suspense, useState } from "react";
 import CustomButton from "./shared/CustomButton";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import TailoredExperienceBtn from "./shared/TailoredExperienceBtn";
+// import TailoredExperienceBtn from "./shared/TailoredExperienceBtn";
 import CategoryDropdown from "./shared/CategoryDropdown";
 
 const NavbarContent = () => {
@@ -34,10 +34,9 @@ const NavbarContent = () => {
 
   return (
     <>
-      {!hideTailoredBtnPathname.includes(
+      {/* {!hideTailoredBtnPathname.includes(
         pathname.split("/").slice(0, 2).join("/")
-      ) && <TailoredExperienceBtn />}
-
+      ) && <TailoredExperienceBtn />} */}
 
       <nav className="flex-center w-full">
         <div className="relative w-11/12 z-50 lg:py-6 py-5 hidden xl:flex justify-between items-center">

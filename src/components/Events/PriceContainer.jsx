@@ -3,7 +3,6 @@ import { currencyFormat } from "@/utils/utils";
 import React, { useCallback } from "react";
 import CustomButton from "../shared/CustomButton";
 
-
 const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
   const handlePriceRate = useCallback(() => {
     if (subCategory?.name.toLowerCase().includes("rentals")) {
@@ -26,6 +25,7 @@ const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
             {priceRate ? priceRate : handlePriceRate()}
           </p>
         )}
+        <p>From</p>
         <h3 className="font-IvyPresto font-bold text-xl">
           {price ? `AED ${currencyFormat(price)}` : "Request Quote"}
         </h3>
@@ -44,6 +44,7 @@ const PriceContainer = ({ price, priceRate, subCategory, isMobile = true }) => {
             {priceRate ? priceRate : handlePriceRate()}
           </p>
         )}
+        <p>From</p>
         <h3 className="font-IvyPresto font-bold text-2xl lg:text-4xl">
           {price ? `AED ${currencyFormat(price)}` : "Request Quote"}
         </h3>

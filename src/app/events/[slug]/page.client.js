@@ -13,6 +13,8 @@ import EventsContentCarousel from "@/components/Events/EventsContentCarousel";
 
 import Heart from "@/components/Experiences/Heart";
 import { sluggify } from "@/utils/utils";
+import CustomButton from "@/components/shared/CustomButton";
+import { FaWhatsapp } from "react-icons/fa";
 
 const EventsDetailsPage = ({ params, category }) => {
   // const searchParams = useSearchParams();
@@ -216,12 +218,34 @@ const EventsDetailsPage = ({ params, category }) => {
                   );
                 })}
               </div>
-              <div
-                className="flex justify-center items-center gap-6 text-black cursor-pointer"
-                onClick={handlePagePop}
-              >
-                <IoChevronDown className="rotate-90" />{" "}
-                <span className="text-lg">Back</span>
+              <div className="cta flex justify-between items-center w-full">
+                <div
+                  className="flex justify-center items-center gap-6 text-black cursor-pointer"
+                  onClick={handlePagePop}
+                >
+                  <IoChevronDown className="rotate-90" />{" "}
+                  <span className="text-lg">Back</span>
+                </div>
+                <div className="flex justify-center items-center gap-6 text-black cursor-pointer pr-5">
+                  <CustomButton
+                    btnName="Book Now"
+                    onClick={() => {
+                      window.open(
+                        `https://wa.me/+971585787558?text=Hi! I'm interested in the ${
+                          data?.title
+                        } ${
+                          data?.subCategory?.name
+                            ? `(${data?.subCategory?.name})`
+                            : `(${data?.category?.name})`
+                        } here is the link: ${window.location.href}`,
+                        "_blank"
+                      );
+                    }}
+                    className="bg-black text-white"
+                    invert
+                    icon={<FaWhatsapp className="text-white w-6 h-6" />}
+                  />
+                </div>
               </div>
             </div>
 
