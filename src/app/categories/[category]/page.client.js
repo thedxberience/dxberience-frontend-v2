@@ -37,7 +37,7 @@ const CategoryPage = async ({ params }) => {
           </div>
           <div className="main-content h-full lg:h-5/6 w-11/12 lg:w-full flex justify-center items-start lg:items-center relative z-40">
             <div className="main-img absolute left-5 bottom-4 lg:relative w-[231px] h-[351px] lg:w-[59.219svw] lg:h-[60.484svh]">
-              <div className="lg:hidden absolute overlay"></div>
+              <div className=" absolute overlay"></div>
               <Image
                 src={data.headerImg.image}
                 alt={data.headerImg.alt}
@@ -45,7 +45,7 @@ const CategoryPage = async ({ params }) => {
                 fill
               />
             </div>
-            <div className="main-text-content text-white lg:w-[35.208vw] z-50 lg:-ml-10 flex flex-col justify-start items-start gap-4">
+            <div className="main-text-content relative text-white lg:w-[35.208vw] z-50 lg:-ml-10 flex flex-col justify-start items-start gap-4">
               <h2 className="font-IvyPresto w-5/6 lg:w-full text-4xl lg:text-7xl 2xl:text-[88px] 2xl:leading-[110px]">
                 {data.headerTitle}
               </h2>
