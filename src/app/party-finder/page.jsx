@@ -4,6 +4,26 @@ import Image from "next/image";
 import Footer from "@/components/shared/Footer";
 import ServiceCardContainer from "@/components/party-finder/ServiceCardContainer";
 
+export const metadata = {
+  title:
+    "The Dxberience x The Party Finder | The Best Luxury Lifestyle Management Services",
+  description:
+    "The Dxberience is a luxury Lifestyle Management service that provides a range of services to help you enjoy your time in Dubai.",
+  openGraph: {
+    title:
+      "The Dxberience x The Party Finder | The Best Luxury Lifestyle Management Services",
+    description:
+      "The Dxberience is a luxury Lifestyle Management service that provides a range of services to help you enjoy your time in Dubai.",
+    images: [
+      {
+        url: "/dxberience-logo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
+
 const page = () => {
   return (
     <main>
