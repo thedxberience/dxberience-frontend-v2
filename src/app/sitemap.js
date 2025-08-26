@@ -40,22 +40,10 @@ export default async function sitemap() {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/booking-confirmation`,
+      url: `${baseUrl}/party-finder`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms-conditions`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
   ];
 
@@ -98,5 +86,45 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...allServicesRoutes];
+  // Fetch products dynamically from API
+  let products = [];
+  try {
+    const apiBaseUrl =
+      process.env.NEXT_PUBLIC_API_BASE_URL ||
+      process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL;
+    const response = await fetch(`${apiBaseUrl}/product`);
+
+    if (response.ok) {
+      products = await response.json();
+    }
+  } catch (error) {
+    console.error("Error fetching products for sitemap:", error);
+  }
+
+  // Product routes - dynamically generated
+  const productRoutes = products.map((product) => {
+    // Find the category for this product to construct the correct URL
+
+    const productCategory = categories.find(
+      (cat) => cat.name === product.category?.name
+    );
+
+    const categorySlug = productCategory?.slug || "experiences";
+
+    return {
+      url: `${baseUrl}/explore-experiences/${categorySlug}/${product.slug}`,
+      lastModified: product.updatedAt
+        ? new Date(product.updatedAt)
+        : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.6,
+    };
+  });
+
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...allServicesRoutes,
+    ...productRoutes,
+  ];
 }

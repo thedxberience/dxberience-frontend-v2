@@ -16,6 +16,7 @@ const NavbarContent = () => {
     "/terms-conditions",
     "/privacy-policy",
     "/email-center",
+    "/party-finder",
   ];
 
   const hideTailoredBtnPathname = [
