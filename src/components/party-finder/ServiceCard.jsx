@@ -3,7 +3,14 @@ import React from "react";
 import Image from "next/image";
 import CustomButton from "@/components/shared/CustomButton";
 
-const ServiceCard = ({ title, description, image, alt, href }) => {
+const ServiceCard = ({ title, description, image, alt, href, isWhatsApp }) => {
+  const handleClick = (e) => {
+    if (isWhatsApp) {
+      e.preventDefault();
+      window.open(href, '_blank');
+    }
+  };
+
   return (
     <div className="service-card group relative bg-white transition-all duration-300 overflow-hidden">
       {/* Image Container */}
@@ -35,10 +42,11 @@ const ServiceCard = ({ title, description, image, alt, href }) => {
         <div className="flex justify-between items-center">
           <div className="">
             <CustomButton
-              btnName="Book Now"
+              btnName={isWhatsApp ? "Enquire on WhatsApp" : "Book Now"}
               isLink
               href={href}
               minWidth={false}
+              onClick={handleClick}
             />
           </div>
         </div>

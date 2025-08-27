@@ -34,7 +34,59 @@ async function fetchCategoriesList() {
     }
 
     const data = await response.json();
-    return data;
+    // Adding a static list for some categories
+
+    const staticCategories = [
+      {
+        _id: "static-personal-shopping",
+        name: "Personal Shopping",
+        slug: "personal-shopping",
+
+        // Extracted headerImg object (contains image URL, alt text, etc.)
+        headerImg: { image: "/personal_shopping.jpg", alt: "Luxury watch showcasing personal shopping service" },
+
+        // Extracted headerCaption string (description for the category)
+        headerCaption: "Experience Dubai's finest luxury, handpicked just for you, from Hermès to Richard Mille, discover timeless pieces that define true elegance",
+
+        // Full category data object from the detailed API response
+        categoryData: null,
+
+        // Additional useful fields from the detailed response
+        headerTitle: "Personal Shopping",
+        products: [],
+
+        // WhatsApp direct link with branded message
+        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in your Personal Shopping service. Looking to explore luxury items in Dubai.\n\nCould you help me with a personalized shopping experience?")}`,
+
+        // Metadata
+        hasDetailedData: false,
+      },
+{
+        _id: "static-chauffeur-services",
+        name: "Chauffeur Services",
+        slug: "chauffeur-services",
+
+        // Extracted headerImg object (contains image URL, alt text, etc.)
+        headerImg: { image: "/luxury_chauffer_service.jpg", alt: "Professional chauffeur with Rolls-Royce" },
+
+        // Extracted headerCaption string (description for the category)
+        headerCaption: "Experience luxury transportation with our professional chauffeur services, offering comfort and style for all your journeys in Dubai",
+
+        // Full category data object from the detailed API response
+        categoryData: null,
+
+        // Additional useful fields from the detailed response
+        headerTitle: "Chauffeur Services",
+        products: [],
+
+        // WhatsApp direct link with branded message
+        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in booking your Chauffeur Services for a luxury transportation experience in Dubai.\n\nCould you provide more details about your fleet and availability?")}`,
+
+        // Metadata
+        hasDetailedData: false,
+      },
+    ];
+    return [...data, ...staticCategories];
   } catch (error) {
     console.error("Failed to fetch categories list:", error);
     return null;
@@ -115,6 +167,7 @@ async function fetchCategoriesWithDetails() {
           slug: category.slug,
           headerImg: category.headerImg || null,
           headerCaption: category.headerCaption || null,
+          whatsappLink: category.whatsappLink || null,
           categoryData: category,
           hasDetailedData: false,
         };
@@ -197,7 +250,8 @@ const ServiceCardContainer = async () => {
               category.categoryData?.alt ||
               `${category.name} service`
             }
-            href={`/explore-experiences/${category.slug}/all`}
+            href={category.whatsappLink || `/explore-experiences/${category.slug}/all`}
+            isWhatsApp={!!category.whatsappLink}
           />
         );
       })}
