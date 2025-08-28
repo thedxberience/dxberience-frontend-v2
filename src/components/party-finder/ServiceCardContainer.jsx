@@ -38,30 +38,30 @@ async function fetchCategoriesList() {
 
     const staticCategories = [
       {
-        _id: "static-personal-shopping",
-        name: "Personal Shopping",
-        slug: "personal-shopping",
+        _id: "static-after-party-experience",
+        name: "After Party Experience",
+        slug: "after-party-experience",
 
         // Extracted headerImg object (contains image URL, alt text, etc.)
-        headerImg: { image: "/personal_shopping.jpg", alt: "Luxury watch showcasing personal shopping service" },
+        headerImg: { image: "/after_party_experience.webp", alt: "After Party Experience" },
 
         // Extracted headerCaption string (description for the category)
-        headerCaption: "Experience Dubai's finest luxury, handpicked just for you, from Hermès to Richard Mille, discover timeless pieces that define true elegance",
+        headerCaption: "Why stop at the main event? Book your after-party experience and keep the party going into the early hours.",
 
         // Full category data object from the detailed API response
         categoryData: null,
 
         // Additional useful fields from the detailed response
-        headerTitle: "Personal Shopping",
+        headerTitle: "After Party Experience",
         products: [],
 
         // WhatsApp direct link with branded message
-        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in your Personal Shopping service. Looking to explore luxury items in Dubai.\n\nCould you help me with a personalized shopping experience?")}`,
+        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in your exclusive After Party Experience in Dubai.\n\nLooking to elevate my night with a VIP experience - would love to know about available venues, private areas, and bottle service options.\n\nWhat exclusive experiences can you arrange?")}`,
 
         // Metadata
         hasDetailedData: false,
       },
-{
+      {
         _id: "static-chauffeur-services",
         name: "Chauffeur Services",
         slug: "chauffeur-services",
@@ -85,8 +85,32 @@ async function fetchCategoriesList() {
         // Metadata
         hasDetailedData: false,
       },
+      {
+        _id: "static-personal-shopping",
+        name: "Personal Shopping",
+        slug: "personal-shopping",
+
+        // Extracted headerImg object (contains image URL, alt text, etc.)
+        headerImg: { image: "/personal_shopping.jpg", alt: "Luxury watch showcasing personal shopping service" },
+
+        // Extracted headerCaption string (description for the category)
+        headerCaption: "Experience Dubai's finest luxury, handpicked just for you, from Hermès to Richard Mille, discover timeless pieces that define true elegance",
+
+        // Full category data object from the detailed API response
+        categoryData: null,
+
+        // Additional useful fields from the detailed response
+        headerTitle: "Personal Shopping",
+        products: [],
+
+        // WhatsApp direct link with branded message
+        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in your Personal Shopping service. Looking to explore luxury items in Dubai.\n\nCould you help me with a personalized shopping experience?")}`,
+
+        // Metadata
+        hasDetailedData: false,
+      },
     ];
-    return [...data, ...staticCategories];
+    return [...staticCategories.slice(0,2), ...data, ...staticCategories.slice(2)];
   } catch (error) {
     console.error("Failed to fetch categories list:", error);
     return null;
