@@ -4,6 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import ReactMarkdown from "react-markdown";
 import Map from "./MapsApi";
 import { PortableText } from "@portabletext/react";
+import CustomPortableText from "../shared/CustomPortableText";
 
 const EventsContentCarousel = ({
   longDescription,
@@ -84,7 +85,7 @@ const EventsContentCarousel = ({
                   }`}
                   key={1}
                 >
-                  <PortableText value={longDescription} />
+                  <CustomPortableText value={longDescription} />
                 </div>
               )}
 
