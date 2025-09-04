@@ -15,6 +15,7 @@ import Heart from "@/components/Experiences/Heart";
 import { sluggify } from "@/utils/utils";
 import CustomButton from "@/components/shared/CustomButton";
 import { FaWhatsapp } from "react-icons/fa";
+import { useWhatsAppModal } from "@/utils/useWhatsAppModal";
 
 const EventsDetailsPage = ({ params, category }) => {
   // const searchParams = useSearchParams();
@@ -56,6 +57,8 @@ const EventsDetailsPage = ({ params, category }) => {
   const [thumbnailImage, setThumbnailImage] = useState(null);
 
   const router = useRouter();
+
+  const { openWhatsAppModal } = useWhatsAppModal();
 
   // Authentication disabled - always show booking form
   const isAuthenticated = true;
@@ -230,7 +233,7 @@ const EventsDetailsPage = ({ params, category }) => {
                   <CustomButton
                     btnName="Book Now"
                     onClick={() => {
-                      window.open(
+                      openWhatsAppModal(
                         `https://wa.me/+971585787558?text=Hi! I'm interested in the ${
                           data?.title
                         } ${
@@ -238,7 +241,12 @@ const EventsDetailsPage = ({ params, category }) => {
                             ? `(${data?.subCategory?.name})`
                             : `(${data?.category?.name})`
                         } here is the link: ${window.location.href}`,
-                        "_blank"
+                        {
+                          productName: data?.title,
+                          productSlug: window.location.href,
+                          productPrice: data?.price,
+                          affiliateId: "",
+                        }
                       );
                     }}
                     className="bg-black text-white"

@@ -131,7 +131,7 @@ const CategoryPage = async ({ params }) => {
       </main>
     );
   } catch (error) {
-    console.log("ERROR: ", error);
+    // console.log("ERROR: ", error);
 
     notFound();
   }

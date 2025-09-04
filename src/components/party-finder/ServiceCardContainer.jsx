@@ -43,10 +43,14 @@ async function fetchCategoriesList() {
         slug: "after-party-experience",
 
         // Extracted headerImg object (contains image URL, alt text, etc.)
-        headerImg: { image: "/after_party_experience.webp", alt: "After Party Experience" },
+        headerImg: {
+          image: "/after_party_experience.webp",
+          alt: "After Party Experience",
+        },
 
         // Extracted headerCaption string (description for the category)
-        headerCaption: "Why stop at the main event? Book your after-party experience and keep the party going into the early hours.",
+        headerCaption:
+          "Why stop at the main event? Book your after-party experience and keep the party going into the early hours.",
 
         // Full category data object from the detailed API response
         categoryData: null,
@@ -56,7 +60,9 @@ async function fetchCategoriesList() {
         products: [],
 
         // WhatsApp direct link with branded message
-        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in your exclusive After Party Experience in Dubai.\n\nLooking to elevate my night with a VIP experience - would love to know about available venues, private areas, and bottle service options.\n\nWhat exclusive experiences can you arrange?")}`,
+        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent(
+          "Hello Dxberience! 👋\n\nI'm interested in your exclusive After Party Experience in Dubai.\n\nLooking to elevate my night with a VIP experience - would love to know about available venues, private areas, and bottle service options.\n\nWhat exclusive experiences can you arrange?"
+        )}`,
 
         // Metadata
         hasDetailedData: false,
@@ -67,10 +73,14 @@ async function fetchCategoriesList() {
         slug: "chauffeur-services",
 
         // Extracted headerImg object (contains image URL, alt text, etc.)
-        headerImg: { image: "/luxury_chauffer_service.jpg", alt: "Professional chauffeur with Rolls-Royce" },
+        headerImg: {
+          image: "/luxury_chauffer_service.jpg",
+          alt: "Professional chauffeur with Rolls-Royce",
+        },
 
         // Extracted headerCaption string (description for the category)
-        headerCaption: "Experience luxury transportation with our professional chauffeur services, offering comfort and style for all your journeys in Dubai",
+        headerCaption:
+          "Experience luxury transportation with our professional chauffeur services, offering comfort and style for all your journeys in Dubai",
 
         // Full category data object from the detailed API response
         categoryData: null,
@@ -80,7 +90,9 @@ async function fetchCategoriesList() {
         products: [],
 
         // WhatsApp direct link with branded message
-        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in booking your Chauffeur Services for a luxury transportation experience in Dubai.\n\nCould you provide more details about your fleet and availability?")}`,
+        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent(
+          "Hello Dxberience! 👋\n\nI'm interested in booking your Chauffeur Services for a luxury transportation experience in Dubai.\n\nCould you provide more details about your fleet and availability?"
+        )}`,
 
         // Metadata
         hasDetailedData: false,
@@ -91,10 +103,14 @@ async function fetchCategoriesList() {
         slug: "personal-shopping",
 
         // Extracted headerImg object (contains image URL, alt text, etc.)
-        headerImg: { image: "/personal_shopping.jpg", alt: "Luxury watch showcasing personal shopping service" },
+        headerImg: {
+          image: "/personal_shopping.jpg",
+          alt: "Luxury watch showcasing personal shopping service",
+        },
 
         // Extracted headerCaption string (description for the category)
-        headerCaption: "Experience Dubai's finest luxury, handpicked just for you, from Hermès to Richard Mille, discover timeless pieces that define true elegance",
+        headerCaption:
+          "Experience Dubai's finest luxury, handpicked just for you, from Hermès to Richard Mille, discover timeless pieces that define true elegance",
 
         // Full category data object from the detailed API response
         categoryData: null,
@@ -104,13 +120,19 @@ async function fetchCategoriesList() {
         products: [],
 
         // WhatsApp direct link with branded message
-        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent("Hello Dxberience! 👋\n\nI'm interested in your Personal Shopping service. Looking to explore luxury items in Dubai.\n\nCould you help me with a personalized shopping experience?")}`,
+        whatsappLink: `https://wa.me/+971585787558?text=${encodeURIComponent(
+          "Hello Dxberience! 👋\n\nI'm interested in your Personal Shopping service. Looking to explore luxury items in Dubai.\n\nCould you help me with a personalized shopping experience?"
+        )}`,
 
         // Metadata
         hasDetailedData: false,
       },
     ];
-    return [...staticCategories.slice(0,2), ...data, ...staticCategories.slice(2)];
+    return [
+      ...staticCategories.slice(0, 2),
+      ...data,
+      ...staticCategories.slice(2),
+    ];
   } catch (error) {
     console.error("Failed to fetch categories list:", error);
     return null;
@@ -213,14 +235,6 @@ async function fetchCategoriesWithDetails() {
 const ServiceCardContainer = async () => {
   const categories = await fetchCategoriesWithDetails();
 
-  // Log the structured data for debugging (remove in production)
-  if (process.env.NODE_ENV === "development") {
-    console.log(
-      "Categories with details:",
-      JSON.stringify(categories, null, 2)
-    );
-  }
-
   // Error state - fallback to empty state
   if (!categories) {
     return (
@@ -244,15 +258,6 @@ const ServiceCardContainer = async () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:my-20 py-6 w-11/12 mx-auto">
       {categories.map((category) => {
-        // Log individual category data for debugging
-        if (process.env.NODE_ENV === "development") {
-          console.log(`Category ${category.name}:`, {
-            headerImg: category.headerImg,
-            headerCaption: category.headerCaption,
-            categoryData: category.categoryData,
-          });
-        }
-
         if (category.name === "VIP concierge" || category.name === "Events") {
           return null;
         }
@@ -274,7 +279,10 @@ const ServiceCardContainer = async () => {
               category.categoryData?.alt ||
               `${category.name} service`
             }
-            href={category.whatsappLink || `/explore-experiences/${category.slug}/all`}
+            href={
+              category.whatsappLink ||
+              `/explore-experiences/${category.slug}/all`
+            }
             isWhatsApp={!!category.whatsappLink}
           />
         );

@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 import TailoredExperienceFloatingForm from "../TailoredExperiences/TailoredExperienceFloatingForm";
 import { useComponentStore } from "@/store/componentStore";
+import { useWhatsAppModal } from "@/utils/useWhatsAppModal";
 
 const TailoredExperienceBtn = () => {
   const [revealForm, setRevealForm] = useState(false);
@@ -10,6 +11,7 @@ const TailoredExperienceBtn = () => {
   const [y, setY] = useState(0);
 
   const footerHeight = useComponentStore((state) => state.footerHeight);
+  const { openWhatsAppModal } = useWhatsAppModal();
 
   const handleScroll = () => {
     if (document) {
@@ -56,7 +58,7 @@ const TailoredExperienceBtn = () => {
   }, [footerHeight]);
 
   function openWhatsapp() {
-    window.open("https://wa.me/+971585787558", "_blank");
+    openWhatsAppModal("https://wa.me/+971585787558");
   }
 
   useEffect(() => {

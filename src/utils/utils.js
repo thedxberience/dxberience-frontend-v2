@@ -75,34 +75,36 @@ export const updateUserFromGoogleSSO = async (googleToken) => {
 export function urlBuilder(path) {
   // Handle null/undefined path
   if (!path) {
-    throw new Error('Path is required');
+    throw new Error("Path is required");
   }
 
   // Convert path to string and trim whitespace
   const cleanPath = String(path).trim();
-  
+
   // Get base URL from environment variable
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  
+
   if (!baseUrl) {
-    throw new Error('NEXT_PUBLIC_API_BASE_URL environment variable is not defined');
+    throw new Error(
+      "NEXT_PUBLIC_API_BASE_URL environment variable is not defined"
+    );
   }
 
   // Remove trailing slash from base URL
-  const cleanBaseUrl = baseUrl.replace(/\/$/, '');
-  
+  const cleanBaseUrl = baseUrl.replace(/\/$/, "");
+
   // If path already starts with http/https, return as is (absolute URL)
-  if (cleanPath.startsWith('http://') || cleanPath.startsWith('https://')) {
+  if (cleanPath.startsWith("http://") || cleanPath.startsWith("https://")) {
     return cleanPath;
   }
-  
+
   // If path starts with slash, append to base URL
-  if (cleanPath.startsWith('/')) {
+  if (cleanPath.startsWith("/")) {
     return cleanBaseUrl + cleanPath;
   }
-  
+
   // Otherwise, add slash between base URL and path
-  return cleanBaseUrl + '/' + cleanPath;
+  return cleanBaseUrl + "/" + cleanPath;
 }
 
 export function sluggify(str) {
@@ -112,4 +114,11 @@ export function sluggify(str) {
     .replace(/[^\w\s-]/g, "") // Remove non-word characters except spaces and hyphens
     .replace(/[\s_-]+/g, "-") // Replace spaces/underscores with a single hyphen
     .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+}
+
+export function openWhatsAppLink(link) {
+  if (link) {
+    // If the link is not empty
+    window.open(link, "_blank");
+  }
 }
