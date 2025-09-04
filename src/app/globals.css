@@ -826,3 +826,54 @@ input[data-autocompleted] {
 .main-img .overlay {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+/* Custom PhoneInput styles for WhatsApp Modal */
+.custom-phone-input .PhoneInputInput {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  font-size: inherit !important;
+  color: #000 !important;
+  padding: 4px 0 !important;
+}
+
+.custom-phone-input .PhoneInputCountrySelect {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  margin-right: 8px !important;
+  padding: 4px 0 !important;
+}
+
+.custom-phone-input .PhoneInputCountryIcon {
+  border-radius: 2px !important;
+  width: 20px !important;
+  height: 15px !important;
+}
+
+.custom-phone-input {
+  display: flex !important;
+  align-items: center !important;
+  padding-bottom: 4px !important;
+}
+
+.custom-phone-input .PhoneInputInput:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-phone-input .PhoneInputCountrySelect:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-phone-input .PhoneInputCountrySelectArrow {
+  color: #666 !important;
+  opacity: 0.7 !important;
+}
+
+.event-booking-form .PhoneInputInput {
+  color: white !important;
+}

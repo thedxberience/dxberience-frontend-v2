@@ -25,11 +25,21 @@ export const useComponentStore = create(
       openForgotPasswordModal: false,
       setOpenForgotPasswordModal: (openForgotPasswordModal) =>
         set(() => ({ openForgotPasswordModal: openForgotPasswordModal })),
+      openWhatsAppModal: false,
+      setOpenWhatsAppModal: (openWhatsAppModal) =>
+        set(() => ({ openWhatsAppModal: openWhatsAppModal })),
+      whatsAppLink: "",
+      setWhatsAppLink: (whatsAppLink) =>
+        set(() => ({ whatsAppLink: whatsAppLink })),
+      whatsAppBookingContext: null,
+      setWhatsAppBookingContext: (context) =>
+        set(() => ({ whatsAppBookingContext: context })),
       // Keep only the methods that are still being used by existing components
       toggleCategoryDropdown: () =>
         set((state) => ({
           experienceFormDropdownState: {
-            categoryDropdown: !state.experienceFormDropdownState?.categoryDropdown,
+            categoryDropdown:
+              !state.experienceFormDropdownState?.categoryDropdown,
             statusDropdown: false,
             priceDropdown: false,
             dateDropdown: false,

@@ -2,8 +2,22 @@
 import React from "react";
 import Image from "next/image";
 import CustomButton from "@/components/shared/CustomButton";
+import { useWhatsAppModal } from "@/utils/useWhatsAppModal";
 
-const ServiceCard = ({ title, description, image, alt, href }) => {
+const ServiceCard = ({ title, description, image, alt, href, isWhatsApp }) => {
+  const { openWhatsAppModal } = useWhatsAppModal();
+
+  const handleClick = (e) => {
+    if (isWhatsApp) {
+      e.preventDefault();
+      openWhatsAppModal(href, {
+        productName: title,
+        productPrice: 0,
+        affiliateId: "",
+      });
+    }
+  };
+
   return (
     <div className="service-card group relative bg-white transition-all duration-300 overflow-hidden">
       {/* Image Container */}
@@ -35,10 +49,11 @@ const ServiceCard = ({ title, description, image, alt, href }) => {
         <div className="flex justify-between items-center">
           <div className="">
             <CustomButton
-              btnName="Book Now"
+              btnName={isWhatsApp ? "Enquire on WhatsApp" : "Book Now"}
               isLink
               href={href}
               minWidth={false}
+              onClick={handleClick}
             />
           </div>
         </div>
