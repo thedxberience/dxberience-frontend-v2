@@ -3,6 +3,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import WhatsAppModal from "@/components/shared/WhatsAppModal";
 // import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import React, { useEffect, useState } from "react";
@@ -29,6 +30,7 @@ const Provider = ({ children }) => {
     <QueryClientProvider client={client}>
       <ReactQueryDevtools initialIsOpen={false} />
       {children}
+      <WhatsAppModal />
       <Analytics />
       <SpeedInsights />
     </QueryClientProvider>

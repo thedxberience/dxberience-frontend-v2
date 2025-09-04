@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 function FormInput({
   name = "input",
@@ -106,6 +108,30 @@ function FormInput({
               )}
             </span>
           </div>
+        );
+
+      case "tel":
+        return (
+          <PhoneInput
+            {...register(name, options)}
+            value={value}
+            onChange={(phoneValue) => {
+              setValue(name, phoneValue, {
+                shouldValidate: true,
+                shouldDirty: true,
+              });
+            }}
+            defaultCountry="AE"
+            placeholder={placeholder}
+            className={`custom-phone-input bg-transparent w-full outline-none border-gray-300 border-b-[1px] ${
+              value ? "pt-7" : ""
+            }`}
+            style={{
+              "--PhoneInput-color--focus": "#000",
+              "--PhoneInputCountryFlag-borderColor": "#ccc",
+              "--PhoneInputCountrySelectArrow-color": "#666",
+            }}
+          />
         );
 
       case "optin":

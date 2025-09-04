@@ -1,37 +1,33 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { bookingFormSchema } from "@/schemas/bookingFormSchema";
 import FormInput from "@/components/shared/FormInput";
 import CustomButton from "../shared/CustomButton";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
 import { useRouter } from "next/navigation";
-import CountrySelector from "../NewsletterSection/CountrySelect";
-import { DatePickerWithPresets } from "../shared/DatePicker";
 import { useApiStore } from "@/store/apiStore";
 import { useUserStore } from "@/store/userStore";
+import Link from "next/link";
 
 const EventsBookingForm = ({ slug, price, product }) => {
   const router = useRouter();
-  const [country, setCountry] = useState();
-  const [date, setDate] = React.useState();
   const [showStatus, setShowStatus] = useState(false);
   const user = useUserStore((state) => state.user);
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
+    resolver: zodResolver(bookingFormSchema),
     defaultValues: {
-      firstName: user ? user.firstName : "",
-      lastName: user ? user.lastName : "",
+      name: user ? user.name : "",
       email: user ? user.email : "",
-      phone_number: "",
-      country: "",
-      date: "",
-      time: "",
-      no_of_guest: "1",
+      phone: "",
     },
   });
 
@@ -52,22 +48,24 @@ const EventsBookingForm = ({ slug, price, product }) => {
 
   const watchAllFields = watch();
 
-  const handleSubmitBookingRequest = (data) => {
+  const handleSubmitBookingRequest = async (data) => {
+    // get the referral code from the cookie using the document.cookie
+    const referralCode = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("referral="))
+      ?.split("=")[1];
     const payload = {
-      customerName: `${data.firstName} ${data.lastName}`,
+      customerName: data.name,
       customerEmail: data.email,
-      customerPhone: data.phone_number,
-      country: country,
-      date: date,
-      time: data.time,
+      customerPhone: data.phone,
       productName: product,
-      productSlug: slug,
+      productSlug: window.location.href,
       productPrice: price ?? 0,
-      noOfTickets: parseInt(data.no_of_guest),
       partnerId: affiliateId ? affiliateId : "",
+      referralCode: referralCode ? referralCode : "",
     };
 
-    mutateAsync(payload);
+    await mutateAsync(payload);
   };
 
   useEffect(() => {
@@ -112,20 +110,13 @@ const EventsBookingForm = ({ slug, price, product }) => {
           </div>
         )}
 
-        <div className="flex flex-col gap-10 justify-center items-center w-full">
+        <div className="flex flex-col gap-10 justify-center items-center w-full event-booking-form">
           <FormInput
-            placeholder={"First Name"}
+            placeholder={"Name"}
             register={register}
             errors={errors}
-            value={watchAllFields.firstName}
-            name="firstName"
-          />
-          <FormInput
-            placeholder={"Last Name"}
-            register={register}
-            errors={errors}
-            value={watchAllFields.lastName}
-            name="lastName"
+            value={watchAllFields.name}
+            name="name"
           />
           <FormInput
             placeholder={"Email"}
@@ -138,51 +129,30 @@ const EventsBookingForm = ({ slug, price, product }) => {
             placeholder={"Phone Number"}
             register={register}
             errors={errors}
-            value={watchAllFields.phone_number}
-            name="phone_number"
-          />
-          <div className="w-full">
-            <CountrySelector country={country} setCountry={setCountry} />
-          </div>
-          <div className="flex justify-center items-end gap-4 w-full">
-            <div className="w-full">
-              <DatePickerWithPresets date={date} setDate={setDate} invert />
-            </div>
-            <div className="w-full">
-              <FormInput
-                placeholder={"Time"}
-                register={register}
-                errors={errors}
-                value={watchAllFields.time}
-                name="time"
-                inputType="time"
-              />
-            </div>
-          </div>
-          {/* <FormInput
-            placeholder={"Options"}
-            register={register}
-            errors={errors}
-            value={watchAllFields.options}
-            name="options"
-          /> */}
-          <FormInput
-            inputType="number"
-            placeholder={"No of Guest/Tickets"}
-            register={register}
-            errors={errors}
-            value={watchAllFields.no_of_guest}
-            name="no_of_guest"
+            value={watchAllFields.phone}
+            name="phone"
+            inputType="tel"
+            setValue={setValue}
           />
         </div>
         <div>
-          <p className="text-white text-center text-xs pb-11 pt-6 font-thin">
+          <p className="text-white text-center text-xs pb-6 pt-6 font-thin">
             Our team will reach out to finalize your booking and payment. We
             will customize the experience to suit your needs.
           </p>
         </div>
-        <div>
+        <div className="flex flex-col items-center">
           <CustomButton btnName={"book now"} isPending={isPending} />
+          <p className="text-white text-center text-xs pt-6 font-thin">
+            By submitting this form, you agree to our{" "}
+            <Link href="/privacy-policy" className="underline">
+              Privacy Policy
+            </Link>{" "}
+            and{" "}
+            <Link href="/terms-and-conditions" className="underline">
+              Terms and Conditions
+            </Link>
+          </p>
         </div>
       </form>
     </div>

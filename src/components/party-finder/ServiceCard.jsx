@@ -2,12 +2,19 @@
 import React from "react";
 import Image from "next/image";
 import CustomButton from "@/components/shared/CustomButton";
+import { useWhatsAppModal } from "@/utils/useWhatsAppModal";
 
 const ServiceCard = ({ title, description, image, alt, href, isWhatsApp }) => {
+  const { openWhatsAppModal } = useWhatsAppModal();
+
   const handleClick = (e) => {
     if (isWhatsApp) {
       e.preventDefault();
-      window.open(href, '_blank');
+      openWhatsAppModal(href, {
+        productName: title,
+        productPrice: 0,
+        affiliateId: "",
+      });
     }
   };
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CategoryDropdown from "./CategoryDropdown";
 import { useComponentStore } from "@/store/componentStore";
+import { useWhatsAppModal } from "@/utils/useWhatsAppModal";
 function Footer() {
   const [scrolled, setScrolled] = useState(false);
   const [reachedFooter, setReachedFooter] = useState(false);
@@ -11,6 +12,7 @@ function Footer() {
 
   const setFooterHeight = useComponentStore((state) => state.setFooterHeight);
   const footerHeight = useComponentStore((state) => state.footerHeight);
+  const { openWhatsAppModal } = useWhatsAppModal();
 
   const handleDomChecking = useCallback(() => {
     if (document && footerRef.current) {
@@ -38,7 +40,7 @@ function Footer() {
   }, []);
 
   function openWhatsapp() {
-    window.open("https://wa.me/+971585787558", "_blank");
+    openWhatsAppModal("https://wa.me/+971585787558");
   }
 
   function toPageTop() {
