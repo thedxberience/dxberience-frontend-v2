@@ -18,6 +18,7 @@ import { useComponentStore } from "@/store/componentStore";
 import { FaWhatsapp } from "react-icons/fa";
 import { useMutation } from "@tanstack/react-query";
 import { makeRequest } from "@/utils/axios";
+import Link from "next/link";
 
 const WhatsAppModal = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -240,6 +241,16 @@ const WhatsAppModal = () => {
                   Cancel
                 </Button>
               </div>
+              <p className="text-primary     text-center text-xs font-thin">
+                By submitting this form, you agree to our{" "}
+                <Link href="/privacy-policy" className="underline">
+                  Privacy Policy
+                </Link>{" "}
+                and{" "}
+                <Link href="/terms-and-conditions" className="underline">
+                  Terms and Conditions
+                </Link>
+              </p>
             </form>
           </AlertDialogDescription>
         </AlertDialogHeader>
