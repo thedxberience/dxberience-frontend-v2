@@ -89,7 +89,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="flex justify-center items-center text-sm lg:gap-[80px] border-t-[1px] border-b-[1px] h-[112.01px] 2xl:h-[252.01px] border-white">
+        <div className="flex justify-center items-center text-sm lg:gap-[80px] border-t-[1px] py-8 border-white">
           <div className="flex flex-col items-center p-4 gap-5">
             <span>CONTACT US</span>
             <img
@@ -121,6 +121,17 @@ function Footer() {
               </Link>
             </div>
           </div>
+        </div>
+
+        <div className="flex flex-col items-center py-6 border-b-[1px] border-white">
+          <span className="text-sm mb-3">OUR LOCATION</span>
+          <Link
+            href="https://maps.app.goo.gl/GPkdcK1oKB7irgAZ6"
+            target="_blank"
+            className="text-center text-xs hover:underline transition-all font-light"
+          >
+            DAMAC Smart Heights 1801 Dubai, United Arab Emirates
+          </Link>
         </div>
 
         <ul className="flex justify-evenly py-2 lg:pt-5">
