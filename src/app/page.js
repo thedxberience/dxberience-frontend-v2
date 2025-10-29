@@ -10,6 +10,12 @@ import RatingsSection from "@/components/RatingsSection";
 import NewsletterSection from "@/components/NewsletterSection/NewsletterSection";
 import { Suspense } from "react";
 
+export const metadata = {
+  alternates: {
+    canonical: "https://www.thedxberience.com",
+  },
+};
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">

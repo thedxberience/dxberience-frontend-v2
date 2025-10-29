@@ -1,9 +1,17 @@
 import ContactPage from "@/components/Pages/Contact";
 
 export const metadata = {
-  title: "Get in touch for personalized lifestyle management services",
+  title: "Contact Dxberience - Personalized Luxury Lifestyle Services",
   description:
-    "At Dxberience, we specialize in crafting personalized services or organizing private celebrations, fill out the form and let us create an experience just for you.",
+    "Get in touch with Dxberience to design your perfect personalized luxury experience in Dubai. From tailored travel to exclusive events — we're here to make it effortless.",
+  alternates: {
+    canonical: "https://www.thedxberience.com/contact",
+  },
+  openGraph: {
+    title: "Contact Dxberience - Personalized Luxury Lifestyle Services",
+    description:
+      "Get in touch with Dxberience to design your perfect personalized luxury experience in Dubai. From tailored travel to exclusive events — we're here to make it effortless.",
+  },
 };
 
 const page = () => {

@@ -8,6 +8,9 @@ export const metadata = {
   title: "Esteemed Partners to deliver exceptional concierge services",
   description:
     "Discover Dxberience's esteemed partners, enabling exceptional concierge services with trusted collaborations and premium offerings.",
+  alternates: {
+    canonical: "https://www.thedxberience.com/partners",
+  },
 };
 
 const page = () => {

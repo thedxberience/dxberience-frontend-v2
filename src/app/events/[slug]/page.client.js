@@ -11,7 +11,6 @@ import PriceContainer from "@/components/Events/PriceContainer";
 import EventsBookingForm from "@/components/Events/EventsBookingForm";
 import EventsContentCarousel from "@/components/Events/EventsContentCarousel";
 
-import Heart from "@/components/Experiences/Heart";
 import { sluggify } from "@/utils/utils";
 import CustomButton from "@/components/shared/CustomButton";
 import { FaWhatsapp } from "react-icons/fa";
