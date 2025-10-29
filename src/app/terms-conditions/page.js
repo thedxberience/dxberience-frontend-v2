@@ -5,6 +5,9 @@ export const metadata = {
   title: "Terms & Conditions",
   description:
     "Explore the terms and conditions governing your use of Dxberience's luxury services and experiences.",
+  alternates: {
+    canonical: "https://www.thedxberience.com/terms-conditions",
+  },
 };
 
 const page = () => {

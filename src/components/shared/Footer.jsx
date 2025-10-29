@@ -104,12 +104,22 @@ function Footer() {
 
           <div className="flex flex-col items-center p-4 gap-5">
             <span>FOLLOW US</span>
-            <Link
-              href="https://www.instagram.com/thedxberience?igsh=MTdyY2k5NTdpZW5kcA=="
-              target="_blank"
-            >
-              <img src="/footer_insta.svg" alt="Insta logo" />
-            </Link>
+            <div className="flex gap-4 items-center">
+              <Link
+                href="https://www.instagram.com/thedxberience?igsh=MTdyY2k5NTdpZW5kcA=="
+                target="_blank"
+                className="transition-opacity hover:opacity-80"
+              >
+                <img src="/footer_insta.svg" alt="Instagram logo" />
+              </Link>
+              <Link
+                href="https://www.youtube.com/@DxberienceTV/videos"
+                target="_blank"
+                className="transition-opacity hover:opacity-80"
+              >
+                <img src="/youtube.svg" alt="YouTube logo" />
+              </Link>
+            </div>
           </div>
         </div>
 

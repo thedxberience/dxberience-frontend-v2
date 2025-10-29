@@ -5,6 +5,20 @@ import TailoredExperienceForm from "@/components/TailoredExperiences/TailoredExp
 import Image from "next/image";
 import React, { Suspense } from "react";
 
+export const metadata = {
+  title: "Bespoke Luxury Experiences in Dubai - Tailored by Dxberience",
+  description:
+    "Discover bespoke luxury experiences in Dubai with Dxberience. From VIP access and personalized itineraries to tailor-made events — every detail crafted just for you.",
+  alternates: {
+    canonical: "https://www.thedxberience.com/tailored-experiences",
+  },
+  openGraph: {
+    title: "Bespoke Luxury Experiences in Dubai - Tailored by Dxberience",
+    description:
+      "Discover bespoke luxury experiences in Dubai with Dxberience. From VIP access and personalized itineraries to tailor-made events — every detail crafted just for you.",
+  },
+};
+
 const page = () => {
   return (
     <main>

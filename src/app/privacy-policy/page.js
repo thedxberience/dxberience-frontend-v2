@@ -5,6 +5,9 @@ export const metadata = {
   title: "Privacy Policy ",
   description:
     "Learn about Dxberience's commitment to protecting your privacy and personal information with our comprehensive privacy policy.",
+  alternates: {
+    canonical: "https://www.thedxberience.com/privacy-policy",
+  },
 };
 
 const page = () => {

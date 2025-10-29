@@ -7,9 +7,17 @@ import Image from "next/image";
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Luxury Experiences & VIP Lifestyle Management Services Dubai",
+  title: "About Dxberience - Luxury Lifestyle & Bespoke Concierge in Dubai",
   description:
-    "We offer luxury lifestyle management services in Dubai, redefining excellence with bespoke offerings tailored to each client's unique needs and desires.",
+    "Learn how Dxberience delivers bespoke luxury concierge and lifestyle services in Dubai. Our commitment to personalized VIP experiences and elite partnerships defines us.",
+  alternates: {
+    canonical: "https://www.thedxberience.com/about",
+  },
+  openGraph: {
+    title: "About Dxberience - Luxury Lifestyle & Bespoke Concierge in Dubai",
+    description:
+      "Learn how Dxberience delivers bespoke luxury concierge and lifestyle services in Dubai. Our commitment to personalized VIP experiences and elite partnerships defines us.",
+  },
 };
 
 const page = () => {
