@@ -22,36 +22,35 @@ const CategoryPage = async ({ params }) => {
 
     return (
       <main>
-        <header className="category-page-header flex flex-col justify-between items-center relative w-full h-[468px] lg:h-[100svh] ">
-          <div className="overlay absolute top-0 left-0"></div>
+        <header className="category-page-header flex flex-col relative w-full bg-gradient-to-br from-gray-900 via-black to-gray-900">
           <Navbar />
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="main-bg-img relative w-full h-full">
-              <Image
-                src={data.headerBgImg.image}
-                alt={data.headerBgImg.alt}
-                className="object-cover"
-                fill
-              />
-            </div>
-          </div>
-          <div className="main-content h-full lg:h-5/6 w-11/12 lg:w-full flex justify-center items-start lg:items-center relative z-40">
-            <div className="main-img absolute left-5 bottom-4 lg:relative w-[231px] h-[351px] lg:w-[59.219svw] lg:h-[60.484svh]">
-              <div className=" absolute overlay"></div>
-              <Image
-                src={data.headerImg.image}
-                alt={data.headerImg.alt}
-                className="object-cover"
-                fill
-              />
-            </div>
-            <div className="main-text-content relative text-white lg:w-[35.208vw] z-50 lg:-ml-10 flex flex-col justify-start items-start gap-4">
-              <h2 className="font-IvyPresto w-5/6 lg:w-full text-4xl lg:text-7xl 2xl:text-[88px] 2xl:leading-[110px]">
-                {data.headerTitle}
-              </h2>
-              <p className="text-sm lg:text-lg lg:w-4/6">
-                {data.headerCaption}
-              </p>
+
+          <div className="main-content w-full py-16 lg:py-24">
+            <div className="container mx-auto px-4 lg:px-8">
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                {/* Text content - Clear and readable */}
+                <div className="flex-1 text-white space-y-6 lg:space-y-8">
+                  <h1 className="font-IvyPresto text-5xl lg:text-7xl 2xl:text-8xl leading-tight">
+                    {data.headerTitle}
+                  </h1>
+                  <p className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl">
+                    {data.headerCaption}
+                  </p>
+                </div>
+
+                {/* Featured image - As accent element */}
+                <div className="flex-shrink-0 w-full lg:w-[500px] xl:w-[600px]">
+                  <div className="relative w-full h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
+                    <Image
+                      src={data.headerImg.image}
+                      alt={data.headerImg.alt}
+                      className="object-cover"
+                      fill
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </header>
