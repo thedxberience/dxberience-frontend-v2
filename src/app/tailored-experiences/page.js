@@ -90,17 +90,17 @@ const page = () => {
 
       <div className="left-side mobile-only flex justify-center items-center w-full px-4 mt-16">
         <div className="top-box bg-primary text-white w-[300px] -mb-16 lg:w-[38.177vw] px-4 py-10 h-fit lg:px-[78px] lg:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
-          <h1 className="font-IvyPresto text-3xl lg:text-[70px]">
+          <h2 className="font-IvyPresto text-3xl lg:text-[70px]">
             We tailor unforgettable luxury experiences
-          </h1>
+          </h2>
         </div>
       </div>
       <section className="tailored-experiences-form flex flex-col lg:flex-row justify-between w-full h-fit lg:h-[836px] px-4 py-20 lg:px-[72px] lg:mt-[30px] ">
         <div className="left-side hidden lg:block h-[477px]">
           <div className="top-box -mt-[220px] lg:-mt-[60%] xl:-mt-[60%] 2xl:-mt-[30%] bg-primary text-white lg:w-[38.177vw] px-4 py-10 lg:px-[20px] xl:px-[78px] lg:py-[43px] xl:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
-            <h1 className="font-IvyPresto text-xl lg:text-5xl xl:text-7xl">
+            <h2 className="font-IvyPresto text-xl lg:text-5xl xl:text-7xl">
               We tailor unforgettable luxury experiences
-            </h1>
+            </h2>
           </div>
         </div>
         <div className="flex w-full justify-center items-center h-full">
@@ -120,7 +120,7 @@ const page = () => {
             </div>
             <div className="flex justify-start items-start flex-col gap-7">
               <div className="flex justify-start items-start gap-3 flex-col">
-                <h1 className="text-lg">VIP TREATMENT</h1>
+                <h3 className="text-lg">VIP TREATMENT</h3>
                 <p className="text-lg">
                   Enjoy VIP treatment at every stage of your journey, from
                   priority access and upgrades to exclusive perks and amenities,
@@ -129,7 +129,7 @@ const page = () => {
                 </p>
               </div>
               <div className="flex justify-start items-start gap-3 flex-col">
-                <h1 className="text-lg">PERSONALISED SERVICE</h1>
+                <h3 className="text-lg">PERSONALISED SERVICE</h3>
                 <p className="text-lg">
                   At Dxberience, we specialize in crafting tailored travel
                   experiences that cater to your unique preferences and needs.
@@ -139,7 +139,7 @@ const page = () => {
                 </p>
               </div>
               <div className="flex justify-start items-start gap-3 flex-col">
-                <h1 className="text-lg">EXCLUSIVE ACCESS</h1>
+                <h3 className="text-lg">EXCLUSIVE ACCESS</h3>
                 <p className="text-lg">
                   Our extensive network and established partnerships with
                   top-tier hotels, resorts, and tour operators worldwide grant
@@ -147,7 +147,7 @@ const page = () => {
                 </p>
               </div>
               <div className="flex justify-start items-start gap-3 flex-col">
-                <h1 className="text-lg">GLOBAL EXPERTISE</h1>
+                <h3 className="text-lg">GLOBAL EXPERTISE</h3>
                 <p className="text-lg">
                   With a wealth of experience and knowledge in the luxury travel
                   industry, our team offers unparalleled insights and
@@ -161,9 +161,9 @@ const page = () => {
       </section>
       <section className="img-section relative flex flex-col justify-center items-center">
         <div className="floating-box lg:absolute lg:w-[568px] mb-4 lg:mb-0 z-20 right-28 -top-56 bg-primary text-white px-8 py-10 lg:px-10 lg:py-16 flex flex-col justify-start items-start gap-8">
-          <h1 className="text-3xl lg:text-7xl font-IvyPresto w-11/12">
+          <h2 className="text-3xl lg:text-7xl font-IvyPresto w-11/12">
             What makes us unique?
-          </h1>
+          </h2>
           <div className="px-8">
             <ul className="font-extralight list-disc">
               <li>Vip Treatment</li>

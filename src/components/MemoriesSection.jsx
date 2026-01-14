@@ -31,11 +31,8 @@ const MemoriesSection = () => {
           <div className="text flex justify-center items-end mt-[256px]">
             <div className="w-full lg:w-[33.281vw]">
               <div className="flex flex-col text-center justify-center items-center pb-5">
-                <h1 className="text-text-secondary text-base lg:text-4xl font-thin">
-                  LUXURY
-                </h1>
                 <h2 className="text-4xl font-IvyPresto lg:text-7xl font-thin">
-                  Cars, Yachts and Jets
+                  LUXURY Cars, Yachts and Jets
                 </h2>
               </div>
             </div>

@@ -41,10 +41,10 @@ const NavbarContent = () => {
 
       <nav className="flex-center w-full">
         <div className="relative w-11/12 z-50 lg:py-6 py-5 hidden xl:flex justify-between items-center">
-          <div className="flex justify-center relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] items-center">
+          <div className="flex justify-center relative w-[13.651vw] h-[60px] lg:w-[172px] lg:h-[42px] items-center">
             <Link
               href={"/"}
-              className="relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px] "
+              className="relative w-[13.651vw] h-[60px] md:w-[172px] md:h-[42px]"
             >
               {invertStyles ? (
                 <Image
@@ -159,10 +159,10 @@ const NavbarContent = () => {
               )}
             </div>
             <div className="brand-logo">
-              <div className="flex justify-center relative w-[31.538vw] h-[30px] items-center">
+              <div className="flex justify-center relative max-sm:w-[31.538vw] max-sm:h-[30px] w-[172px] h-[42px] items-center">
                 <Link
                   href={"/"}
-                  className="flex justify-center relative w-[31.538vw] h-[30px] items-center"
+                  className="flex justify-center relative max-sm:w-[31.538vw] max-sm:h-[30px] w-[172px] h-[42px] items-center"
                 >
                   {invertStyles ? (
                     <Image

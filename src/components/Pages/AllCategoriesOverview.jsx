@@ -87,9 +87,9 @@ const AllCategoriesOverview = () => {
       <section className="categories-overview py-20 lg:py-32 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
           <div className="text-center mb-16 lg:mb-24">
-            <h1 className="text-4xl lg:text-6xl font-IvyPresto text-black mb-6">
+            <h2 className="text-4xl lg:text-6xl font-IvyPresto text-black mb-6">
               Our Luxury Services
-            </h1>
+            </h2>
             <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
               From personalized concierge services to exclusive experiences,
               discover the complete range of luxury lifestyle management
@@ -117,9 +117,9 @@ const AllCategoriesOverview = () => {
 
                 {/* Content */}
                 <div className="category-content">
-                  <h2 className="text-2xl lg:text-3xl font-IvyPresto text-black mb-4 group-hover:text-gray-800 transition-colors duration-300">
+                  <h3 className="text-2xl lg:text-3xl font-IvyPresto text-black mb-4 group-hover:text-gray-800 transition-colors duration-300">
                     {category.title}
-                  </h2>
+                  </h3>
 
                   <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">
                     {category.description}

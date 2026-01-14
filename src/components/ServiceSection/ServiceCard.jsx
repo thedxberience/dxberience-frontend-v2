@@ -31,9 +31,9 @@ const ServiceCard = ({ name, slug, image, alt }) => {
           />
         )}
 
-        <p className="z-10 text-white text-2xl lg:text-4xl text-center uppercase font-thin">
+        <h3 className="z-10 text-white text-2xl lg:text-4xl text-center uppercase font-thin">
           {name}
-        </p>
+        </h3>
       </Link>
     </div>
   );

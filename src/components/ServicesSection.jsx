@@ -214,8 +214,7 @@ const ServicesSection = ({ category = null, header = null }) => {
         <div className="w-full flex justify-end items-center p-6 2xl:p-20 z-10 relative">
           <div className="text flex flex-col lg:flex-row justify-evenly items-center gap-2 lg:gap-4">
             <div className="flex flex-col justify-end lg:justify-center items-end w-full lg:w-5/12">
-              <h1 className="font-IvyPresto text-4xl lg:text-7xl">VIP</h1>
-              <p className="text-base lg:text-4xl">CURATED EXPERIENCES</p>
+              <h2 className="font-IvyPresto text-4xl lg:text-7xl">VIP CURATED EXPERIENCES</h2>
             </div>
             <div className="flex flex-col gap-8 justify-center items-start w-full lg:w-5/12">
               <p className="text-base">

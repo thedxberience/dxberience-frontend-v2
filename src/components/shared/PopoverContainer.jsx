@@ -11,7 +11,7 @@ const PopoverContainer = ({ popoverTitle, children, className = {} }) => {
       <PopoverTrigger
         className={`mix-blend-darken bg-transparent ${className}`}
       >
-        <h2 className="uppercase">{popoverTitle}</h2>
+        <span className="uppercase">{popoverTitle}</span>
       </PopoverTrigger>
       <PopoverContent>
         <div className="flex justify-start items-center">

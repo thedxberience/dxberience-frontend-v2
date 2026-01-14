@@ -37,8 +37,8 @@ export default function Home() {
           </div>
           <p className="text-center w-[80.256vw] lg:w-[34.219vw] text-lg">
             Our luxury lifestyle management service ensures that every aspect of
-            your experience is meticulously curated to perfection. No need to
-            think, just experience.
+            your experience is meticulously curated to perfection.{" "}
+            <span>No need to think, just experience.</span>
           </p>
         </div>
 
@@ -95,19 +95,14 @@ export default function Home() {
         </div>
         <div className="find text-right flex flex-col w-full justify-end pr-6 lg:pr-20">
           {/* <TextMotion animateType="right"> */}
-          <h1 className="text-text-secondary uppercase font-noah text-[20px] md:text-[40px] font-thin">
-            Exclusive
-          </h1>
-          {/* </TextMotion> */}
-          {/* <TextMotion animateType="right"> */}
-          <h1 className="text-text-primary font-IvyPresto text-[36px] md:text-[70px] font-thin">
-            Bespoke Services in Dubai
-          </h1>
+          <h2 className="text-text-secondary uppercase font-noah text-[20px] md:text-[40px] font-thin">
+            Exclusive Bespoke Services in Dubai
+          </h2>
           {/* </TextMotion> */}
           <div className="flex w-full lg:w-9/12 xl:w-6/12 justify-end lg:justify-end items-center">
-            <h1 className="uppercase text-base lg:text-3xl font-noah">
+            <span className="uppercase text-base lg:text-3xl font-noah">
               YOUR GATEWAY TO EXCLUSIVE EXPERIENCES
-            </h1>
+            </span>
           </div>
         </div>
       </section>
@@ -145,9 +140,9 @@ export default function Home() {
       </section>
       <div className="left-side mobile-only flex justify-center items-center w-full px-4 mt-16">
         <div className="top-box bg-primary text-white lg:w-[38.177vw] px-4 py-10 h-fit lg:px-[78px] lg:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
-          <h1 className="font-IvyPresto text-xl lg:text-[70px]">
+          <h2 className="font-IvyPresto text-xl lg:text-[70px]">
             Curated Luxury Experiences
-          </h1>
+          </h2>
           <p className="font-extralight">
             For the discerning traveler, we offer tailored luxury bookings that
             include private jet charters, personalized shopping, bespoke
@@ -165,9 +160,9 @@ export default function Home() {
       <section className="demand-luxury flex flex-col lg:flex-row justify-between w-full h-fit lg:h-[836px] px-4 py-20 lg:px-[72px] lg:mt-[30px] ">
         <div className="left-side hidden lg:block h-[477px]">
           <div className="top-box -mt-[220px] lg:-mt-[70%] xl:-mt-[70%] 2xl:-mt-[40%] bg-primary text-white lg:w-[38.177vw] px-4 py-10 lg:px-[20px] xl:px-[78px] lg:py-[43px] xl:py-[93px] flex flex-col justify-center items-start gap-4 lg:gap-14">
-            <h1 className="font-IvyPresto text-xl lg:text-5xl xl:text-7xl">
+            <h2 className="font-IvyPresto text-xl lg:text-5xl xl:text-7xl">
               Curated Luxury Experiences
-            </h1>
+            </h2>
             <p className="font-extralight">
               For the discerning traveler, we offer tailored luxury bookings
               that include private jet charters, personalized shopping, bespoke
@@ -212,9 +207,9 @@ export default function Home() {
       <ServicesSection />
       <section className="luxury-destination mt-11 lg:mt-[150px] p-6">
         <div className="header gap-6 flex flex-col justify-center items-center">
-          <h1 className="text-4xl lg:text-7xl text-center font-IvyPresto">
+          <h2 className="text-4xl lg:text-7xl text-center font-IvyPresto">
             Tailored Travel & Itineraries
-          </h1>
+          </h2>
           <div className="w-full flex justify-center items-center">
             <p className="lg:w-[58.125vw] text-sm lg:text-base text-center font-light font-cormorant">
               At Dxberience, we specialize in crafting personalized itineraries,
@@ -251,9 +246,9 @@ export default function Home() {
 
       <section className="global-ticketing flex flex-col justify-center items-center gap-5 lg:gap-28 py-28 px-6">
         <div className="content flex flex-col justify-center items-center gap-10 lg:gap-12">
-          <h1 className="font-IvyPresto text-4xl lg:text-7xl text-center">
+          <h2 className="font-IvyPresto text-4xl lg:text-7xl text-center">
             Global & Private Event Ticketing
-          </h1>
+          </h2>
           <p className="text-sm lg:text-base lg:w-[47.5vw] text-center">
             Experience the best of Dubai's vibrant nightlife and cultural scene
             with Dxberience. Secure front-row seats at sold-out shows, reserve
@@ -276,10 +271,9 @@ export default function Home() {
       <section className="tours flex flex-col justify-center items-center text-white bg-primary p-4 pt-20 lg:p-20 w-full">
         <div className="content flex flex-col justify-center items-center gap-8">
           <div className="header flex flex-col gap-6 justify-center items-center">
-            <h1 className="text-lg lg:text-4xl">OUR</h1>
-            <h1 className="font-IvyPresto text-4xl lg:text-7xl">
-              Excursions & Tours
-            </h1>
+            <h2 className="text-lg lg:text-4xl font-IvyPresto">
+              OUR Excursions & Tours
+            </h2>
           </div>
           <p className="px-4 lg:w-[46.719vw] text-center pb-16">
             Dxberience offers an unparalleled array of excursions and tour
@@ -316,14 +310,9 @@ export default function Home() {
         <div className="lg:px-20 py-[91px] bg-primary flex flex-col justify-center items-start">
           <div className="header-text flex flex-col items-end justify-start mb-20 w-[195px] lg:w-[37.688vw] text-white">
             {/* <TextMotion> */}
-            <h1 className="text-base w-full flex justify-end items-end lg:text-3xl text-white font-thin uppercase">
-              Luxury
-            </h1>
-            {/* </TextMotion> */}
-            {/* <TextMotion> */}
-            <h1 className="text-4xl w-full lg:text-[70px] text-right font-IvyPresto text-white font-thin">
-              Becomes a Lifestyle
-            </h1>
+            <h2 className="text-4xl w-full lg:text-[70px] text-right font-IvyPresto text-white font-thin">
+              Luxury Becomes a Lifestyle
+            </h2>
             {/* </TextMotion> */}
           </div>
           <div className="flex w-full justify-center items-center">

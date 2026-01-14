@@ -86,8 +86,7 @@ const NewsletterSection = () => {
     <section className="w-full text-white bg-primary flex justify-center items-center py-32">
       <div className="w-[88.348vw] flex flex-col justify-center items-center gap-16">
         <div className="w-full">
-          <h2 className="text-2xl lg:text-4xl">OUR</h2>
-          <h1 className="font-IvyPresto text-4xl lg:text-7xl">Newsletter</h1>
+          <h2 className="font-IvyPresto text-4xl lg:text-7xl">OUR Newsletter</h2>
         </div>
 
         <div className="w-full">

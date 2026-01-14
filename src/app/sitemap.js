@@ -10,6 +10,12 @@ export default async function sitemap() {
       priority: 1,
     },
     {
+      url: baseUrl + "/",
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -86,17 +92,39 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // Fetch products dynamically from API
+  // Fetch products dynamically from API (paginated - pages 1 to 7)
   let products = [];
   try {
     const apiBaseUrl =
       process.env.NEXT_PUBLIC_API_BASE_URL ||
       process.env.NEXT_PUBLIC_API_BASE_URL_LOCAL;
-    const response = await fetch(`${apiBaseUrl}/product`);
 
-    if (response.ok) {
-      products = await response.json();
+    // Fetch products from pages 1 to 7
+    const productPromises = [];
+    for (let page = 1; page <= 7; page++) {
+      productPromises.push(
+        fetch(`${apiBaseUrl}/product?page=${page}`)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
+            return [];
+          })
+          .catch((error) => {
+            console.error(
+              `Error fetching products page ${page} for sitemap:`,
+              error
+            );
+            return [];
+          })
+      );
     }
+
+    // Wait for all pages to be fetched
+    const productPages = await Promise.all(productPromises);
+
+    // Flatten all products from all pages into a single array
+    products = productPages.flat();
   } catch (error) {
     console.error("Error fetching products for sitemap:", error);
   }

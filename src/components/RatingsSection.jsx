@@ -41,9 +41,9 @@ const RatingsSection = () => {
     <section className="review-section flex justify-center items-center lg:px-20 w-full mb-8">
       <div className="flex flex-col justify-center items-center border-t border-b border-gray-800 w-full h-full my-20 py-16 gap-12">
         <div className="section-header w-full flex flex-col justify-center items-center">
-          <h1 className="text-xl lg:text-5xl font-bold font-IvyPresto text-text_primary">
+          <span className="text-xl lg:text-5xl font-bold font-IvyPresto text-text_primary">
             Our clients share their experiences.
-          </h1>
+          </span>
         </div>
         <div className="review-container flex justify-center items-center gap-8">
           <Carousel emblaRef={emblaRef}>

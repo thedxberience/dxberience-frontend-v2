@@ -126,9 +126,11 @@ export async function generateMetadata({ params }) {
   if (category && allServices && allServices !== "all") {
     // Fetch product data from API
     try {
-      const data = await fetch(urlBuilder(`/product/${allServices}`)).then(
-        (res) => res.json()
-      );
+      let url = `/product/${allServices}`;
+      if (category === "luxury-yacht-rentals") {
+        url = `/yachts/${allServices}?asProduct=true`;
+      }
+      const data = await fetch(urlBuilder(url)).then((res) => res.json());
 
       // Check if data exists and has elements
       if (!data || !Array.isArray(data) || data.length === 0) {

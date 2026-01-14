@@ -63,9 +63,9 @@ function Footer() {
       <div className="absolute inset-0 bg-[#171010] bg-opacity-90 z-10" />
       <div className="relative z-20 text-white">
         <div className="px-8 xl:flex justify-between">
-          <h1 className="py-2 text-2xl font-bold font-IvyPresto ">
+          <span className="py-2 text-2xl font-bold font-IvyPresto ">
             No need to think, just experience
-          </h1>
+          </span>
 
           <ul className="mb-10 text-xs text-[#FFFFFF] font-extralight xl:flex gap-5 uppercase">
             <li className="mt-4">
@@ -124,20 +124,27 @@ function Footer() {
         </div>
 
         <div className="flex flex-col items-center py-6 border-b-[1px] border-white">
-          <span className="text-sm mb-3">OUR LOCATION</span>
+          <span className="text-sm mb-3">REACH US</span>
           <Link
             href="https://maps.app.goo.gl/GPkdcK1oKB7irgAZ6"
             target="_blank"
-            className="text-center text-xs hover:underline transition-all font-light"
+            className="text-center text-xs hover:underline transition-all font-light mb-4"
           >
             DAMAC Smart Heights 1801 Dubai, United Arab Emirates
           </Link>
+          <a
+            href="tel:+971585643190"
+            className="text-center text-xs hover:underline transition-all font-light"
+          >
+            +971 58 564 3190
+          </a>
         </div>
 
-        <ul className="flex justify-evenly py-2 lg:pt-5">
+        <ul className="flex justify-evenly items-center py-2 lg:pt-5 flex-wrap gap-2">
           <li>
             <Link href={"/terms-conditions"}>Terms & Conditions</Link>
           </li>
+          <li className="text-xs">© {new Date().getFullYear()} Dxberience.</li>
           <li>
             <Link href={"/privacy-policy"}>Privacy Policy</Link>
           </li>

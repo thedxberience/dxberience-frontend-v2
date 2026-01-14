@@ -111,9 +111,8 @@ const page = () => {
         <div className="extraordinary-experiences flex flex-col lg:flex-row justify-between items-center w-11/12 h-[767px]">
           <div className="lhs flex flex-col justify-center items-start gap-11">
             <div className="section-header lg:w-[36.458vw]">
-              <h2 className="uppercase text-lg lg:text-4xl">DUBAI</h2>
               <h2 className="font-IvyPresto text-3xl lg:text-7xl">
-                For Extraordinary Experiences
+                DUBAI For Extraordinary Experiences
               </h2>
             </div>
             <div className="lg:pl-20 lg:w-[30.625vw]">
@@ -162,9 +161,8 @@ const page = () => {
         <div className="esteemed-partners flex flex-col justify-center items-center gap-16">
           <div className="section-header flex flex-col justify-center items-center gap-8">
             <header className="flex flex-col justify-center items-center gap-6">
-              <h2 className="text-lg lg:text-4xl uppercase">OUR</h2>
               <h2 className="font-IvyPresto text-3xl lg:text-7xl">
-                Esteemed Partners
+                OUR Esteemed Partners
               </h2>
             </header>
             <p className="text-sm text-center lg:text-base px-2 lg:w-[46.719vw]">
