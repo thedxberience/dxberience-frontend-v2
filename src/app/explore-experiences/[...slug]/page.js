@@ -85,6 +85,61 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  if (category && allServices === "all") {
+    // Category-specific "all" listing pages
+    if (CATEGORY_METADATA[category]) {
+      const metadata = CATEGORY_METADATA[category];
+      return {
+        title: metadata.title,
+        description: metadata.description,
+        alternates: {
+          canonical: `https://www.thedxberience.com/explore-experiences/${category}/all`,
+        },
+        openGraph: {
+          title: metadata.title,
+          description: metadata.description,
+        },
+      };
+    }
+
+    try {
+      const url = urlBuilder(`/categories/${category}`);
+      const data = await fetch(url).then((res) => res.json());
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        return {
+          title: "Category Not Found",
+          description: "The requested category could not be found.",
+        };
+      }
+
+      return {
+        title: data[0].headerTitle || "Category Details",
+        description:
+          data[0].headerCaption || "Category information and experiences",
+        image: data[0].headerImg?.image || "",
+        alternates: {
+          canonical: `https://www.thedxberience.com/explore-experiences/${category}/all`,
+        },
+        openGraph: {
+          title: data[0].headerTitle || "Category Details",
+          description:
+            data[0].headerCaption || "Category information and experiences",
+          image: data[0].headerImg?.image || "",
+        },
+      };
+    } catch (error) {
+      console.error("Error fetching category metadata:", error);
+      return {
+        title: "Discover Dubai: Experiences, Events, Lifestyle Management",
+        description:
+          "Explore our top experiences, exciting activities, memorable events, and premium lifestyle management services in Dubai. Discover the best of Dubai with us today!",
+        alternates: {
+          canonical: `https://www.thedxberience.com/explore-experiences/${category}/all`,
+        },
+      };
+    }
+  }
+
   // Check if category has custom metadata
   if (category && CATEGORY_METADATA[category]) {
     const metadata = CATEGORY_METADATA[category];

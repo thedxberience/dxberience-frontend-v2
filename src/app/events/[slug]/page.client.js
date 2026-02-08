@@ -85,6 +85,24 @@ const EventsDetailsPage = ({ params, category }) => {
     }
   }, [data, thumbnailImage]);
 
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+
+    if (!data?.thumbnail?.image) {
+      if (data?.category?.name) {
+        router.replace(
+          `/explore-experiences/${sluggify(
+            data.category.name.toLowerCase()
+          )}/all`
+        );
+      } else {
+        router.replace("/explore-experiences/all");
+      }
+    }
+  }, [data, router]);
+
   const handleThumbnailImage = (image) => {
     setThumbnailImage(image);
     if (image !== thumbnailImage) {
@@ -150,6 +168,10 @@ const EventsDetailsPage = ({ params, category }) => {
         </header>
       </main>
     );
+  }
+
+  if (!data?.thumbnail?.image) {
+    return null;
   }
 
   return (

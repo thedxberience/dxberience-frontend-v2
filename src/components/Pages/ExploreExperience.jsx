@@ -63,21 +63,23 @@ const ExploreExperienceContent = ({ params }) => {
         </div>
       );
     } else if (!isError && !isLoading && data && data.length != 0) {
-      return data.map((product) => (
-        <ExperienceCard
-          experienceDescription={product.shortDescription}
-          experienceTitle={product.title}
-          slug={product.slug}
-          experienceImage={product.thumbnail.image}
-          experienceAlt={product.thumbnail.altText}
-          priceStart={product.price}
-          experienceLocation={
-            product.location ? product.location : "Dubai, United Arab Emirates"
-          }
-          category={product?.category?.name}
-          key={product.slug}
-        />
-      ));
+      return data
+        .filter((product) => product?.thumbnail?.image)
+        .map((product) => (
+          <ExperienceCard
+            experienceDescription={product.shortDescription}
+            experienceTitle={product.title}
+            slug={product.slug}
+            experienceImage={product.thumbnail.image}
+            experienceAlt={product.thumbnail.altText}
+            priceStart={product.price}
+            experienceLocation={
+              product.location ? product.location : "Dubai, United Arab Emirates"
+            }
+            category={product?.category?.name}
+            key={product.slug}
+          />
+        ));
     } else if (isError) {
       return (
         <div className="flex justify-center items-center w-full">

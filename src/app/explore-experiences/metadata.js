@@ -34,6 +34,101 @@ export const CATEGORY_METADATA = {
 
 // Product/Service metadata map for SEO (specific items)
 export const PRODUCT_METADATA = {
+  "my-serenity": {
+    title: "MY Serenity Yacht Charter in Dubai",
+    description:
+      "MY Serenity is a 70ft yacht charter in Dubai designed for calm escapes and intimate moments at sea. Ideal for relaxed day cruises, overnight stays, and private celebrations with a professional crew on board.",
+  },
+  "perishing-5x-pearl-white": {
+    title: "Pershing 5X Pearl White Yacht Charter - Dubai Luxury Speedboat",
+    description:
+      "Charter the Pershing 5X Pearl White in Dubai for a refined mix of speed, comfort, and modern design. Ideal for private day cruises, small groups, and elegant coastal escapes.",
+  },
+  "88-hamdan": {
+    title: "Hamdan 88 Yacht Charter Dubai - Elegant 88ft Private Yacht",
+    description:
+      "Charter the Hamdan 88 in Dubai and enjoy an elegant 88ft yacht ideal for private events, refined celebrations, and relaxed cruising across Dubai’s iconic waterways.",
+  },
+  "pershing-5x-grey": {
+    title: "Pershing 5X Yacht Charter Dubai - Luxury Yacht Rental",
+    description:
+      "Charter the Pershing 5X in Dubai and enjoy a high-performance luxury yacht with crew. Ideal for private escapes, day charters, and premium sea experiences.",
+  },
+  "azimut-jacuzzi-100": {
+    title: "Private Azimut 100 Charter in Dubai – Jacuzzi Superyacht",
+    description:
+      "Sail Dubai aboard the Azimut 100 and enjoy a private charter with jacuzzi, full crew, and refined spaces designed for exclusive moments at sea.",
+  },
+  "pershing-70": {
+    title: "Pershing 70 Luxury Yacht Charter Dubai - Iconic Speed & Style",
+    description:
+      "Hire the Pershing 70 in Dubai for a bold yachting charter blending striking Italian design, thrilling speed, and a premium setting for unforgettable moments at sea.",
+  },
+  "bella-vita-100": {
+    title: "Bella Vita 100 Yacht Charter Dubai - Iconic 100ft Luxury Experience",
+    description:
+      "Charter the Bella Vita 100 in Dubai and enjoy a spectacular 100ft yacht designed for large gatherings, refined cruising, and standout moments along the city’s iconic coastline.",
+  },
+  "black-predator-105": {
+    title: "Black Predator 105 Yacht Charter Dubai - High-Performance Luxury",
+    description:
+      "Charter the Black Predator 105 in Dubai and enjoy a bold, high-performance yacht designed for exclusive cruising, private moments, and powerful sensations on the water.",
+  },
+  medusa: {
+    title: "Medusa Yacht Charter Dubai - Iconic 100ft Luxury Yacht",
+    description:
+      "Charter the Medusa yacht in Dubai and enjoy an iconic 100ft vessel ideal for private celebrations, elite gatherings, and refined cruising with full crew service.",
+  },
+  "royal-horizon-143": {
+    title: "Royal Horizon 143 Yacht Charter Dubai - Ultra-Luxury 143ft",
+    description:
+      "Charter the Royal Horizon 143 in Dubai and host grand celebrations, VIP events, or exclusive day cruises aboard a 143ft yacht with full crew and premium amenities.",
+  },
+  notorious: {
+    title: "Notorious Luxury Yacht Charter - Private Escape in Dubai",
+    description:
+      "Discover the Notorious yacht, designed for private charters in Dubai. A perfect blend of elegance, comfort, and discretion for unforgettable moments on the water.",
+  },
+  "apollo-100": {
+    title: "Apollo 100 Yacht Charter Dubai - Elegant Private Sea Escape",
+    description:
+      "Charter the Apollo 100 in Dubai for a smooth, elegant yachting experience. Ideal for relaxed day cruises, private gatherings, and stylish moments on the water with full comfort and crew.",
+  },
+  "pershing-5x-white": {
+    title: "Pershing 5X White Luxury Yacht Charter in Dubai",
+    description:
+      "Experience Dubai from the water aboard the Pershing 5X White. A sleek luxury yacht offering premium interiors, open decks, and a smooth charter experience tailored for exclusive moments at sea.",
+  },
+  "ocean-dream-143": {
+    title: "Ocean Dream 143 Mega Yacht Charter in Dubai",
+    description:
+      "Charter the Ocean Dream 143 in Dubai and enjoy a 143ft mega yacht designed for refined celebrations and elite cruising. Expansive spaces, professional crew, and a smooth charter experience on open waters.",
+  },
+  "pearl-serenity-110": {
+    title: "Pearl Serenity 110 Yacht Charter Dubai",
+    description:
+      "Pearl Serenity 110 is a 110ft luxury yacht charter in Dubai, ideal for elegant gatherings, private celebrations, and relaxed day cruises—a refined setting with professional crew service.",
+  },
+  "50-monica": {
+    title: "Monica 50 Yacht Charter Dubai - Private Cruises",
+    description:
+      "Monica 50 is a 50ft yacht charter in Dubai, ideal for small groups, family outings, and private celebrations. A cozy luxury yacht offering relaxed cruising.",
+  },
+  "sunseeker-131": {
+    title: "Sunseeker 131 Yacht Charter Dubai - Ultra Luxury",
+    description:
+      "Charter the Sunseeker 131 in Dubai, a 131ft tri-deck superyacht offering expansive decks, panoramic sea views, private suites, and world-class comfort. Ideal for luxury escapes",
+  },
+  "majesty-88": {
+    title: "Majesty 88 Yacht Charter Dubai - Luxury Events & Cruises",
+    description:
+      "Charter the Majesty 88 in Dubai, an 88ft luxury yacht designed for private celebrations, corporate events, and elegant day cruises. Spacious decks, modern amenities, and professional crew",
+  },
+  "predator-ferretti": {
+    title: "Predator Ferretti Yacht Charter Dubai - Sleek Luxury at Sea",
+    description:
+      "Experience the Predator Ferretti yacht charter in Dubai, designed for discerning guests who value sleek lines, modern comfort, and effortless cruising.",
+  },
   "personal-shopping-with-fashion-consultant": {
     title: "Personal Shopping Dubai - VIP Fashion Consultant by Dxberience",
     description:

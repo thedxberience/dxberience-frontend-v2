@@ -9,6 +9,33 @@ import { notFound } from "next/navigation";
 import VideoPlayer from "@/components/shared/VideoPlayer";
 import SectionDVideo from "../components/SectionDVideo";
 
+const CATEGORY_CTA_LABELS = {
+  "vip-concierge": {
+    explore: "View Services",
+    indulge: "Request Concierge",
+  },
+  "luxury-car-rentals": {
+    explore: "Chauffeur Service",
+    indulge: "View Fleet",
+  },
+  "luxury-yacht-rentals": {
+    explore: "View Yachts",
+    indulge: "Explore Fleet",
+  },
+  events: {
+    explore: "View Events",
+    indulge: "Get Tickets",
+  },
+  "restaurants-and-nightlife": {
+    explore: "View Venues",
+    indulge: "Book a Table",
+  },
+  "luxury-stays": {
+    explore: "View Stays",
+    indulge: "Discover Villas",
+  },
+};
+
 const CategoryPage = async ({ params }) => {
   try {
     const categoryReq = await fetch(
@@ -65,7 +92,11 @@ const CategoryPage = async ({ params }) => {
               </div>
               <div className="section-b-btn w-full flex-center lg:justify-start">
                 <CustomButton
-                  btnName="Explore"
+                  btnName={
+                    CATEGORY_CTA_LABELS[
+                      data?.category?.slug || params.category
+                    ]?.explore || "Explore"
+                  }
                   invert
                   isLink
                   href={`/explore-experiences/${data.category.slug}/all`}
@@ -109,7 +140,11 @@ const CategoryPage = async ({ params }) => {
                 </div>
                 <div className="w-full flex justify-center lg:justify-start items-center">
                   <CustomButton
-                    btnName="indulge today"
+                    btnName={
+                      CATEGORY_CTA_LABELS[
+                        data?.category?.slug || params.category
+                      ]?.indulge || "indulge today"
+                    }
                     invert
                     isLink
                     href={`/explore-experiences/${data.category.slug}/all`}

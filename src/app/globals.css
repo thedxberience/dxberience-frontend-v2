@@ -64,6 +64,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -123,12 +124,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
   overflow-x: hidden;
 }
 
@@ -260,6 +258,7 @@ input[type="text"] {
   left: 1%;
   text-align: center;
 }
+
 .service_image:nth-child(even) p {
   position: absolute;
   bottom: -1rem;
@@ -298,7 +297,7 @@ input[type="text"] {
   z-index: 2;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .about-page-header .car-overlay {
@@ -331,6 +330,7 @@ input[type="text"] {
   height: 2px;
   background-color: white;
 }
+
 .mobile-nav .hamburger-black {
   background-color: black;
 }
@@ -391,7 +391,7 @@ input[type="text"] {
 /* About Page */
 
 .about-page-header {
-  background: linear-gradient(0deg, rgba(2, 2, 2, 0.6), rgba(0, 0, 0, 0.6)),
+  background: linear-gradient(0deg, rgba(2, 2, 2, 0.8), rgba(0, 0, 0, 0.8)),
     url("/infinity_pool.jpeg") no-repeat center center/cover;
 }
 
@@ -507,6 +507,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   0% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(1.2);
   }
@@ -516,6 +517,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   0% {
     transform: scale(1.2);
   }
+
   100% {
     transform: scale(1);
   }
@@ -527,9 +529,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     opacity: 0;
     height: 0px;
   }
+
   80% {
     height: 0px;
   }
+
   100% {
     top: 80px;
     left: 0;
@@ -538,15 +542,18 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     opacity: 1;
   }
 }
+
 @keyframes hide-nav {
   0% {
     transform: translateY(0px);
     opacity: 1;
     height: fit-content;
   }
+
   20% {
     height: 0px;
   }
+
   100% {
     transform: translateY(-5000px);
     height: 0;
@@ -561,10 +568,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     transform: translateY(-500%);
     height: 0px;
   }
+
   80% {
     display: flex;
     opacity: 0;
   }
+
   100% {
     display: flex;
     height: fit-content;
@@ -580,10 +589,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     transform: translateY(0px);
     height: fit-content;
   }
+
   20% {
     opacity: 0.2;
     display: none;
   }
+
   100% {
     display: none;
     opacity: 0;
@@ -596,6 +607,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   0% {
     transform: translateX(-5000px);
   }
+
   100% {
     transform: translateX(0px);
   }
@@ -605,6 +617,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   0% {
     transform: translateX(0px);
   }
+
   100% {
     transform: translateX(-5000px);
     display: none;
@@ -677,6 +690,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-size: 88px;
     line-height: 110px;
   }
+
   /* 
   .header-section .content h1{
     line-height: 5rem;
@@ -785,7 +799,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 input[type="text"] {
-  @apply bg-transparent border-b-[1px]  outline-none w-full;
+  @apply bg-transparent border-b-[1px] outline-none w-full;
 }
 
 #input-container {
@@ -797,6 +811,7 @@ input[type="text"] {
 }
 
 @-webkit-keyframes autofill {
+
   0%,
   100% {
     color: #666;
@@ -808,6 +823,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
+
 input[data-autocompleted] {
   background-color: transparent !important;
 }

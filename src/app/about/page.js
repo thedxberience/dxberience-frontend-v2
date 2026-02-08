@@ -23,44 +23,37 @@ export const metadata = {
 const page = () => {
   return (
     <main className="flex w-full min-h-screen flex-col items-center justify-between">
-      <header className="about-page-header relative w-full h-[468px] md:min-h-screen">
-        {/* <div className="overlay h-full relative"></div> */}
+      <header className="about-page-header flex flex-col relative w-full bg-gradient-to-br from-gray-900 via-black to-gray-900">
         <Suspense fallback={<div>Loading...</div>}>
           <Navbar />
         </Suspense>
-        <div className="flex justify-center items-center text-white h-[265px] md:h-full lg:px-24">
-          <div className="absolute left-4 bottom-16 lg:relative">
-            <div className="left-img relative w-[147px] h-[317px] md:w-[18.781vw] md:h-[70.724vh]">
-              <div className="overlay relative"></div>
-              <Image
-                src="/yacht_about.jpeg"
-                alt="luxury with our yacht rental service in Dubai"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
 
-          <div className="header-content z-30 flex flex-col justify-between items-start gap-4 2xl:gap-16 lg:-ml-10 px-4 lg:px-0">
-            <h1 className="font-IvyPresto text-4xl lg:text-7xl w-11/12 lg:w-[44.156vw]">
-              Dxberience refines Luxury with bespoke VIP services
-            </h1>
-            <p className="text-sm lg:text-lg lg:w-[28.229vw]">
-              From personalized travel itineraries to exclusive access to elite
-              events, our services ensure that every moment is crafted to
-              perfection, providing you with unparalleled sophistication and
-              comfort.
-            </p>
-          </div>
-          <div className="absolute right-4 bottom-12 lg:relative flex flex-col justify-end items-baseline h-[75svh]">
-            <div className="right-img relative w-[113.14px] h-[160.33px] md:w-[29.01vw] md:h-[42.747vh]">
-              <div className="overlay relative car-overlay"></div>
-              <Image
-                src="/luxury-car-about.jpeg"
-                alt="Luxury car for Private VIP Transportation"
-                fill
-                className="object-cover"
-              />
+        <div className="main-content w-full py-16 lg:py-24">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+              <div className="flex-1 text-white space-y-6 lg:space-y-8">
+                <h1 className="font-IvyPresto text-4xl lg:text-7xl 2xl:text-8xl leading-tight">
+                  Dxberience refines Luxury with bespoke VIP services
+                </h1>
+                <p className="text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl">
+                  From personalized travel itineraries to exclusive access to
+                  elite events, our services ensure that every moment is crafted
+                  to perfection, providing you with unparalleled sophistication
+                  and comfort.
+                </p>
+              </div>
+
+              <div className="flex-shrink-0 w-full lg:w-[500px] xl:w-[600px]">
+                <div className="relative w-full h-[320px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
+                  <Image
+                    src="/yacht_about.jpeg"
+                    alt="luxury with our yacht rental service in Dubai"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
